@@ -20,7 +20,7 @@ def train(batch_size=8, num_epoch=100):
     X_batch, y_batch = symbols['X_batch'], symbols['y_batch']
     cost, updates = symbols['cost'], symbols['updates']
 
-    n_train = X.get_values().shape[0]
+    n_train = X.get_value().shape[0]
     num_iter = int(ceil(n_train / float(batch_size)))
 
     print 'Compiling function'
