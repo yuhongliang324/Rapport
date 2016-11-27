@@ -40,6 +40,7 @@ def train(batch_size=8, num_epoch=100):
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
             cost = train_model(start, end)
+            cost = cost[0]
             print iter_index, cost
 
 
