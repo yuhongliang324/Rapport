@@ -132,7 +132,7 @@ class RNN_Attention(object):
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
-        y_batch = T.vector()  # (batch_size,)
+        y_batch = T.ivector()  # (batch_size,)
 
         batch_size = T.shape(y_batch)[0]
 
