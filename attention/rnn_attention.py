@@ -127,7 +127,7 @@ class RNN_Attention(object):
         C_t = i_t * C_t + f_t * C_tm1  # (batch_size, hidden_dim)
         H_t = o_t * T.tanh(C_t)  # (batch_size, hidden_dim)
         a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a) + self.b_a)  # (batch_size,)
-        H_t = ((1 - a_t) * H_tm1.T + a_t * H_t.T).T
+        H_t = ((1. - a_t) * H_tm1.T + a_t * H_t.T).T
         return a_t, C_t, H_t
 
     def build_model(self):
