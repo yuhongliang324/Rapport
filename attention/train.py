@@ -10,6 +10,7 @@ from math import ceil
 def train(batch_size=8, num_epoch=100):
 
     X, y = load()
+    n_train = X.shape[1]
     X = theano.shared(X, borrow=True)
     y = theano.shared(y, borrow=True)
     y = T.cast(y, 'int32')
@@ -20,7 +21,6 @@ def train(batch_size=8, num_epoch=100):
     X_batch, y_batch = symbols['X_batch'], symbols['y_batch']
     cost, updates = symbols['cost'], symbols['updates']
 
-    n_train = X.get_value().shape[0]
     num_iter = int(ceil(n_train / float(batch_size)))
 
     print 'Compiling function'
