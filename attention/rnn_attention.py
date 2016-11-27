@@ -39,13 +39,13 @@ class RNN_Attention(object):
             low=-numpy.sqrt(6. / float(self.hidden_dim + 1)), high=numpy.sqrt(6. / float(self.hidden_dim + 1)),
             size=(self.hidden_dim,)), dtype=theano.config.floatX)
         self.w_a = theano.shared(value=w_a, borrow=True)
-        self.b_a = theano.shared(value=0., borrow=True)
+        # self.b_a = theano.shared(value=0., borrow=True)
 
         self.W_1, self.b_1 = self.init_para(self.hidden_dim, self.n_class)
 
         self.theta = [self.W_i, self.U_i, self.b_i, self.W_f, self.U_f, self.b_f,
                       self.W_o, self.U_o, self.b_o, self.W_c, self.U_c, self.b_c,
-                      self.w_a, self.b_a, self.W_1, self.b_1]
+                      self.w_a, self.W_1, self.b_1]
 
         self.add_param_shapes()
 
@@ -126,7 +126,7 @@ class RNN_Attention(object):
         C_t = T.tanh(T.dot(X_t, self.W_c) + T.dot(H_tm1, self.U_c) + self.b_c)  # (batch_size, hidden_dim)
         C_t = i_t * C_t + f_t * C_tm1  # (batch_size, hidden_dim)
         H_t = o_t * T.tanh(C_t)  # (batch_size, hidden_dim)
-        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a) + self.b_a)  # (batch_size,)
+        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))  # (batch_size,)
         H_t = ((1. - a_t) * H_tm1.T + a_t * H_t.T).T
         return a_t, C_t, H_t
 
