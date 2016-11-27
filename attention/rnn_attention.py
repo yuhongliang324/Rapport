@@ -140,7 +140,8 @@ class RNN_Attention(object):
         # C: (n_step, batch_size, hidden_dim)
         # H: (n_step, batch_size, hidden_dim)
         [a, C, H], _ = theano.scan(self.forward, sequences=X_batch,
-                                   outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
+                                   outputs_info=[None,
+                                                 T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                  T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
 
         rep = H[-1]  # (batch_size, hidden_dim)
