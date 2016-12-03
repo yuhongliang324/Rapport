@@ -19,7 +19,7 @@ def rename(root):
             dyad_name, session_name = sp[1], sp[2]
             slice_id = sp[4][5:].zfill(3)
             new_name = dyad_name + '_' + session_name + '_' + slice_id + '_' + sp[-1]
-            print new_name
+            print fn1, new_name
 
 data_root = '/multicomp/users/liangke/RAPT/features'
 
