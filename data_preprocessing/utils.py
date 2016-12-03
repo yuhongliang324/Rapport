@@ -26,6 +26,21 @@ def rename(root):
             new_name = dyad_name + '_' + session_name + '_' + slice_id + '_' + sp[-1]
             os.rename(os.path.join(pathname, fn1), os.path.join(pathname, new_name))
 
-data_root = '/multicomp/users/liangke/RAPT/features'
 
-rename(data_root)
+def get_slice_ratings(rating_csv):
+    reader = open(rating_csv)
+    lines = reader.readlines()
+    reader.close()
+    lines = lines[0].split('\r')[1:]
+    lines = map(lambda x: x.strip(), lines)
+
+    ret = []
+
+    for line in lines:
+        sp = line.split(',')
+        rating = float(sp[7])
+        dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
+        ret.append((dyad, session, slice, rating))
+    return ret
+
+data_root = '/multicomp/users/liangke/RAPT/features'
