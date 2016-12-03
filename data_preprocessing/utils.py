@@ -24,7 +24,7 @@ def rename(root):
                 slice_id = slice_id[5:]
             slice_id = slice_id.zfill(3)
             new_name = dyad_name + '_' + session_name + '_' + slice_id + '_' + sp[-1]
-            print fn1 + '\t' + new_name
+            os.rename(os.path.join(pathname, fn1), os.path.join(pathname, new_name))
 
 data_root = '/multicomp/users/liangke/RAPT/features'
 
