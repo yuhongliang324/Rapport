@@ -22,7 +22,7 @@ def rename(root):
             slice_id = sp[3]
             if slice_id.startswith('Slice'):
                 slice_id = slice_id[5:]
-            slice_id.zfill(3)
+            slice_id = slice_id.zfill(3)
             new_name = dyad_name + '_' + session_name + '_' + sp[2] + '_' + slice_id + '_' + sp[-1]
             print fn1 + '\t' + new_name
 
