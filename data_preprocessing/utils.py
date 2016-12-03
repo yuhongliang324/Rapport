@@ -16,12 +16,14 @@ def rename(root):
             if not (fn1.endswith('txt') or fn.endswith('hog')):
                 continue
             sp = fn1.split('_')
-            dyad_name, session_name = sp[1], sp[2]
-            slice_id = sp[4]
+            if not sp[0].startswith('D'):
+                sp = sp[1:]
+            dyad_name, session_name = sp[0], sp[1]
+            slice_id = sp[3]
             if slice_id.startswith('Slice'):
                 slice_id = slice_id[5:]
             slice_id.zfill(3)
-            new_name = dyad_name + '_' + session_name + '_' + slice_id + '_' + sp[-1]
+            new_name = dyad_name + '_' + session_name + '_' + sp[2] + '_' + slice_id + '_' + sp[-1]
             print fn1 + '\t' + new_name
 
 data_root = '/multicomp/users/liangke/RAPT/features'
