@@ -13,7 +13,7 @@ def rename(root):
             continue
         files1 = os.listdir(pathname)
         for fn1 in files1:
-            if not (fn1.endswith('txt') or fn.endswith('hog')):
+            if not (fn1.endswith('txt') or fn1.endswith('hog')):
                 continue
             sp = fn1.split('_')
             if not sp[0].startswith('D'):
@@ -23,7 +23,7 @@ def rename(root):
             if slice_id.startswith('Slice'):
                 slice_id = slice_id[5:]
             slice_id = slice_id.zfill(3)
-            new_name = dyad_name + '_' + session_name + '_' + sp[2] + '_' + slice_id + '_' + sp[-1]
+            new_name = dyad_name + '_' + session_name + '_' + slice_id + '_' + sp[-1]
             print fn1 + '\t' + new_name
 
 data_root = '/multicomp/users/liangke/RAPT/features'
