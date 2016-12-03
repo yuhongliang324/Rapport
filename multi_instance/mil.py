@@ -1,9 +1,11 @@
 __author__ = 'yuhongliang324'
 
-import misvm
+import random
+
 import numpy
 from scipy.io import loadmat
-import random
+
+import misvm
 from data_path import *
 
 
