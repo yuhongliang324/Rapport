@@ -16,7 +16,7 @@ def rename(root):
             continue
         files1 = os.listdir(pathname)
         for fn1 in files1:
-            if not (fn1.endswith('txt') or fn1.endswith('hog')):
+            if not fn1.endswith('avi'):
                 continue
             sp = fn1.split('_')
             if not sp[0].startswith('D'):
@@ -100,4 +100,13 @@ data_root = '/multicomp/users/liangke/RAPT/features'
 data_info_root = '../data_info/'
 
 
-get_slice_ratings2(data_info_root, os.path.join(data_info_root, 'ratings.txt'))
+def test1():
+    rename('/multicomp/users/liangke/RAPT/data/')
+
+
+def test2():
+    get_slice_ratings2(data_info_root, os.path.join(data_info_root, 'ratings.txt'))
+
+
+if __name__ == '__main__':
+    test1()
