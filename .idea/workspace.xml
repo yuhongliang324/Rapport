@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d6a9d3d-3d8b-4ea0-9f7a-51464a21a2e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_preprocessing/utils.py" afterPath="$PROJECT_DIR$/data_preprocessing/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_preprocessing/feature_similarity.py" afterPath="$PROJECT_DIR$/data_preprocessing/feature_similarity.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Rapport.iws" />
@@ -58,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feature_similarity.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="feature_similarity.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_preprocessing/feature_similarity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.6331522">
+              <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
               <folding>
                 <element signature="e#30#42#0" expanded="true" />
                 <element signature="e#186#615#0" expanded="false" />
@@ -72,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_preprocessing/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.91847825">
-              <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="107" column="83" selection-start-line="107" selection-start-column="83" selection-end-line="107" selection-end-column="83" />
               <folding>
                 <element signature="e#31#40#0" expanded="true" />
               </folding>
@@ -114,8 +114,8 @@
         <option value="$PROJECT_DIR$/attention/train.py" />
         <option value="$PROJECT_DIR$/data_preprocessing/text_vectorization.py" />
         <option value="$PROJECT_DIR$/data_path.py" />
-        <option value="$PROJECT_DIR$/data_preprocessing/feature_similarity.py" />
         <option value="$PROJECT_DIR$/data_preprocessing/utils.py" />
+        <option value="$PROJECT_DIR$/data_preprocessing/feature_similarity.py" />
       </list>
     </option>
   </component>
@@ -554,24 +554,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_preprocessing/feature_similarity.py">
+    <entry file="file://$PROJECT_DIR$/data_preprocessing/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
+          <caret line="107" column="83" selection-start-line="107" selection-start-column="83" selection-end-line="107" selection-end-column="83" />
           <folding>
-            <element signature="e#30#42#0" expanded="true" />
-            <element signature="e#186#615#0" expanded="false" />
-            <element signature="e#700#1774#0" expanded="false" />
+            <element signature="e#31#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_preprocessing/utils.py">
+    <entry file="file://$PROJECT_DIR$/data_preprocessing/feature_similarity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.91847825">
-          <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.6331522">
+          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
           <folding>
-            <element signature="e#31#40#0" expanded="true" />
+            <element signature="e#30#42#0" expanded="true" />
+            <element signature="e#186#615#0" expanded="false" />
+            <element signature="e#700#1774#0" expanded="false" />
           </folding>
         </state>
       </provider>

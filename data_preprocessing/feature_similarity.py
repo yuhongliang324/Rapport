@@ -85,11 +85,11 @@ def find_all_similarity(sim_file, dissim_file, feature_name='hog', topK=10):
             size = len(top_sim_pairs)
             for i in xrange(size):
                 l, r = str(top_sim_pairs[i][0] * 10), str(top_sim_pairs[i][1] * 10)
-                writer_sim.write('sim\t' + dyad_ID + ',' + session_ID + ',' + slice_ID + ',' + l + ',' + r + '\n')
+                writer_sim.write('sim,' + dyad_ID + ',' + session_ID + ',' + slice_ID + ',' + l + ',' + r + '\n')
             size = len(top_dissim_pairs)
             for i in xrange(size):
                 l, r = str(top_dissim_pairs[i][0] * 10), str(top_dissim_pairs[i][1] * 10)
-                writer_dissim.write('dissim\t' + dyad_ID + ',' + session_ID + ',' + slice_ID + ',' + l + ',' + r + '\n')
+                writer_dissim.write('dissim,' + dyad_ID + ',' + session_ID + ',' + slice_ID + ',' + l + ',' + r + '\n')
     writer_sim.close()
     writer_dissim.close()
 
