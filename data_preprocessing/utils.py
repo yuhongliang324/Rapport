@@ -2,6 +2,9 @@ __author__ = 'yuhongliang324'
 
 import os
 from collections import defaultdict
+from scipy.io import loadmat
+import numpy
+
 
 def rename(root):
     files = os.listdir(root)
@@ -62,6 +65,35 @@ def get_slice_ratings2(rating_root, outfile):
         writer.write(slice + ',' + str(rating) + '\n')
     writer.close()
 
+
+# side: l - left only, r - right only, lr - left and right, b - concatenation of lr
+def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
+    lfeat_name = 'left_' + feature_name + '_feature'
+    rfeat_name = 'right_' + feature_name + '_feature'
+    data = loadmat(mat_file)
+    lfeat, rfeat = data[lfeat_name], data[rfeat_name]
+    lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
+    if side == 'l':
+        if only_suc:
+            lfeat = lfeat[lsuc == 1]
+            return lfeat
+        return lfeat, lsuc
+    elif side == 'r':
+        if only_suc:
+            rfeat = rfeat[rsuc == 1]
+        return rfeat
+    elif side == 'lr':
+        if only_suc:
+            lfeat = lfeat[lsuc == 1]
+            rfeat = rfeat[rsuc == 1]
+            return lfeat, rfeat
+        return lfeat, rfeat, lsuc, rsuc
+    else:
+        feat = numpy.concatenate((lfeat, rfeat), axis=1)
+        if only_suc:
+            feat = feat[numpy.logical_and(lsuc == 1, rsuc == 1)]
+            return feat
+        return feat, lsuc, rsuc
 
 
 data_root = '/multicomp/users/liangke/RAPT/features'
