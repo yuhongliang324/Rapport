@@ -81,7 +81,7 @@ def find_all_similarity(sim_file, dissim_file, feature_name='hog', topK=10):
             slice_mat = os.path.join(dyad_path, slice_name)
             top_sim_pairs, top_dissim_pairs = calculate_similarity(slice_mat, feature_name=feature_name, topK=topK)
             sp = slice_name[:-4].split('_')
-            dyad_ID, session_ID, slice_ID = sp[0][1:], sp[1][1:], str(int(sp[2]))
+            dyad_ID, session_ID, slice_ID = sp[0][1:], sp[1][1:], sp[2]
             size = len(top_sim_pairs)
             for i in xrange(size):
                 l, r = str(top_sim_pairs[i][0] * 10), str(top_sim_pairs[i][1] * 10)
