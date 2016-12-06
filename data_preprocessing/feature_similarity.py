@@ -59,6 +59,8 @@ def calculate_similarity(mat_file, feature_name='hog', cosine=True, topK=10):
 
 
 def find_all_similarity(sim_file, dissim_file, feature_name='hog', topK=10):
+    import sys
+    sys.path.append('..')
     from data_path import sample_10_root
 
     writer_sim = open(sim_file, 'w')
