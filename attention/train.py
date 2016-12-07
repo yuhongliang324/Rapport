@@ -18,7 +18,6 @@ def RMSE(y_actual, y_predicted):
 
 def validate(test_model, y_test, batch_size=16):
     n_test = y_test.shape[0]
-    print n_test
     num_iter = int(ceil(n_test / float(batch_size)))
     all_pred = []
     cost_avg = 0.
@@ -42,7 +41,7 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
     X_train_shared = theano.shared(X_train, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
     X_test_shared = theano.shared(X_test, borrow=True)
-    y_test_shared = theano.shared(numpy.zeros_like(y_test, dtype=theano.config.floatX), borrow=True)
+    y_test_shared = theano.shared(y_test, borrow=True)
 
     ra = RNN_Attention(input_dim, hidden_dim, 1)
     symbols = ra.build_model()
@@ -101,8 +100,8 @@ def cross_validation():
         for j in xrange(num_dyad):
             if j == i:
                 continue
-            feature_list.append(dyad_features[dyads[i]])
-            rating_list.append(dyad_ratings[dyads[i]])
+            feature_list.append(dyad_features[dyads[j]])
+            rating_list.append(dyad_ratings[dyads[j]])
         X_train = numpy.concatenate(feature_list)
         y_train = numpy.concatenate(rating_list)
         rating_mean = numpy.mean(y_train)
@@ -112,7 +111,6 @@ def cross_validation():
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
         X_test = X_train[:X_test.shape[0]]
-        print X_test.shape
         train(X_train, y_train, X_test, y_test)
 
 
