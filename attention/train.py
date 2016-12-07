@@ -24,7 +24,7 @@ def validate(test_model, n_test, batch_size=16):
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
-def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_epoch=100):
+def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_epoch=40):
 
     n_train = X_train.shape[0]
     n_test = X_test.shape[0]
