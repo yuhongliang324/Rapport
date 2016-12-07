@@ -10,7 +10,7 @@ from data_path import sample_10_root
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='l'):
+def load(dirname, feature_name='hog', side='l', min_step=76):
 
     dyad_features = {}
     dyad_ratings = {}
@@ -24,7 +24,8 @@ def load(dirname, feature_name='hog', side='l'):
             continue
         dyad = int(fn[1:].split('S')[0])
         features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side)
-        print features.shape, ratings.shape
+        if min_step is not None:
+            features = features[:, :76, :]
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
