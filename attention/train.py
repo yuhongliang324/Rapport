@@ -18,6 +18,7 @@ def RMSE(y_actual, y_predicted):
 
 def validate(test_model, y_test, batch_size=16):
     n_test = y_test.shape[0]
+    print n_test
     num_iter = int(ceil(n_test / float(batch_size)))
     all_pred = []
     cost_avg = 0.
@@ -34,7 +35,6 @@ def validate(test_model, y_test, batch_size=16):
 def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_epoch=40):
 
     n_train = X_train.shape[0]
-    n_test = X_test.shape[0]
     input_dim = X_train.shape[2]
     X_train = X_train.transpose([1, 0, 2])
     X_test = X_test.transpose([1, 0, 2])
@@ -64,7 +64,7 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore')
     test_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, pred], updates=updates,
+                                  outputs=[cost, pred],
                                   givens={
                                       X_batch: X_test_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_test_shared[start_symbol: end_symbol]},
