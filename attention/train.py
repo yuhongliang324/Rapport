@@ -1,10 +1,11 @@
 __author__ = 'yuhongliang324'
 
+from math import ceil
+
 import theano
 import theano.tensor as T
-from load_data import load
+
 from rnn_attention import RNN_Attention
-from math import ceil
 
 
 def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=8, num_epoch=100):
