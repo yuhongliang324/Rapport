@@ -73,27 +73,30 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
     data = loadmat(mat_file)
     lfeat, rfeat = data[lfeat_name], data[rfeat_name]
     lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
+    rating = float(data['label'][0])
     if side == 'l':
         if only_suc:
             lfeat = lfeat[lsuc == 1]
-            return lfeat
-        return lfeat, lsuc
+            return lfeat, rating
+        return lfeat, lsuc, rating
     elif side == 'r':
         if only_suc:
             rfeat = rfeat[rsuc == 1]
-        return rfeat
+            return rfeat, rating
+        return rfeat, lsuc, rating
     elif side == 'lr':
         if only_suc:
             lfeat = lfeat[lsuc == 1]
             rfeat = rfeat[rsuc == 1]
-            return lfeat, rfeat
-        return lfeat, rfeat, lsuc, rsuc
+            return lfeat, rfeat, rating
+        return lfeat, rfeat, lsuc, rsuc, rating
     else:
         feat = numpy.concatenate((lfeat, rfeat), axis=1)
+        suc = numpy.logical_and(lsuc == 1, rsuc == 1)
         if only_suc:
-            feat = feat[numpy.logical_and(lsuc == 1, rsuc == 1)]
-            return feat
-        return feat, lsuc, rsuc
+            feat = feat[suc]
+            return feat, rating
+        return feat, suc, rating
 
 
 data_root = '/multicomp/users/liangke/RAPT/features'

@@ -10,7 +10,8 @@ from collections import OrderedDict
 
 
 class RNN_Attention(object):
-
+    # n_class = 1: regression problem
+    # n_class > 1: classification problem
     def __init__(self, input_dim, hidden_dim, n_class, lamb=0.00001, update='rmsprop',
                  lr=None, beta1=0.9, beta2=0.999, epsilon=1e-8, decay=0., momentum=0.9, rho=0.9):
 
@@ -35,6 +36,9 @@ class RNN_Attention(object):
         self.W_c, self.b_c = self.init_para(self.input_dim, self.hidden_dim)
         self.U_c, _ = self.init_para(self.hidden_dim, self.hidden_dim)
 
+        self.W_s, self.b_s = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_s, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+
         w_a = numpy.asarray(self.rng.uniform(
             low=-numpy.sqrt(6. / float(self.hidden_dim + 1)), high=numpy.sqrt(6. / float(self.hidden_dim + 1)),
             size=(self.hidden_dim,)), dtype=theano.config.floatX)
@@ -45,7 +49,7 @@ class RNN_Attention(object):
 
         self.theta = [self.W_i, self.U_i, self.b_i, self.W_f, self.U_f, self.b_f,
                       self.W_o, self.U_o, self.b_o, self.W_c, self.U_c, self.b_c,
-                      self.w_a, self.W_1, self.b_1]
+                      self.w_a, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
 
         self.add_param_shapes()
 
@@ -104,7 +108,6 @@ class RNN_Attention(object):
         W = theano.shared(value=W_values, borrow=True)
         b_values = numpy.zeros((d2,), dtype=theano.config.floatX)
         b = theano.shared(value=b_values, borrow=True)
-
         return W, b
 
     def add_param_shapes(self):
@@ -118,8 +121,8 @@ class RNN_Attention(object):
 
     # scan function parameter order: sequences, prior results, non_sequences
     # sequences: X_t (batch_size, input_dim)
-    # prior results: C_tm1, H_tm1 (batch_size, hidden_dim)
-    def forward(self, X_t, C_tm1, H_tm1):
+    # prior results: C_tm1, H_tm1, S_tm1 (batch_size, hidden_dim)
+    def forward(self, X_t, C_tm1, H_tm1, S_tm1):
         i_t = T.nnet.sigmoid(T.dot(X_t, self.W_i) + T.dot(H_tm1, self.U_i) + self.b_i)  # (batch_size, hidden_dim)
         f_t = T.nnet.sigmoid(T.dot(X_t, self.W_f) + T.dot(H_tm1, self.U_f) + self.b_f)  # (batch_size, hidden_dim)
         o_t = T.nnet.sigmoid(T.dot(X_t, self.W_o) + T.dot(H_tm1, self.U_o) + self.b_o)  # (batch_size, hidden_dim)
@@ -127,8 +130,9 @@ class RNN_Attention(object):
         C_t = i_t * C_t + f_t * C_tm1  # (batch_size, hidden_dim)
         H_t = o_t * T.tanh(C_t)  # (batch_size, hidden_dim)
         a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))  # (batch_size,)
-        H_t = ((1. - a_t) * H_tm1.T + a_t * H_t.T).T
-        return a_t, C_t, H_t
+        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)  # (batch_size, hidden_dim)
+        S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
+        return a_t, C_t, H_t, S_t
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
@@ -139,20 +143,26 @@ class RNN_Attention(object):
         # a: (n_step, batch_size)
         # C: (n_step, batch_size, hidden_dim)
         # H: (n_step, batch_size, hidden_dim)
-        [a, C, H], _ = theano.scan(self.forward, sequences=X_batch,
+        [a, _, _, S], _ = theano.scan(self.forward, sequences=X_batch,
                                    outputs_info=[None,
+                                                 T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                  T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                  T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
 
-        rep = H[-1]  # (batch_size, hidden_dim)
+        rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
-        prob = T.nnet.softmax(rep)[0]
-        pred = T.argmax(prob)
+        if self.n_class > 1:
+            prob = T.nnet.softmax(rep)[0]
+            pred = T.argmax(prob)
 
-        acc = T.mean(T.eq(pred, y_batch))
+            acc = T.mean(T.eq(pred, y_batch))
 
-        log_loss = T.sum(-T.log(prob[y_batch]))
-        cost = log_loss + self.l2()
+            loss = T.sum(-T.log(prob[y_batch]))
+        else:
+            pred = rep[:, 0]
+            loss = pred - y_batch
+            loss = T.mean(loss ** 2)
+        cost = loss + self.l2()
         gradients = [T.grad(cost, param) for param in self.theta]
 
         # adagrad
@@ -184,5 +194,8 @@ class RNN_Attention(object):
         else:
             updates = OrderedDict((p, T.cast(p - self.lr * g, dtype=theano.config.floatX)) for p, g in zip(self.theta, gradients))
 
-        return {'X_batch': X_batch, 'y_batch': y_batch,
-                'a': a, 'pred': pred, 'acc': acc, 'loss': log_loss, 'cost': cost, 'updates': updates}
+        ret = {'X_batch': X_batch, 'y_batch': y_batch,
+                'a': a, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+        if self.n_class > 1:
+            ret['acc'] = acc
+        return ret

@@ -4,6 +4,7 @@ from sklearn.preprocessing import normalize
 from utils import load_feature
 import os
 
+
 def get_high_rating_slices(rating_csv, threshold=5):
     reader = open(rating_csv)
     lines = reader.readlines()
@@ -24,7 +25,7 @@ def get_high_rating_slices(rating_csv, threshold=5):
 
 
 def calculate_similarity(mat_file, feature_name='hog', cosine=True, topK=10):
-    lfeat, rfeat, lsuc, rsuc = load_feature(mat_file, feature_name=feature_name, side='lr', only_suc=False)
+    lfeat, rfeat, lsuc, rsuc, _ = load_feature(mat_file, feature_name=feature_name, side='lr', only_suc=False)
     if cosine:
         lfeat = normalize(lfeat)
         rfeat = normalize(rfeat)
@@ -106,5 +107,4 @@ def test2():
 
 if __name__ == '__main__':
     test2()
-
 
