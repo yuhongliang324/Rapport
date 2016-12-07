@@ -4,23 +4,30 @@ from math import ceil, sqrt
 import numpy
 import theano
 import theano.tensor as T
+from sklearn.metrics import mean_squared_error
 
 from rnn_attention import RNN_Attention
 import sys
 sys.path.append('../')
 
 
-def validate(test_model, n_test, batch_size=16):
+def RMSE(y_actual, y_predicted):
+    rmse = sqrt(mean_squared_error(y_actual, y_predicted))
+    return rmse
+
+
+def validate(test_model, y_test, batch_size=16):
+    n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
-    cost_avg, rmse = 0., 0.
+    all_pred = []
+    cost_avg = 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost, loss = test_model(start, end)
+        cost, pred = test_model(start, end)
         cost_avg += cost * (end - start)
-        rmse += loss * (end - start)
+        all_pred += pred.tolist()
     cost_avg /= n_test
-    rmse /= n_test
-    rmse = sqrt(rmse)
+    rmse = RMSE(y_test, all_pred)
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
@@ -51,13 +58,13 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
 
     train_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, loss], updates=updates,
+                                  outputs=[cost, pred], updates=updates,
                                   givens={
                                       X_batch: X_train_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore')
     test_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, loss], updates=updates,
+                                  outputs=[cost, pred], updates=updates,
                                   givens={
                                       X_batch: X_test_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_test_shared[start_symbol: end_symbol]},
@@ -66,17 +73,18 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
 
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
+        all_pred = []
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
-            cost, loss = train_model(start, end)
+            cost, pred = train_model(start, end)
             cost_avg += cost * (end - start)
-            rmse += loss * (end - start)
+            all_pred += pred.tolist()
         cost_avg /= n_train
-        rmse /= n_train
-        rmse = sqrt(rmse)
+        y_predicted = numpy.asarray(all_pred)
+        rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse)
-        validate(test_model, n_test)
+        validate(test_model, y_test)
 
 
 def cross_validation():
@@ -102,7 +110,6 @@ def cross_validation():
         rmse = sqrt(numpy.mean(rmse * rmse))
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
-        X_test = X_train[:X_test.shape[0]]
         train(X_train, y_train, X_test, y_test)
 
 
