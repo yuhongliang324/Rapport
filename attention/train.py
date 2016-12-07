@@ -42,7 +42,7 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
     X_train_shared = theano.shared(X_train, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
     X_test_shared = theano.shared(X_test, borrow=True)
-    y_test_shared = theano.shared(y_test, borrow=True)
+    y_test_shared = theano.shared(numpy.zeros_like(y_test, dtype=theano.config.floatX), borrow=True)
 
     ra = RNN_Attention(input_dim, hidden_dim, 1)
     symbols = ra.build_model()
