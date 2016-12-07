@@ -49,8 +49,8 @@ def load_dyad(dirname, feature_name='hog', side='b'):
         ratings.append(rating)
         print feat.shape
 
-    features = numpy.stack(features, axis=0).astype(theano.config.floatX)
-    ratings = numpy.stack(ratings, axis=0).astype(theano.config.floatX)
+    # features = numpy.stack(features, axis=0).astype(theano.config.floatX)
+    # ratings = numpy.stack(ratings, axis=0).astype(theano.config.floatX)
 
     return features, ratings
 
