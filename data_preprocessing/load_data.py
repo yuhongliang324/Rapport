@@ -38,12 +38,17 @@ def load_dyad(dirname, feature_name='hog', side='b'):
 
     files = os.listdir(dirname)
     files.sort()
+    prev_step = None
     for mat_name in files:
         if not mat_name.endswith('mat'):
             continue
         mat_file = os.path.join(dirname, mat_name)
         feat, _, rating = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
         if feat.shape[0] == 0:
+            continue
+        if prev_step is None:
+            prev_step = feat.shape[0]
+        elif feat.shape[0] != prev_step:
             continue
         features.append(feat)
         ratings.append(rating)
