@@ -31,7 +31,7 @@ def validate(test_model, y_test, batch_size=16):
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
-def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_epoch=40):
+def train(X_train, y_train, X_test, y_test, hidden_dim=256, batch_size=16, num_epoch=40):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -110,7 +110,7 @@ def cross_validation():
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
-        train(X_train, y_train, X_test, y_test)
+        train(X_train, y_train, X_test, y_test, hidden_dim=256)
 
 
 def test1():
