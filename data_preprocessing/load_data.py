@@ -19,10 +19,11 @@ def load(dirname, feature_name='hog', side='b'):
     files.sort()
     for fn in files:
         print fn
-        if not (os.path.isdir(fn) and fn.startswith('D')):
+        session_dir = os.path.join(dirname, fn)
+        if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings = load_dyad(os.path.join(dirname, fn), feature_name=feature_name, side=side)
+        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side)
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
