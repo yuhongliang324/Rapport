@@ -24,6 +24,7 @@ def load(dirname, feature_name='hog', side='l'):
             continue
         dyad = int(fn[1:].split('S')[0])
         features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side)
+        print features.shape, ratings.shape
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
