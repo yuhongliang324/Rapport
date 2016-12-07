@@ -99,7 +99,7 @@ def cross_validation():
         y_train = numpy.concatenate(rating_list)
         rating_mean = numpy.mean(y_train)
         rmse = y_test - rating_mean
-        rmse *= sqrt(numpy.mean(rmse * rmse))
+        rmse = sqrt(numpy.mean(rmse * rmse))
         print 'RMSE of Average Prediction = %f' % rmse
         train(X_train, y_train, X_test, y_test)
 
