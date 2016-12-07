@@ -1,6 +1,6 @@
 __author__ = 'yuhongliang324'
 
-from math import ceil
+from math import ceil, sqrt
 import numpy
 import theano
 import theano.tensor as T
@@ -12,10 +12,16 @@ sys.path.append('../')
 
 def validate(test_model, n_test, batch_size=16):
     num_iter = int(ceil(n_test / float(batch_size)))
+    cost_avg, rmse = 0., 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost, loss = test_model(start, end)
-        print 'test cost', cost, 'loss', loss
+        cost_avg += cost
+        rmse += loss
+    cost_avg /= n_test
+    rmse /= n_test
+    rmse = sqrt(rmse)
+    print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
 def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_epoch=100):
@@ -59,10 +65,17 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
     print 'Compilation done'
 
     for epoch_index in xrange(num_epoch):
+        cost_avg, rmse = 0., 0.
+        print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
             cost, loss = train_model(start, end)
-            print 'test cost', cost, 'loss', loss
+            cost_avg += cost * (end - start)
+            rmse += loss * (end - start)
+        cost_avg /= n_train
+        rmse /= n_train
+        rmse = sqrt(rmse)
+        print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse)
         validate(test_model, n_test)
 
 
@@ -84,6 +97,10 @@ def cross_validation():
             rating_list.append(dyad_ratings[dyads[i]])
         X_train = numpy.concatenate(feature_list)
         y_train = numpy.concatenate(rating_list)
+        rating_mean = numpy.mean(y_train)
+        rmse = y_test - rating_mean
+        rmse *= sqrt(numpy.mean(rmse * rmse))
+        print 'RMSE of Average Prediction = %f' % rmse
         train(X_train, y_train, X_test, y_test)
 
 
