@@ -62,7 +62,6 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=512, batch_size=16, num_e
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
             cost, loss = train_model(start, end)
-            cost = cost[0]
             print 'test cost', cost, 'loss', loss
         validate(test_model, n_test)
 
