@@ -10,7 +10,7 @@ from data_path import sample_10_root
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='b'):
+def load(dirname, feature_name='hog', side='l'):
 
     dyad_features = {}
     dyad_ratings = {}

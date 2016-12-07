@@ -91,8 +91,7 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
             return lfeat, rfeat, rating
         return lfeat, rfeat, lsuc, rsuc, rating
     else:
-        print '*****'
-        print lfeat.shape, rfeat.shape
+        # Bug!!!
         feat = numpy.concatenate((lfeat, rfeat), axis=1)
         suc = numpy.logical_and(lsuc == 1, rsuc == 1)
         if only_suc:
