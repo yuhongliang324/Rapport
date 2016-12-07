@@ -16,8 +16,8 @@ def validate(test_model, n_test, batch_size=16):
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost, loss = test_model(start, end)
-        cost_avg += cost
-        rmse += loss
+        cost_avg += cost * (end - start)
+        rmse += loss * (end - start)
     cost_avg /= n_test
     rmse /= n_test
     rmse = sqrt(rmse)
