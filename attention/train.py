@@ -110,6 +110,9 @@ def cross_validation():
         rmse = sqrt(numpy.mean(rmse * rmse))
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
+        print X_train.shape, X_test.shape
+        X_test = X_train[:X_test.shape[0]]
+        print X_test.shape
         train(X_train, y_train, X_test, y_test)
 
 
