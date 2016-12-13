@@ -24,11 +24,9 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side)
+        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, norm=norm)
         if min_step is not None:
             features = features[:, :76, :]
-        if norm:
-            features = normalize(features, axis=2)
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
@@ -50,7 +48,7 @@ def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
     return prev_step
 
 
-def load_dyad(dirname, feature_name='hog', side='b', min_step=76):
+def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     features, ratings = [], []
 
     files = os.listdir(dirname)
@@ -63,9 +61,14 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76):
         feat, _, rating = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
         if side == 'lr':
             lfeat, rfeat = feat
+            if norm:
+                lfeat = normalize(lfeat)
+                rfeat = normalize(rfeat)
             prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
             prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
         else:
+            if norm:
+                feat = normalize(feat)
             prev_step = add_to_features(feat, rating, features, ratings, prev_step, min_step=min_step)
     features = numpy.stack(features[:-1], axis=0).astype(theano.config.floatX)
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)
