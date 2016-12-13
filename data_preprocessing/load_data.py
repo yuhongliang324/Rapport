@@ -10,7 +10,7 @@ from data_path import sample_10_root
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='l', min_step=76):
+def load(dirname, feature_name='hog', side='lr', min_step=76):
 
     dyad_features = {}
     dyad_ratings = {}
@@ -35,6 +35,18 @@ def load(dirname, feature_name='hog', side='l', min_step=76):
     return dyad_features, dyad_ratings
 
 
+def add_to_features(feat, rating, features, ratings, prev_step):
+    if feat.shape[0] == 0:
+        return
+    if prev_step is None:
+        prev_step = feat.shape[0]
+    elif feat.shape[0] != prev_step:
+        return
+    features.append(feat)
+    ratings.append(rating)
+    return prev_step
+
+
 def load_dyad(dirname, feature_name='hog', side='b'):
     features, ratings = [], []
 
@@ -46,14 +58,12 @@ def load_dyad(dirname, feature_name='hog', side='b'):
             continue
         mat_file = os.path.join(dirname, mat_name)
         feat, _, rating = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
-        if feat.shape[0] == 0:
-            continue
-        if prev_step is None:
-            prev_step = feat.shape[0]
-        elif feat.shape[0] != prev_step:
-            continue
-        features.append(feat)
-        ratings.append(rating)
+        if side == 'lr':
+            lfeat, rfeat = feat
+            prev_step = add_to_features(lfeat, rating, features, ratings, prev_step)
+            prev_step = add_to_features(rfeat, rating, features, ratings, prev_step)
+        else:
+            prev_step = add_to_features(feat, rating, features, ratings, prev_step)
 
     features = numpy.stack(features[:-1], axis=0).astype(theano.config.floatX)
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)

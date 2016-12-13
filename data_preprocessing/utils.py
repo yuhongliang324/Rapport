@@ -88,8 +88,8 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
         if only_suc:
             lfeat = lfeat[lsuc == 1]
             rfeat = rfeat[rsuc == 1]
-            return lfeat, rfeat, rating
-        return lfeat, rfeat, lsuc, rsuc, rating
+            return (lfeat, rfeat), rating
+        return (lfeat, rfeat), (lsuc, rsuc), rating
     else:
         # Bug!!!
         feat = numpy.concatenate((lfeat, rfeat), axis=1)
