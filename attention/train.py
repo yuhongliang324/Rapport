@@ -7,6 +7,7 @@ import theano.tensor as T
 from sklearn.metrics import mean_squared_error
 
 from rnn_attention import RNN_Attention
+from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
 
@@ -31,7 +32,7 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
-def train(X_train, y_train, X_test, y_test, hidden_dim=256, batch_size=16, num_epoch=40):
+def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=256, batch_size=32, num_epoch=20):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -43,7 +44,11 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=256, batch_size=16, num_e
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    ra = RNN_Attention(input_dim, hidden_dim, 1)
+    if 'bi' in model_name:
+        model_name = model_name[3:]
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
+    else:
+        ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
 
     X_batch, y_batch = symbols['X_batch'], symbols['y_batch']
