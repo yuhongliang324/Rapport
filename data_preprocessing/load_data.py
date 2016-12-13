@@ -64,6 +64,7 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
             if norm:
                 lfeat = normalize(lfeat)
                 rfeat = normalize(rfeat)
+                print type(lfeat[0, 0]), type(rfeat[0, 0])
             prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
             prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
         else:
