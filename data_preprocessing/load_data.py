@@ -6,11 +6,12 @@ import sys
 sys.path.append('../')
 from data_preprocessing.utils import load_feature
 from data_path import sample_10_root
+from sklearn.preprocessing import normalize
 
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='lr', min_step=76):
+def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
 
     dyad_features = {}
     dyad_ratings = {}
@@ -26,6 +27,8 @@ def load(dirname, feature_name='hog', side='lr', min_step=76):
         features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side)
         if min_step is not None:
             features = features[:, :76, :]
+        if norm:
+            features = normalize(features, axis=2)
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
