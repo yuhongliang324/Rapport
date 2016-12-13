@@ -16,7 +16,7 @@ def RMSE(y_actual, y_predicted):
     return rmse
 
 
-def validate(test_model, y_test, batch_size=16):
+def validate(test_model, y_test, batch_size=32):
     n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
     all_pred = []
@@ -89,7 +89,7 @@ def train(X_train, y_train, X_test, y_test, hidden_dim=256, batch_size=16, num_e
 def cross_validation():
     from data_preprocessing.load_data import load
     from data_path import sample_10_root
-    dyad_features, dyad_ratings = load(sample_10_root)
+    dyad_features, dyad_ratings = load(sample_10_root, feature_name='gemo')
     dyads = dyad_features.keys()
     num_dyad = len(dyads)
     for i in xrange(num_dyad):
