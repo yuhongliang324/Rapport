@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 # For regression only
 class ComparisonNet:
-    def __init__(self, input_dim, hidden_dim, lamb=0.00001, update='rmsprop',
+    def __init__(self, input_dim, hidden_dim, lamb=0.0001, update='rmsprop',
                  lr=None, beta1=0.9, beta2=0.999, epsilon=1e-8, decay=0., momentum=0.9, rho=0.9):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.lamb = lamb
@@ -71,7 +71,7 @@ class ComparisonNet:
             if lr:
                 self.lr = lr
             else:
-                self.lr = 0.001
+                self.lr = 0.01  # 0.0001
             self.weights = [
                 theano.shared(
                     value=numpy.zeros(param_shape, dtype=theano.config.floatX),
