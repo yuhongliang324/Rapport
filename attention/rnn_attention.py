@@ -27,7 +27,7 @@ class RNN_Attention(object):
 
         self.name = self.rnn + '_attention'
 
-        if self.rnn == 'lstm':
+        if 'lstm' in self.rnn:
             self.W_i, self.b_i = self.init_para(self.input_dim, self.hidden_dim)
             self.U_i, _ = self.init_para(self.hidden_dim, self.hidden_dim)
             self.W_f, self.b_f = self.init_para(self.input_dim, self.hidden_dim)
@@ -39,7 +39,7 @@ class RNN_Attention(object):
 
             self.theta = [self.W_i, self.U_i, self.b_i, self.W_f, self.U_f, self.b_f,
                           self.W_o, self.U_o, self.b_o, self.W_c, self.U_c, self.b_c]
-        elif self.rnn == 'gru':
+        elif 'gru' in self.rnn:
             self.W_z, self.b_z = self.init_para(self.input_dim, self.hidden_dim)
             self.U_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
             self.W_r, self.b_r = self.init_para(self.input_dim, self.hidden_dim)
@@ -179,23 +179,25 @@ class RNN_Attention(object):
         # H: (n_step, batch_size, hidden_dim)
 
         if self.rnn == 'lstm':
-            [a, _, _, S], _ = theano.scan(self.forward_LSTM, sequences=X_batch,
+            [a, _, H, S], _ = theano.scan(self.forward_LSTM, sequences=X_batch,
                                           outputs_info=[None,
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
         elif self.rnn == 'gru':
-            [a, _, S], _ = theano.scan(self.forward_GRU, sequences=X_batch,
+            [a, H, S], _ = theano.scan(self.forward_GRU, sequences=X_batch,
                                        outputs_info=[None,
                                                      T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                      T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
         else:
-            [a, _, S], _ = theano.scan(self.forward_naive, sequences=X_batch,
+            [a, H, S], _ = theano.scan(self.forward_naive, sequences=X_batch,
                                        outputs_info=[None,
                                                      T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                      T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-
-        rep = S[-1]  # (batch_size, hidden_dim)
+        if 'only' in self.rnn:
+            rep = H[-1]
+        else:
+            rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
