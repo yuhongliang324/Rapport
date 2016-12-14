@@ -115,10 +115,7 @@ class ComparisonNet:
     def build_model(self):
         X1_batch = T.tensor3()  # (n_step, batch_size, input_dim)
         X2_batch = T.tensor3()  # (n_step, batch_size, input_dim)
-        if self.n_class > 1:
-            y_batch = T.ivector()  # (batch_size,)
-        else:
-            y_batch = T.vector()  # (batch_size,)
+        y_batch = T.vector()  # (batch_size,)
 
         batch_size = T.shape(y_batch)[0]
 

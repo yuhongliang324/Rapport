@@ -92,16 +92,18 @@ def train(X1_train, X2_train, gap_train, X_test, y_test, y_mean, hidden_dim=128,
 def cross_validation():
     from data_preprocessing.load_data import load, load_pairs
     from data_path import sample_10_root
+    print 'Preparing normal features ... '
     dyad_features, dyad_ratings = load(sample_10_root)
+    print 'Preparing pairs ... '
     dyad_X1, dyad_X2, dyad_gaps = load_pairs(sample_10_root)
     dyads = dyad_X1.keys()
     num_dyad = len(dyads)
-    for i in xrange(num_dyad):
+    for i in xrange(2):  # num_dyad
         dyad = dyads[i]
         X_test = dyad_features[dyad]
         y_test = dyad_ratings[dyad]
         X1_list, X2_list, rating_list = [], [], []
-        for j in xrange(num_dyad):
+        for j in xrange(2):  # num_dyad
             if j == i:
                 continue
             X1_list.append(dyad_X1[dyads[j]])
@@ -112,6 +114,7 @@ def cross_validation():
         gap_train = numpy.concatenate(rating_list)
 
         # shuffle
+        print 'Shuffling ... '
         indices = numpy.arange(X1_train.shape[0])
         numpy.random.shuffle(indices)
         X1_train = X1_train[indices]
