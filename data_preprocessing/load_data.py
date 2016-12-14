@@ -7,6 +7,7 @@ sys.path.append('../')
 from data_preprocessing.utils import load_feature
 from data_path import sample_10_root
 from sklearn.preprocessing import normalize
+import random
 
 n_class = 7
 
@@ -24,9 +25,9 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, norm=norm)
+        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm)
         if min_step is not None:
-            features = features[:, :76, :]
+            features = features[:, :min_step, :]
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
@@ -36,19 +37,17 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
     return dyad_features, dyad_ratings
 
 
-def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
-    if feat.shape[0] < min_step:
-        return
-    if prev_step is None:
-        prev_step = feat.shape[0]
-    elif feat.shape[0] != prev_step:
-        return
-    features.append(feat)
-    ratings.append(rating)
-    return prev_step
-
-
 def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
+    def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
+        if feat.shape[0] < min_step:
+            return
+        if prev_step is None:
+            prev_step = feat.shape[0]
+        elif feat.shape[0] != prev_step:
+            return
+        features.append(feat)
+        ratings.append(rating)
+        return prev_step
     features, ratings = [], []
 
     files = os.listdir(dirname)
@@ -74,6 +73,68 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)
 
     return features, ratings
+
+
+def load_pairs(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
+    dyad_X1 = {}
+    dyad_X2 = {}
+    dyad_gaps = {}
+
+    files = os.listdir(dirname)
+    files.sort()
+    for fn in files:
+        print fn
+        session_dir = os.path.join(dirname, fn)
+        if not (os.path.isdir(session_dir) and fn.startswith('D')):
+            continue
+        dyad = int(fn[1:].split('S')[0])
+        X1, X2, y = load_dyad_pairs(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm)
+        if min_step is not None:
+            X1 = X1[:, :min_step, :]
+            X2 = X2[:, :min_step, :]
+        if dyad in dyad_X1:
+            dyad_X1[dyad] = numpy.concatenate((dyad_X1[dyad], X1), axis=0)
+            dyad_X2[dyad] = numpy.concatenate((dyad_X2[dyad], X2), axis=0)
+            dyad_gaps[dyad] = numpy.concatenate((dyad_gaps[dyad], y), axis=0)
+        else:
+            dyad_X1[dyad] = X1
+            dyad_X2[dyad] = X2
+            dyad_gaps[dyad] = y
+    return dyad_X1, dyad_X2, dyad_gaps
+
+
+def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=True, prob=0.05):
+    features1, features2, gaps = [], [], []
+
+    def add_to_pair(features, ratings):
+        for i in xrange(ratings.shape[0] - 1):
+            for j in xrange(i + 1, ratings.shape[0]):
+                r = random.random()
+                if r > prob:
+                    continue
+                r = random.random()
+                if r < 0.5:
+                    f1, f2 = features[i], features[j]
+                    gap = ratings[i] - ratings[j]
+                else:
+                    f1, f2 = features[j], features[i]
+                    gap = ratings[j] - ratings[i]
+                features1.append(f1)
+                features2.append(f2)
+                gaps.append(gap)
+
+    if side == 'lr':
+        features, ratings = load_dyad(dirname, feature_name, 'l', min_step=min_step, norm=norm)
+        add_to_pair(features, ratings)
+        features, ratings = load_dyad(dirname, feature_name, 'r', min_step=min_step, norm=norm)
+        add_to_pair(features, ratings)
+    else:
+        features, ratings = load_dyad(dirname, feature_name, side=side, min_step=min_step, norm=norm)
+        add_to_pair(features, ratings)
+    X1 = numpy.stack(features1, axis=0).astype(theano.config.floatX)
+    X2 = numpy.stack(features2, axis=0).astype(theano.config.floatX)
+    y = numpy.asarray(gaps, dtype=theano.config.floatX)
+    return X1, X2, y
 
 
 def test1():
