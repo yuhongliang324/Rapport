@@ -178,13 +178,13 @@ class RNN_Attention(object):
         # C: (n_step, batch_size, hidden_dim)
         # H: (n_step, batch_size, hidden_dim)
 
-        if self.rnn == 'lstm':
+        if 'lstm' in self.rnn:
             [a, _, H, S], _ = theano.scan(self.forward_LSTM, sequences=X_batch,
                                           outputs_info=[None,
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                         T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        elif self.rnn == 'gru':
+        elif 'gru' in self.rnn:
             [a, H, S], _ = theano.scan(self.forward_GRU, sequences=X_batch,
                                        outputs_info=[None,
                                                      T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
