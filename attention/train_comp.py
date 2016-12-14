@@ -31,7 +31,7 @@ def validate(test_model, y_test, y_mean, batch_size=32):
     print '\tTest cost = NAN,\tRMSE = %f' % rmse
 
 
-def train(X1_train, X2_train, gap_train, X_test, y_test, y_mean, hidden_dim=128, batch_size=32, num_epoch=20):
+def train(X1_train, X2_train, gap_train, X_test, y_test, y_mean, hidden_dim=128, batch_size=64, num_epoch=2):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
