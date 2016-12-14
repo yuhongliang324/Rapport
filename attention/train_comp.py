@@ -20,18 +20,15 @@ def validate(test_model, y_test, y_mean, batch_size=32):
     n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
     all_pred = []
-    cost_avg = 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost, pred = test_model(start, end)
-        cost_avg += cost * (end - start)
+        [pred] = test_model(start, end)
         all_pred += pred.tolist()
-    cost_avg /= n_test
     all_pred = numpy.asarray(all_pred)
     all_pred += y_mean - numpy.mean(all_pred)
     all_pred = all_pred.tolist()
     rmse = RMSE(y_test, all_pred)
-    print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
+    print '\tTest cost = NAN,\tRMSE = %f' % rmse
 
 
 def train(X1_train, X2_train, gap_train, X_test, y_test, y_mean, hidden_dim=128, batch_size=32, num_epoch=20):
@@ -82,7 +79,7 @@ def train(X1_train, X2_train, gap_train, X_test, y_test, y_mean, hidden_dim=128,
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
-            cost = train_model(start, end)
+            [cost] = train_model(start, end)
             cost_avg += cost * (end - start)
         cost_avg /= n_train
         print '\tTrain cost = %f,\tRMSE = NAN' % cost_avg
