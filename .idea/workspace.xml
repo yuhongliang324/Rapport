@@ -36,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_comp.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train_comp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/attention/train_comp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.14402173">
+              <caret line="100" column="28" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
               <folding>
                 <element signature="e#31#58#0" expanded="true" />
               </folding>
@@ -48,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comp_net.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="comp_net.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/attention/comp_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3313783">
-              <caret line="117" column="8" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="134" column="69" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -137,8 +137,8 @@
         <option value="$PROJECT_DIR$/attention/train.py" />
         <option value="$PROJECT_DIR$/attention/bi_rnn_attention.py" />
         <option value="$PROJECT_DIR$/data_preprocessing/load_data.py" />
-        <option value="$PROJECT_DIR$/attention/train_comp.py" />
         <option value="$PROJECT_DIR$/attention/comp_net.py" />
+        <option value="$PROJECT_DIR$/attention/train_comp.py" />
       </list>
     </option>
   </component>
@@ -648,21 +648,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attention/train_comp.py">
+    <entry file="file://$PROJECT_DIR$/attention/comp_net.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
-          <folding>
-            <element signature="e#31#58#0" expanded="true" />
-          </folding>
+          <caret line="134" column="69" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attention/comp_net.py">
+    <entry file="file://$PROJECT_DIR$/attention/train_comp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3313783">
-          <caret line="117" column="8" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="8" />
-          <folding />
+        <state vertical-scroll-proportion="0.14402173">
+          <caret line="100" column="28" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
+          <folding>
+            <element signature="e#31#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

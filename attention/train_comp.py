@@ -98,12 +98,12 @@ def cross_validation():
     dyad_X1, dyad_X2, dyad_gaps = load_pairs(sample_10_root)
     dyads = dyad_X1.keys()
     num_dyad = len(dyads)
-    for i in xrange(2):  # num_dyad
+    for i in xrange(num_dyad):  # num_dyad
         dyad = dyads[i]
         X_test = dyad_features[dyad]
         y_test = dyad_ratings[dyad]
         X1_list, X2_list, rating_list = [], [], []
-        for j in xrange(2):  # num_dyad
+        for j in xrange(num_dyad):
             if j == i:
                 continue
             X1_list.append(dyad_X1[dyads[j]])
