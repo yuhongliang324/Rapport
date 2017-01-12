@@ -15,11 +15,11 @@ sys.path.append('../')
 def validate(test_model, y_test, batch_size=32):
     n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
+    print num_iter
     cost, acc = 0, 0
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost_iter, acc_iter, pred_iter = test_model(start, end)
-        print pred_iter
         cost += cost_iter * (end - start)
         acc += acc * (end - start)
     cost /= n_test
