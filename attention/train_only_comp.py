@@ -56,7 +56,7 @@ class Model_Compiler:
             self.X1_test_shared.set_value(X1_test)
             self.X2_test_shared.set_value(X2_test)
             self.y_test_shared.set_value(y_test)
-        print 'Compiling function'
+        print 'Compilation done'
 
 
 def validate(test_model, n_test, batch_size=32):
@@ -72,7 +72,7 @@ def validate(test_model, n_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def optimize(train_model, test_model, n_train, n_test, batch_size=64, num_epoch=5):
+def optimize(train_model, test_model, n_train, n_test, batch_size=64, num_epoch=10):
 
     num_iter = int(ceil(n_train / float(batch_size)))
 
