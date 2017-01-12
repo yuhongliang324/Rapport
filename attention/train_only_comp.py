@@ -52,10 +52,10 @@ class Model_Compiler:
         else:
             self.X1_train_shared.set_value(X1_train)
             self.X2_train_shared.set_value(X2_train)
-            self.y_train_shared.set_value(y_train)
+            self.y_train_shared = T.cast(theano.shared(y_train, borrow=True), 'int32')
             self.X1_test_shared.set_value(X1_test)
             self.X2_test_shared.set_value(X2_test)
-            self.y_test_shared.set_value(y_test)
+            self.y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
         print 'Compiling function'
 
 
