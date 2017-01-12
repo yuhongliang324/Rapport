@@ -108,7 +108,7 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
     features1, features2, gaps = [], [], []
 
     def add_to_pair(features, ratings):
-        def comp(a, b, n_class, threshold=0.5):
+        def comp(a, b, threshold=0.5):
             if n_class == 1:
                 return a - b
             elif n_class == 2:
@@ -132,11 +132,11 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
                 r = random.random()
                 if r < 0.5:
                     f1, f2 = features[i], features[j]
-                    gap = comp(ratings[i], ratings[j], n_class)
+                    gap = comp(ratings[i], ratings[j])
 
                 else:
                     f1, f2 = features[j], features[i]
-                    gap = comp(ratings[j], ratings[i], n_class)
+                    gap = comp(ratings[j], ratings[i])
                 features1.append(f1)
                 features2.append(f2)
                 gaps.append(gap)

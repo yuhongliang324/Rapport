@@ -80,6 +80,7 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hi
             cost += cost_iter * (end - start)
             acc += acc_iter * (end - start)
         cost /= n_train
+        acc /= n_train
         print '\tTrain cost = %f,\tAccuracy = %f' % (cost, acc)
         validate(test_model, y_test)
 
@@ -113,11 +114,13 @@ def cross_validation(n_class):
         numpy.random.shuffle(indices)
         X1_train = X1_train[indices]
         X2_train = X2_train[indices]
-        gap_train = gap_train[indices]
+        y_train = gap_train[indices]
 
         print X1_train.shape, X2_train.shape, X1_test.shape, X2_test.shape
+        print y_train, y_test
+        print y_train.shape, y_test.shape
 
-        train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=n_class, hidden_dim=128)
+        train(X1_train, X2_train, y_train, X1_test, X2_test, y_test, n_class=n_class, hidden_dim=128)
 
 
 def test1():
