@@ -30,10 +30,10 @@ class Model_Compiler:
         if self.train_model is None:
             self.X1_train_shared = theano.shared(X1_train, borrow=True)
             self.X2_train_shared = theano.shared(X2_train, borrow=True)
-            self.y_train_shared = T.cast(theano.shared(y_train, borrow=True), 'int32')
+            self.y_train_shared = theano.shared(y_train, borrow=True)
             self.X1_test_shared = theano.shared(X1_test, borrow=True)
             self.X2_test_shared = theano.shared(X2_test, borrow=True)
-            self.y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
+            self.y_test_shared = theano.shared(y_test, borrow=True)
             start_symbol, end_symbol = T.lscalar(), T.lscalar()
             self.train_model = theano.function(inputs=[start_symbol, end_symbol],
                                                outputs=[self.cost, self.acc], updates=self.updates,
