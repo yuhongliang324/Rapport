@@ -50,12 +50,12 @@ class Model_Compiler:
                                                   self.y_batch: self.y_test_shared[start_symbol: end_symbol]},
                                               on_unused_input='ignore')
         else:
-            self.X1_train_shared.set_value(theano.shared(X1_train, borrow=True))
-            self.X2_train_shared.set_value(theano.shared(X2_train, borrow=True))
-            self.y_train_shared.set_value(T.cast(theano.shared(y_train, borrow=True), 'int32'))
-            self.X1_test_shared.set_value(theano.shared(X1_test, borrow=True))
-            self.X2_test_shared.set_value(theano.shared(X2_test, borrow=True))
-            self.y_test_shared.set_value(T.cast(theano.shared(y_test, borrow=True), 'int32'))
+            self.X1_train_shared.set_value(X1_train)
+            self.X2_train_shared.set_value(X2_train)
+            self.y_train_shared.set_value(y_train)
+            self.X1_test_shared.set_value(X1_test)
+            self.X2_test_shared.set_value(X2_test)
+            self.y_test_shared.set_value(y_test)
         print 'Compiling function'
 
 
@@ -72,7 +72,7 @@ def validate(test_model, n_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(train_model, n_train, batch_size=64, num_epoch=5):
+def optimize(train_model, test_model, n_train, n_test, batch_size=64, num_epoch=5):
 
     num_iter = int(ceil(n_train / float(batch_size)))
 
@@ -87,6 +87,7 @@ def train(train_model, n_train, batch_size=64, num_epoch=5):
         cost /= n_train
         acc /= n_train
         print '\tTrain cost = %f,\tAccuracy = %f' % (cost, acc)
+        validate(test_model, n_test)
 
 
 def cross_validation(n_class, hidden_dim=128, fusion='conc'):
@@ -129,8 +130,7 @@ def cross_validation(n_class, hidden_dim=128, fusion='conc'):
         if compiler is None:
             compiler = Model_Compiler(X1_train.shape[2], hidden_dim=hidden_dim, n_class=n_class, fusion=fusion)
         compiler.compile(X1_train, X2_train, y_train, X1_test, X2_test, y_test)
-        train(compiler.train_model, y_train.shape[0])
-        validate(compiler.test_model, y_test.shape[0])
+        optimize(compiler.train_model, compiler.test_model, y_train.shape[0], y_test.shape[0])
 
 
 def test1():
