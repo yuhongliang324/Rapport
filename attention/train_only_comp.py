@@ -121,7 +121,7 @@ def cross_validation(n_class):
 
 
 def test1():
-    cross_validation()
+    cross_validation(n_class=2)
 
 
 if __name__ == '__main__':
