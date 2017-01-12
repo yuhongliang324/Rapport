@@ -134,7 +134,7 @@ def cross_validation(n_class, hidden_dim=128, fusion='conc'):
 
 
 def test1():
-    cross_validation(n_class=2)
+    cross_validation(n_class=2, fusion='minus')
 
 
 if __name__ == '__main__':
