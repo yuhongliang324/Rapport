@@ -15,19 +15,19 @@ sys.path.append('../')
 def validate(test_model, y_test, batch_size=32):
     n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
-    print num_iter
     cost, acc = 0, 0
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost_iter, acc_iter, pred_iter = test_model(start, end)
         cost += cost_iter * (end - start)
-        acc += acc * (end - start)
+        acc += acc_iter * (end - start)
     cost /= n_test
     acc /= n_test
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128, batch_size=64, num_epoch=10):
+def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128,
+          batch_size=64, num_epoch=100):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
