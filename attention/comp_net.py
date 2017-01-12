@@ -74,7 +74,7 @@ class ComparisonNet:
             if lr:
                 self.lr = lr
             else:
-                self.lr = 0.0005  # 0.0001
+                self.lr = 0.0002  # 0.0001
             self.weights = [
                 theano.shared(
                     value=numpy.zeros(param_shape, dtype=theano.config.floatX),
