@@ -12,8 +12,54 @@ import sys
 sys.path.append('../')
 
 
-def validate(test_model, y_test, batch_size=32):
-    n_test = y_test.shape[0]
+class Model_Compiler:
+    def __init__(self, input_dim, hidden_dim, n_class=1, fusion='conc'):
+        cn = ComparisonNet(input_dim, hidden_dim, n_class=n_class, fusion=fusion)
+        symbols = cn.build_model()
+        self.X1_batch, self.X2_batch, self.y_batch = symbols['X1_batch'], symbols['X2_batch'], symbols['y_batch']
+        self.cost, self.acc, self.updates = symbols['cost'], symbols['acc'], symbols['updates']
+        self.pred = symbols['pred']
+        self.train_model, self.test_model = None, None
+
+    def compile(self, X1_train, X2_train, y_train, X1_test, X2_test, y_test):
+        X1_train = X1_train.transpose([1, 0, 2])
+        X2_train = X2_train.transpose([1, 0, 2])
+        X1_test = X1_test.transpose([1, 0, 2])
+        X2_test = X2_test.transpose([1, 0, 2])
+        print 'Compiling function'
+        if self.train_model is None:
+            self.X1_train_shared = theano.shared(X1_train, borrow=True)
+            self.X2_train_shared = theano.shared(X2_train, borrow=True)
+            self.y_train_shared = T.cast(theano.shared(y_train, borrow=True), 'int32')
+            self.X1_test_shared = theano.shared(X1_test, borrow=True)
+            self.X2_test_shared = theano.shared(X2_test, borrow=True)
+            self.y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
+            start_symbol, end_symbol = T.lscalar(), T.lscalar()
+            self.train_model = theano.function(inputs=[start_symbol, end_symbol],
+                                               outputs=[self.cost, self.acc], updates=self.updates,
+                                               givens={
+                                                   self.X1_batch: self.X1_train_shared[:, start_symbol: end_symbol, :],
+                                                   self.X2_batch: self.X2_train_shared[:, start_symbol: end_symbol, :],
+                                                   self.y_batch: self.y_train_shared[start_symbol: end_symbol]},
+                                               on_unused_input='ignore')
+            self.test_model = theano.function(inputs=[start_symbol, end_symbol],
+                                              outputs=[self.cost, self.acc, self.pred],
+                                              givens={
+                                                  self.X1_batch: self.X1_test_shared[:, start_symbol: end_symbol, :],
+                                                  self.X2_batch: self.X2_test_shared[:, start_symbol: end_symbol, :],
+                                                  self.y_batch: self.y_test_shared[start_symbol: end_symbol]},
+                                              on_unused_input='ignore')
+        else:
+            self.X1_train_shared.set_value(theano.shared(X1_train, borrow=True))
+            self.X2_train_shared.set_value(theano.shared(X2_train, borrow=True))
+            self.y_train_shared.set_value(T.cast(theano.shared(y_train, borrow=True), 'int32'))
+            self.X1_test_shared.set_value(theano.shared(X1_test, borrow=True))
+            self.X2_test_shared.set_value(theano.shared(X2_test, borrow=True))
+            self.y_test_shared.set_value(T.cast(theano.shared(y_test, borrow=True), 'int32'))
+        print 'Compiling function'
+
+
+def validate(test_model, n_test, batch_size=32):
     num_iter = int(ceil(n_test / float(batch_size)))
     cost, acc = 0, 0
     for iter_index in xrange(num_iter):
@@ -26,52 +72,9 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, fusion='conc', hidden_dim=128,
-          batch_size=64, num_epoch=5):
-
-    n_train = X1_train.shape[0]
-    input_dim = X1_train.shape[2]
-    X1_train = X1_train.transpose([1, 0, 2])
-    X2_train = X2_train.transpose([1, 0, 2])
-    X1_test = X1_test.transpose([1, 0, 2])
-    X2_test = X2_test.transpose([1, 0, 2])
-
-    X1_train_shared = theano.shared(X1_train, borrow=True)
-    X2_train_shared = theano.shared(X2_train, borrow=True)
-    y_train_shared = T.cast(theano.shared(gap_train, borrow=True), 'int32')
-    X1_test_shared = theano.shared(X1_test, borrow=True)
-    X2_test_shared = theano.shared(X2_test, borrow=True)
-    y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
-
-    cn = ComparisonNet(input_dim, hidden_dim, n_class=n_class, fusion=fusion)
-
-    symbols = cn.build_model()
-
-    X1_batch, X2_batch, y_batch = symbols['X1_batch'], symbols['X2_batch'], symbols['y_batch']
-    cost, acc, updates = symbols['cost'], symbols['acc'], symbols['updates']
-    pred = symbols['pred']
+def train(train_model, n_train, batch_size=64, num_epoch=5):
 
     num_iter = int(ceil(n_train / float(batch_size)))
-
-    print 'Compiling function'
-
-    start_symbol, end_symbol = T.lscalar(), T.lscalar()
-
-    train_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, acc], updates=updates,
-                                  givens={
-                                      X1_batch: X1_train_shared[:, start_symbol: end_symbol, :],
-                                      X2_batch: X2_train_shared[:, start_symbol: end_symbol, :],
-                                      y_batch: y_train_shared[start_symbol: end_symbol]},
-                                  on_unused_input='ignore')
-    test_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, acc, pred],
-                                  givens={
-                                      X1_batch: X1_test_shared[:, start_symbol: end_symbol, :],
-                                      X2_batch: X2_test_shared[:, start_symbol: end_symbol, :],
-                                      y_batch: y_test_shared[start_symbol: end_symbol]},
-                                  on_unused_input='ignore')
-    print 'Compilation done'
 
     for epoch_index in xrange(num_epoch):
         cost, acc = 0., 0.
@@ -84,16 +87,18 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, fu
         cost /= n_train
         acc /= n_train
         print '\tTrain cost = %f,\tAccuracy = %f' % (cost, acc)
-        validate(test_model, y_test)
 
 
-def cross_validation(n_class, fusion='conc'):
+def cross_validation(n_class, hidden_dim=128, fusion='conc'):
     from data_preprocessing.load_data import load_pairs
     from data_path import sample_10_root
     print 'Preparing pairs ... '
     dyad_X1, dyad_X2, dyad_gaps = load_pairs(sample_10_root, n_class=n_class)
     dyads = dyad_X1.keys()
     num_dyad = len(dyads)
+
+    compiler = None
+
     for i in xrange(num_dyad):  # num_dyad
         dyad = dyads[i]
         X1_test = dyad_X1[dyad]
@@ -121,7 +126,11 @@ def cross_validation(n_class, fusion='conc'):
         print X1_train.shape, X2_train.shape, X1_test.shape, X2_test.shape
         print y_train.shape, y_test.shape
 
-        train(X1_train, X2_train, y_train, X1_test, X2_test, y_test, n_class=n_class, fusion=fusion, hidden_dim=128)
+        if compiler is None:
+            compiler = Model_Compiler(X1_train.shape[2], hidden_dim=hidden_dim, n_class=n_class, fusion=fusion)
+        compiler.compile(X1_train, X2_train, y_train, X1_test, X2_test, y_test)
+        train(compiler.train_model, y_train.shape[0])
+        validate(compiler.test_model, y_test.shape[0])
 
 
 def test1():
