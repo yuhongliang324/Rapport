@@ -6,7 +6,6 @@ from math import ceil, sqrt
 import numpy
 import theano
 import theano.tensor as T
-from sklearn.metrics import mean_squared_error
 
 from comp_net import ComparisonNet
 import sys
@@ -27,7 +26,7 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, hidden_dim=128, batch_size=64, num_epoch=2):
+def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128, batch_size=64, num_epoch=2):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
@@ -38,12 +37,12 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, hidden_dim=12
 
     X1_train_shared = theano.shared(X1_train, borrow=True)
     X2_train_shared = theano.shared(X2_train, borrow=True)
-    y_train_shared = theano.shared(gap_train, borrow=True)
+    y_train_shared = T.cast(theano.shared(gap_train, borrow=True), 'int32')
     X1_test_shared = theano.shared(X1_test, borrow=True)
     X2_test_shared = theano.shared(X2_test, borrow=True)
-    y_test_shared = theano.shared(y_test, borrow=True)
+    y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
 
-    cn = ComparisonNet(input_dim, hidden_dim, n_class=2)
+    cn = ComparisonNet(input_dim, hidden_dim, n_class=n_class)
 
     symbols = cn.build_model()
 
@@ -85,11 +84,11 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, hidden_dim=12
         validate(test_model, y_test)
 
 
-def cross_validation():
+def cross_validation(n_class):
     from data_preprocessing.load_data import load_pairs
     from data_path import sample_10_root
     print 'Preparing pairs ... '
-    dyad_X1, dyad_X2, dyad_gaps = load_pairs(sample_10_root, n_class=2)
+    dyad_X1, dyad_X2, dyad_gaps = load_pairs(sample_10_root, n_class=n_class)
     dyads = dyad_X1.keys()
     num_dyad = len(dyads)
     for i in xrange(num_dyad):  # num_dyad
@@ -118,7 +117,7 @@ def cross_validation():
 
         print X1_train.shape, X2_train.shape, X1_test.shape, X2_test.shape
 
-        train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, hidden_dim=128)
+        train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=n_class, hidden_dim=128)
 
 
 def test1():
