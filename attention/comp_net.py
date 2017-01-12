@@ -8,11 +8,11 @@ from theano.tensor.shared_randomstreams import RandomStreams
 from collections import OrderedDict
 
 
-# For regression only
 class ComparisonNet:
-    def __init__(self, input_dim, hidden_dim, lamb=0.0001, update='rmsprop',
+    def __init__(self, input_dim, hidden_dim, fusion='conc', n_class=1, lamb=0.0001, update='rmsprop',
                  lr=None, beta1=0.9, beta2=0.999, epsilon=1e-8, decay=0., momentum=0.9, rho=0.9):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
+        self.fusion, self.n_class = fusion, n_class
         self.lamb = lamb
         self.update = update
         self.lr, self.momentum, self.rho = lr, momentum, rho
@@ -33,7 +33,10 @@ class ComparisonNet:
             size=(self.hidden_dim,)), dtype=theano.config.floatX)
         self.w_a = theano.shared(value=w_a, borrow=True)
 
-        self.W_1, self.b_1 = self.init_para(self.hidden_dim, 1)
+        if self.fusion == 'conc':
+            self.W_1, self.b_1 = self.init_para(self.hidden_dim * 2, self.n_class)
+        else:
+            self.W_1, self.b_1 = self.init_para(self.hidden_dim, self.n_class)
 
         self.theta += [self.w_a, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
 
@@ -130,16 +133,28 @@ class ComparisonNet:
                                    outputs_info=[None,
                                                  T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                  T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-
-        rep = S1[-1] - S2[-1]  # (batch_size, hidden_dim)
+        if self.fusion == 'conc':
+            rep = T.concatenate((S1[-1], S2[-1]), axis=1)  # (batch_size, hidden_dim * 2)
+        else:
+            rep = S1[-1] - S2[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
-        pred = rep[:, 0]
-        loss = pred - y_batch
-        loss = T.mean(loss ** 2)
+
+        if self.n_class > 1:
+            prob = T.nnet.softmax(rep)[0]
+            pred = T.argmax(prob)
+
+            acc = T.mean(T.eq(pred, y_batch))
+
+            loss = T.sum(-T.log(prob[y_batch]))
+        else:
+            pred = rep[:, 0]
+            loss = pred - y_batch
+            loss = T.mean(loss ** 2)
+
         cost = loss + self.l2()
         gradients = [T.grad(cost, param) for param in self.theta]
 
-        # For testing
+        # For testing (not for conc)
         rep1 = S1[-1]
         rep1 = T.dot(rep1, self.W_1) + self.b_1
         pred1 = rep1[:, 0]
@@ -175,4 +190,6 @@ class ComparisonNet:
 
         ret = {'X1_batch': X1_batch, 'X2_batch': X2_batch, 'y_batch': y_batch,
                 'a1': a1, 'a2': a2, 'pred': pred, 'pred1': pred1, 'loss': loss, 'cost': cost, 'updates': updates}
+        if self.n_class > 1:
+            ret['acc'] = acc
         return ret
