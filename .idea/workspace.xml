@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d6a9d3d-3d8b-4ea0-9f7a-51464a21a2e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attention/train_only_comp.py" afterPath="$PROJECT_DIR$/attention/train_only_comp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_preprocessing/load_data.py" afterPath="$PROJECT_DIR$/data_preprocessing/load_data.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Rapport.iws" />
@@ -36,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_only_comp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="train_only_comp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/attention/train_only_comp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7154471">
+            <state vertical-scroll-proportion="0.0">
               <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
               <folding>
                 <element signature="e#75#102#0" expanded="true" />
@@ -58,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="load_data.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="load_data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_preprocessing/load_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.3821138">
               <caret line="106" column="90" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="90" />
               <folding>
                 <element signature="e#30#42#0" expanded="true" />
@@ -96,8 +96,8 @@
         <option value="$PROJECT_DIR$/attention/rnn_attention.py" />
         <option value="$PROJECT_DIR$/attention/train.py" />
         <option value="$PROJECT_DIR$/attention/comp_net.py" />
-        <option value="$PROJECT_DIR$/data_preprocessing/load_data.py" />
         <option value="$PROJECT_DIR$/attention/train_only_comp.py" />
+        <option value="$PROJECT_DIR$/data_preprocessing/load_data.py" />
       </list>
     </option>
   </component>
@@ -865,24 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attention/comp_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_preprocessing/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="90" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="90" />
-          <folding>
-            <element signature="e#30#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/attention/train_comp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -895,10 +877,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/attention/train_only_comp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7154471">
+        <state vertical-scroll-proportion="0.0">
           <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding>
             <element signature="e#75#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attention/comp_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_preprocessing/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3821138">
+          <caret line="106" column="90" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="90" />
+          <folding>
+            <element signature="e#30#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
