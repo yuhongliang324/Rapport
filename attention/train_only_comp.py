@@ -27,7 +27,7 @@ def validate(test_model, y_test, batch_size=32):
 
 
 def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128,
-          batch_size=64, num_epoch=100):
+          batch_size=64, num_epoch=10):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
