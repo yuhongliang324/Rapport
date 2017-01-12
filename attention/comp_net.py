@@ -74,7 +74,7 @@ class ComparisonNet:
             if lr:
                 self.lr = lr
             else:
-                self.lr = 0.0001
+                self.lr = 0.001 #  0.0001
             self.weights = [
                 theano.shared(
                     value=numpy.zeros(param_shape, dtype=theano.config.floatX),
@@ -88,7 +88,7 @@ class ComparisonNet:
             if lr:
                 self.lr = lr
             else:
-                self.lr = 0.1  # 0.01
+                self.lr = 0.1
 
     def init_para(self, d1, d2):
         W_values = numpy.asarray(self.rng.uniform(
