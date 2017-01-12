@@ -104,7 +104,7 @@ def load_pairs(dirname, feature_name='hog', side='lr', min_step=76, norm=True, n
     return dyad_X1, dyad_X2, dyad_gaps
 
 
-def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=True, prob=0.2, n_class=1):
+def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=True, prob=1., n_class=1):
     features1, features2, gaps = [], [], []
 
     def add_to_pair(features, ratings):
