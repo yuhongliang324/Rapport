@@ -26,8 +26,8 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128,
-          batch_size=64, num_epoch=10):
+def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, fusion='conc', hidden_dim=128,
+          batch_size=64, num_epoch=5):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
@@ -43,7 +43,7 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hi
     X2_test_shared = theano.shared(X2_test, borrow=True)
     y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
 
-    cn = ComparisonNet(input_dim, hidden_dim, n_class=n_class)
+    cn = ComparisonNet(input_dim, hidden_dim, n_class=n_class, fusion=fusion)
 
     symbols = cn.build_model()
 
@@ -87,7 +87,7 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hi
         validate(test_model, y_test)
 
 
-def cross_validation(n_class):
+def cross_validation(n_class, fusion='conc'):
     from data_preprocessing.load_data import load_pairs
     from data_path import sample_10_root
     print 'Preparing pairs ... '
@@ -121,7 +121,7 @@ def cross_validation(n_class):
         print X1_train.shape, X2_train.shape, X1_test.shape, X2_test.shape
         print y_train.shape, y_test.shape
 
-        train(X1_train, X2_train, y_train, X1_test, X2_test, y_test, n_class=n_class, hidden_dim=128)
+        train(X1_train, X2_train, y_train, X1_test, X2_test, y_test, n_class=n_class, fusion=fusion, hidden_dim=128)
 
 
 def test1():
