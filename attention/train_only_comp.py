@@ -18,7 +18,8 @@ def validate(test_model, y_test, batch_size=32):
     cost, acc = 0, 0
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost_iter, acc_iter = test_model(start, end)
+        cost_iter, acc_iter, pred_iter = test_model(start, end)
+        print pred_iter
         cost += cost_iter * (end - start)
         acc += acc * (end - start)
     cost /= n_test
@@ -26,7 +27,7 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tAccuracy = %f' % (cost, acc)
 
 
-def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128, batch_size=64, num_epoch=2):
+def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hidden_dim=128, batch_size=64, num_epoch=10):
 
     n_train = X1_train.shape[0]
     input_dim = X1_train.shape[2]
@@ -48,6 +49,7 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hi
 
     X1_batch, X2_batch, y_batch = symbols['X1_batch'], symbols['X2_batch'], symbols['y_batch']
     cost, acc, updates = symbols['cost'], symbols['acc'], symbols['updates']
+    pred = symbols['pred']
 
     num_iter = int(ceil(n_train / float(batch_size)))
 
@@ -63,7 +65,7 @@ def train(X1_train, X2_train, gap_train, X1_test, X2_test, y_test, n_class=1, hi
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore')
     test_model = theano.function(inputs=[start_symbol, end_symbol],
-                                  outputs=[cost, acc],
+                                  outputs=[cost, acc, pred],
                                   givens={
                                       X1_batch: X1_test_shared[:, start_symbol: end_symbol, :],
                                       X2_batch: X2_test_shared[:, start_symbol: end_symbol, :],
@@ -117,7 +119,6 @@ def cross_validation(n_class):
         y_train = gap_train[indices]
 
         print X1_train.shape, X2_train.shape, X1_test.shape, X2_test.shape
-        print y_train, y_test
         print y_train.shape, y_test.shape
 
         train(X1_train, X2_train, y_train, X1_test, X2_test, y_test, n_class=n_class, hidden_dim=128)
