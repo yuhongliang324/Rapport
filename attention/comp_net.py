@@ -118,7 +118,10 @@ class ComparisonNet:
     def build_model(self):
         X1_batch = T.tensor3()  # (n_step, batch_size, input_dim)
         X2_batch = T.tensor3()  # (n_step, batch_size, input_dim)
-        y_batch = T.vector()  # (batch_size,)
+        if self.n_class > 1:
+            y_batch = T.ivector()  # (batch_size,)
+        else:
+            y_batch = T.vector()  # (batch_size,)
 
         batch_size = T.shape(y_batch)[0]
 
@@ -142,9 +145,7 @@ class ComparisonNet:
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
             pred = T.argmax(prob)
-
             acc = T.mean(T.eq(pred, y_batch))
-
             loss = T.sum(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
