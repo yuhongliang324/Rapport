@@ -146,7 +146,7 @@ class ComparisonNet:
             prob = T.nnet.softmax(rep)[0]
             pred = T.argmax(prob)
             acc = T.mean(T.eq(pred, y_batch))
-            loss = T.sum(-T.log(prob[y_batch]))
+            loss = T.mean(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
             loss = pred - y_batch
