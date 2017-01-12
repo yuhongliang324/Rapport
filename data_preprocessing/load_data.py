@@ -113,16 +113,16 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
                 return a - b
             elif n_class == 2:
                 if a < b:
-                    return [1, 0]
+                    return 0
                 else:
-                    return [0, 1]
+                    return 1
             else:
                 if abs(a - b) < threshold:
-                    return [1, 0, 0]
+                    return 2
                 elif a < b:
-                    return [0, 1, 0]
+                    return 0
                 else:
-                    return [0, 0, 1]
+                    return 1
 
         for i in xrange(ratings.shape[0] - 1):
             for j in xrange(i + 1, ratings.shape[0]):
