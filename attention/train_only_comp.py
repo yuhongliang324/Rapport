@@ -40,22 +40,22 @@ class Model_Compiler:
                                                givens={
                                                    self.X1_batch: self.X1_train_shared[:, start_symbol: end_symbol, :],
                                                    self.X2_batch: self.X2_train_shared[:, start_symbol: end_symbol, :],
-                                                   self.y_batch: self.y_train_shared[start_symbol: end_symbol]},
+                                                   self.y_batch: T.cast(self.y_train_shared, 'int32')[start_symbol: end_symbol]},
                                                on_unused_input='ignore')
             self.test_model = theano.function(inputs=[start_symbol, end_symbol],
                                               outputs=[self.cost, self.acc, self.pred],
                                               givens={
                                                   self.X1_batch: self.X1_test_shared[:, start_symbol: end_symbol, :],
                                                   self.X2_batch: self.X2_test_shared[:, start_symbol: end_symbol, :],
-                                                  self.y_batch: self.y_test_shared[start_symbol: end_symbol]},
+                                                  self.y_batch: T.cast(self.y_test_shared, 'int32')[start_symbol: end_symbol]},
                                               on_unused_input='ignore')
         else:
             self.X1_train_shared.set_value(X1_train)
             self.X2_train_shared.set_value(X2_train)
-            self.y_train_shared = T.cast(theano.shared(y_train, borrow=True), 'int32')
+            self.y_train_shared.set_value(y_train)
             self.X1_test_shared.set_value(X1_test)
             self.X2_test_shared.set_value(X2_test)
-            self.y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
+            self.y_test_shared.set_value(y_test)
         print 'Compiling function'
 
 
