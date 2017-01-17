@@ -31,6 +31,7 @@ def rename(root):
 
 
 def get_slice_ratings(rating_csv):
+    print rating_csv
     reader = open(rating_csv)
     lines = reader.readlines()
     reader.close()
@@ -40,6 +41,8 @@ def get_slice_ratings(rating_csv):
     ret = []
     for line in lines:
         sp = line.split(',')
+        if len(sp[7]) == 0:
+            continue
         rating = float(sp[7])
         dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
         ret.append((dyad, session, slice, rating))
@@ -113,4 +116,4 @@ def test2():
 
 
 if __name__ == '__main__':
-    test1()
+    test2()
