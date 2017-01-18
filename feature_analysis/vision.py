@@ -17,11 +17,21 @@ def get_PCC():
         rating_list.append(dyad_ratings[dyads[i]])
     X = numpy.concatenate(feature_list)
     y = numpy.concatenate(rating_list)
-    X_bar = normalize(X - numpy.mean(X, axis=0))
-    y_bar = normalize(y - numpy.mean(y))
-    PCC = numpy.dot(X_bar.T, y_bar)
-    print PCC.shape
-    print PCC
+    X_mean = numpy.mean(X, axis=1)
+    X_max = numpy.max(X, axis=1)
+    X_min = numpy.min(X, axis=1)
+
+    def PCC(X, y, name):
+        X_bar = normalize(X - numpy.mean(X, axis=0), axis=1)
+        y_bar = normalize(y - numpy.mean(y))
+        PCC = numpy.dot(X_bar.T, y_bar)
+        print name,
+        print PCC.shape
+        print PCC
+
+    PCC(X_mean, y, 'mean')
+    PCC(X_max, y, 'max')
+    PCC(X_min, y, 'min')
 
 
 if __name__ == '__main__':
