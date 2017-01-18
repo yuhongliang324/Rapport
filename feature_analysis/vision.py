@@ -17,3 +17,7 @@ def get_PCC():
         X = numpy.concatenate(feature_list)
         y = numpy.concatenate(rating_list)
         print X.shape, y.shape
+
+
+if __name__ == '__main__':
+    get_PCC()
