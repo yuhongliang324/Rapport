@@ -68,14 +68,14 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
             if norm:
                 lfeat = normalize(lfeat)
                 rfeat = normalize(rfeat)
+            print prev_step
             prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
             prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
         else:
             if norm:
                 feat = normalize(feat)
             prev_step = add_to_features(feat, rating, features, ratings, prev_step, min_step=min_step)
-    for f in features:
-        print f.shape
+
     features = numpy.stack(features[:-1], axis=0).astype(theano.config.floatX)
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)
 
