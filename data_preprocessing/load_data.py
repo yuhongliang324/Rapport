@@ -42,11 +42,13 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
 def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
         if feat.shape[0] < min_step:
-            return
+            return prev_step
         if prev_step is None:
             prev_step = feat.shape[0]
-        elif feat.shape[0] != prev_step:
-            return
+        elif feat.shape[0] < prev_step:
+            return prev_step
+        start = (feat.shape[0] - prev_step) // 2
+        feat = feat[start: start + min_step]
         features.append(feat)
         ratings.append(rating)
         return prev_step
@@ -68,7 +70,6 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
             if norm:
                 lfeat = normalize(lfeat)
                 rfeat = normalize(rfeat)
-            print prev_step
             prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
             prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
         else:
