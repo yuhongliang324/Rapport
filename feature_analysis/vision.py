@@ -4,6 +4,7 @@ sys.path.append('..')
 from data_preprocessing.load_data import load
 from data_path import sample_10_root
 import numpy
+from sklearn.preprocessing import normalize
 
 
 def get_PCC():
@@ -16,8 +17,8 @@ def get_PCC():
         rating_list.append(dyad_ratings[dyads[i]])
     X = numpy.concatenate(feature_list)
     y = numpy.concatenate(rating_list)
-    X_bar = X - numpy.mean(X, axis=0)
-    y_bar = y - numpy.mean(y)
+    X_bar = normalize(X - numpy.mean(X, axis=0))
+    y_bar = normalize(y - numpy.mean(y))
     PCC = numpy.dot(X_bar.T, y_bar)
     print PCC.shape
     print PCC
