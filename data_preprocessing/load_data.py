@@ -57,7 +57,10 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
         if not mat_name.endswith('mat'):
             continue
         mat_file = os.path.join(dirname, mat_name)
-        feat, _, rating = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
+        ret = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
+        if ret is None:
+            continue
+        feat, _, rating = ret
         if side == 'lr':
             lfeat, rfeat = feat
             if norm:

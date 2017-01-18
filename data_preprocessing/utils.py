@@ -79,22 +79,30 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
     lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
     rating = float(data['label'][0])
     if side == 'l':
+        if lfeat.dtype == numpy.int16:
+            return None
         if only_suc:
             lfeat = lfeat[lsuc == 1]
             return lfeat, rating
         return lfeat, lsuc, rating
     elif side == 'r':
+        if rfeat.dtype == numpy.int16:
+            return None
         if only_suc:
             rfeat = rfeat[rsuc == 1]
             return rfeat, rating
-        return rfeat, lsuc, rating
+        return rfeat, rsuc, rating
     elif side == 'lr':
+        if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+            return None
         if only_suc:
             lfeat = lfeat[lsuc == 1]
             rfeat = rfeat[rsuc == 1]
             return (lfeat, rfeat), rating
         return (lfeat, rfeat), (lsuc, rsuc), rating
     else:
+        if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+            return None
         # Bug!!!
         feat = numpy.concatenate((lfeat, rfeat), axis=1)
         suc = numpy.logical_and(lsuc == 1, rsuc == 1)
