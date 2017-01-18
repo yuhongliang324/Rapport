@@ -14,9 +14,9 @@ def get_PCC():
     for i in xrange(num_dyad):
         feature_list.append(dyad_features[dyads[i]])
         rating_list.append(dyad_ratings[dyads[i]])
-        X = numpy.concatenate(feature_list)
-        y = numpy.concatenate(rating_list)
-        print X.shape, y.shape
+    X = numpy.concatenate(feature_list)
+    y = numpy.concatenate(rating_list)
+    print X.shape, y.shape
 
 
 if __name__ == '__main__':
