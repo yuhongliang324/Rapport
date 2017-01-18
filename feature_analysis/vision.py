@@ -22,17 +22,18 @@ def get_PCC():
     X_min = numpy.min(X, axis=1)
 
     def PCC(X, y, name):
+        print X.shape, y.shape
         X_bar = normalize(X - numpy.mean(X, axis=0), axis=1)
         y_bar = normalize(y - numpy.mean(y))
         y_bar = numpy.squeeze(y_bar)
         PCC = numpy.dot(X_bar.T, y_bar)
-        print name,
-        print PCC.shape
-        print PCC
+        # print name,
+        # print PCC.shape
+        # print PCC
 
     PCC(X_mean, y, 'mean')
-    PCC(X_max, y, 'max')
-    PCC(X_min, y, 'min')
+    # PCC(X_max, y, 'max')
+    # PCC(X_min, y, 'min')
 
 
 if __name__ == '__main__':
