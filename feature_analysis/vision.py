@@ -1,9 +1,9 @@
 __author__ = 'yuhongliang324'
+import sys
+sys.path.append('..')
 from data_preprocessing.load_data import load
 from data_path import sample_10_root
 import numpy
-import sys
-sys.path.append('..')
 
 
 def get_PCC():
