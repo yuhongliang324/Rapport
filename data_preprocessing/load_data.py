@@ -25,6 +25,8 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
+        if 'D9S2' not in session_dir:
+            continue
         features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm)
         if min_step is not None:
             features = features[:, :min_step, :]
@@ -38,8 +40,6 @@ def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
 
 
 def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
-    if 'D9S2' not in dirname:
-        return
     def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
         if feat.shape[0] < min_step:
             return
