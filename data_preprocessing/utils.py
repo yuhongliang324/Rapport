@@ -4,6 +4,7 @@ import os
 from collections import defaultdict
 from scipy.io import loadmat
 import numpy
+import math
 
 
 def rename(root):
@@ -30,33 +31,33 @@ def rename(root):
             os.rename(os.path.join(pathname, fn1), os.path.join(pathname, new_name))
 
 
-def get_slice_ratings(rating_csv):
-    print rating_csv
-    reader = open(rating_csv)
-    lines = reader.readlines()
-    reader.close()
-    lines = lines[0].split('\r')[1:]
-    lines = map(lambda x: x.strip(), lines)
+# The main function to get the slice ratings
+def get_slice_ratings(rating_root, outfile):
+    # The function called by the main slice rating function
+    def get_slice_ratings2(rating_csv):
+        print rating_csv
+        reader = open(rating_csv)
+        lines = reader.readlines()
+        reader.close()
+        lines = lines[0].split('\r')[1:]
+        lines = map(lambda x: x.strip(), lines)
 
-    ret = []
-    for line in lines:
-        sp = line.split(',')
-        if len(sp[7]) == 0:
-            continue
-        rating = float(sp[7])
-        dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
-        ret.append((dyad, session, slice, rating))
-    return ret
-
-
-def get_slice_ratings2(rating_root, outfile):
+        ret = []
+        for line in lines:
+            sp = line.split(',')
+            if len(sp[7]) == 0:
+                continue
+            rating = float(sp[7])
+            dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
+            ret.append((dyad, session, slice, rating))
+        return ret
     files = os.listdir(rating_root)
     slice_rating = defaultdict(float)
     slice_num = defaultdict(int)
     for fn in files:
         if not fn.endswith('csv'):
             continue
-        ret = get_slice_ratings(os.path.join(rating_root, fn))
+        ret = get_slice_ratings2(os.path.join(rating_root, fn))
         for dyad, session, slice, rating in ret:
             slice_name = str(dyad) + ',' + str(session) + ',' + str(slice).zfill(3)
             slice_num[slice_name] += 1
@@ -103,6 +104,97 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
         return feat, suc, rating
 
 
+def get_rater_agreement(rating_root, self_included=False):
+    slice_ratings = {}
+
+    def get_ratings(rating_csv):
+        print rating_csv
+        reader = open(rating_csv)
+        lines = reader.readlines()
+        reader.close()
+        lines = lines[0].split('\r')
+        lines = map(lambda x: x.strip(), lines)
+
+        num_lines = len(lines)
+        sp = lines[0].split(',')
+        raters = sp[11:]
+
+        for i in xrange(1, num_lines):
+            line = lines[i]
+            sp = line.split(',')
+            if len(sp[7]) == 0:
+                continue
+
+            dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
+            SliceName = str(dyad) + '_' + str(session) + '_' + str(slice)
+
+            str_ratings = sp[11:]
+
+            if SliceName in slice_ratings:
+                rater_rating = slice_ratings[SliceName]
+            else:
+                rater_rating = {}
+            for j, r in enumerate(str_ratings):
+                if r.isdigit():
+                    rater_rating[raters[j]] = float(r)
+            num_inval = 0
+            for rater, rating in rater_rating.items():
+                if rating == 0:
+                    num_inval += 1
+            if num_inval >= 2:
+                continue
+
+            slice_ratings[SliceName] = rater_rating
+
+    files = os.listdir(rating_root)
+    for fn in files:
+        if not fn.endswith('csv'):
+            continue
+        get_ratings(os.path.join(rating_root, fn))
+
+    # get RMSE
+    rmse = 0.
+    total = 0
+    dyads = {'3', '4', '5', '6', '7'}
+    dyad_rmse = defaultdict(float)
+    dyad_total = defaultdict(int)
+    for slice, rr in slice_ratings.items():
+        if slice[0] not in dyads:
+            continue
+        ratings = rr.values()
+        s = sum(ratings)
+        if self_included:
+            avg = s / float(len(ratings))
+        for r in ratings:
+            if not self_included:
+                avg = (s - r) / float(len(ratings) - 1)
+            dyad_rmse[slice[0]] += (r - avg) * (r - avg)
+            dyad_total[slice[0]] += 1
+    print 'Dyads',
+    for d in dyads:
+        dyad_rmse[d] = math.sqrt(dyad_rmse[d] / dyad_total[d])
+        print d + ':' + str(dyad_rmse[d]),
+    print
+    avg_rmse = 0.
+    for d in dyads:
+        avg_rmse += dyad_rmse[d]
+    avg_rmse /= len(dyad_rmse)
+    print 'Average RMSE = %f' % avg_rmse
+
+    for rr in slice_ratings.values():
+        ratings = rr.values()
+        s = sum(ratings)
+        if self_included:
+            avg = s / float(len(ratings))
+        for r in ratings:
+            if not self_included:
+                avg = (s - r) / float(len(ratings) - 1)
+            rmse += (r - avg) * (r - avg)
+            total += 1
+    rmse = math.sqrt(rmse / total)
+    print 'RMSE = %f' % rmse
+
+
 data_root = '/multicomp/users/liangke/RAPT/features'
 data_info_root = '../data_info/'
 
@@ -112,8 +204,12 @@ def test1():
 
 
 def test2():
-    get_slice_ratings2(data_info_root, os.path.join(data_info_root, 'ratings.txt'))
+    get_slice_ratings(data_info_root, os.path.join(data_info_root, 'ratings.txt'))
+
+
+def test3():
+    get_rater_agreement(data_info_root, self_included=True)
 
 
 if __name__ == '__main__':
-    test2()
+    test3()
