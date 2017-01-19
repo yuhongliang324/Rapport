@@ -66,8 +66,16 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
         if side == 'lr':
             lfeat, rfeat = feat
             if norm:
-                lfeat = normalize(lfeat)
-                rfeat = normalize(rfeat)
+                if feature_name == 'gemo':
+                    lfeat = normalize(lfeat, norm='l1', axis=0)
+                    lfeat = normalize(lfeat)
+                else:
+                    lfeat = normalize(lfeat)
+                if feature_name == 'gemo':
+                    rfeat = normalize(rfeat, norm='l1', axis=0)
+                    rfeat = normalize(rfeat)
+                else:
+                    rfeat = normalize(rfeat)
             prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
             prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
         else:
