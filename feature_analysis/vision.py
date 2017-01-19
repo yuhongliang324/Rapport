@@ -23,7 +23,7 @@ def get_PCC():
 
     def PCC(X, y, name):
         print X.shape, y.shape
-        X_bar = normalize(X - numpy.mean(X, axis=0), axis=1)
+        X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
         y_bar = normalize(y - numpy.mean(y))
         y_bar = numpy.squeeze(y_bar)
         PCC = numpy.dot(X_bar.T, y_bar)
