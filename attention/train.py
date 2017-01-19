@@ -97,8 +97,19 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', hidden_dim=256, 
 def cross_validation(feature_name='hog'):
     from data_preprocessing.load_data import load
     from data_path import sample_10_root
-    dyad_features, dyad_ratings = load(sample_10_root, feature_name=feature_name)
+    if feature_name == 'au' or feature_name == 'AU':
+        tmp = 'gemo'
+    else:
+        tmp = feature_name
+    dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp)
     dyads = dyad_features.keys()
+    hidden_dim = 128
+    if feature_name == 'gemo':
+        hidden_dim = 64
+    if feature_name == 'au' or feature_name == 'AU':
+        for dyad, features in dyad_features.items():
+            dyad_features[dyad] = features[:, :, -35:]
+        hidden_dim = 32
     num_dyad = len(dyads)
     for i in xrange(num_dyad):
         dyad = dyads[i]
@@ -118,11 +129,11 @@ def cross_validation(feature_name='hog'):
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
-        train(X_train, y_train, X_test, y_test, hidden_dim=128)
+        train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
 
 
 def test1():
-    cross_validation('gemo')
+    cross_validation('au')
 
 
 if __name__ == '__main__':
