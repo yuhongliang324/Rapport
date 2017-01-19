@@ -48,7 +48,6 @@ gemo_names = 'gaze_0_x, gaze_0_y, gaze_0_z, gaze_1_x, gaze_1_y, gaze_2_z, ' \
              'AU09_c, AU10_c, AU12_c, AU14_c, AU15_c, AU17_c, AU20_c, AU23_c, AU25_c, AU26_c, AU28_c, AU45_c'
 
 gemo_names = gemo_names.split(', ')
-print len(gemo_names)
 
 
 def get_PCC():
@@ -65,7 +64,7 @@ def get_PCC():
     X_max = numpy.max(X, axis=1)
     X_min = numpy.min(X, axis=1)
 
-    def PCC(X, y, name, topK=10):
+    def PCC(X, y, name, topK=20):
         print X.shape, y.shape
         X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
         y_bar = normalize(y - numpy.mean(y))
