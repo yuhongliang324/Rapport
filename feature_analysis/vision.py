@@ -76,7 +76,7 @@ def get_PCC():
         print name
         print '\t'
         for j in xrange(topK):
-            print '%s %.2f;' % (gemo_names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]]),
+            print '%s %.3f;' % (gemo_names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]]),
 
     PCC(X_mean, y, 'mean')
     PCC(X_max, y, 'max')
