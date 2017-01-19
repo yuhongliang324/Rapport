@@ -5,7 +5,7 @@ import os
 from scipy.io import loadmat
 import numpy
 import theano
-from data_path import audio_root
+from data_path import audio_root, ratings_file
 
 names = ['F0', 'VUV', 'NAQ', 'QOQ', 'H1H2', 'PSP', 'MDQ', 'peakSlope',
          'Rd', 'Rd_conf', 'creak', 'MCEP_0', 'MCEP_1', 'MCEP_2', 'MCEP_3', 'MCEP_4', 'MCEP_5',
@@ -45,7 +45,32 @@ def load_audio_features(root=audio_root):
             feat = numpy.mean(feat, axis=0)
             features.append(feat)
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
-    print X.shape, len(slices)
+    return X, slices
+
+
+def load_ratings(ratings_file=ratings_file):
+    reader = open(ratings_file)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    slice_rating = {}
+    for line in lines:
+        sp = line.split(',')
+        dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
+        rating = float(sp[3])
+        slice_rating[(dyad, session, slice)] = rating
+    return slice_rating
+
+
+def get_PCC():
+    X, slices = load_audio_features()
+    slice_rating = load_ratings()
+    y = []
+    for slice in slices:
+        rating = slice_rating[slice]
+        y.append(rating)
+    y = numpy.asarray(y, dtype=theano.config.floatX)
+    print X.shape, y.shape
 
 
 if __name__ == '__main__':
