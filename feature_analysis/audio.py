@@ -6,6 +6,8 @@ from scipy.io import loadmat
 import numpy
 import theano
 from data_path import audio_root, ratings_file
+from sklearn.preprocessing import normalize
+
 
 names = ['F0', 'VUV', 'NAQ', 'QOQ', 'H1H2', 'PSP', 'MDQ', 'peakSlope',
          'Rd', 'Rd_conf', 'creak', 'MCEP_0', 'MCEP_1', 'MCEP_2', 'MCEP_3', 'MCEP_4', 'MCEP_5',
@@ -66,16 +68,27 @@ def get_PCC():
     X, slices = load_audio_features()
     slice_rating = load_ratings()
     y = []
-    count = 0
     for slice in slices:
         if not slice in slice_rating:
-            count += 1
-            continue
-        rating = slice_rating[slice]
+            rating = 3.5
+        else:
+            rating = slice_rating[slice]
         y.append(rating)
     y = numpy.asarray(y, dtype=theano.config.floatX)
-    print count
-    print X.shape, y.shape
+
+    def PCC(X, y, topK=20):
+        X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
+        y_bar = normalize(y - numpy.mean(y))
+        y_bar = numpy.squeeze(y_bar)
+        PCC = numpy.dot(X_bar.T, y_bar)
+        PCC_abs = abs(PCC)
+        PCC_sign = numpy.sign(PCC)
+        ind = numpy.argsort(PCC_abs)[::-1]
+        print '\t',
+        for j in xrange(topK):
+            print '%s %.3f;' % (names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]]),
+        print
+    PCC(X, y)
 
 
 if __name__ == '__main__':
