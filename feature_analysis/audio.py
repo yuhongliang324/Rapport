@@ -25,11 +25,10 @@ def load_audio_features(root=audio_root):
     files = os.listdir(root)
     files.sort()
     for dname in files:
-        print dname
-        if not os.path.isdir(dname):
+        dpath = os.path.join(root, dname)
+        if not os.path.isdir(dpath):
             continue
         print dname
-        dpath = os.path.join(root, dname)
         files1 = os.listdir(dpath)
         files1.sort()
         for mat_name in files1:
