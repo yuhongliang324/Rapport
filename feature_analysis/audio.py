@@ -74,4 +74,4 @@ def get_PCC():
 
 
 if __name__ == '__main__':
-    load_audio_features()
+    get_PCC()
