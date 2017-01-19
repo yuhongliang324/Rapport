@@ -49,6 +49,7 @@ gemo_names = 'frame, timestamp, confidence, success, ' \
              'AU09_c, AU10_c, AU12_c, AU14_c, AU15_c, AU17_c, AU20_c, AU23_c, AU25_c, AU26_c, AU28_c, AU45_c'
 
 gemo_names = gemo_names.split(', ')
+print len(gemo_names)
 
 
 def get_PCC():
@@ -74,8 +75,9 @@ def get_PCC():
         PCC_abs = abs(PCC)
         PCC_sign = numpy.sign(PCC)
         ind = numpy.argsort(PCC_abs)[::-1]
+        print name
         for i in xrange(topK):
-            print gemo_names[ind[i]], PCC_abs[ind[i]] * PCC_sign[ind[i]]
+            print '\t', gemo_names[ind[i]], PCC_abs[ind[i]] * PCC_sign[ind[i]]
 
     PCC(X_mean, y, 'mean')
     PCC(X_max, y, 'max')
