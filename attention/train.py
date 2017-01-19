@@ -32,7 +32,7 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
-def train(X_train, y_train, X_test, y_test, model_name='lstm-only', hidden_dim=256, batch_size=32, num_epoch=10):
+def train(X_train, y_train, X_test, y_test, model_name='naive', hidden_dim=256, batch_size=32, num_epoch=10):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -43,6 +43,8 @@ def train(X_train, y_train, X_test, y_test, model_name='lstm-only', hidden_dim=2
     y_train_shared = theano.shared(y_train, borrow=True)
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
+
+    print model_name
 
     if 'bi' in model_name:
         model_name = model_name[3:]
