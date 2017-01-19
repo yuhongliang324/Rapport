@@ -74,8 +74,9 @@ def get_PCC():
         PCC_sign = numpy.sign(PCC)
         ind = numpy.argsort(PCC_abs)[::-1]
         print name
-        for i in xrange(topK):
-            print '\t', gemo_names[ind[i]], PCC_abs[ind[i]] * PCC_sign[ind[i]]
+        print '\t'
+        for j in xrange(topK):
+            print gemo_names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]] + ';',
 
     PCC(X_mean, y, 'mean')
     PCC(X_max, y, 'max')
