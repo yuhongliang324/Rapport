@@ -122,7 +122,7 @@ def cross_validation(feature_name='hog'):
 
 
 def test1():
-    cross_validation()
+    cross_validation('gemo')
 
 
 if __name__ == '__main__':
