@@ -42,14 +42,10 @@ def load_audio_features(root=audio_root):
             mat_path = os.path.join(dpath, mat_name)
             data = loadmat(mat_path)
             feat = data['features']
-            # feat = numpy.mean(feat, axis=0)
+            feat = numpy.mean(feat, axis=0)
             features.append(feat)
-    return features, slices
-    '''
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
-    print X.shape
-    X = numpy.mean(X, axis=1)
-    print X.shape, len(slices)'''
+    print X.shape, len(slices)
 
 
 if __name__ == '__main__':
