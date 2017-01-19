@@ -66,10 +66,15 @@ def get_PCC():
     X, slices = load_audio_features()
     slice_rating = load_ratings()
     y = []
+    count = 0
     for slice in slices:
+        if not slice in slice_rating:
+            count += 1
+            continue
         rating = slice_rating[slice]
         y.append(rating)
     y = numpy.asarray(y, dtype=theano.config.floatX)
+    print count
     print X.shape, y.shape
 
 
