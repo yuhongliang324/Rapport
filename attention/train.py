@@ -32,6 +32,7 @@ def validate(test_model, y_test, batch_size=32):
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
 
 
+# model name can be added "bi-" as prefix and "-only" as suffix
 def train(X_train, y_train, X_test, y_test, model_name='naive', hidden_dim=256, batch_size=32, num_epoch=10):
 
     n_train = X_train.shape[0]
