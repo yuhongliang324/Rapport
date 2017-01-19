@@ -75,7 +75,8 @@ def get_PCC():
             rating = slice_rating[slice]
         y.append(rating)
     y = numpy.asarray(y, dtype=theano.config.floatX)
-
+    return X, y
+    '''
     def PCC(X, y, topK=20):
         X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
         y_bar = normalize(y - numpy.mean(y))
@@ -89,6 +90,7 @@ def get_PCC():
             print '%s %.3f;' % (names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]]),
         print
     PCC(X, y)
+    '''
 
 
 if __name__ == '__main__':
