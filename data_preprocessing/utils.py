@@ -17,7 +17,7 @@ def rename(root):
             continue
         files1 = os.listdir(pathname)
         for fn1 in files1:
-            if not fn1.endswith('avi'):
+            if not fn1.endswith('wav'):
                 continue
             sp = fn1.split('_')
             if not sp[0].startswith('D'):
@@ -208,7 +208,7 @@ data_info_root = '../data_info/'
 
 
 def test1():
-    rename('/multicomp/users/liangke/RAPT/data/')
+    rename('/multicomp/users/liangke/RAPT/separate_audio_data/')
 
 
 def test2():
@@ -220,4 +220,4 @@ def test3():
 
 
 if __name__ == '__main__':
-    test3()
+    test1()
