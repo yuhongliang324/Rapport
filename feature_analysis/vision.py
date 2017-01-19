@@ -65,7 +65,6 @@ def get_PCC():
     X_min = numpy.min(X, axis=1)
 
     def PCC(X, y, name, topK=20):
-        print X.shape, y.shape
         X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
         y_bar = normalize(y - numpy.mean(y))
         y_bar = numpy.squeeze(y_bar)
@@ -74,9 +73,10 @@ def get_PCC():
         PCC_sign = numpy.sign(PCC)
         ind = numpy.argsort(PCC_abs)[::-1]
         print name
-        print '\t'
+        print '\t',
         for j in xrange(topK):
             print '%s %.3f;' % (gemo_names[ind[j]], PCC_abs[ind[j]] * PCC_sign[ind[j]]),
+        print
 
     PCC(X_mean, y, 'mean')
     PCC(X_max, y, 'max')

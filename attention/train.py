@@ -91,10 +91,10 @@ def train(X_train, y_train, X_test, y_test, model_name='lstm-only', hidden_dim=2
         validate(test_model, y_test)
 
 
-def cross_validation():
+def cross_validation(feature_name='hog'):
     from data_preprocessing.load_data import load
     from data_path import sample_10_root
-    dyad_features, dyad_ratings = load(sample_10_root)
+    dyad_features, dyad_ratings = load(sample_10_root, feature_name=feature_name)
     dyads = dyad_features.keys()
     num_dyad = len(dyads)
     for i in xrange(num_dyad):
@@ -119,7 +119,7 @@ def cross_validation():
 
 
 def test1():
-    cross_validation()
+    cross_validation('gemo')
 
 
 if __name__ == '__main__':
