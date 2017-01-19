@@ -25,6 +25,7 @@ def load_audio_features(root=audio_root):
     files = os.listdir(root)
     files.sort()
     for dname in files:
+        print dname
         if not os.path.isdir(dname):
             continue
         print dname
