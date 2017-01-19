@@ -17,7 +17,7 @@ def rename(root):
             continue
         files1 = os.listdir(pathname)
         for fn1 in files1:
-            if not fn1.endswith('wav'):
+            if not fn1.endswith('mat'):
                 continue
             sp = fn1.split('_')
             if not sp[0].startswith('D'):
