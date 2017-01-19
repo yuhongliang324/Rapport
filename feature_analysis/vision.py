@@ -7,8 +7,7 @@ import numpy
 from sklearn.preprocessing import normalize
 
 
-gemo_names = 'frame, timestamp, confidence, success, ' \
-             'gaze_0_x, gaze_0_y, gaze_0_z, gaze_1_x, gaze_1_y, gaze_2_z, ' \
+gemo_names = 'gaze_0_x, gaze_0_y, gaze_0_z, gaze_1_x, gaze_1_y, gaze_2_z, ' \
              'pose_Tx, pose_Ty, pose_Tz, pose_Rx, pose_Ry, pose_Rz, x_0, ' \
              'x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8, x_9, x_10, x_11, x_12, ' \
              'x_13, x_14, x_15, x_16, x_17, x_18, x_19, x_20, x_21, x_22, x_23, ' \
