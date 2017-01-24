@@ -5,7 +5,7 @@ from collections import defaultdict
 from scipy.io import loadmat
 import numpy
 import math
-
+from krippendorff_alpha import krippendorff_alpha as ka
 
 def rename(root):
     files = os.listdir(root)
@@ -112,7 +112,7 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
         return feat, suc, rating
 
 
-def get_rater_agreement(rating_root, self_included=False):
+def get_rater_agreement(rating_root, self_included=False, num_coders=4):
     slice_ratings = {}
 
     def get_ratings(rating_csv):
@@ -202,6 +202,23 @@ def get_rater_agreement(rating_root, self_included=False):
     rmse = math.sqrt(rmse / total)
     print 'RMSE = %f' % rmse
 
+    # get Krip Alpha
+    coders = [[] for _ in xrange(num_coders)]
+    missing = '*'
+    for rr in slice_ratings.values():
+        ratings = rr.values()
+        size = min(len(ratings), num_coders)
+        for i in xrange(size):
+            coders[i].append(str(ratings[i]))
+        if size < num_coders:
+            for i in xrange(size, num_coders):
+                coders[i].append(missing)
+    for i in xrange(num_coders):
+        print len(coders[i]),
+    print
+    print 'Calculating Krip Alpha'
+    print ka(coders, missing_items=missing)
+
 
 data_root = '/multicomp/users/liangke/RAPT/features'
 data_info_root = '../data_info/'
@@ -220,4 +237,4 @@ def test3():
 
 
 if __name__ == '__main__':
-    test1()
+    test3()
