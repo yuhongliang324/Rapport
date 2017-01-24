@@ -69,14 +69,15 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
                                   givens={
                                       X_batch: X_train_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
-                                  on_unused_input='ignore')
+                                  on_unused_input='ignore', mode='FAST_RUN')
+    print 'Compilation done 1'
     test_model = theano.function(inputs=[start_symbol, end_symbol],
                                   outputs=[cost, pred],
                                   givens={
                                       X_batch: X_test_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_test_shared[start_symbol: end_symbol]},
-                                  on_unused_input='ignore')
-    print 'Compilation done'
+                                  on_unused_input='ignore', mode='FAST_RUN')
+    print 'Compilation done 2'
 
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
