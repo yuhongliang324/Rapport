@@ -63,11 +63,13 @@ class Bi_RNN_Attention(object):
 
     def forward(self, X_t, H_tm1):
         H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
-        return H_t
+        y_t = H_t
+        return H_t, y_t
 
     def backward(self, X_t, H_tm1):
         H_t = T.nnet.softplus(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
-        return H_t
+        y_t = H_t
+        return H_t, y_t
 
     def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
         a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_a))
@@ -92,10 +94,10 @@ class Bi_RNN_Attention(object):
         batch_size = T.shape(y_batch)[0]
 
         # (n_step, batch_size, hidden_dim)
-        [H_foward], _ = theano.scan(self.forward, sequences=X_batch,
-                                    outputs_info=None) # T.zeros((batch_size, self.hidden_dim)))
-        [H_backward], _ = theano.scan(self.backward, sequences=X_batch[::-1],
-                                      outputs_info=T.zeros((batch_size, self.hidden_dim)))
+        [H_foward, _], _ = theano.scan(self.forward, sequences=X_batch,
+                                       outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
+        [H_backward, _], _ = theano.scan(self.backward, sequences=X_batch[::-1],
+                                         outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
         H_backward = H_backward[::-1]
         [a, S], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward])
 
