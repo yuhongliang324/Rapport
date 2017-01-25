@@ -4,7 +4,7 @@ import theano
 import os
 import sys
 sys.path.append('../')
-from data_preprocessing.utils import load_feature
+from data_preprocessing.utils import load_feature, get_ratings
 from data_path import sample_10_root
 from sklearn.preprocessing import normalize
 import random
@@ -14,6 +14,9 @@ n_class = 7
 
 def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
 
+    slice_ratings = get_ratings()
+    valid_slices = set(slice_ratings)
+
     dyad_features = {}
     dyad_ratings = {}
 
@@ -21,11 +24,14 @@ def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     files.sort()
     for fn in files:
         print fn
+        if fn != 'D3S2':
+            continue
         session_dir = os.path.join(dirname, fn)
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm)
+        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm,
+                                      valid_slices=valid_slices)
         if min_step is not None:
             features = features[:, :min_step, :]
         if dyad in dyad_features:
@@ -37,7 +43,8 @@ def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     return dyad_features, dyad_ratings
 
 
-def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
+def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True, valid_slices=None):
+
     def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
         if feat.shape[0] < min_step:
             return prev_step
@@ -57,6 +64,11 @@ def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     prev_step = None
     for mat_name in files:
         if not mat_name.endswith('mat'):
+            continue
+        tmp = mat_name[:-4]
+        sp = tmp.split('_')
+        dyad, session, slice_id = sp[0][1:], sp[1][1:], str(int(sp[2]))
+        if valid_slices is not None and dyad + '_' + session + '_' + slice_id not in valid_slices:
             continue
         mat_file = os.path.join(dirname, mat_name)
         ret = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)

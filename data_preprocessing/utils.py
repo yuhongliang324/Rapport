@@ -6,6 +6,8 @@ from scipy.io import loadmat
 import numpy
 import math
 from krippendorff_alpha import krippendorff_alpha as ka
+from data_path import info_root
+
 
 def rename(root):
     files = os.listdir(root)
@@ -112,10 +114,10 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
         return feat, suc, rating
 
 
-def get_rater_agreement(rating_root, self_included=False, num_coders=4):
+def get_ratings(rating_root=info_root):
     slice_ratings = {}
 
-    def get_ratings(rating_csv):
+    def get_ratings1(rating_csv):
         print rating_csv
         reader = open(rating_csv)
         lines = reader.readlines()
@@ -158,7 +160,12 @@ def get_rater_agreement(rating_root, self_included=False, num_coders=4):
     for fn in files:
         if not fn.endswith('csv'):
             continue
-        get_ratings(os.path.join(rating_root, fn))
+        get_ratings1(os.path.join(rating_root, fn))
+    return slice_ratings
+
+
+def get_rater_agreement(rating_root, self_included=False, num_coders=4):
+    slice_ratings = get_ratings(rating_root)
 
     # get RMSE
     rmse = 0.
@@ -221,7 +228,6 @@ def get_rater_agreement(rating_root, self_included=False, num_coders=4):
 
 
 data_root = '/multicomp/users/liangke/RAPT/features'
-data_info_root = '../data_info/'
 
 
 def test1():
@@ -229,11 +235,11 @@ def test1():
 
 
 def test2():
-    get_slice_ratings(data_info_root, os.path.join(data_info_root, 'ratings.txt'))
+    get_slice_ratings(info_root, os.path.join(info_root, 'ratings.txt'))
 
 
 def test3():
-    get_rater_agreement(data_info_root, self_included=True)
+    get_rater_agreement(info_root, self_included=True)
 
 
 if __name__ == '__main__':
