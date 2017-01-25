@@ -63,26 +63,17 @@ class Bi_RNN_Attention(object):
 
     def forward(self, X_t, H_tm1):
         H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
-        y_t = H_t
-        return H_t, y_t
+        return H_t
 
     def backward(self, X_t, H_tm1):
         H_t = T.nnet.softplus(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
-        y_t = H_t
-        return H_t, y_t
+        return H_t
 
     def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
         a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_a))
         S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
         S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return a_t, S_t
-
-    def forward_naive(self, X_t, H_tm1, S_tm1):
-        H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
-        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))
-        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
-        S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return a_t, H_t, S_t
+        return S_t, a_t
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
@@ -94,14 +85,13 @@ class Bi_RNN_Attention(object):
         batch_size = T.shape(y_batch)[0]
 
         # (n_step, batch_size, hidden_dim)
-        [H_foward, _], _ = theano.scan(self.forward, sequences=X_batch,
-                                       outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
-        [H_backward, _], _ = theano.scan(self.backward, sequences=X_batch[::-1],
-                                         outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
+        [H_foward], _ = theano.scan(self.forward, sequences=X_batch,
+                                       outputs_info=[T.alloc(theano.config.floatX, batch_size, self.hidden_dim)])
+        [H_backward], _ = theano.scan(self.backward, sequences=X_batch[::-1],
+                                         outputs_info=[T.alloc(theano.config.floatX, batch_size, self.hidden_dim)])
         H_backward = H_backward[::-1]
-        [a, S], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
-                                outputs_info=[None,
-                                              T.zeros((batch_size, self.hidden_dim))])
+        [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
+                                  outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
 
         rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
