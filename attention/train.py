@@ -26,7 +26,7 @@ def validate(test_model, y_test, costs_val, batch_size=32):
     cost_avg = 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost, pred = test_model(start, end)
+        cost, pred = test_model(start, end, 0)
         cost_avg += cost * (end - start)
         all_pred += pred.tolist()
     cost_avg /= n_test
@@ -58,7 +58,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
         ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
 
-    X_batch, y_batch = symbols['X_batch'], symbols['y_batch']
+    X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
     att, pred, loss = symbols['a'], symbols['pred'], symbols['loss']
     cost, updates = symbols['cost'], symbols['updates']
 
@@ -68,14 +68,14 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
 
-    train_model = theano.function(inputs=[start_symbol, end_symbol],
+    train_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                   outputs=[cost, pred], updates=updates,
                                   givens={
                                       X_batch: X_train_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
-    test_model = theano.function(inputs=[start_symbol, end_symbol],
+    test_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                   outputs=[cost, pred],
                                   givens={
                                       X_batch: X_test_shared[:, start_symbol: end_symbol, :],
@@ -91,7 +91,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
-            cost, pred = train_model(start, end)
+            cost, pred = train_model(start, end, 1)
             cost_avg += cost * (end - start)
             all_pred += pred.tolist()
         cost_avg /= n_train
