@@ -12,7 +12,7 @@ import random
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='lr', min_step=76, norm=True):
+def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
 
     dyad_features = {}
     dyad_ratings = {}
