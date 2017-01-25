@@ -1,6 +1,8 @@
 __author__ = 'yuhongliang324'
 import theano
 import theano.tensor as T
+from theano.tensor.shared_randomstreams import RandomStreams
+import numpy
 
 
 def Adam(cost, params, lr=0.0002, b1=0.1, b2=0.001, e=1e-8):
@@ -45,3 +47,10 @@ def SGD(cost, params, learning_rate=0.01):
         updates.append((param, param - learning_rate * grad))
     return updates
 
+theano_seed = numpy.random.randint(2 ** 30)
+theano_rng = RandomStreams(theano_seed)
+
+
+def dropout(layer, is_train, drop_ratio=0.5):
+    mask = theano_rng.binomial(p=drop_ratio, size=layer.shape, dtype=theano.config.floatX)
+    return T.cast(T.switch(T.neq(is_train, 0), layer * mask, layer * drop_ratio), dtype=theano.config.floatX)

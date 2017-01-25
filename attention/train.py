@@ -29,8 +29,8 @@ def validate(test_model, y_test, costs_val, batch_size=32):
         cost, pred = test_model(start, end)
         cost_avg += cost * (end - start)
         all_pred += pred.tolist()
-    costs_val.append(cost_avg)
     cost_avg /= n_test
+    costs_val.append(cost_avg)
     rmse = RMSE(y_test, all_pred)
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
     return all_pred
