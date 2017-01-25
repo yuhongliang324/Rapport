@@ -104,6 +104,9 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
 
 
 def cross_validation(feature_name='hog'):
+
+    feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48}
+
     from data_preprocessing.load_data import load
     from data_path import sample_10_root
     if feature_name == 'au' or feature_name == 'AU':
@@ -113,13 +116,9 @@ def cross_validation(feature_name='hog'):
     # Use both speakers with adding features
     dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp, side='ba')
     dyads = dyad_features.keys()
-    hidden_dim = 128
-    if feature_name == 'gemo':
-        hidden_dim = 64
-    if feature_name == 'au' or feature_name == 'AU':
-        for dyad, features in dyad_features.items():
-            dyad_features[dyad] = features[:, :, -35:]
-        hidden_dim = 32
+    hidden_dim = feature_hidden[feature_name]
+    for dyad, features in dyad_features.items():
+        dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
     writer = open('../results/result.txt', 'w')
     for i in xrange(num_dyad):
@@ -149,7 +148,7 @@ def cross_validation(feature_name='hog'):
 
 
 def test1():
-    cross_validation()
+    cross_validation(feature_name='gemo')
 
 
 if __name__ == '__main__':
