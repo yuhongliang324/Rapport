@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from optimizers import Adam, RMSprop, SGD
+from theano_utils import Adam, RMSprop, SGD, dropout
 
 
 class Bi_RNN_Attention(object):
@@ -95,6 +95,9 @@ class Bi_RNN_Attention(object):
 
         rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
+        is_train = T.iscalar('is_train')
+        rep = dropout(rep, is_train)
+
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
             pred = T.argmax(prob)
@@ -109,7 +112,7 @@ class Bi_RNN_Attention(object):
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
-        ret = {'X_batch': X_batch, 'y_batch': y_batch,
+        ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                 'a': a, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc

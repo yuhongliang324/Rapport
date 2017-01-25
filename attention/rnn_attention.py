@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from optimizers import Adam, RMSprop, SGD
+from theano_utils import Adam, RMSprop, SGD
 
 
 class RNN_Attention(object):

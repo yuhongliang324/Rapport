@@ -52,5 +52,6 @@ theano_rng = RandomStreams(theano_seed)
 
 
 def dropout(layer, is_train, drop_ratio=0.5):
-    mask = theano_rng.binomial(p=drop_ratio, size=layer.shape, dtype=theano.config.floatX)
-    return T.cast(T.switch(T.neq(is_train, 0), layer * mask, layer * drop_ratio), dtype=theano.config.floatX)
+    remain = 1. - drop_ratio
+    mask = theano_rng.binomial(p=remain, size=layer.shape, dtype=theano.config.floatX)
+    return T.cast(T.switch(T.neq(is_train, 0), layer * mask, layer * remain), dtype=theano.config.floatX)
