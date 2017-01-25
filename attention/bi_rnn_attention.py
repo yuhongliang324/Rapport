@@ -12,11 +12,12 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class Bi_RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.00001, update='rmsprop'):
+    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.001, update='rmsprop', drop=0.2):
         self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
         self.lamb = lamb
+        self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
         theano_seed = numpy.random.randint(2 ** 30)
@@ -96,7 +97,7 @@ class Bi_RNN_Attention(object):
         rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
         is_train = T.iscalar('is_train')
-        rep = dropout(rep, is_train)
+        rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
