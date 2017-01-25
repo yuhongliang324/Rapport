@@ -24,8 +24,6 @@ def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     files.sort()
     for fn in files:
         print fn
-        if not fn == 'D3S2':
-            continue
         session_dir = os.path.join(dirname, fn)
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
