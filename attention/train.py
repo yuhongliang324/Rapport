@@ -53,7 +53,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
 
     if 'bi' in model_name:
         model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.)
     else:
         ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
@@ -117,8 +117,9 @@ def cross_validation(feature_name='hog'):
     dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp, side='ba')
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
-    for dyad, features in dyad_features.items():
-        dyad_features[dyad] = features[:, :, -35:]
+    if feature_name == 'au' or feature_name == 'AU':
+        for dyad, features in dyad_features.items():
+            dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
     writer = open('../results/result.txt', 'w')
     for i in xrange(num_dyad):
