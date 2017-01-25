@@ -86,9 +86,9 @@ class Bi_RNN_Attention(object):
 
         # (n_step, batch_size, hidden_dim)
         [H_foward], _ = theano.scan(self.forward, sequences=X_batch,
-                                       outputs_info=[T.alloc(theano.config.floatX(0.), batch_size, self.hidden_dim)])
+                                       outputs_info=T.matrix())
         [H_backward], _ = theano.scan(self.backward, sequences=X_batch[::-1],
-                                         outputs_info=[T.alloc(theano.config.floatX(0.), batch_size, self.hidden_dim)])
+                                         outputs_info=T.matrix())
         H_backward = H_backward[::-1]
         [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
                                   outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
