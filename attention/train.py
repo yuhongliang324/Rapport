@@ -10,6 +10,8 @@ from rnn_attention import RNN_Attention
 from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
+import time
+from utils import plot_loss
 
 
 def RMSE(y_actual, y_predicted):
@@ -17,7 +19,7 @@ def RMSE(y_actual, y_predicted):
     return rmse
 
 
-def validate(test_model, y_test, batch_size=32):
+def validate(test_model, y_test, costs_val, batch_size=32):
     n_test = y_test.shape[0]
     num_iter = int(ceil(n_test / float(batch_size)))
     all_pred = []
@@ -25,6 +27,7 @@ def validate(test_model, y_test, batch_size=32):
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost, pred = test_model(start, end)
+        costs_val.append(cost)
         cost_avg += cost * (end - start)
         all_pred += pred.tolist()
     cost_avg /= n_test
@@ -33,7 +36,7 @@ def validate(test_model, y_test, batch_size=32):
 
 
 # model name can be added "bi-" as prefix and "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=256, batch_size=32, num_epoch=10):
+def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=256, batch_size=32, num_epoch=30):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -79,6 +82,8 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
 
+    costs_train, costs_val = [], []
+
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
         all_pred = []
@@ -86,13 +91,15 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
             cost, pred = train_model(start, end)
+            costs_train.append(cost)
             cost_avg += cost * (end - start)
             all_pred += pred.tolist()
         cost_avg /= n_train
         y_predicted = numpy.asarray(all_pred)
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse)
-        validate(test_model, y_test)
+        validate(test_model, y_test, costs_val)
+    return costs_train, costs_val
 
 
 def cross_validation(feature_name='hog'):
@@ -130,7 +137,10 @@ def cross_validation(feature_name='hog'):
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
-        train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
+        costs_train, costs_val = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
+        img_name = 'loss_dyad_' + str(dyad) + '_' + time.strftime('%m%d-%H%M%S', time.localtime()) + '.png'
+        img_path = '../figs/' + img_name
+        plot_loss(img_path, costs_train, costs_val)
 
 
 def test1():
