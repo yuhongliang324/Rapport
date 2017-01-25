@@ -12,7 +12,7 @@ import random
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
+def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
 
     slice_ratings = get_ratings()
     valid_slices = set(slice_ratings)
@@ -41,8 +41,7 @@ def load(dirname, feature_name='hog', side='b', min_step=76, norm=True):
     return dyad_features, dyad_ratings
 
 
-def load_dyad(dirname, feature_name='hog', side='b', min_step=76, norm=True, valid_slices=None):
-
+def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, valid_slices=None):
     def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
         if feat.shape[0] < min_step:
             return prev_step

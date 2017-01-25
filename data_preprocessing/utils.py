@@ -72,8 +72,8 @@ def get_slice_ratings(rating_root, outfile):
     writer.close()
 
 
-# side: l - left only, r - right only, lr - left and right, b - concatenation of lr
-def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
+# side: l - left only, r - right only, lr - left and right, b - concatenation of lr, ba - adding of lr
+def load_feature(mat_file, feature_name='hog', side='ba', only_suc=True):
     lfeat_name = 'left_' + feature_name + '_feature'
     rfeat_name = 'right_' + feature_name + '_feature'
     data = loadmat(mat_file)
@@ -105,8 +105,10 @@ def load_feature(mat_file, feature_name='hog', side='lr', only_suc=True):
     else:
         if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
             return None
-        # Bug!!!
-        feat = numpy.concatenate((lfeat, rfeat), axis=1)
+        if 'a' in side:  # Use add for both sides
+            feat = lfeat + rfeat
+        else:
+            feat = numpy.concatenate((lfeat, rfeat), axis=1)
         suc = numpy.logical_and(lsuc == 1, rsuc == 1)
         if only_suc:
             feat = feat[suc]

@@ -110,7 +110,7 @@ def cross_validation(feature_name='hog'):
         tmp = 'gemo'
     else:
         tmp = feature_name
-    dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp)
+    dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp, side='ba')
     dyads = dyad_features.keys()
     hidden_dim = 128
     if feature_name == 'gemo':
