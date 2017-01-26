@@ -228,7 +228,6 @@ def load_dyad_audio(dirname, num_frame=300):
         mat_path = os.path.join(dirname, mat_name)
         data = loadmat(mat_path)
         feat = data['features']
-        feat = numpy.mean(feat, axis=0)
         if feat.shape[0] < 2500:
             continue
         interval = feat.shape[0] // num_frame
@@ -236,9 +235,11 @@ def load_dyad_audio(dirname, num_frame=300):
         feat = feat[ind]
         print feat.shape
         features.append(feat)
+    len(features)
+    '''
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
-    X[numpy.isneginf(X)] = -1.
-    return X, slices
+    X[numpy.isneginf(X)] = -1.'''
+    return slices
 
 
 def test1():
