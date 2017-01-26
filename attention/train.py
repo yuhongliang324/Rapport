@@ -155,7 +155,7 @@ def cross_validation(feature_name='hog', side='b'):
 
 
 def test1():
-    cross_validation(feature_name='hog')
+    cross_validation(feature_name='gemo')
 
 
 if __name__ == '__main__':
