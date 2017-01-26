@@ -254,25 +254,25 @@ def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
     if side == 'lr':
         for slice, feats in slice_features.items():
             slices.append(slice)
-            slices.append(feats['left'])
+            features.append(feats['left'])
             slices.append(slices)
-            slices.append(feats['right'])
+            features.append(feats['right'])
     elif side == 'l':
         for slice, feats in slice_features.items():
             slices.append(slice)
-            slices.append(feats['left'])
+            features.append(feats['left'])
     elif side == 'r':
         for slice, feats in slice_features.items():
             slices.append(slice)
-            slices.append(feats['right'])
+            features.append(feats['right'])
     elif side == 'ba':
         for slice, feats in slice_features.items():
             slices.append(slice)
-            slices.append(feats['left'] + feats['right'])
+            features.append(feats['left'] + feats['right'])
     else:
         for slice, feats in slice_features:
             slices.append(slice)
-            slices.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
+            features.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
     print X.shape, len(slices)
