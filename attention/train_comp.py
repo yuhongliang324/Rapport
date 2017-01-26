@@ -163,6 +163,7 @@ def cross_validation(feature_name='hog', side='b'):
         X_train = numpy.concatenate(feature_list)
         y_train = numpy.concatenate(y_list)
         print X_train.shape, X_test.shape
+        print 'Testing Dyad =', dyad
         costs_train, costs_val, accs_train, accs_val = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
         img_name = 'loss_dyad_' + str(dyad) + '_' + message + '.png'
         img_path = '../figs/' + img_name
