@@ -98,7 +98,7 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
             continue
         feat, _, rating = ret
 
-        slice_tup = (dyad, session, slice)
+        slice_tup = (dyad, session, slice_id)
 
         if side == 'lr':
             lfeat, rfeat = feat

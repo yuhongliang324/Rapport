@@ -114,9 +114,9 @@ def cross_validation(feature_name='hog', side='b'):
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side='b')
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side)
     else:
-        dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side='ba')
+        dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
     if feature_name == 'au' or feature_name == 'AU':
@@ -150,12 +150,12 @@ def cross_validation(feature_name='hog', side='b'):
         plot_loss(img_path, costs_train, costs_val)
         for i in xrange(y_test.shape[0]):
             writer.write(str(dyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
-                         ',' + str(pred_val[i]) + str(y_test[i]) + '\n')
+                         ',' + str(pred_val[i]) + ',' + str(y_test[i]) + '\n')
     writer.close()
 
 
 def test1():
-    cross_validation(feature_name='gemo')
+    cross_validation(feature_name='gemo', side='b')
 
 
 if __name__ == '__main__':
