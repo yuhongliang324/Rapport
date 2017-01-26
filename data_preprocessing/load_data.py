@@ -196,9 +196,10 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
     return X1, X2, y
 
 
-def load_audio(root=audio_root):
-    slices = []
-    features = []
+def load_audio(root=audio_root, side='ba', num_frame=300):
+    dyad_features = {}
+    dyad_ratings = {}
+    valid_slices = get_valid_slices()
 
     files = os.listdir(root)
     files.sort()
@@ -207,12 +208,20 @@ def load_audio(root=audio_root):
         if not os.path.isdir(dpath):
             continue
         print dname
-        load_dyad_audio(dpath)
+        dyad = int(dname[1:].split('S')[0])
+        X, slices = load_dyad_audio(dpath, side=side, num_frame=num_frame, valid_slices=valid_slices)
+        if X.shape[0] == 0:
+            continue
+        if dyad in dyad_features:
+            dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], X), axis=0)
+            # dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
+        else:
+            dyad_features[dyad] = X
+            # dyad_ratings[dyad] = ratings
 
 
-def load_dyad_audio(dirname, num_frame=300):
-    slices = []
-    features = []
+def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
+    slice_features = {}
     ind = numpy.arange(num_frame)
 
     files = os.listdir(dirname)
@@ -224,7 +233,9 @@ def load_dyad_audio(dirname, num_frame=300):
         dyad = int(sp[0][1:])
         session = int(sp[1][1:])
         slice = int(sp[2])
-        slices.append((dyad, session, slice))
+        if valid_slices is not None and str(dyad) + '_' + str(session) + '_' + str(slice) not in valid_slices:
+            continue
+        lr = sp[3][:-4]
         mat_path = os.path.join(dirname, mat_name)
         data = loadmat(mat_path)
         feat = data['features']
@@ -233,12 +244,39 @@ def load_dyad_audio(dirname, num_frame=300):
         interval = feat.shape[0] // num_frame
         index = ind * interval
         feat = feat[index]
-        features.append(feat)
-    len(features)
+        slice_tup = (dyad, session, slice)
+        if slice_tup not in slice_features:
+            slice_features[slice_tup] = {lr: feat}
+        else:
+            slice_features[slice_tup][lr] = feat
+    slices = []
+    features = []
+    if side == 'lr':
+        for slice, feats in slice_features:
+            slices.append(slice)
+            slices.append(feats['left'])
+            slices.append(slices)
+            slices.append(feats['right'])
+    elif side == 'l':
+        for slice, feats in slice_features:
+            slices.append(slice)
+            slices.append(feats['left'])
+    elif side == 'r':
+        for slice, feats in slice_features:
+            slices.append(slice)
+            slices.append(feats['right'])
+    elif side == 'ba':
+        for slice, feats in slice_features:
+            slices.append(slice)
+            slices.append(feats['left'] + feats['right'])
+    else:
+        for slice, feats in slice_features:
+            slices.append(slice)
+            slices.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
     print X.shape
-    return slices
+    return X, slices
 
 
 def test1():
