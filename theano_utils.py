@@ -5,7 +5,7 @@ from theano.tensor.shared_randomstreams import RandomStreams
 import numpy
 
 
-def Adam2(params, cost, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
+def Adam(params, cost, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
     """
     no bias init correction
     """
@@ -24,7 +24,7 @@ def Adam2(params, cost, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
     return updates
 
 
-def Adam(cost, params, lr=0.0002, b1=0.1, b2=0.001, e=1e-8):
+def Adam2(cost, params, lr=0.0002, b1=0.1, b2=0.001, e=1e-8):
     updates = []
     grads = T.grad(cost, params)
     i = theano.shared(0.)
