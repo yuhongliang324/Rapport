@@ -273,9 +273,8 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         index = ind * interval
         feat = feat[index]
         feat[numpy.isneginf(feat)] = -1.
-        '''
         feat = normalize(feat, norm='l1', axis=0)
-        feat = normalize(feat)'''
+        feat = normalize(feat)
         slice_tup = (dyad, session, slice)
         if slice_tup not in slice_features:
             slice_features[slice_tup] = {lr: feat}
@@ -309,9 +308,10 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         return None, None
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
 
+    '''
     X_tmp = numpy.reshape(X, (X.shape[0] * X.shape[1], X.shape[2]))
     X_tmp = StandardScaler().fit_transform(X_tmp)
-    X = numpy.reshape(X_tmp, (X.shape[0], X.shape[1], X.shape[2]))
+    X = numpy.reshape(X_tmp, (X.shape[0], X.shape[1], X.shape[2]))'''
 
     return X, slices
 

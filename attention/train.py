@@ -37,7 +37,7 @@ def validate(test_model, y_test, costs_val, batch_size=32):
 
 
 # model name can be added "bi-" as prefix and "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=256, batch_size=32, num_epoch=30):
+def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=None, batch_size=32, num_epoch=15):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -53,7 +53,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
 
     if 'bi' in model_name:
         model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.)
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.2)
     else:
         ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
@@ -103,7 +103,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=25
     return costs_train, costs_val, pred_val
 
 
-def cross_validation(feature_name='hog'):
+def cross_validation(feature_name='hog', side='b'):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -115,7 +115,7 @@ def cross_validation(feature_name='hog'):
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, _ = load_audio()
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side='b')
     else:
         dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp, side='ba')
     dyads = dyad_features.keys()
@@ -124,11 +124,13 @@ def cross_validation(feature_name='hog'):
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    writer = open('../results/result.txt', 'w')
+    message = feature_name + '_' + side
+    writer = open('../results/result_' + message + '.txt', 'w')
     for i in xrange(num_dyad):
         dyad = dyads[i]
         X_test = dyad_features[dyad]
         y_test = dyad_ratings[dyad]
+        slices_test = dyad_slices[dyad]
         feature_list, rating_list = [], []
         for j in xrange(num_dyad):
             if j == i:
@@ -144,11 +146,13 @@ def cross_validation(feature_name='hog'):
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
         costs_train, costs_val, pred_val = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
-        img_name = 'loss_dyad_' + str(dyad) + '_' + time.strftime('%m%d-%H%M%S', time.localtime()) + '.png'
+        img_name = 'loss_dyad_' + str(dyad) + '_' + message + '.png'
         img_path = '../figs/' + img_name
         plot_loss(img_path, costs_train, costs_val)
         for i in xrange(y_test.shape[0]):
-            writer.write(str(dyad) + ',' + str(y_test[i]) + ',' + str(pred_val[i]) + '\n')
+            writer.write(str(dyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2])
+                         + ',' + str(pred_val[i]) + str(y_test[i]) + '\n')
+    writer.close()
 
 
 def test1():
