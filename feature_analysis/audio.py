@@ -26,9 +26,7 @@ def load_audio_features(root=audio_root):
 
     files = os.listdir(root)
     files.sort()
-    full, total = 0, 0
     for dname in files:
-        minlen, maxlen = 10000, 0
         dpath = os.path.join(root, dname)
         if not os.path.isdir(dpath):
             continue
@@ -46,20 +44,10 @@ def load_audio_features(root=audio_root):
             mat_path = os.path.join(dpath, mat_name)
             data = loadmat(mat_path)
             feat = data['features']
-            if feat.shape[0] < minlen:
-                minlen = feat.shape[0]
-            if feat.shape[0] > maxlen:
-                maxlen = feat.shape[0]
-            if feat.shape[0] > 2500:
-                full += 1
-            total += 1
             feat = numpy.mean(feat, axis=0)
             features.append(feat)
-        print minlen, maxlen
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
-    print
-    print full, total
     return X, slices
 
 

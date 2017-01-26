@@ -10,6 +10,7 @@ from utils import load_feature_vision, get_ratings
 from data_path import sample_10_root, audio_root
 from sklearn.preprocessing import normalize
 import random
+from scipy.io import loadmat
 
 n_class = 7
 
@@ -193,6 +194,51 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
     X2 = numpy.stack(features2, axis=0).astype(theano.config.floatX)
     y = numpy.asarray(gaps, dtype=theano.config.floatX)
     return X1, X2, y
+
+
+def load_audio(root=audio_root):
+    slices = []
+    features = []
+
+    files = os.listdir(root)
+    files.sort()
+    for dname in files:
+        dpath = os.path.join(root, dname)
+        if not os.path.isdir(dpath):
+            continue
+        print dname
+        load_dyad_audio(dpath)
+
+
+def load_dyad_audio(dirname, num_frame=300):
+    slices = []
+    features = []
+    ind = numpy.arange(num_frame)
+
+    files = os.listdir(dirname)
+    files.sort()
+    for mat_name in files:
+        if not mat_name.endswith('mat'):
+            continue
+        sp = mat_name.split('_')
+        dyad = int(sp[0][1:])
+        session = int(sp[1][1:])
+        slice = int(sp[2])
+        slices.append((dyad, session, slice))
+        mat_path = os.path.join(dirname, mat_name)
+        data = loadmat(mat_path)
+        feat = data['features']
+        feat = numpy.mean(feat, axis=0)
+        if feat.shape[0] < 2500:
+            continue
+        interval = feat.shape[0] // num_frame
+        ind *= interval
+        feat = feat[ind]
+        print feat.shape
+        features.append(feat)
+    X = numpy.stack(features, axis=0).astype(theano.config.floatX)
+    X[numpy.isneginf(X)] = -1.
+    return X, slices
 
 
 def test1():
