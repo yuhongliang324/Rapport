@@ -41,7 +41,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     X_test = X_test.transpose([1, 0, 2])
 
     X_train_shared = theano.shared(X_train, borrow=True)
-    y_train_shared = T.cast(theano.shared(y_train, borrow=True))
+    y_train_shared = T.cast(theano.shared(y_train, borrow=True), 'int32')
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
 
@@ -171,7 +171,7 @@ def cross_validation(feature_name='hog', side='b'):
 
 def test1():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-feat', type=str, default='audio')
+    parser.add_argument('-feat', type=str, default='hog')
     parser.add_argument('-side', type=str, default=None)
     args = parser.parse_args()
     if args.side is not None:
