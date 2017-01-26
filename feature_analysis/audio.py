@@ -92,5 +92,13 @@ def get_PCC():
     PCC(X, y)
 
 
-if __name__ == '__main__':
+def test1():
     get_PCC()
+
+
+def test2():
+    load_audio_features()
+
+
+if __name__ == '__main__':
+    test2()
