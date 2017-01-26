@@ -32,7 +32,7 @@ def validate(test_model, y_test, costs_val, batch_size=32):
     costs_val.append(cost_avg)
     rmse = RMSE(y_test, all_pred)
     print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse)
-    return all_pred
+    return cost_avg, all_pred
 
 
 # model name can be added "bi-" as prefix and "-only" as suffix
@@ -83,6 +83,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     print 'Compilation done 2'
 
     costs_train, costs_val = [], []
+    best_cost_val, best_pred_val = 10000, []
 
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
@@ -98,8 +99,10 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
         y_predicted = numpy.asarray(all_pred)
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse)
-        pred_val = validate(test_model, y_test, costs_val)
-    return costs_train, costs_val, pred_val
+        cost_val, pred_val = validate(test_model, y_test, costs_val)
+        if cost_val < best_cost_val:
+            best_pred_val = pred_val
+    return costs_train, costs_val, best_pred_val
 
 
 def cross_validation(feature_name='hog', side='b'):
