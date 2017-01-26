@@ -233,12 +233,11 @@ def load_dyad_audio(dirname, num_frame=300):
         interval = feat.shape[0] // num_frame
         index = ind * interval
         feat = feat[index]
-        print feat.shape
         features.append(feat)
     len(features)
-    '''
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
-    X[numpy.isneginf(X)] = -1.'''
+    X[numpy.isneginf(X)] = -1.
+    print X.shape
     return slices
 
 
