@@ -21,7 +21,7 @@ def validate(test_model, y_test, costs_val, accs_val, batch_size=32):
     acc_avg = 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost, pred, acc = test_model(start, end, 0)
+        cost, _, acc = test_model(start, end, 0)
         cost_avg += cost * (end - start)
         acc_avg += acc * (end - start)
     cost_avg /= n_test
@@ -41,9 +41,9 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     X_test = X_test.transpose([1, 0, 2])
 
     X_train_shared = theano.shared(X_train, borrow=True)
-    y_train_shared = theano.shared(y_train, borrow=True)
+    y_train_shared = T.cast(theano.shared(y_train, borrow=True))
     X_test_shared = theano.shared(X_test, borrow=True)
-    y_test_shared = theano.shared(y_test, borrow=True)
+    y_test_shared = T.cast(theano.shared(y_test, borrow=True), 'int32')
 
     print model_name
 
