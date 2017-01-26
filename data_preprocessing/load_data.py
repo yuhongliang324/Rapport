@@ -244,3 +244,10 @@ def load_dyad_audio(dirname, num_frame=300):
 def test1():
     load(sample_10_root)
 
+
+def test2():
+    load_audio()
+
+
+if __name__ == '__main__':
+    test2()
