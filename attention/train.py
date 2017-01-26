@@ -11,6 +11,7 @@ from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
 from model_utils import plot_loss
+import argparse
 
 
 def RMSE(y_actual, y_predicted):
@@ -158,7 +159,19 @@ def cross_validation(feature_name='hog', side='b'):
 
 
 def test1():
-    cross_validation(feature_name='gemo', side='b')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-feat', type=str, default='audio')
+    parser.add_argument('-side', type=str, default=None)
+    args = parser.parse_args()
+    if args.side is not None:
+        side = args.side
+    else:
+        if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
+            side = 'b'
+        else:
+            side = 'ba'
+    print args.feat, side
+    cross_validation(feature_name=args.feat, side=side)
 
 
 if __name__ == '__main__':
