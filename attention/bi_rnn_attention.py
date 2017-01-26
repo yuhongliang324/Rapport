@@ -105,7 +105,7 @@ class Bi_RNN_Attention(object):
 
             acc = T.mean(T.eq(pred, y_batch))
 
-            loss = T.sum(-T.log(prob[y_batch]))
+            loss = T.mean(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
             loss = pred - y_batch
