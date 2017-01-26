@@ -47,12 +47,13 @@ def load_audio_features(root=audio_root):
             feat = data['features']
             if feat.shape[0] < minlen:
                 minlen = feat.shape[0]
-            if feat.shape[0] > minlen:
+            if feat.shape[0] > maxlen:
                 minlen = feat.shape[0]
             feat = numpy.mean(feat, axis=0)
             features.append(feat)
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
+    print minlen, maxlen
     return X, slices
 
 
