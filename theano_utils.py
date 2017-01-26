@@ -5,7 +5,7 @@ from theano.tensor.shared_randomstreams import RandomStreams
 import numpy
 
 
-def Adam(params, cost, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
+def Adam(cost, params, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
     """
     no bias init correction
     """
