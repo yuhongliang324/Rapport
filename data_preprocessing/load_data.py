@@ -1,21 +1,36 @@
 __author__ = 'yuhongliang324'
-import numpy
-import theano
 import os
 import sys
+
+import numpy
+import theano
+
 sys.path.append('../')
-from data_preprocessing.utils import load_feature, get_ratings
-from data_path import sample_10_root
+from utils import load_feature_vision, get_ratings
+from data_path import sample_10_root, audio_root
 from sklearn.preprocessing import normalize
 import random
 
 n_class = 7
 
 
-def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
-
+def get_valid_slices():
     slice_ratings = get_ratings()
-    valid_slices = set(slice_ratings)
+    candidates = slice_ratings.keys()
+    valid_slices = set()
+    for cand in candidates:
+        sp = cand.split('_')
+        dyad, session, slice = sp[0], sp[1], sp[2].zfill(3)
+        mat_root = os.path.join(audio_root, 'D' + dyad + 'S' + session)
+        lmat_path = os.path.join(mat_root, 'D' + dyad + '_S' + session + '_' + slice + '_left.mat')
+        rmat_path = os.path.join(mat_root, 'D' + dyad + '_S' + session + '_' + slice + '_right.mat')
+        if os.path.isfile(lmat_path) and os.path.isfile(rmat_path):
+            valid_slices.add(cand)
+    return valid_slices
+
+
+def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
+    valid_slices = get_valid_slices()
 
     dyad_features = {}
     dyad_ratings = {}
@@ -68,7 +83,7 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
         if valid_slices is not None and dyad + '_' + session + '_' + slice_id not in valid_slices:
             continue
         mat_file = os.path.join(dirname, mat_name)
-        ret = load_feature(mat_file, feature_name=feature_name, side=side, only_suc=False)
+        ret = load_feature_vision(mat_file, feature_name=feature_name, side=side, only_suc=False)
         if ret is None:
             continue
         feat, _, rating = ret

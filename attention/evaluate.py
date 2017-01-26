@@ -1,7 +1,7 @@
 __author__ = 'yuhongliang324'
 import sys
 sys.path.append('..')
-from data_preprocessing.utils import get_ratings
+from utils import get_ratings
 
 
 def load_gt():

@@ -5,7 +5,7 @@ from collections import defaultdict
 from scipy.io import loadmat
 import numpy
 import math
-from krippendorff_alpha import krippendorff_alpha as ka
+from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
 from data_path import info_root
 
 
@@ -73,7 +73,7 @@ def get_slice_ratings(rating_root, outfile):
 
 
 # side: l - left only, r - right only, lr - left and right, b - concatenation of lr, ba - adding of lr
-def load_feature(mat_file, feature_name='hog', side='ba', only_suc=True):
+def load_feature_vision(mat_file, feature_name='hog', side='ba', only_suc=True):
     lfeat_name = 'left_' + feature_name + '_feature'
     rfeat_name = 'right_' + feature_name + '_feature'
     data = loadmat(mat_file)

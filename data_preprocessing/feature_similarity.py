@@ -1,8 +1,10 @@
 __author__ = 'yuhongliang324'
+import os
+
 import numpy
 from sklearn.preprocessing import normalize
+
 from utils import load_feature
-import os
 
 
 def get_high_rating_slices(rating_csv, threshold=5):
