@@ -7,7 +7,7 @@ import theano
 
 sys.path.append('../')
 from utils import load_feature_vision, get_ratings
-from data_path import sample_10_root, audio_root
+from data_path import sample_10_root, audio_root, ratings_file
 from sklearn.preprocessing import normalize
 import random
 from scipy.io import loadmat
@@ -196,10 +196,29 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
     return X1, X2, y
 
 
-def load_audio(root=audio_root, side='ba', num_frame=300):
+def load_ratings(rpath=ratings_file):
+    reader = open(rpath)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+
+    slice_rating = {}
+
+    for line in lines:
+        sp = line.split(',')
+        dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
+        rating = float(sp[3])
+        slice_rating[(dyad, session, slice)] = rating
+    return slice_rating
+
+
+def load_audio(root=audio_root, side='b', num_frame=300):
     dyad_features = {}
+    dyad_slices = {}
     dyad_ratings = {}
+
     valid_slices = get_valid_slices()
+    slice_rating = load_ratings()
 
     files = os.listdir(root)
     files.sort()
@@ -210,17 +229,25 @@ def load_audio(root=audio_root, side='ba', num_frame=300):
         print dname
         dyad = int(dname[1:].split('S')[0])
         X, slices = load_dyad_audio(dpath, side=side, num_frame=num_frame, valid_slices=valid_slices)
-        if X.shape[0] == 0:
+        if X is None:
             continue
+        ratings = []
+        for slice in slices:
+            ratings.append(slice_rating[slice])
+        ratings = numpy.asarray(ratings, dtype=theano.config.floatX)
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], X), axis=0)
-            # dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
+            dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
+            for slice in slices:
+                dyad_slices[dyad].append(slice)
         else:
             dyad_features[dyad] = X
-            # dyad_ratings[dyad] = ratings
+            dyad_ratings[dyad] = ratings
+            dyad_slices[dyad] = slices
+    return dyad_features, dyad_ratings, dyad_slices
 
 
-def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
+def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
     slice_features = {}
     ind = numpy.arange(num_frame)
 
@@ -273,6 +300,8 @@ def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
         for slice, feats in slice_features:
             slices.append(slice)
             features.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
+    if len(features) == 0:
+        return None, None
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
     print X.shape, len(slices)
