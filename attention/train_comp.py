@@ -146,6 +146,7 @@ def cross_validation(feature_name='hog', side='b'):
         y = numpy.stack(y, axis=0).astype(theano.config.floatX)
         dyad_X[dyad] = X
         dyad_y[dyad] = y
+        print X.shape, y.shape
 
     num_dyad = len(dyads)
     message = feature_name + '_' + side + '_comp'
