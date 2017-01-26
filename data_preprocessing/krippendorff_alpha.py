@@ -73,7 +73,6 @@ def krippendorff_alpha(data, metric=interval_metric, force_vecmath=False, conver
                     units[it] = its
                 its.append(convert_items(g))
 
-
     units = dict((it, d) for it, d in units.items() if len(d) > 1)  # units with pairable values
     n = sum(len(pv) for pv in units.values())  # number of pairable values
     
@@ -110,13 +109,13 @@ if __name__ == '__main__':
     print("Example from http://en.wikipedia.org/wiki/Krippendorff's_Alpha")
 
     data = (
-        "*    *    *    *    *    3    4    1    2    1    1    3    3    *    3", # coder A
-        "1    *    2    1    3    3    4    3    *    *    *    *    *    *    *", # coder B
-        "*    *    2    1    3    4    4    *    2    1    1    3    3    *    4", # coder C
+        "*    *    *    *    *    3    4    1    2    1    1    3    3    *    3",  # coder A
+        "1    *    2    1    3    3    4    3    *    *    *    *    *    *    *",  # coder B
+        "*    *    2    1    3    4    4    *    2    1    1    3    3    *    4",  # coder C
     )
 
-    missing = '*' # indicator for missing values
+    missing = '*'  # indicator for missing values
     array = [d.split() for d in data]  # convert to 2D list of string items
     
-    print("nominal metric: %.3f" % krippendorff_alpha(array, nominal_metric, missing_items=missing))
+    # print("nominal metric: %.3f" % krippendorff_alpha(array, nominal_metric, missing_items=missing))
     print("interval metric: %.3f" % krippendorff_alpha(array, interval_metric, missing_items=missing))
