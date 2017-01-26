@@ -275,7 +275,7 @@ def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
             slices.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)
     X[numpy.isneginf(X)] = -1.
-    print X.shape
+    print X.shape, len(slices)
     return X, slices
 
 
