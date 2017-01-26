@@ -36,6 +36,7 @@ def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
 
     dyad_features = {}
     dyad_ratings = {}
+    dyad_slices = {}
 
     files = os.listdir(dirname)
     files.sort()
@@ -45,21 +46,24 @@ def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step, norm=norm,
-                                      valid_slices=valid_slices)
+        features, ratings, slices = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step,
+                                              norm=norm, valid_slices=valid_slices)
         if min_step is not None:
             features = features[:, :min_step, :]
         if dyad in dyad_features:
             dyad_features[dyad] = numpy.concatenate((dyad_features[dyad], features), axis=0)
             dyad_ratings[dyad] = numpy.concatenate((dyad_ratings[dyad], ratings), axis=0)
+            for slice in slices:
+                dyad_slices[dyad].append(slice)
         else:
             dyad_features[dyad] = features
             dyad_ratings[dyad] = ratings
-    return dyad_features, dyad_ratings
+            dyad_slices[dyad] = slices
+    return dyad_features, dyad_ratings, dyad_slices
 
 
 def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, valid_slices=None):
-    def add_to_features(feat, rating, features, ratings, prev_step, min_step=76):
+    def add_to_features(feat, rating, slice, features, ratings, slices, prev_step, min_step=76):
         if feat.shape[0] < min_step:
             return prev_step
         if prev_step is None:
@@ -70,8 +74,10 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
         feat = feat[start: start + min_step]
         features.append(feat)
         ratings.append(rating)
+        slices.append(slice)
         return prev_step
     features, ratings = [], []
+    slices = []
 
     files = os.listdir(dirname)
     files.sort()
@@ -89,6 +95,9 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
         if ret is None:
             continue
         feat, _, rating = ret
+
+        slice_tup = (dyad, session, slice)
+
         if side == 'lr':
             lfeat, rfeat = feat
             if norm:
@@ -102,17 +111,20 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
                     rfeat = normalize(rfeat)
                 else:
                     rfeat = normalize(rfeat)
-            prev_step = add_to_features(lfeat, rating, features, ratings, prev_step, min_step=min_step)
-            prev_step = add_to_features(rfeat, rating, features, ratings, prev_step, min_step=min_step)
+            prev_step = add_to_features(lfeat, rating, slice_tup, features, ratings, slices,
+                                        prev_step, min_step=min_step)
+            prev_step = add_to_features(rfeat, rating, slice_tup, features, ratings, slices,
+                                        prev_step, min_step=min_step)
         else:
             if norm:
                 feat = normalize(feat)
-            prev_step = add_to_features(feat, rating, features, ratings, prev_step, min_step=min_step)
+            prev_step = add_to_features(feat, rating, slice_tup, features, ratings, slices,
+                                        prev_step, min_step=min_step)
 
     features = numpy.stack(features[:-1], axis=0).astype(theano.config.floatX)
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)
 
-    return features, ratings
+    return features, ratings, slices
 
 
 def load_pairs(dirname, feature_name='hog', side='lr', min_step=76, norm=True, n_class=1):

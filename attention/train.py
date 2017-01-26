@@ -10,7 +10,6 @@ from rnn_attention import RNN_Attention
 from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
-import time
 from model_utils import plot_loss
 
 
@@ -53,7 +52,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
 
     if 'bi' in model_name:
         model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.2)
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.)
     else:
         ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
@@ -117,7 +116,7 @@ def cross_validation(feature_name='hog', side='b'):
     if feature_name == 'audio':
         dyad_features, dyad_ratings, dyad_slices = load_audio(side='b')
     else:
-        dyad_features, dyad_ratings = load(sample_10_root, feature_name=tmp, side='ba')
+        dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side='ba')
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
     if feature_name == 'au' or feature_name == 'AU':
@@ -150,13 +149,13 @@ def cross_validation(feature_name='hog', side='b'):
         img_path = '../figs/' + img_name
         plot_loss(img_path, costs_train, costs_val)
         for i in xrange(y_test.shape[0]):
-            writer.write(str(dyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2])
-                         + ',' + str(pred_val[i]) + str(y_test[i]) + '\n')
+            writer.write(str(dyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
+                         ',' + str(pred_val[i]) + str(y_test[i]) + '\n')
     writer.close()
 
 
 def test1():
-    cross_validation(feature_name='audio')
+    cross_validation(feature_name='hog')
 
 
 if __name__ == '__main__':
