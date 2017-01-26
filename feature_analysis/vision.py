@@ -51,7 +51,7 @@ gemo_names = gemo_names.split(', ')
 
 
 def get_PCC():
-    dyad_features, dyad_ratings = load(sample_10_root, feature_name='gemo')
+    dyad_features, dyad_ratings, _ = load(sample_10_root, feature_name='gemo')
     dyads = dyad_features.keys()
     num_dyad = len(dyads)
     feature_list, rating_list = [], []
