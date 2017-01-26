@@ -48,6 +48,8 @@ def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
         dyad = int(fn[1:].split('S')[0])
         features, ratings, slices = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step,
                                               norm=norm, valid_slices=valid_slices)
+        if features is None:
+            continue
         if min_step is not None:
             features = features[:, :min_step, :]
         if dyad in dyad_features:
@@ -120,7 +122,8 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
                 feat = normalize(feat)
             prev_step = add_to_features(feat, rating, slice_tup, features, ratings, slices,
                                         prev_step, min_step=min_step)
-
+    if len(features) == 0:
+        return None, None, None
     features = numpy.stack(features[:-1], axis=0).astype(theano.config.floatX)
     ratings = numpy.asarray(ratings[:-1], dtype=theano.config.floatX)
 
