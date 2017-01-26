@@ -6,6 +6,7 @@ import numpy
 import theano
 
 sys.path.append('../')
+
 from utils import load_feature_vision, get_ratings
 from data_path import sample_10_root, audio_root, ratings_file
 from sklearn.preprocessing import normalize

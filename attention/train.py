@@ -11,7 +11,7 @@ from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
 import time
-from utils import plot_loss
+from model_utils import plot_loss
 
 
 def RMSE(y_actual, y_predicted):
