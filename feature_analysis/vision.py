@@ -63,6 +63,7 @@ def get_PCC():
     X_mean = numpy.mean(X, axis=1)
     X_max = numpy.max(X, axis=1)
     X_min = numpy.min(X, axis=1)
+    X_perc = numpy.percentile(X, 90, axis=1)
 
     def PCC(X, y, name, topK=20):
         X_bar = normalize(X - numpy.mean(X, axis=0), axis=0)
@@ -81,6 +82,7 @@ def get_PCC():
     PCC(X_mean, y, 'mean')
     PCC(X_max, y, 'max')
     PCC(X_min, y, 'min')
+    PCC(X_perc, y, 'perc')
 
 
 if __name__ == '__main__':
