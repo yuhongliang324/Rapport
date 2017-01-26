@@ -231,8 +231,8 @@ def load_dyad_audio(dirname, num_frame=300):
         if feat.shape[0] < 2500:
             continue
         interval = feat.shape[0] // num_frame
-        ind *= interval
-        feat = feat[ind]
+        index = ind * interval
+        feat = feat[index]
         print feat.shape
         features.append(feat)
     len(features)
