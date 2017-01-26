@@ -49,7 +49,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
 
     if 'bi' in model_name:
         model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 2, rnn=model_name, drop=0.)
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 2, rnn=model_name, drop=0.2)
     else:
         ra = RNN_Attention(input_dim, hidden_dim, 2, rnn=model_name)
     symbols = ra.build_model()
