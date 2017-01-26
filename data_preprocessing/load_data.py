@@ -298,7 +298,7 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
             slices.append(slice)
             features.append(feats['left'] + feats['right'])
     else:
-        for slice, feats in slice_features:
+        for slice, feats in slice_features.items():
             slices.append(slice)
             features.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
     if len(features) == 0:
