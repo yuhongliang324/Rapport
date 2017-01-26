@@ -252,21 +252,21 @@ def load_dyad_audio(dirname, side='ba', num_frame=300, valid_slices=None):
     slices = []
     features = []
     if side == 'lr':
-        for slice, feats in slice_features:
+        for slice, feats in slice_features.items():
             slices.append(slice)
             slices.append(feats['left'])
             slices.append(slices)
             slices.append(feats['right'])
     elif side == 'l':
-        for slice, feats in slice_features:
+        for slice, feats in slice_features.items():
             slices.append(slice)
             slices.append(feats['left'])
     elif side == 'r':
-        for slice, feats in slice_features:
+        for slice, feats in slice_features.items():
             slices.append(slice)
             slices.append(feats['right'])
     elif side == 'ba':
-        for slice, feats in slice_features:
+        for slice, feats in slice_features.items():
             slices.append(slice)
             slices.append(feats['left'] + feats['right'])
     else:
