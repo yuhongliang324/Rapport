@@ -166,6 +166,21 @@ def get_ratings(rating_root=info_root):
     return slice_ratings
 
 
+def get_coder(file_name):
+    reader = open(file_name)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    slice_rating = {}
+    for line in lines:
+        sp = line.split(',')
+        dyad, session, slice = sp[0], sp[1], sp[2]
+        slice_str = dyad + '_' + session + '_' + slice
+        rating = float(sp[3])
+        slice_rating[slice_str] = rating
+    return slice_rating
+
+
 def get_rater_agreement(rating_root, self_included=False, num_coders=4):
     slice_ratings = get_ratings(rating_root)
 
