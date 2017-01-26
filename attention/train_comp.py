@@ -123,6 +123,7 @@ def cross_validation(feature_name='hog', side='b'):
     # Create comparison features
     dyad_X, dyad_y = {}, {}
     for dyad, features in dyad_features.items():
+        print dyad
         X = []
         y = []
         ratings = dyad_ratings[dyad]
