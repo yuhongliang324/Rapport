@@ -1,0 +1,113 @@
+nohup: ignoring input
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+hog ba
+../data_info/AMT_Batch3_results_large.csv
+../data_info/AMT_Batch1_results_large.csv
+../data_info/AMT_Batch2_results_large.csv
+../data_info/AMT_Batch4_results_large.csv
+D10S1
+D10S2
+D11S1
+D11S2
+D12S1
+D12S2
+D16S2
+D17S1
+D18S1
+D3S1
+D3S2
+D4S1
+D4S2
+D5S1
+D5S2
+D6S1
+D6S2
+D7S1
+D7S2
+D8S1
+D8S2
+D9S1
+D9S2
+3
+(1645, 76, 1360) (1645,)
+4
+(577, 76, 1360) (577,)
+7
+(1813, 76, 1360) (1813,)
+8
+(1014, 76, 1360) (1014,)
+9
+(1100, 76, 1360) (1100,)
+10
+(876, 76, 1360) (876,)
+11
+(1138, 76, 1360) (1138,)
+12
+(1724, 76, 1360) (1724,)
+16
+(456, 76, 1360) (456,)
+17
+(348, 76, 1360) (348,)
+18
+(355, 76, 1360) (355,)
+(9401, 76, 1360) (1645, 76, 1360)
+bi-naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 0.721343,	Accuracy = 0.513562
+	Test cost = 0.693835,	Accuracy = 0.516109
+Epoch = 2
+	Train cost = 0.679631,	Accuracy = 0.588448
+	Test cost = 0.683834,	Accuracy = 0.557447
+Epoch = 3
+	Train cost = 0.654020,	Accuracy = 0.640038
+	Test cost = 0.673563,	Accuracy = 0.604863
+Epoch = 4
+	Train cost = 0.620301,	Accuracy = 0.670248
+	Test cost = 0.669685,	Accuracy = 0.631611
+Epoch = 5
+	Train cost = 0.597133,	Accuracy = 0.695245
+	Test cost = 0.679432,	Accuracy = 0.608511
+Epoch = 6
+	Train cost = 0.544083,	Accuracy = 0.736730
+	Test cost = 0.679752,	Accuracy = 0.625532
+Epoch = 7
+	Train cost = 0.530704,	Accuracy = 0.750771
+	Test cost = 0.709474,	Accuracy = 0.573252
+Epoch = 8
+	Train cost = 0.504516,	Accuracy = 0.760877
+	Test cost = 0.747455,	Accuracy = 0.510030
+Epoch = 9
+	Train cost = 0.497176,	Accuracy = 0.760877
+	Test cost = 0.721435,	Accuracy = 0.576900
+Epoch = 10
+	Train cost = 0.510865,	Accuracy = 0.752367
+	Test cost = 0.748041,	Accuracy = 0.524620
+Epoch = 11
+	Train cost = 0.483440,	Accuracy = 0.767472
+	Test cost = 0.729971,	Accuracy = 0.595137
+Epoch = 12
+	Train cost = 0.490526,	Accuracy = 0.768961
+	Test cost = 0.743348,	Accuracy = 0.547720
+Epoch = 13
+	Train cost = 0.471411,	Accuracy = 0.777577
+	Test cost = 0.807890,	Accuracy = 0.524620
+Epoch = 14
+	Train cost = 0.475942,	Accuracy = 0.772152
+	Test cost = 0.753996,	Accuracy = 0.531915
+Epoch = 15
+	Train cost = 0.464431,	Accuracy = 0.780449
+	Test cost = 0.729649,	Accuracy = 0.596353
+(10469, 76, 1360) (577, 76, 1360)
+bi-naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 0.693515,	Accuracy = 0.499188
+	Test cost = 0.668114,	Accuracy = 0.705373
+Epoch = 2
