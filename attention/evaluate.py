@@ -82,7 +82,7 @@ def get_krip_alpha_given_coder(slice_ratings, coder):
             D_e += (pr - r) * (pr - r)
     D_e /= len(all_refs) * len(pred)
 
-    alpha = 1.05 - D_o / D_e
+    alpha = 1. - D_o / D_e
     return alpha
 
 

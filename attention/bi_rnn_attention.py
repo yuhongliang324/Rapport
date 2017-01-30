@@ -92,7 +92,7 @@ class Bi_RNN_Attention(object):
                                     outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
         H_backward = H_backward[::-1]
         [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
-                                  outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
+                                outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
 
         rep = S[-1]  # (batch_size, hidden_dim)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
@@ -109,7 +109,11 @@ class Bi_RNN_Attention(object):
         else:
             pred = rep[:, 0]
             loss = pred - y_batch
-            loss = T.mean(loss ** 2)
+            loss = T.mean(loss ** 2)  # 1/batch_size (pred_i - y_i)^2
+            # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
+            Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
+            Z /= batch_size * batch_size
+            loss /= Z
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
