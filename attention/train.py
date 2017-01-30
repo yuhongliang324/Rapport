@@ -84,7 +84,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     print 'Compilation done 2'
 
     costs_train, costs_val = [], []
-
+    pred_val = None
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
         all_pred = []
