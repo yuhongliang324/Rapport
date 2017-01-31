@@ -114,6 +114,7 @@ def interpolate_features(X, suc):
         return X
     print X.shape, suc.shape, m
     ind = numpy.nonzero(suc)[0]
+    print ind
     max_ind = numpy.max(ind)
     X = X[ind]
     f = interp1d(ind, X, axis=0)
