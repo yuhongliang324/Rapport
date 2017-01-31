@@ -110,7 +110,7 @@ def interpolate_features(X, suc):
     m = numpy.mean(suc)
     if m < 0.5:
         return None
-    if m == 0:
+    if m == 1.:
         return X
     ind = numpy.nonzero(suc)[0]
     max_ind = numpy.max(ind)
