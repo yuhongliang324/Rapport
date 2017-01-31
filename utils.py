@@ -116,10 +116,12 @@ def interpolate_features(X, suc):
     ind = numpy.nonzero(suc)[0]
     print ind
     max_ind = numpy.max(ind)
+    min_ind = numpy.min(ind)
     X = X[ind]
     f = interp1d(ind, X, axis=0)
     ind = numpy.arange(suc.shape[0])
     ind[ind > max_ind] = max_ind
+    ind[ind < min_ind] = min_ind
     return f(ind)
 
 
