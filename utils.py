@@ -113,7 +113,6 @@ def interpolate_features(X, suc):
     if m == 0:
         return X
     ind = numpy.nonzero(suc)[0]
-    print ind
     max_ind = numpy.max(ind)
     min_ind = numpy.min(ind)
     X = X[ind]
