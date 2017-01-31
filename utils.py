@@ -7,6 +7,7 @@ import numpy
 import math
 from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
 from data_path import info_root
+from scipy.interpolate import interp1d
 
 
 def rename(root):
@@ -73,34 +74,26 @@ def get_slice_ratings(rating_root, outfile):
 
 
 # side: l - left only, r - right only, lr - left and right, b - concatenation of lr, ba - adding of lr
-def load_feature_vision(mat_file, feature_name='hog', side='ba', only_suc=True):
+def load_feature_vision(mat_file, feature_name='hog', side='ba'):
     lfeat_name = 'left_' + feature_name + '_feature'
     rfeat_name = 'right_' + feature_name + '_feature'
     data = loadmat(mat_file)
     lfeat, rfeat = data[lfeat_name], data[rfeat_name]
     lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
+    lfeat = interpolate_features(lfeat, lsuc)
+    rfeat = interpolate_features(rfeat, rsuc)
     rating = float(data['label'][0])
     if side == 'l':
         if lfeat.dtype == numpy.int16:
             return None
-        if only_suc:
-            lfeat = lfeat[lsuc == 1]
-            return lfeat, rating
         return lfeat, lsuc, rating
     elif side == 'r':
         if rfeat.dtype == numpy.int16:
             return None
-        if only_suc:
-            rfeat = rfeat[rsuc == 1]
-            return rfeat, rating
         return rfeat, rsuc, rating
     elif side == 'lr':
         if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
             return None
-        if only_suc:
-            lfeat = lfeat[lsuc == 1]
-            rfeat = rfeat[rsuc == 1]
-            return (lfeat, rfeat), rating
         return (lfeat, rfeat), (lsuc, rsuc), rating
     else:
         if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
@@ -110,10 +103,22 @@ def load_feature_vision(mat_file, feature_name='hog', side='ba', only_suc=True):
         else:
             feat = numpy.concatenate((lfeat, rfeat), axis=1)
         suc = numpy.logical_and(lsuc == 1, rsuc == 1)
-        if only_suc:
-            feat = feat[suc]
-            return feat, rating
         return feat, suc, rating
+
+
+def interpolate_features(X, suc):
+    m = numpy.mean(suc)
+    if m < 0.5:
+        return None
+    if m == 0:
+        return X
+    ind = numpy.nonzero(suc)[0]
+    max_ind = numpy.max(ind)
+    X = X[ind]
+    f = interp1d(ind, X, axis=0)
+    ind = numpy.arange(suc.shape[0])
+    ind[ind > max_ind] = max_ind
+    return f(ind)
 
 
 def get_ratings(rating_root=info_root):

@@ -93,7 +93,7 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
         if valid_slices is not None and dyad + '_' + session + '_' + slice_id not in valid_slices:
             continue
         mat_file = os.path.join(dirname, mat_name)
-        ret = load_feature_vision(mat_file, feature_name=feature_name, side=side, only_suc=False)
+        ret = load_feature_vision(mat_file, feature_name=feature_name, side=side)
         if ret is None:
             continue
         feat, _, rating = ret
