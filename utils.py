@@ -84,19 +84,19 @@ def load_feature_vision(mat_file, feature_name='hog', side='ba'):
     rfeat = interpolate_features(rfeat, rsuc)
     rating = float(data['label'][0])
     if side == 'l':
-        if lfeat.dtype == numpy.int16:
+        if lfeat is None or lfeat.dtype == numpy.int16:
             return None
         return lfeat, lsuc, rating
     elif side == 'r':
-        if rfeat.dtype == numpy.int16:
+        if rfeat is None or rfeat.dtype == numpy.int16:
             return None
         return rfeat, rsuc, rating
     elif side == 'lr':
-        if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
             return None
         return (lfeat, rfeat), (lsuc, rsuc), rating
     else:
-        if lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
             return None
         if 'a' in side:  # Use add for both sides
             feat = lfeat + rfeat
@@ -112,7 +112,6 @@ def interpolate_features(X, suc):
         return None
     if m == 0:
         return X
-    print X.shape, suc.shape, m
     ind = numpy.nonzero(suc)[0]
     print ind
     max_ind = numpy.max(ind)
