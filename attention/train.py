@@ -84,7 +84,8 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     print 'Compilation done 2'
 
     costs_train, costs_val = [], []
-    pred_val = None
+    best_cost_train = 10000
+    best_pred_val = None
     for epoch_index in xrange(num_epoch):
         cost_avg, rmse = 0., 0.
         all_pred = []
@@ -100,7 +101,10 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse)
         cost_val, pred_val = validate(test_model, y_test, costs_val)
-    return costs_train, costs_val, pred_val
+        if cost_avg < best_cost_train:
+            best_cost_train = cost_avg
+            best_pred_val = pred_val
+    return costs_train, costs_val, best_pred_val
 
 
 def cross_validation(feature_name='hog', side='b'):
