@@ -319,6 +319,8 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         for slice, feats in slice_features.items():
             slices.append(slice)
             features.append(numpy.concatenate((feats['left'], feats['right']), axis=1))
+            slices.append(slice)
+            features.append(numpy.concatenate((feats['right'], feats['left']), axis=1))
     if len(features) == 0:
         return None, None
     X = numpy.stack(features, axis=0).astype(theano.config.floatX)

@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 from utils import get_ratings, get_coder
 import math
+from ensemble import combine
 
 
 def load_gt():
@@ -120,12 +121,22 @@ def test2():
 
 def test3():
     slice_ratings = get_ratings()
-    coder = get_coder('../results/result_gemo_ba.txt')
+    coder = get_coder('../results/result_hog_ba.txt')
+    alpha = get_krip_alpha_given_coder(slice_ratings, coder)
+    rmse, rmse_skyline = get_rmse(slice_ratings, coder)
+    print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
+
+
+def test4():
+    slice_ratings = get_ratings()
+    coder1 = get_coder('../results/result_hog_ba.txt')
+    coder2 = get_coder('../results/result_audio_b.txt')
+    coder = combine([coder1, coder2])
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
     print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
 
 
 if __name__ == '__main__':
-    test3()
+    test4()
 
