@@ -179,12 +179,20 @@ def get_coder(file_name):
     reader.close()
     lines = map(lambda x: x.strip(), lines)
     slice_rating = {}
+    slice_count = {}
     for line in lines:
         sp = line.split(',')
         dyad, session, slice = sp[0], sp[1], sp[2]
         slice_str = dyad + '_' + session + '_' + slice
         rating = float(sp[3])
-        slice_rating[slice_str] = rating
+        if slice_str in slice_rating:
+            slice_rating[slice_str] += rating
+            slice_count[slice_str] += 1.
+        else:
+            slice_rating[slice_str] = rating
+            slice_count[slice_str] = 1.
+    for slice_str, rating in slice_rating.items():
+        slice_rating[slice_str] = rating / slice_count[slice_str]
     return slice_rating
 
 

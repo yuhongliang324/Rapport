@@ -37,7 +37,7 @@ def validate(test_model, y_test, costs_val, batch_size=32):
 
 
 # model name can be added "bi-" as prefix and "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=None, batch_size=64, num_epoch=30):
+def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=None, batch_size=64, num_epoch=60):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -53,7 +53,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
 
     if 'bi' in model_name:
         model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.)
+        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.25)
     else:
         ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
     symbols = ra.build_model()
