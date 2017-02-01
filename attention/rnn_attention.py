@@ -6,62 +6,50 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from theano_utils import Adam, RMSprop, SGD
+from theano_utils import Adam, RMSprop, SGD, dropout
 
 
 class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.00001, update='rmsprop'):
+    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0., update='adam',
+                 drop=0.2, activation='tanh', final_activation=None):
         self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
         self.lamb = lamb
+        self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
+        if activation == 'softplus':
+            self.activate = T.nnet.softplus
+        elif activation == 'sigmoid':
+            self.activate = T.nnet.sigmoid
+        else:
+            self.activate = T.tanh
+        self.final_activation = final_activation
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
 
-        self.name = self.rnn + '_attention'
+        self.name = 'bi-' + self.rnn + '_attention'
 
-        if 'lstm' in self.rnn:
-            self.W_i, self.b_i = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_i, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.W_f, self.b_f = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_f, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.W_o, self.b_o = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_o, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.W_c, self.b_c = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_c, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-
-            self.theta = [self.W_i, self.U_i, self.b_i, self.W_f, self.U_f, self.b_f,
-                          self.W_o, self.U_o, self.b_o, self.W_c, self.U_c, self.b_c]
-        elif 'gru' in self.rnn:
-            self.W_z, self.b_z = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.W_r, self.b_r = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_r, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.W_h, self.b_h = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_h, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.theta = [self.W_z, self.U_z, self.b_z, self.W_r, self.U_r, self.b_r,
-                          self.W_h, self.U_h, self.b_h]
-        else:
-            self.W_left, self.b_left = self.init_para(self.input_dim, self.hidden_dim)
-            self.U_left, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-            self.theta = [self.W_left, self.U_left, self.b_left]
+        self.W_left, self.b_left = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_left, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.W_right, self.b_right = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_right, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.theta = [self.W_left, self.U_left, self.b_left, self.W_right, self.U_right, self.b_right]
 
         self.W_s, self.b_s = self.init_para(self.input_dim, self.hidden_dim)
         self.U_s, _ = self.init_para(self.hidden_dim, self.hidden_dim)
 
         w_a = numpy.asarray(self.rng.uniform(
-            low=-numpy.sqrt(6. / float(self.hidden_dim + 1)), high=numpy.sqrt(6. / float(self.hidden_dim + 1)),
-            size=(self.hidden_dim,)), dtype=theano.config.floatX)
+            low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
+            size=(self.hidden_dim * 2,)), dtype=theano.config.floatX)
         self.w_a = theano.shared(value=w_a, borrow=True)
 
         self.W_1, self.b_1 = self.init_para(self.hidden_dim, self.n_class)
 
         self.theta += [self.w_a, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
-
         if self.update == 'adam':
             self.optimize = Adam
         elif self.update == 'rmsprop':
@@ -82,37 +70,19 @@ class RNN_Attention(object):
         l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
-    # scan function parameter order: sequences, prior results, non_sequences
-    # sequences: X_t (batch_size, input_dim)
-    # prior results: C_tm1, H_tm1, S_tm1 (batch_size, hidden_dim)
-    def forward_LSTM(self, X_t, C_tm1, H_tm1, S_tm1):
-        i_t = T.nnet.sigmoid(T.dot(X_t, self.W_i) + T.dot(H_tm1, self.U_i) + self.b_i)  # (batch_size, hidden_dim)
-        f_t = T.nnet.sigmoid(T.dot(X_t, self.W_f) + T.dot(H_tm1, self.U_f) + self.b_f)  # (batch_size, hidden_dim)
-        o_t = T.nnet.sigmoid(T.dot(X_t, self.W_o) + T.dot(H_tm1, self.U_o) + self.b_o)  # (batch_size, hidden_dim)
-        C_t = T.tanh(T.dot(X_t, self.W_c) + T.dot(H_tm1, self.U_c) + self.b_c)  # (batch_size, hidden_dim)
-        C_t = i_t * C_t + f_t * C_tm1  # (batch_size, hidden_dim)
-        H_t = o_t * T.tanh(C_t)  # (batch_size, hidden_dim)
-        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))  # (batch_size,)
-        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)  # (batch_size, hidden_dim)
-        S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return a_t, C_t, H_t, S_t
+    def forward(self, X_t, H_tm1):
+        H_t = self.activate(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
+        return H_t
 
-    def forward_GRU(self, X_t, H_tm1, S_tm1):
-        z_t = T.nnet.sigmoid(T.dot(X_t, self.W_z) + T.dot(H_tm1, self.U_z) + self.b_z)
-        r_t = T.nnet.sigmoid(T.dot(X_t, self.W_r) + T.dot(H_tm1, self.U_r) + self.b_r)
-        H_t = T.tanh(T.dot(X_t, self.W_h) + T.dot(r_t * H_tm1, self.U_h) + self.b_h)
-        H_t = (1 - z_t) * H_tm1 + z_t * H_t
-        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))
-        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
-        S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return a_t, H_t, S_t
+    def backward(self, X_t, H_tm1):
+        H_t = self.activate(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
+        return H_t
 
-    def forward_naive(self, X_t, H_tm1, S_tm1):
-        H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
-        a_t = T.nnet.sigmoid(T.dot(H_t, self.w_a))
-        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
+    def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
+        a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_a))
+        S_t = self.activate(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
         S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return a_t, H_t, S_t
+        return S_t, a_t
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
@@ -123,45 +93,43 @@ class RNN_Attention(object):
 
         batch_size = T.shape(y_batch)[0]
 
-        # a: (n_step, batch_size)
-        # C: (n_step, batch_size, hidden_dim)
-        # H: (n_step, batch_size, hidden_dim)
+        # (n_step, batch_size, hidden_dim)
+        H_foward, _ = theano.scan(self.forward, sequences=X_batch,
+                                  outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
+        H_backward, _ = theano.scan(self.backward, sequences=X_batch[::-1],
+                                    outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
+        H_backward = H_backward[::-1]
+        [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
+                                outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
 
-        if 'lstm' in self.rnn:
-            [a, _, H, S], _ = theano.scan(self.forward_LSTM, sequences=X_batch,
-                                          outputs_info=[None,
-                                                        T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                        T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                        T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        elif 'gru' in self.rnn:
-            [a, H, S], _ = theano.scan(self.forward_GRU, sequences=X_batch,
-                                       outputs_info=[None,
-                                                     T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                     T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        else:
-            [a, H, S], _ = theano.scan(self.forward_naive, sequences=X_batch,
-                                       outputs_info=[None,
-                                                     T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                     T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        if 'only' in self.rnn:
-            rep = H[-1]
-        else:
-            rep = S[-1]  # (batch_size, hidden_dim)
+        rep = S[-1]  # (batch_size, hidden_dim)
+        if self.final_activation == 'tanh':
+            rep = T.tanh(rep)
+        elif self.final_activation == 'sigmoid':
+            rep = T.nnet.sigmoid(rep)
         rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
+        is_train = T.iscalar('is_train')
+        rep = dropout(rep, is_train, drop_ratio=self.drop)
+
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
             pred = T.argmax(prob)
 
             acc = T.mean(T.eq(pred, y_batch))
 
-            loss = T.sum(-T.log(prob[y_batch]))
+            loss = T.mean(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
             loss = pred - y_batch
-            loss = T.mean(loss ** 2)
+            loss = T.mean(loss ** 2)  # 1/batch_size (pred_i - y_i)^2
+            # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
+            Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
+            Z /= batch_size * batch_size
+            loss /= Z
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
-        ret = {'X_batch': X_batch, 'y_batch': y_batch,
+
+        ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                 'a': a, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc

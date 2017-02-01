@@ -1,0 +1,13 @@
+nohup python -u train.py -feat audio > ../logs/audio.out 2>&1 &
+nohup python -u train.py -feat hog > ../logs/hog.out 2>&1 &
+nohup python -u train.py -feat au > ../logs/au.out 2>&1 &
+nohup python -u train.py -feat gemo > ../logs/gemo.out 2>&1 &
+
+
+nohup python -u train.py -feat audio -act tanh > ../logs/audio_tanh_None.out 2>&1 &
+nohup python -u train.py -feat audio -act tanh -fact tanh > ../logs/audio_tanh_tanh.out 2>&1 &
+nohup python -u train.py -feat audio -act tanh -fact sigmoid > ../logs/audio_tanh_sigm.out 2>&1 &
+
+nohup python -u train.py -feat audio -act softplus > ../logs/audio_softplus_None.out 2>&1 &
+nohup python -u train.py -feat audio -act softplus -fact tanh > ../logs/audio_softplus_tanh.out 2>&1 &
+nohup python -u train.py -feat audio -act softplus -fact sigmoid > ../logs/audio_softplus_sigm.out 2>&1 &

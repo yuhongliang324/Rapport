@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 
 from rnn_attention import RNN_Attention
-from bi_rnn_attention import Bi_RNN_Attention
+from rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
 from model_utils import plot_loss

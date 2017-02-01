@@ -7,11 +7,11 @@ import theano.tensor as T
 from sklearn.metrics import mean_squared_error
 
 from rnn_attention import RNN_Attention
-from bi_rnn_attention import Bi_RNN_Attention
 import sys
 sys.path.append('../')
 from model_utils import plot_loss
 import argparse
+import os
 
 
 def RMSE(y_actual, y_predicted):
@@ -36,8 +36,9 @@ def validate(test_model, y_test, costs_val, batch_size=32):
     return cost_avg, all_pred
 
 
-# model name can be added "bi-" as prefix and "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=None, batch_size=64, num_epoch=60):
+# model name can be added "-only" as suffix
+def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, activation=None, final_activation=None,
+          hidden_dim=None, batch_size=64, num_epoch=60):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -51,11 +52,8 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
 
     print model_name
 
-    if 'bi' in model_name:
-        model_name = model_name[3:]
-        ra = Bi_RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name, drop=0.25)
-    else:
-        ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name)
+    ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name,
+                       drop=drop, activation=activation, final_activation=final_activation)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -107,7 +105,7 @@ def train(X_train, y_train, X_test, y_test, model_name='bi-naive', hidden_dim=No
     return costs_train, costs_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b'):
+def cross_validation(feature_name='hog', side='b', drop=0.25, activation='tanh', final_activation='sigmoid'):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -128,8 +126,12 @@ def cross_validation(feature_name='hog', side='b'):
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    message = feature_name + '_' + side
+    message = feature_name + '_' + side + '_drop_' + str(drop) + '_act_' + activation + '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
+    img_root = '../figs/' + message
+    if os.path.isdir(img_root):
+        os.rmdir(img_root)
+    os.mkdir(img_root)
     for i in xrange(num_dyad):
         dyad = dyads[i]
         X_test = dyad_features[dyad]
@@ -149,10 +151,11 @@ def cross_validation(feature_name='hog', side='b'):
         print 'Testing Dyad =', dyad
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
-        costs_train, costs_val, pred_val = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim)
-        img_name = 'loss_dyad_' + str(dyad) + '_' + message + '.png'
-        img_path = '../figs/' + img_name
-        plot_loss(img_path, costs_train, costs_val)
+        costs_train, costs_val, pred_val = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim,
+                                                 drop=drop, activation=activation, final_activation=final_activation)
+
+        img_path = os.path.join(img_root, 'dyad_' + str(dyad) + '.png')
+        plot_loss(img_path, costs_train, costs_val, dyad)
         for i in xrange(y_test.shape[0]):
             writer.write(str(dyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
                          ',' + str(pred_val[i]) + ',' + str(y_test[i]) + '\n')
@@ -163,6 +166,9 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
+    parser.add_argument('-drop', type=float, default=0.25)
+    parser.add_argument('-act', type=str, default='tanh')
+    parser.add_argument('-fact', type=str, default=None)
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
@@ -172,7 +178,7 @@ def test1():
         else:
             side = 'ba'
     print args.feat, side
-    cross_validation(feature_name=args.feat, side=side)
+    cross_validation(feature_name=args.feat, side=side, drop=args.drop, activation=args.act, final_activation=args.fact)
 
 
 if __name__ == '__main__':
