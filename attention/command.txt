@@ -4,10 +4,15 @@ nohup python -u train.py -feat au > ../logs/au.out 2>&1 &
 nohup python -u train.py -feat gemo > ../logs/gemo.out 2>&1 &
 
 
-nohup python -u train.py -feat audio -act tanh > ../logs/audio_tanh_None.out 2>&1 &
-nohup python -u train.py -feat audio -act tanh -fact tanh > ../logs/audio_tanh_tanh.out 2>&1 &
-nohup python -u train.py -feat audio -act tanh -fact sigmoid > ../logs/audio_tanh_sigm.out 2>&1 &
+nohup python -u train.py -feat audio > ../logs/audio_None.out 2>&1 &
+nohup python -u train.py -feat audio -fact tanh > ../logs/audio_tanh.out 2>&1 &
+nohup python -u train.py -feat audio -fact sigmoid > ../logs/audio_sigm.out 2>&1 &
 
-nohup python -u train.py -feat audio -act softplus > ../logs/audio_softplus_None.out 2>&1 &
-nohup python -u train.py -feat audio -act softplus -fact tanh > ../logs/audio_softplus_tanh.out 2>&1 &
-nohup python -u train.py -feat audio -act softplus -fact sigmoid > ../logs/audio_softplus_sigm.out 2>&1 &
+nohup python -u train.py -feat audio softplus > ../logs/audio_None.out 2>&1 &
+nohup python -u train.py -feat audio softplus -fact tanh > ../logs/audio_tanh.out 2>&1 &
+nohup python -u train.py -feat audio softplus -fact sigmoid > ../logs/audio_sigm.out 2>&1 &
+
+nohup python -u train.py -feat audio -w 0.25 > ../logs/audio_None_0.25.out 2>&1 &
+nohup python -u train.py -feat audio -w 0.5> ../logs/audio_None_0.5.out 2>&1 &
+nohup python -u train.py -feat audio -fact tanh -w 0.25 > ../logs/audio_tanh_0.25.out 2>&1 &
+nohup python -u train.py -feat audio -fact tanh -w 0.5 > ../logs/audio_tanh_0.5.out 2>&1 &

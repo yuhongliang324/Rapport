@@ -41,7 +41,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, activation=None, final_activation=None,
+def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final_activation=None,
           hidden_dim=None, weight=None, batch_size=64, num_epoch=60):
 
     n_train = X_train.shape[0]
@@ -57,7 +57,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, activ
     print model_name
 
     ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name,
-                       drop=drop, activation=activation, final_activation=final_activation, weight=weight)
+                       drop=drop, final_activation=final_activation, weight=weight)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -113,8 +113,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, activ
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', drop=0.25, weight=0.25,
-                     activation='tanh', final_activation='sigmoid'):
+def cross_validation(feature_name='hog', side='b', drop=0.25, weight=0.25, final_activation='sigmoid'):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -136,7 +135,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, weight=0.25,
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
     message = feature_name + '_' + side + '_drop_' + str(drop) + '_w_' + str(weight) +\
-              '_act_' + activation + '_fact_' + str(final_activation)
+              '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
@@ -163,7 +162,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, weight=0.25,
         print X_train.shape, X_test.shape
         costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val\
             = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim, drop=drop, weight=weight,
-                    activation=activation, final_activation=final_activation)
+                    final_activation=final_activation)
 
         img_path = os.path.join(img_root, 'dyad_' + str(dyad) + '.png')
         plot_loss(img_path, costs_train, costs_val, dyad,
@@ -179,7 +178,6 @@ def test1():
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
     parser.add_argument('-drop', type=float, default=0.25)
-    parser.add_argument('-act', type=str, default='tanh')
     parser.add_argument('-fact', type=str, default=None)
     parser.add_argument('-w', type=float, default=0.25)
     args = parser.parse_args()
@@ -191,7 +189,7 @@ def test1():
         else:
             side = 'ba'
     print args.feat, side
-    cross_validation(feature_name=args.feat, side=side, drop=args.drop, activation=args.act, final_activation=args.fact)
+    cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact, weight=args.w)
 
 
 if __name__ == '__main__':

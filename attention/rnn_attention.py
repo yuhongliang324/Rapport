@@ -13,7 +13,7 @@ class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
     def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0., weight=0.25, update='adam',
-                 drop=0.2, activation='tanh', final_activation=None):
+                 drop=0.2, final_activation=None):
         self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
@@ -22,12 +22,6 @@ class RNN_Attention(object):
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
-        if activation == 'softplus':
-            self.activate = T.nnet.softplus
-        elif activation == 'sigmoid':
-            self.activate = T.nnet.sigmoid
-        else:
-            self.activate = T.tanh
         self.final_activation = final_activation
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
@@ -72,16 +66,16 @@ class RNN_Attention(object):
         return l2
 
     def forward(self, X_t, H_tm1):
-        H_t = self.activate(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
+        H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
         return H_t
 
     def backward(self, X_t, H_tm1):
-        H_t = self.activate(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
+        H_t = T.nnet.softplus(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
         return H_t
 
     def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
         a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_a))
-        S_t = self.activate(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
+        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
         S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
         return S_t, a_t
 
