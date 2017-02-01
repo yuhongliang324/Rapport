@@ -12,6 +12,7 @@ sys.path.append('../')
 from model_utils import plot_loss
 import argparse
 import os
+import shutil
 
 
 def RMSE(y_actual, y_predicted):
@@ -130,7 +131,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, activation='tanh',
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
-        os.rmdir(img_root)
+        shutil.rmtree(img_root)
     os.mkdir(img_root)
     for i in xrange(num_dyad):
         dyad = dyads[i]
