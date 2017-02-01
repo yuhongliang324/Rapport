@@ -1,0 +1,2089 @@
+nohup: ignoring input
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+/usr/local/lib/python2.7/dist-packages/theano/sandbox/cuda/__init__.py:600: UserWarning: Your cuDNN version is more recent than the one Theano officially supports. If you see any problems, try updating Theano or downgrading cuDNN to version 5.
+  warnings.warn(warn)
+audio b
+../data_info/AMT_Batch3_results_large.csv
+../data_info/AMT_Batch1_results_large.csv
+../data_info/AMT_Batch2_results_large.csv
+../data_info/AMT_Batch4_results_large.csv
+D10S1
+D10S2
+D11S1
+D11S2
+D12S1
+D12S2
+D16S2
+D17S1
+D18S1
+D3S1
+D3S2
+D4S1
+D4S2
+D5S1
+D5S2
+D6S1
+D6S2
+D7S1
+D7S2
+D8S1
+D8S2
+D9S1
+D9S2
+Testing Dyad = 3
+RMSE of Average Prediction = 1.091906
+(3030, 300, 148) (382, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.001517,	RMSE = 3.756541
+	Test cost = 1.001959,	RMSE = 3.797588
+Epoch = 2
+	Train cost = 0.998265,	RMSE = 3.720475
+	Test cost = 1.002702,	RMSE = 3.719177
+Epoch = 3
+	Train cost = 0.998108,	RMSE = 3.640701
+	Test cost = 1.002773,	RMSE = 3.646917
+Epoch = 4
+	Train cost = 0.994103,	RMSE = 3.557718
+	Test cost = 1.003101,	RMSE = 3.473297
+Epoch = 5
+	Train cost = 0.989138,	RMSE = 3.371479
+	Test cost = 1.003692,	RMSE = 3.196318
+Epoch = 6
+	Train cost = 0.986139,	RMSE = 3.270674
+	Test cost = 1.003821,	RMSE = 3.046113
+Epoch = 7
+	Train cost = 0.977986,	RMSE = 3.170900
+	Test cost = 1.001915,	RMSE = 2.631602
+Epoch = 8
+	Train cost = 0.954878,	RMSE = 2.928896
+	Test cost = 0.999717,	RMSE = 2.351715
+Epoch = 9
+	Train cost = 0.951785,	RMSE = 3.367715
+	Test cost = 0.962338,	RMSE = 2.607115
+Epoch = 10
+	Train cost = 0.941732,	RMSE = 2.770478
+	Test cost = 0.978373,	RMSE = 2.317820
+Epoch = 11
+	Train cost = 0.919619,	RMSE = 2.988354
+	Test cost = 1.000365,	RMSE = 1.969695
+Epoch = 12
+	Train cost = 0.931498,	RMSE = 2.464497
+	Test cost = 0.999010,	RMSE = 1.888394
+Epoch = 13
+	Train cost = 0.935016,	RMSE = 2.775426
+	Test cost = 0.994931,	RMSE = 1.705919
+Epoch = 14
+	Train cost = 0.955003,	RMSE = 2.307527
+	Test cost = 1.006426,	RMSE = 1.537004
+Epoch = 15
+	Train cost = 0.945989,	RMSE = 2.416297
+	Test cost = 0.934387,	RMSE = 2.215353
+Epoch = 16
+	Train cost = 0.896500,	RMSE = 3.000516
+	Test cost = 0.930662,	RMSE = 2.102614
+Epoch = 17
+	Train cost = 0.911134,	RMSE = 2.768338
+	Test cost = 0.924858,	RMSE = 2.103216
+Epoch = 18
+	Train cost = 0.895348,	RMSE = 3.080046
+	Test cost = 0.948366,	RMSE = 1.815496
+Epoch = 19
+	Train cost = 0.888337,	RMSE = 2.715851
+	Test cost = 1.005987,	RMSE = 1.599864
+Epoch = 20
+	Train cost = 0.917460,	RMSE = 2.443013
+	Test cost = 0.933420,	RMSE = 2.047269
+Epoch = 21
+	Train cost = 0.884852,	RMSE = 2.870513
+	Test cost = 0.937106,	RMSE = 1.642805
+Epoch = 22
+	Train cost = 0.874762,	RMSE = 2.888759
+	Test cost = 0.938769,	RMSE = 1.877348
+Epoch = 23
+	Train cost = 0.882599,	RMSE = 3.253320
+	Test cost = 0.989690,	RMSE = 1.523280
+Epoch = 24
+	Train cost = 0.931534,	RMSE = 2.679185
+	Test cost = 0.919969,	RMSE = 1.903960
+Epoch = 25
+	Train cost = 0.896264,	RMSE = 3.501742
+	Test cost = 0.885521,	RMSE = 2.014845
+Epoch = 26
+	Train cost = 0.919664,	RMSE = 2.640511
+	Test cost = 0.994515,	RMSE = 1.447061
+Epoch = 27
+	Train cost = 0.928016,	RMSE = 2.414398
+	Test cost = 0.955274,	RMSE = 1.731799
+Epoch = 28
+	Train cost = 0.890336,	RMSE = 2.992989
+	Test cost = 0.943671,	RMSE = 1.604780
+Epoch = 29
+	Train cost = 0.878963,	RMSE = 2.926239
+	Test cost = 0.934131,	RMSE = 1.679214
+Epoch = 30
+	Train cost = 0.881148,	RMSE = 2.883217
+	Test cost = 0.943969,	RMSE = 1.551546
+Epoch = 31
+	Train cost = 0.873308,	RMSE = 2.639382
+	Test cost = 0.905155,	RMSE = 1.915319
+Epoch = 32
+	Train cost = 0.867512,	RMSE = 3.036040
+	Test cost = 0.916646,	RMSE = 1.896725
+Epoch = 33
+	Train cost = 0.866294,	RMSE = 3.250322
+	Test cost = 0.928177,	RMSE = 1.654569
+Epoch = 34
+	Train cost = 0.875714,	RMSE = 2.743299
+	Test cost = 0.915798,	RMSE = 1.756298
+Epoch = 35
+	Train cost = 0.886330,	RMSE = 2.698011
+	Test cost = 0.893520,	RMSE = 1.855310
+Epoch = 36
+	Train cost = 0.887031,	RMSE = 2.696480
+	Test cost = 0.902195,	RMSE = 2.011148
+Epoch = 37
+	Train cost = 0.867857,	RMSE = 2.869502
+	Test cost = 0.946906,	RMSE = 1.516965
+Epoch = 38
+	Train cost = 0.863131,	RMSE = 2.824849
+	Test cost = 0.924411,	RMSE = 1.525060
+Epoch = 39
+	Train cost = 0.882212,	RMSE = 2.671842
+	Test cost = 0.869138,	RMSE = 1.729368
+Epoch = 40
+	Train cost = 0.864114,	RMSE = 2.724785
+	Test cost = 0.873037,	RMSE = 1.831342
+Epoch = 41
+	Train cost = 0.859928,	RMSE = 2.760959
+	Test cost = 0.886422,	RMSE = 1.835195
+Epoch = 42
+	Train cost = 0.846224,	RMSE = 2.684891
+	Test cost = 0.871458,	RMSE = 1.880687
+Epoch = 43
+	Train cost = 0.845518,	RMSE = 2.892730
+	Test cost = 0.872943,	RMSE = 1.689856
+Epoch = 44
+	Train cost = 0.847553,	RMSE = 2.701465
+	Test cost = 0.876026,	RMSE = 1.713748
+Epoch = 45
+	Train cost = 0.825163,	RMSE = 2.689968
+	Test cost = 0.875871,	RMSE = 1.648567
+Epoch = 46
+	Train cost = 0.857157,	RMSE = 2.841112
+	Test cost = 0.898774,	RMSE = 1.622679
+Epoch = 47
+	Train cost = 0.842695,	RMSE = 2.819344
+	Test cost = 0.879017,	RMSE = 1.685371
+Epoch = 48
+	Train cost = 0.826245,	RMSE = 2.750446
+	Test cost = 0.885123,	RMSE = 1.639772
+Epoch = 49
+	Train cost = 0.834920,	RMSE = 2.778552
+	Test cost = 0.876848,	RMSE = 1.639937
+Epoch = 50
+	Train cost = 0.829106,	RMSE = 2.652804
+	Test cost = 0.869592,	RMSE = 1.695304
+Epoch = 51
+	Train cost = 0.829524,	RMSE = 2.739779
+	Test cost = 0.865372,	RMSE = 1.669967
+Epoch = 52
+	Train cost = 0.822578,	RMSE = 2.751833
+	Test cost = 0.873803,	RMSE = 1.603373
+Epoch = 53
+	Train cost = 0.828828,	RMSE = 2.718997
+	Test cost = 0.891536,	RMSE = 1.838750
+Epoch = 54
+	Train cost = 0.830910,	RMSE = 2.820042
+	Test cost = 0.897492,	RMSE = 1.616449
+Epoch = 55
+	Train cost = 0.817344,	RMSE = 2.761522
+	Test cost = 0.868834,	RMSE = 1.826119
+Epoch = 56
+	Train cost = 0.814222,	RMSE = 2.688960
+	Test cost = 0.915989,	RMSE = 1.541116
+Epoch = 57
+	Train cost = 0.815681,	RMSE = 2.676114
+	Test cost = 0.865737,	RMSE = 1.749346
+Epoch = 58
+	Train cost = 0.806422,	RMSE = 2.601886
+	Test cost = 0.854915,	RMSE = 1.639114
+Epoch = 59
+	Train cost = 0.819386,	RMSE = 2.774271
+	Test cost = 0.871629,	RMSE = 1.668714
+Epoch = 60
+	Train cost = 0.804063,	RMSE = 2.706511
+	Test cost = 0.881979,	RMSE = 1.633984
+Testing Dyad = 4
+RMSE of Average Prediction = 1.768327
+(3206, 300, 148) (206, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000977,	RMSE = 3.873876
+	Test cost = 1.002385,	RMSE = 2.709661
+Epoch = 2
+	Train cost = 0.998786,	RMSE = 3.845779
+	Test cost = 1.002827,	RMSE = 2.630415
+Epoch = 3
+	Train cost = 0.996616,	RMSE = 3.785973
+	Test cost = 1.005611,	RMSE = 2.602819
+Epoch = 4
+	Train cost = 0.996152,	RMSE = 3.734551
+	Test cost = 1.005047,	RMSE = 2.566561
+Epoch = 5
+	Train cost = 0.997627,	RMSE = 3.730247
+	Test cost = 0.992080,	RMSE = 2.550247
+Epoch = 6
+	Train cost = 0.994350,	RMSE = 3.696808
+	Test cost = 1.001860,	RMSE = 2.495468
+Epoch = 7
+	Train cost = 0.991889,	RMSE = 3.618995
+	Test cost = 0.994677,	RMSE = 2.422299
+Epoch = 8
+	Train cost = 0.994193,	RMSE = 3.575614
+	Test cost = 0.979932,	RMSE = 2.346998
+Epoch = 9
+	Train cost = 0.984917,	RMSE = 3.474564
+	Test cost = 0.986721,	RMSE = 2.201810
+Epoch = 10
+	Train cost = 0.982517,	RMSE = 3.398063
+	Test cost = 0.976974,	RMSE = 2.142892
+Epoch = 11
+	Train cost = 0.974099,	RMSE = 3.236977
+	Test cost = 0.972708,	RMSE = 1.992578
+Epoch = 12
+	Train cost = 0.968393,	RMSE = 3.188231
+	Test cost = 0.963075,	RMSE = 1.836800
+Epoch = 13
+	Train cost = 0.950296,	RMSE = 2.950040
+	Test cost = 0.949322,	RMSE = 1.746995
+Epoch = 14
+	Train cost = 0.948249,	RMSE = 2.989980
+	Test cost = 0.975079,	RMSE = 1.566880
+Epoch = 15
+	Train cost = 0.946772,	RMSE = 2.711524
+	Test cost = 0.886281,	RMSE = 1.793344
+Epoch = 16
+	Train cost = 0.937815,	RMSE = 3.339272
+	Test cost = 0.843232,	RMSE = 1.596568
+Epoch = 17
+	Train cost = 0.936465,	RMSE = 2.698519
+	Test cost = 0.922211,	RMSE = 1.458264
+Epoch = 18
+	Train cost = 0.966667,	RMSE = 2.397771
+	Test cost = 1.010805,	RMSE = 1.334887
+Epoch = 19
+	Train cost = 0.941222,	RMSE = 2.831634
+	Test cost = 0.849415,	RMSE = 1.593864
+Epoch = 20
+	Train cost = 0.951394,	RMSE = 2.605307
+	Test cost = 0.947410,	RMSE = 1.343173
+Epoch = 21
+	Train cost = 0.953965,	RMSE = 2.395773
+	Test cost = 0.935255,	RMSE = 1.356631
+Epoch = 22
+	Train cost = 0.915410,	RMSE = 2.546271
+	Test cost = 0.858203,	RMSE = 1.486866
+Epoch = 23
+	Train cost = 0.912810,	RMSE = 3.069349
+	Test cost = 0.903842,	RMSE = 1.382616
+Epoch = 24
+	Train cost = 0.906482,	RMSE = 2.694096
+	Test cost = 0.746474,	RMSE = 1.849177
+Epoch = 25
+	Train cost = 0.911670,	RMSE = 3.254677
+	Test cost = 0.982253,	RMSE = 1.467467
+Epoch = 26
+	Train cost = 0.933239,	RMSE = 2.305846
+	Test cost = 0.955450,	RMSE = 1.384294
+Epoch = 27
+	Train cost = 0.918586,	RMSE = 2.542138
+	Test cost = 0.946459,	RMSE = 1.420084
+Epoch = 28
+	Train cost = 0.908681,	RMSE = 2.989536
+	Test cost = 0.961516,	RMSE = 1.452821
+Epoch = 29
+	Train cost = 0.895659,	RMSE = 2.604361
+	Test cost = 0.716685,	RMSE = 1.710308
+Epoch = 30
+	Train cost = 0.895012,	RMSE = 2.929636
+	Test cost = 0.720364,	RMSE = 1.942366
+Epoch = 31
+	Train cost = 0.893899,	RMSE = 2.779912
+	Test cost = 0.791011,	RMSE = 1.681886
+Epoch = 32
+	Train cost = 0.893563,	RMSE = 2.830152
+	Test cost = 0.960743,	RMSE = 1.603406
+Epoch = 33
+	Train cost = 0.933715,	RMSE = 2.452757
+	Test cost = 0.954796,	RMSE = 1.555079
+Epoch = 34
+	Train cost = 0.888176,	RMSE = 2.707315
+	Test cost = 0.772207,	RMSE = 1.654069
+Epoch = 35
+	Train cost = 0.868742,	RMSE = 2.645485
+	Test cost = 0.745164,	RMSE = 1.796067
+Epoch = 36
+	Train cost = 0.890987,	RMSE = 2.520830
+	Test cost = 0.770060,	RMSE = 1.820143
+Epoch = 37
+	Train cost = 0.886545,	RMSE = 2.854109
+	Test cost = 0.768643,	RMSE = 1.942472
+Epoch = 38
+	Train cost = 0.870514,	RMSE = 3.008674
+	Test cost = 0.715794,	RMSE = 1.784358
+Epoch = 39
+	Train cost = 0.868188,	RMSE = 2.864311
+	Test cost = 0.802270,	RMSE = 1.676338
+Epoch = 40
+	Train cost = 0.875900,	RMSE = 2.911283
+	Test cost = 0.703697,	RMSE = 2.018172
+Epoch = 41
+	Train cost = 0.858123,	RMSE = 2.827907
+	Test cost = 0.774522,	RMSE = 1.756655
+Epoch = 42
+	Train cost = 0.874238,	RMSE = 2.886513
+	Test cost = 0.884301,	RMSE = 1.665480
+Epoch = 43
+	Train cost = 0.849892,	RMSE = 2.659374
+	Test cost = 0.754042,	RMSE = 1.724846
+Epoch = 44
+	Train cost = 0.871019,	RMSE = 2.695405
+	Test cost = 0.712374,	RMSE = 1.865873
+Epoch = 45
+	Train cost = 0.861680,	RMSE = 2.813006
+	Test cost = 0.825494,	RMSE = 1.748849
+Epoch = 46
+	Train cost = 0.872558,	RMSE = 2.736262
+	Test cost = 0.692565,	RMSE = 1.870669
+Epoch = 47
+	Train cost = 0.852820,	RMSE = 2.505714
+	Test cost = 0.718935,	RMSE = 1.714242
+Epoch = 48
+	Train cost = 0.849954,	RMSE = 2.849811
+	Test cost = 0.683239,	RMSE = 1.765499
+Epoch = 49
+	Train cost = 0.858038,	RMSE = 2.915982
+	Test cost = 0.770553,	RMSE = 1.797787
+Epoch = 50
+	Train cost = 0.854605,	RMSE = 2.868881
+	Test cost = 0.908543,	RMSE = 1.789142
+Epoch = 51
+	Train cost = 0.859452,	RMSE = 2.803873
+	Test cost = 0.897381,	RMSE = 1.765964
+Epoch = 52
+	Train cost = 0.858857,	RMSE = 2.699565
+	Test cost = 0.766159,	RMSE = 1.829019
+Epoch = 53
+	Train cost = 0.839410,	RMSE = 2.687255
+	Test cost = 0.880584,	RMSE = 1.736553
+Epoch = 54
+	Train cost = 0.864789,	RMSE = 2.750419
+	Test cost = 0.759630,	RMSE = 1.745715
+Epoch = 55
+	Train cost = 0.843459,	RMSE = 2.702529
+	Test cost = 0.779200,	RMSE = 1.771517
+Epoch = 56
+	Train cost = 0.845944,	RMSE = 2.698107
+	Test cost = 0.695265,	RMSE = 1.895348
+Epoch = 57
+	Train cost = 0.852392,	RMSE = 2.930650
+	Test cost = 0.700032,	RMSE = 2.109587
+Epoch = 58
+	Train cost = 0.839317,	RMSE = 2.879499
+	Test cost = 0.735128,	RMSE = 2.188316
+Epoch = 59
+	Train cost = 0.851667,	RMSE = 2.919483
+	Test cost = 0.724626,	RMSE = 1.915946
+Epoch = 60
+	Train cost = 0.824809,	RMSE = 2.752580
+	Test cost = 0.682943,	RMSE = 1.826942
+Testing Dyad = 7
+RMSE of Average Prediction = 1.252923
+(3016, 300, 148) (396, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000703,	RMSE = 3.734884
+	Test cost = 0.999312,	RMSE = 4.221192
+Epoch = 2
+	Train cost = 0.998957,	RMSE = 3.660283
+	Test cost = 0.999260,	RMSE = 4.114249
+Epoch = 3
+	Train cost = 0.998198,	RMSE = 3.569689
+	Test cost = 0.999299,	RMSE = 4.008547
+Epoch = 4
+	Train cost = 0.994369,	RMSE = 3.448227
+	Test cost = 0.998866,	RMSE = 3.848932
+Epoch = 5
+	Train cost = 0.991576,	RMSE = 3.278128
+	Test cost = 0.997269,	RMSE = 3.668603
+Epoch = 6
+	Train cost = 0.985652,	RMSE = 3.054223
+	Test cost = 0.996481,	RMSE = 3.435411
+Epoch = 7
+	Train cost = 0.986929,	RMSE = 2.981372
+	Test cost = 0.993841,	RMSE = 3.409191
+Epoch = 8
+	Train cost = 0.971662,	RMSE = 2.911970
+	Test cost = 0.986525,	RMSE = 3.157917
+Epoch = 9
+	Train cost = 0.953724,	RMSE = 2.640482
+	Test cost = 0.988272,	RMSE = 2.529989
+Epoch = 10
+	Train cost = 0.934038,	RMSE = 2.720228
+	Test cost = 0.985707,	RMSE = 2.436670
+Epoch = 11
+	Train cost = 0.951348,	RMSE = 2.638729
+	Test cost = 0.986213,	RMSE = 2.563378
+Epoch = 12
+	Train cost = 0.908806,	RMSE = 2.580489
+	Test cost = 0.986030,	RMSE = 2.139660
+Epoch = 13
+	Train cost = 0.917345,	RMSE = 2.621040
+	Test cost = 0.979908,	RMSE = 2.182934
+Epoch = 14
+	Train cost = 0.973496,	RMSE = 2.203422
+	Test cost = 0.977063,	RMSE = 1.907493
+Epoch = 15
+	Train cost = 0.971322,	RMSE = 2.202828
+	Test cost = 0.978171,	RMSE = 2.260043
+Epoch = 16
+	Train cost = 0.901157,	RMSE = 2.935645
+	Test cost = 0.977139,	RMSE = 2.779972
+Epoch = 17
+	Train cost = 0.898919,	RMSE = 2.849751
+	Test cost = 0.978346,	RMSE = 2.782268
+Epoch = 18
+	Train cost = 0.895675,	RMSE = 2.801344
+	Test cost = 0.987944,	RMSE = 2.386454
+Epoch = 19
+	Train cost = 0.879248,	RMSE = 2.848446
+	Test cost = 0.986251,	RMSE = 2.980515
+Epoch = 20
+	Train cost = 0.889489,	RMSE = 2.687767
+	Test cost = 0.973036,	RMSE = 3.447022
+Epoch = 21
+	Train cost = 0.913731,	RMSE = 2.685973
+	Test cost = 0.967221,	RMSE = 2.698385
+Epoch = 22
+	Train cost = 0.881870,	RMSE = 2.761067
+	Test cost = 0.975306,	RMSE = 2.157202
+Epoch = 23
+	Train cost = 0.874413,	RMSE = 2.819614
+	Test cost = 0.953195,	RMSE = 2.471859
+Epoch = 24
+	Train cost = 0.859946,	RMSE = 2.764200
+	Test cost = 0.965174,	RMSE = 2.356163
+Epoch = 25
+	Train cost = 0.876841,	RMSE = 2.846941
+	Test cost = 0.958742,	RMSE = 2.312718
+Epoch = 26
+	Train cost = 0.857931,	RMSE = 2.778250
+	Test cost = 0.955668,	RMSE = 2.339771
+Epoch = 27
+	Train cost = 0.846576,	RMSE = 2.698614
+	Test cost = 0.939498,	RMSE = 2.099986
+Epoch = 28
+	Train cost = 0.856808,	RMSE = 2.717973
+	Test cost = 0.961053,	RMSE = 2.466401
+Epoch = 29
+	Train cost = 0.871552,	RMSE = 2.819484
+	Test cost = 0.931233,	RMSE = 2.025366
+Epoch = 30
+	Train cost = 0.859412,	RMSE = 2.900009
+	Test cost = 0.911849,	RMSE = 1.597110
+Epoch = 31
+	Train cost = 0.874131,	RMSE = 2.900501
+	Test cost = 0.915934,	RMSE = 1.622045
+Epoch = 32
+	Train cost = 0.858648,	RMSE = 2.717147
+	Test cost = 0.912168,	RMSE = 1.738683
+Epoch = 33
+	Train cost = 0.854732,	RMSE = 2.788583
+	Test cost = 0.943530,	RMSE = 1.997677
+Epoch = 34
+	Train cost = 0.866207,	RMSE = 2.744591
+	Test cost = 0.900531,	RMSE = 1.546266
+Epoch = 35
+	Train cost = 0.873756,	RMSE = 2.954184
+	Test cost = 0.891649,	RMSE = 1.601428
+Epoch = 36
+	Train cost = 0.856232,	RMSE = 2.645772
+	Test cost = 0.932028,	RMSE = 2.096412
+Epoch = 37
+	Train cost = 0.826606,	RMSE = 2.582965
+	Test cost = 0.901765,	RMSE = 1.698180
+Epoch = 38
+	Train cost = 0.859546,	RMSE = 2.845529
+	Test cost = 0.886051,	RMSE = 1.606965
+Epoch = 39
+	Train cost = 0.851740,	RMSE = 2.703359
+	Test cost = 0.893837,	RMSE = 1.444421
+Epoch = 40
+	Train cost = 0.867275,	RMSE = 2.704689
+	Test cost = 0.915109,	RMSE = 1.846460
+Epoch = 41
+	Train cost = 0.834563,	RMSE = 2.681216
+	Test cost = 0.942622,	RMSE = 2.431719
+Epoch = 42
+	Train cost = 0.855080,	RMSE = 2.725104
+	Test cost = 0.914749,	RMSE = 1.787176
+Epoch = 43
+	Train cost = 0.836504,	RMSE = 2.711461
+	Test cost = 0.931805,	RMSE = 1.856288
+Epoch = 44
+	Train cost = 0.846762,	RMSE = 2.770239
+	Test cost = 0.919576,	RMSE = 1.922625
+Epoch = 45
+	Train cost = 0.852748,	RMSE = 2.792428
+	Test cost = 0.893091,	RMSE = 1.481469
+Epoch = 46
+	Train cost = 0.842607,	RMSE = 2.651649
+	Test cost = 0.914068,	RMSE = 1.654691
+Epoch = 47
+	Train cost = 0.815317,	RMSE = 2.639624
+	Test cost = 0.902587,	RMSE = 1.829771
+Epoch = 48
+	Train cost = 0.827986,	RMSE = 2.705763
+	Test cost = 0.893758,	RMSE = 1.587752
+Epoch = 49
+	Train cost = 0.818906,	RMSE = 2.642710
+	Test cost = 0.891461,	RMSE = 1.524763
+Epoch = 50
+	Train cost = 0.839011,	RMSE = 2.747239
+	Test cost = 0.890543,	RMSE = 1.444079
+Epoch = 51
+	Train cost = 0.839311,	RMSE = 2.749384
+	Test cost = 0.902325,	RMSE = 1.435541
+Epoch = 52
+	Train cost = 0.838224,	RMSE = 2.671127
+	Test cost = 0.906213,	RMSE = 1.597222
+Epoch = 53
+	Train cost = 0.801992,	RMSE = 2.579845
+	Test cost = 0.895971,	RMSE = 1.593091
+Epoch = 54
+	Train cost = 0.813372,	RMSE = 2.626746
+	Test cost = 0.890930,	RMSE = 1.625574
+Epoch = 55
+	Train cost = 0.815899,	RMSE = 2.602710
+	Test cost = 0.891746,	RMSE = 1.537655
+Epoch = 56
+	Train cost = 0.832905,	RMSE = 2.687452
+	Test cost = 0.907541,	RMSE = 1.869060
+Epoch = 57
+	Train cost = 0.805921,	RMSE = 2.570142
+	Test cost = 0.914836,	RMSE = 2.028709
+Epoch = 58
+	Train cost = 0.798843,	RMSE = 2.532277
+	Test cost = 0.907559,	RMSE = 1.844102
+Epoch = 59
+	Train cost = 0.801838,	RMSE = 2.546749
+	Test cost = 0.935779,	RMSE = 2.178769
+Epoch = 60
+	Train cost = 0.842164,	RMSE = 2.742270
+	Test cost = 0.897554,	RMSE = 1.779740
+Testing Dyad = 8
+RMSE of Average Prediction = 1.482276
+(3076, 300, 148) (336, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000902,	RMSE = 3.884735
+	Test cost = 1.000781,	RMSE = 2.799663
+Epoch = 2
+	Train cost = 0.999065,	RMSE = 3.933064
+	Test cost = 1.001868,	RMSE = 2.846389
+Epoch = 3
+	Train cost = 0.997810,	RMSE = 3.932310
+	Test cost = 1.001467,	RMSE = 2.803144
+Epoch = 4
+	Train cost = 0.996454,	RMSE = 3.836368
+	Test cost = 1.002986,	RMSE = 2.719948
+Epoch = 5
+	Train cost = 0.993485,	RMSE = 3.693843
+	Test cost = 1.002562,	RMSE = 2.653342
+Epoch = 6
+	Train cost = 0.990060,	RMSE = 3.563898
+	Test cost = 0.998804,	RMSE = 2.702794
+Epoch = 7
+	Train cost = 0.973312,	RMSE = 3.468434
+	Test cost = 0.997755,	RMSE = 3.146624
+Epoch = 8
+	Train cost = 0.951028,	RMSE = 3.326602
+	Test cost = 0.986699,	RMSE = 3.016828
+Epoch = 9
+	Train cost = 0.945631,	RMSE = 3.192876
+	Test cost = 1.000944,	RMSE = 3.620172
+Epoch = 10
+	Train cost = 0.957143,	RMSE = 3.041725
+	Test cost = 0.925994,	RMSE = 2.175959
+Epoch = 11
+	Train cost = 0.971397,	RMSE = 2.797698
+	Test cost = 0.981481,	RMSE = 3.361455
+Epoch = 12
+	Train cost = 0.977602,	RMSE = 2.888560
+	Test cost = 0.946927,	RMSE = 1.802620
+Epoch = 13
+	Train cost = 0.966215,	RMSE = 2.399859
+	Test cost = 0.923630,	RMSE = 2.052507
+Epoch = 14
+	Train cost = 0.964132,	RMSE = 2.519111
+	Test cost = 0.926097,	RMSE = 2.378909
+Epoch = 15
+	Train cost = 0.955766,	RMSE = 2.714932
+	Test cost = 0.965086,	RMSE = 3.054752
+Epoch = 16
+	Train cost = 0.932350,	RMSE = 3.006503
+	Test cost = 0.978916,	RMSE = 3.880725
+Epoch = 17
+	Train cost = 0.924591,	RMSE = 3.465799
+	Test cost = 0.991614,	RMSE = 4.393809
+Epoch = 18
+	Train cost = 0.918115,	RMSE = 3.705702
+	Test cost = 0.912975,	RMSE = 2.659349
+Epoch = 19
+	Train cost = 0.939673,	RMSE = 2.368972
+	Test cost = 0.924229,	RMSE = 2.966940
+Epoch = 20
+	Train cost = 0.907499,	RMSE = 2.817662
+	Test cost = 0.896086,	RMSE = 2.608160
+Epoch = 21
+	Train cost = 0.905095,	RMSE = 2.987745
+	Test cost = 0.901244,	RMSE = 2.966876
+Epoch = 22
+	Train cost = 0.930667,	RMSE = 2.434466
+	Test cost = 0.937115,	RMSE = 3.367463
+Epoch = 23
+	Train cost = 0.900710,	RMSE = 2.805384
+	Test cost = 0.879333,	RMSE = 2.513976
+Epoch = 24
+	Train cost = 0.902153,	RMSE = 2.649575
+	Test cost = 0.963463,	RMSE = 3.734849
+Epoch = 25
+	Train cost = 0.886866,	RMSE = 2.751596
+	Test cost = 0.950582,	RMSE = 3.418937
+Epoch = 26
+	Train cost = 0.904096,	RMSE = 2.497646
+	Test cost = 0.950461,	RMSE = 3.338740
+Epoch = 27
+	Train cost = 0.880718,	RMSE = 2.913510
+	Test cost = 0.968031,	RMSE = 3.676085
+Epoch = 28
+	Train cost = 0.855187,	RMSE = 2.776595
+	Test cost = 0.948993,	RMSE = 3.708000
+Epoch = 29
+	Train cost = 0.864826,	RMSE = 3.018284
+	Test cost = 0.906510,	RMSE = 3.307657
+Epoch = 30
+	Train cost = 0.878136,	RMSE = 2.987300
+	Test cost = 0.934394,	RMSE = 3.413421
+Epoch = 31
+	Train cost = 0.859607,	RMSE = 2.720152
+	Test cost = 0.958345,	RMSE = 4.096271
+Epoch = 32
+	Train cost = 0.910859,	RMSE = 2.582614
+	Test cost = 0.870928,	RMSE = 2.802646
+Epoch = 33
+	Train cost = 0.902497,	RMSE = 2.579894
+	Test cost = 0.984480,	RMSE = 4.420721
+Epoch = 34
+	Train cost = 0.885679,	RMSE = 3.318269
+	Test cost = 0.968456,	RMSE = 4.284014
+Epoch = 35
+	Train cost = 0.858740,	RMSE = 2.887392
+	Test cost = 0.964410,	RMSE = 4.285957
+Epoch = 36
+	Train cost = 0.852829,	RMSE = 2.821731
+	Test cost = 0.943707,	RMSE = 3.223663
+Epoch = 37
+	Train cost = 0.858250,	RMSE = 2.718557
+	Test cost = 0.972868,	RMSE = 4.296357
+Epoch = 38
+	Train cost = 0.850710,	RMSE = 2.891182
+	Test cost = 0.975822,	RMSE = 4.241256
+Epoch = 39
+	Train cost = 0.853156,	RMSE = 2.866569
+	Test cost = 0.946736,	RMSE = 3.584527
+Epoch = 40
+	Train cost = 0.859326,	RMSE = 2.783632
+	Test cost = 0.959222,	RMSE = 4.059384
+Epoch = 41
+	Train cost = 0.853616,	RMSE = 2.790761
+	Test cost = 0.954172,	RMSE = 3.931093
+Epoch = 42
+	Train cost = 0.856493,	RMSE = 2.933763
+	Test cost = 0.893305,	RMSE = 3.049496
+Epoch = 43
+	Train cost = 0.861823,	RMSE = 2.764060
+	Test cost = 0.899324,	RMSE = 3.446702
+Epoch = 44
+	Train cost = 0.853773,	RMSE = 2.718926
+	Test cost = 0.901367,	RMSE = 3.371710
+Epoch = 45
+	Train cost = 0.868656,	RMSE = 2.800580
+	Test cost = 0.927408,	RMSE = 3.654919
+Epoch = 46
+	Train cost = 0.858806,	RMSE = 2.841177
+	Test cost = 0.944628,	RMSE = 4.045415
+Epoch = 47
+	Train cost = 0.847931,	RMSE = 2.702626
+	Test cost = 0.973757,	RMSE = 4.400972
+Epoch = 48
+	Train cost = 0.861640,	RMSE = 2.919349
+	Test cost = 0.982247,	RMSE = 4.593693
+Epoch = 49
+	Train cost = 0.844615,	RMSE = 2.707997
+	Test cost = 0.966152,	RMSE = 4.072280
+Epoch = 50
+	Train cost = 0.850246,	RMSE = 2.650938
+	Test cost = 0.965096,	RMSE = 4.100516
+Epoch = 51
+	Train cost = 0.835747,	RMSE = 2.724219
+	Test cost = 0.957054,	RMSE = 4.037714
+Epoch = 52
+	Train cost = 0.836277,	RMSE = 2.784786
+	Test cost = 0.928230,	RMSE = 3.471120
+Epoch = 53
+	Train cost = 0.864070,	RMSE = 2.913105
+	Test cost = 0.914142,	RMSE = 3.529869
+Epoch = 54
+	Train cost = 0.864923,	RMSE = 2.934697
+	Test cost = 0.894577,	RMSE = 3.256559
+Epoch = 55
+	Train cost = 0.854859,	RMSE = 2.849354
+	Test cost = 0.865464,	RMSE = 2.810139
+Epoch = 56
+	Train cost = 0.866620,	RMSE = 2.858218
+	Test cost = 0.867655,	RMSE = 2.965072
+Epoch = 57
+	Train cost = 0.842242,	RMSE = 2.710826
+	Test cost = 0.886322,	RMSE = 3.221249
+Epoch = 58
+	Train cost = 0.841085,	RMSE = 2.734955
+	Test cost = 0.899998,	RMSE = 3.524900
+Epoch = 59
+	Train cost = 0.841246,	RMSE = 2.740343
+	Test cost = 0.873341,	RMSE = 2.977728
+Epoch = 60
+	Train cost = 0.853816,	RMSE = 2.884065
+	Test cost = 0.920083,	RMSE = 3.848398
+Testing Dyad = 9
+RMSE of Average Prediction = 0.944229
+(3030, 300, 148) (382, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000440,	RMSE = 3.797237
+	Test cost = 1.001906,	RMSE = 3.872249
+Epoch = 2
+	Train cost = 0.999386,	RMSE = 3.776001
+	Test cost = 1.001516,	RMSE = 3.851854
+Epoch = 3
+	Train cost = 0.997455,	RMSE = 3.719756
+	Test cost = 1.001473,	RMSE = 3.759803
+Epoch = 4
+	Train cost = 0.996337,	RMSE = 3.599422
+	Test cost = 1.001619,	RMSE = 3.644641
+Epoch = 5
+	Train cost = 0.991547,	RMSE = 3.511677
+	Test cost = 1.001667,	RMSE = 3.527129
+Epoch = 6
+	Train cost = 0.989031,	RMSE = 3.365342
+	Test cost = 1.000756,	RMSE = 3.319400
+Epoch = 7
+	Train cost = 0.980594,	RMSE = 3.131491
+	Test cost = 0.999064,	RMSE = 3.086421
+Epoch = 8
+	Train cost = 0.963335,	RMSE = 2.972257
+	Test cost = 0.992440,	RMSE = 2.573044
+Epoch = 9
+	Train cost = 0.957002,	RMSE = 2.810447
+	Test cost = 0.955121,	RMSE = 3.007971
+Epoch = 10
+	Train cost = 0.929790,	RMSE = 3.068833
+	Test cost = 0.963791,	RMSE = 2.124762
+Epoch = 11
+	Train cost = 0.923552,	RMSE = 3.164981
+	Test cost = 0.961179,	RMSE = 2.009472
+Epoch = 12
+	Train cost = 0.919076,	RMSE = 2.884681
+	Test cost = 0.940447,	RMSE = 3.213314
+Epoch = 13
+	Train cost = 0.920737,	RMSE = 2.848365
+	Test cost = 0.955004,	RMSE = 1.656954
+Epoch = 14
+	Train cost = 0.903216,	RMSE = 2.914499
+	Test cost = 0.897407,	RMSE = 2.022904
+Epoch = 15
+	Train cost = 0.909836,	RMSE = 2.736326
+	Test cost = 0.956775,	RMSE = 1.436822
+Epoch = 16
+	Train cost = 0.923788,	RMSE = 2.394973
+	Test cost = 0.927513,	RMSE = 1.686447
+Epoch = 17
+	Train cost = 0.884906,	RMSE = 2.667197
+	Test cost = 0.938753,	RMSE = 1.516290
+Epoch = 18
+	Train cost = 0.883408,	RMSE = 2.862475
+	Test cost = 0.951431,	RMSE = 1.289109
+Epoch = 19
+	Train cost = 0.958000,	RMSE = 2.314352
+	Test cost = 0.928134,	RMSE = 1.474708
+Epoch = 20
+	Train cost = 0.897268,	RMSE = 2.604016
+	Test cost = 0.902298,	RMSE = 1.773305
+Epoch = 21
+	Train cost = 0.884336,	RMSE = 2.933519
+	Test cost = 0.869212,	RMSE = 1.875966
+Epoch = 22
+	Train cost = 0.870681,	RMSE = 2.803791
+	Test cost = 0.912331,	RMSE = 1.415780
+Epoch = 23
+	Train cost = 0.887318,	RMSE = 2.679993
+	Test cost = 0.921365,	RMSE = 2.900815
+Epoch = 24
+	Train cost = 0.870468,	RMSE = 2.772116
+	Test cost = 0.855352,	RMSE = 1.603118
+Epoch = 25
+	Train cost = 0.877115,	RMSE = 2.880616
+	Test cost = 0.843659,	RMSE = 1.396897
+Epoch = 26
+	Train cost = 0.866401,	RMSE = 2.926963
+	Test cost = 0.880552,	RMSE = 1.423249
+Epoch = 27
+	Train cost = 0.875686,	RMSE = 2.819625
+	Test cost = 0.850642,	RMSE = 1.283653
+Epoch = 28
+	Train cost = 0.897870,	RMSE = 2.676512
+	Test cost = 0.875846,	RMSE = 2.196893
+Epoch = 29
+	Train cost = 0.847726,	RMSE = 2.569134
+	Test cost = 0.881050,	RMSE = 2.001368
+Epoch = 30
+	Train cost = 0.858922,	RMSE = 2.662877
+	Test cost = 0.868323,	RMSE = 1.166724
+Epoch = 31
+	Train cost = 0.898970,	RMSE = 2.478880
+	Test cost = 0.926459,	RMSE = 2.798382
+Epoch = 32
+	Train cost = 0.854090,	RMSE = 2.788206
+	Test cost = 0.896775,	RMSE = 2.913626
+Epoch = 33
+	Train cost = 0.857858,	RMSE = 3.027944
+	Test cost = 0.879281,	RMSE = 1.271631
+Epoch = 34
+	Train cost = 0.861492,	RMSE = 2.806291
+	Test cost = 0.851747,	RMSE = 1.313019
+Epoch = 35
+	Train cost = 0.857361,	RMSE = 2.822836
+	Test cost = 0.822491,	RMSE = 1.291833
+Epoch = 36
+	Train cost = 0.853759,	RMSE = 2.867491
+	Test cost = 0.810786,	RMSE = 1.591993
+Epoch = 37
+	Train cost = 0.869677,	RMSE = 3.090005
+	Test cost = 0.872204,	RMSE = 1.138199
+Epoch = 38
+	Train cost = 0.859622,	RMSE = 2.651265
+	Test cost = 0.854713,	RMSE = 2.021703
+Epoch = 39
+	Train cost = 0.843065,	RMSE = 2.684536
+	Test cost = 0.846956,	RMSE = 1.257917
+Epoch = 40
+	Train cost = 0.827586,	RMSE = 2.732513
+	Test cost = 0.825695,	RMSE = 1.140267
+Epoch = 41
+	Train cost = 0.862665,	RMSE = 2.729232
+	Test cost = 0.917809,	RMSE = 1.045704
+Epoch = 42
+	Train cost = 0.863310,	RMSE = 2.628902
+	Test cost = 0.839940,	RMSE = 1.163618
+Epoch = 43
+	Train cost = 0.857661,	RMSE = 2.736970
+	Test cost = 0.850775,	RMSE = 1.692189
+Epoch = 44
+	Train cost = 0.844323,	RMSE = 2.700986
+	Test cost = 0.832053,	RMSE = 1.562073
+Epoch = 45
+	Train cost = 0.838630,	RMSE = 2.729148
+	Test cost = 0.826168,	RMSE = 1.880952
+Epoch = 46
+	Train cost = 0.830664,	RMSE = 2.692069
+	Test cost = 0.830190,	RMSE = 1.388998
+Epoch = 47
+	Train cost = 0.846086,	RMSE = 2.668184
+	Test cost = 0.842076,	RMSE = 1.408277
+Epoch = 48
+	Train cost = 0.827497,	RMSE = 2.667163
+	Test cost = 0.838294,	RMSE = 1.695016
+Epoch = 49
+	Train cost = 0.837115,	RMSE = 2.693538
+	Test cost = 0.880191,	RMSE = 1.806777
+Epoch = 50
+	Train cost = 0.838667,	RMSE = 2.709256
+	Test cost = 0.853892,	RMSE = 2.428948
+Epoch = 51
+	Train cost = 0.836163,	RMSE = 2.848406
+	Test cost = 0.879122,	RMSE = 2.323594
+Epoch = 52
+	Train cost = 0.832170,	RMSE = 2.875458
+	Test cost = 0.831442,	RMSE = 1.480493
+Epoch = 53
+	Train cost = 0.834315,	RMSE = 2.794612
+	Test cost = 0.864737,	RMSE = 1.935431
+Epoch = 54
+	Train cost = 0.809336,	RMSE = 2.671769
+	Test cost = 0.843688,	RMSE = 1.557444
+Epoch = 55
+	Train cost = 0.814046,	RMSE = 2.607761
+	Test cost = 0.861910,	RMSE = 1.489888
+Epoch = 56
+	Train cost = 0.826391,	RMSE = 2.794504
+	Test cost = 0.847517,	RMSE = 1.768939
+Epoch = 57
+	Train cost = 0.806271,	RMSE = 2.640244
+	Test cost = 0.854127,	RMSE = 1.721657
+Epoch = 58
+	Train cost = 0.808062,	RMSE = 2.719464
+	Test cost = 0.869107,	RMSE = 1.569539
+Epoch = 59
+	Train cost = 0.790318,	RMSE = 2.616522
+	Test cost = 0.895408,	RMSE = 1.305062
+Epoch = 60
+	Train cost = 0.805583,	RMSE = 2.718150
+	Test cost = 0.898151,	RMSE = 1.147662
+Testing Dyad = 10
+RMSE of Average Prediction = 1.355091
+(3058, 300, 148) (354, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000710,	RMSE = 3.686922
+	Test cost = 1.001402,	RMSE = 4.595899
+Epoch = 2
+	Train cost = 0.998855,	RMSE = 3.650845
+	Test cost = 1.001192,	RMSE = 4.543429
+Epoch = 3
+	Train cost = 0.998443,	RMSE = 3.644006
+	Test cost = 1.001139,	RMSE = 4.557029
+Epoch = 4
+	Train cost = 0.996799,	RMSE = 3.643506
+	Test cost = 1.000822,	RMSE = 4.497841
+Epoch = 5
+	Train cost = 0.994108,	RMSE = 3.576074
+	Test cost = 1.000508,	RMSE = 4.457846
+Epoch = 6
+	Train cost = 0.990561,	RMSE = 3.536819
+	Test cost = 1.000047,	RMSE = 4.357617
+Epoch = 7
+	Train cost = 0.984529,	RMSE = 3.396442
+	Test cost = 0.999858,	RMSE = 4.111084
+Epoch = 8
+	Train cost = 0.975018,	RMSE = 3.188467
+	Test cost = 0.995713,	RMSE = 3.939460
+Epoch = 9
+	Train cost = 0.962001,	RMSE = 3.215663
+	Test cost = 0.980201,	RMSE = 3.541591
+Epoch = 10
+	Train cost = 0.941250,	RMSE = 2.614488
+	Test cost = 0.970119,	RMSE = 3.499660
+Epoch = 11
+	Train cost = 0.923349,	RMSE = 3.050302
+	Test cost = 0.967590,	RMSE = 3.088447
+Epoch = 12
+	Train cost = 0.927819,	RMSE = 2.425256
+	Test cost = 0.965157,	RMSE = 2.849982
+Epoch = 13
+	Train cost = 0.914492,	RMSE = 2.930867
+	Test cost = 0.962663,	RMSE = 2.715080
+Epoch = 14
+	Train cost = 0.924083,	RMSE = 2.660585
+	Test cost = 0.955792,	RMSE = 2.927912
+Epoch = 15
+	Train cost = 0.927510,	RMSE = 2.527857
+	Test cost = 0.975667,	RMSE = 2.503289
+Epoch = 16
+	Train cost = 0.885126,	RMSE = 2.703055
+	Test cost = 0.948815,	RMSE = 2.445631
+Epoch = 17
+	Train cost = 0.889101,	RMSE = 2.707272
+	Test cost = 0.936730,	RMSE = 3.041131
+Epoch = 18
+	Train cost = 0.884891,	RMSE = 3.088377
+	Test cost = 0.934902,	RMSE = 2.338024
+Epoch = 19
+	Train cost = 0.907925,	RMSE = 2.374794
+	Test cost = 0.953649,	RMSE = 2.160253
+Epoch = 20
+	Train cost = 0.873734,	RMSE = 2.769314
+	Test cost = 0.944136,	RMSE = 1.875999
+Epoch = 21
+	Train cost = 0.884535,	RMSE = 2.691092
+	Test cost = 0.916301,	RMSE = 2.411492
+Epoch = 22
+	Train cost = 0.888591,	RMSE = 3.055745
+	Test cost = 0.911325,	RMSE = 1.944070
+Epoch = 23
+	Train cost = 0.892145,	RMSE = 3.157352
+	Test cost = 0.894477,	RMSE = 2.053953
+Epoch = 24
+	Train cost = 0.868147,	RMSE = 2.931727
+	Test cost = 0.922697,	RMSE = 1.643323
+Epoch = 25
+	Train cost = 0.914848,	RMSE = 2.453635
+	Test cost = 0.905851,	RMSE = 1.913871
+Epoch = 26
+	Train cost = 0.871197,	RMSE = 2.642608
+	Test cost = 0.892064,	RMSE = 2.108600
+Epoch = 27
+	Train cost = 0.869312,	RMSE = 2.858374
+	Test cost = 0.903691,	RMSE = 2.893251
+Epoch = 28
+	Train cost = 0.875929,	RMSE = 3.004243
+	Test cost = 0.874899,	RMSE = 1.924605
+Epoch = 29
+	Train cost = 0.843648,	RMSE = 2.810229
+	Test cost = 0.908869,	RMSE = 2.282862
+Epoch = 30
+	Train cost = 0.848935,	RMSE = 2.648584
+	Test cost = 0.891513,	RMSE = 2.079330
+Epoch = 31
+	Train cost = 0.845852,	RMSE = 2.726289
+	Test cost = 0.880234,	RMSE = 1.938674
+Epoch = 32
+	Train cost = 0.850623,	RMSE = 2.763598
+	Test cost = 0.872100,	RMSE = 2.324763
+Epoch = 33
+	Train cost = 0.871795,	RMSE = 3.026031
+	Test cost = 0.874057,	RMSE = 2.009028
+Epoch = 34
+	Train cost = 0.865099,	RMSE = 2.873920
+	Test cost = 0.877987,	RMSE = 1.893844
+Epoch = 35
+	Train cost = 0.851381,	RMSE = 2.743775
+	Test cost = 0.893499,	RMSE = 2.421242
+Epoch = 36
+	Train cost = 0.856935,	RMSE = 2.847268
+	Test cost = 0.889449,	RMSE = 1.560984
+Epoch = 37
+	Train cost = 0.837702,	RMSE = 2.772505
+	Test cost = 0.919549,	RMSE = 1.358906
+Epoch = 38
+	Train cost = 0.864541,	RMSE = 2.767628
+	Test cost = 0.861475,	RMSE = 1.702820
+Epoch = 39
+	Train cost = 0.851819,	RMSE = 2.906330
+	Test cost = 0.868758,	RMSE = 1.557597
+Epoch = 40
+	Train cost = 0.835848,	RMSE = 2.684234
+	Test cost = 0.854302,	RMSE = 1.668475
+Epoch = 41
+	Train cost = 0.856639,	RMSE = 2.814899
+	Test cost = 0.862706,	RMSE = 2.011998
+Epoch = 42
+	Train cost = 0.853580,	RMSE = 2.769443
+	Test cost = 0.877262,	RMSE = 1.415267
+Epoch = 43
+	Train cost = 0.857805,	RMSE = 2.782868
+	Test cost = 0.870784,	RMSE = 1.409102
+Epoch = 44
+	Train cost = 0.845663,	RMSE = 2.703636
+	Test cost = 0.853723,	RMSE = 1.618541
+Epoch = 45
+	Train cost = 0.843098,	RMSE = 2.776599
+	Test cost = 0.834461,	RMSE = 1.730604
+Epoch = 46
+	Train cost = 0.840096,	RMSE = 2.762023
+	Test cost = 0.888565,	RMSE = 2.794513
+Epoch = 47
+	Train cost = 0.837736,	RMSE = 2.822910
+	Test cost = 0.855378,	RMSE = 1.467227
+Epoch = 48
+	Train cost = 0.846771,	RMSE = 2.688140
+	Test cost = 0.867895,	RMSE = 2.399986
+Epoch = 49
+	Train cost = 0.835182,	RMSE = 2.813359
+	Test cost = 0.820496,	RMSE = 1.790602
+Epoch = 50
+	Train cost = 0.828288,	RMSE = 2.734983
+	Test cost = 0.852622,	RMSE = 1.650394
+Epoch = 51
+	Train cost = 0.837109,	RMSE = 2.777389
+	Test cost = 0.850294,	RMSE = 1.578098
+Epoch = 52
+	Train cost = 0.830260,	RMSE = 2.717721
+	Test cost = 0.865699,	RMSE = 1.509386
+Epoch = 53
+	Train cost = 0.831236,	RMSE = 2.712493
+	Test cost = 0.842621,	RMSE = 1.903182
+Epoch = 54
+	Train cost = 0.821016,	RMSE = 2.634121
+	Test cost = 0.865101,	RMSE = 1.576358
+Epoch = 55
+	Train cost = 0.840967,	RMSE = 2.731710
+	Test cost = 0.827557,	RMSE = 1.659737
+Epoch = 56
+	Train cost = 0.834389,	RMSE = 2.703163
+	Test cost = 0.859982,	RMSE = 1.637609
+Epoch = 57
+	Train cost = 0.813991,	RMSE = 2.613331
+	Test cost = 0.850929,	RMSE = 2.136448
+Epoch = 58
+	Train cost = 0.834286,	RMSE = 2.743783
+	Test cost = 0.851680,	RMSE = 1.288663
+Epoch = 59
+	Train cost = 0.843284,	RMSE = 2.673371
+	Test cost = 0.849451,	RMSE = 1.539655
+Epoch = 60
+	Train cost = 0.822983,	RMSE = 2.682292
+	Test cost = 0.856407,	RMSE = 1.413651
+Testing Dyad = 11
+RMSE of Average Prediction = 1.293873
+(3054, 300, 148) (358, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000586,	RMSE = 3.759519
+	Test cost = 1.000096,	RMSE = 4.413396
+Epoch = 2
+	Train cost = 0.999429,	RMSE = 3.777134
+	Test cost = 0.999611,	RMSE = 4.417168
+Epoch = 3
+	Train cost = 0.998505,	RMSE = 3.776765
+	Test cost = 0.999346,	RMSE = 4.439803
+Epoch = 4
+	Train cost = 0.996769,	RMSE = 3.778952
+	Test cost = 0.999178,	RMSE = 4.441427
+Epoch = 5
+	Train cost = 0.993702,	RMSE = 3.736868
+	Test cost = 0.998681,	RMSE = 4.401245
+Epoch = 6
+	Train cost = 0.991853,	RMSE = 3.685322
+	Test cost = 0.998161,	RMSE = 4.334588
+Epoch = 7
+	Train cost = 0.988926,	RMSE = 3.634640
+	Test cost = 0.997909,	RMSE = 4.280650
+Epoch = 8
+	Train cost = 0.982130,	RMSE = 3.558270
+	Test cost = 0.998679,	RMSE = 4.151769
+Epoch = 9
+	Train cost = 0.983804,	RMSE = 3.378576
+	Test cost = 0.996936,	RMSE = 3.821160
+Epoch = 10
+	Train cost = 0.976781,	RMSE = 3.193435
+	Test cost = 0.995072,	RMSE = 3.709272
+Epoch = 11
+	Train cost = 0.962198,	RMSE = 3.028868
+	Test cost = 0.989632,	RMSE = 3.424401
+Epoch = 12
+	Train cost = 0.964265,	RMSE = 2.936231
+	Test cost = 0.972996,	RMSE = 3.528848
+Epoch = 13
+	Train cost = 0.925855,	RMSE = 2.980281
+	Test cost = 0.937537,	RMSE = 3.082725
+Epoch = 14
+	Train cost = 0.922875,	RMSE = 3.126162
+	Test cost = 0.943760,	RMSE = 3.507016
+Epoch = 15
+	Train cost = 0.931200,	RMSE = 2.922887
+	Test cost = 0.934379,	RMSE = 3.318395
+Epoch = 16
+	Train cost = 0.921817,	RMSE = 3.236476
+	Test cost = 0.967316,	RMSE = 2.142690
+Epoch = 17
+	Train cost = 0.971325,	RMSE = 2.239242
+	Test cost = 0.937637,	RMSE = 2.285684
+Epoch = 18
+	Train cost = 0.914740,	RMSE = 3.018938
+	Test cost = 0.900402,	RMSE = 2.661892
+Epoch = 19
+	Train cost = 0.898980,	RMSE = 3.138072
+	Test cost = 0.893218,	RMSE = 2.944544
+Epoch = 20
+	Train cost = 0.897951,	RMSE = 2.779795
+	Test cost = 0.878899,	RMSE = 2.293396
+Epoch = 21
+	Train cost = 0.881428,	RMSE = 2.767379
+	Test cost = 0.886994,	RMSE = 2.020441
+Epoch = 22
+	Train cost = 0.944601,	RMSE = 2.273358
+	Test cost = 0.944892,	RMSE = 1.695061
+Epoch = 23
+	Train cost = 0.946689,	RMSE = 2.310830
+	Test cost = 0.909317,	RMSE = 1.922431
+Epoch = 24
+	Train cost = 0.921140,	RMSE = 2.462003
+	Test cost = 0.903247,	RMSE = 2.071186
+Epoch = 25
+	Train cost = 0.915916,	RMSE = 2.593952
+	Test cost = 0.889876,	RMSE = 2.483477
+Epoch = 26
+	Train cost = 0.887747,	RMSE = 2.914689
+	Test cost = 0.886294,	RMSE = 2.026773
+Epoch = 27
+	Train cost = 0.891213,	RMSE = 2.637035
+	Test cost = 0.907671,	RMSE = 2.435165
+Epoch = 28
+	Train cost = 0.892201,	RMSE = 2.694776
+	Test cost = 0.885616,	RMSE = 2.722556
+Epoch = 29
+	Train cost = 0.897190,	RMSE = 2.868426
+	Test cost = 0.849354,	RMSE = 2.029857
+Epoch = 30
+	Train cost = 0.873944,	RMSE = 3.003156
+	Test cost = 0.810987,	RMSE = 1.791157
+Epoch = 31
+	Train cost = 0.897639,	RMSE = 2.889761
+	Test cost = 0.889333,	RMSE = 3.210299
+Epoch = 32
+	Train cost = 0.872060,	RMSE = 3.009640
+	Test cost = 0.809800,	RMSE = 1.815956
+Epoch = 33
+	Train cost = 0.888700,	RMSE = 2.867162
+	Test cost = 0.830131,	RMSE = 1.462209
+Epoch = 34
+	Train cost = 0.892043,	RMSE = 2.768352
+	Test cost = 0.828058,	RMSE = 2.103214
+Epoch = 35
+	Train cost = 0.864768,	RMSE = 3.086097
+	Test cost = 0.815804,	RMSE = 1.933024
+Epoch = 36
+	Train cost = 0.884390,	RMSE = 2.859209
+	Test cost = 0.821963,	RMSE = 1.968870
+Epoch = 37
+	Train cost = 0.874882,	RMSE = 3.013860
+	Test cost = 0.813121,	RMSE = 1.957866
+Epoch = 38
+	Train cost = 0.857973,	RMSE = 2.752901
+	Test cost = 0.880147,	RMSE = 2.857791
+Epoch = 39
+	Train cost = 0.869241,	RMSE = 2.919100
+	Test cost = 0.807922,	RMSE = 1.711629
+Epoch = 40
+	Train cost = 0.859888,	RMSE = 2.909008
+	Test cost = 0.796602,	RMSE = 1.794329
+Epoch = 41
+	Train cost = 0.875735,	RMSE = 2.997364
+	Test cost = 0.809138,	RMSE = 1.560160
+Epoch = 42
+	Train cost = 0.878580,	RMSE = 2.861695
+	Test cost = 0.850400,	RMSE = 1.421213
+Epoch = 43
+	Train cost = 0.872540,	RMSE = 2.900207
+	Test cost = 0.807352,	RMSE = 1.946811
+Epoch = 44
+	Train cost = 0.852934,	RMSE = 2.853503
+	Test cost = 0.849821,	RMSE = 1.322681
+Epoch = 45
+	Train cost = 0.880597,	RMSE = 2.629822
+	Test cost = 0.873998,	RMSE = 2.087707
+Epoch = 46
+	Train cost = 0.834921,	RMSE = 2.575484
+	Test cost = 0.835040,	RMSE = 2.088188
+Epoch = 47
+	Train cost = 0.856002,	RMSE = 2.704154
+	Test cost = 0.817504,	RMSE = 2.368335
+Epoch = 48
+	Train cost = 0.835373,	RMSE = 2.745853
+	Test cost = 0.788084,	RMSE = 1.780902
+Epoch = 49
+	Train cost = 0.842129,	RMSE = 2.780954
+	Test cost = 0.787265,	RMSE = 1.587255
+Epoch = 50
+	Train cost = 0.839674,	RMSE = 2.737591
+	Test cost = 0.849846,	RMSE = 1.332555
+Epoch = 51
+	Train cost = 0.856217,	RMSE = 2.666724
+	Test cost = 0.838813,	RMSE = 1.758931
+Epoch = 52
+	Train cost = 0.844227,	RMSE = 2.528219
+	Test cost = 0.839191,	RMSE = 1.331888
+Epoch = 53
+	Train cost = 0.840334,	RMSE = 2.591022
+	Test cost = 0.799583,	RMSE = 1.521001
+Epoch = 54
+	Train cost = 0.844237,	RMSE = 2.762176
+	Test cost = 0.799258,	RMSE = 1.530238
+Epoch = 55
+	Train cost = 0.842579,	RMSE = 2.744735
+	Test cost = 0.858497,	RMSE = 1.443512
+Epoch = 56
+	Train cost = 0.830168,	RMSE = 2.559366
+	Test cost = 0.807227,	RMSE = 1.446606
+Epoch = 57
+	Train cost = 0.832908,	RMSE = 2.711658
+	Test cost = 0.811650,	RMSE = 1.442870
+Epoch = 58
+	Train cost = 0.846723,	RMSE = 2.771717
+	Test cost = 0.815643,	RMSE = 1.964972
+Epoch = 59
+	Train cost = 0.823238,	RMSE = 2.878500
+	Test cost = 0.828878,	RMSE = 1.654730
+Epoch = 60
+	Train cost = 0.822966,	RMSE = 2.467934
+	Test cost = 0.833632,	RMSE = 2.284147
+Testing Dyad = 12
+RMSE of Average Prediction = 1.177035
+(3016, 300, 148) (396, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.001127,	RMSE = 3.788600
+	Test cost = 0.999542,	RMSE = 4.052013
+Epoch = 2
+	Train cost = 0.999512,	RMSE = 3.777638
+	Test cost = 0.998704,	RMSE = 4.036595
+Epoch = 3
+	Train cost = 0.998730,	RMSE = 3.734760
+	Test cost = 0.997897,	RMSE = 3.996778
+Epoch = 4
+	Train cost = 0.996801,	RMSE = 3.700187
+	Test cost = 0.997063,	RMSE = 3.921668
+Epoch = 5
+	Train cost = 0.996011,	RMSE = 3.618986
+	Test cost = 0.996002,	RMSE = 3.858110
+Epoch = 6
+	Train cost = 0.991845,	RMSE = 3.508867
+	Test cost = 0.993452,	RMSE = 3.670852
+Epoch = 7
+	Train cost = 0.990192,	RMSE = 3.356448
+	Test cost = 0.991993,	RMSE = 3.556924
+Epoch = 8
+	Train cost = 0.984978,	RMSE = 3.319797
+	Test cost = 0.984695,	RMSE = 3.459131
+Epoch = 9
+	Train cost = 0.970167,	RMSE = 3.089677
+	Test cost = 0.969761,	RMSE = 2.995262
+Epoch = 10
+	Train cost = 0.961711,	RMSE = 2.854525
+	Test cost = 0.951804,	RMSE = 2.728412
+Epoch = 11
+	Train cost = 0.957371,	RMSE = 2.942186
+	Test cost = 0.915226,	RMSE = 2.999061
+Epoch = 12
+	Train cost = 0.954013,	RMSE = 3.006065
+	Test cost = 0.928054,	RMSE = 2.332083
+Epoch = 13
+	Train cost = 0.952324,	RMSE = 2.465505
+	Test cost = 0.935947,	RMSE = 2.288654
+Epoch = 14
+	Train cost = 0.939970,	RMSE = 2.668310
+	Test cost = 0.911189,	RMSE = 2.249918
+Epoch = 15
+	Train cost = 0.926100,	RMSE = 2.906971
+	Test cost = 0.864025,	RMSE = 2.351245
+Epoch = 16
+	Train cost = 0.943181,	RMSE = 2.583315
+	Test cost = 0.904285,	RMSE = 2.153161
+Epoch = 17
+	Train cost = 0.938143,	RMSE = 2.608939
+	Test cost = 0.847220,	RMSE = 2.630009
+Epoch = 18
+	Train cost = 0.928546,	RMSE = 2.894675
+	Test cost = 0.858611,	RMSE = 2.213365
+Epoch = 19
+	Train cost = 0.946153,	RMSE = 2.362664
+	Test cost = 0.871662,	RMSE = 2.031137
+Epoch = 20
+	Train cost = 0.914055,	RMSE = 2.816446
+	Test cost = 0.851197,	RMSE = 3.522973
+Epoch = 21
+	Train cost = 0.912249,	RMSE = 3.091346
+	Test cost = 0.860369,	RMSE = 3.778314
+Epoch = 22
+	Train cost = 0.936838,	RMSE = 4.200752
+	Test cost = 0.947101,	RMSE = 5.089186
+Epoch = 23
+	Train cost = 0.941038,	RMSE = 4.144983
+	Test cost = 0.878599,	RMSE = 3.858179
+Epoch = 24
+	Train cost = 0.900082,	RMSE = 3.176430
+	Test cost = 0.797401,	RMSE = 2.795639
+Epoch = 25
+	Train cost = 0.927199,	RMSE = 2.558512
+	Test cost = 0.797984,	RMSE = 1.979167
+Epoch = 26
+	Train cost = 0.910586,	RMSE = 2.813810
+	Test cost = 0.804301,	RMSE = 2.836120
+Epoch = 27
+	Train cost = 0.920666,	RMSE = 2.986476
+	Test cost = 0.789015,	RMSE = 2.942176
+Epoch = 28
+	Train cost = 0.902699,	RMSE = 3.104043
+	Test cost = 0.762684,	RMSE = 2.655761
+Epoch = 29
+	Train cost = 0.898365,	RMSE = 2.853767
+	Test cost = 0.735708,	RMSE = 2.510457
+Epoch = 30
+	Train cost = 0.906396,	RMSE = 3.114122
+	Test cost = 0.819188,	RMSE = 3.434000
+Epoch = 31
+	Train cost = 0.886883,	RMSE = 2.813683
+	Test cost = 0.780666,	RMSE = 3.063297
+Epoch = 32
+	Train cost = 0.877583,	RMSE = 3.088151
+	Test cost = 0.803904,	RMSE = 3.398880
+Epoch = 33
+	Train cost = 0.878596,	RMSE = 2.824037
+	Test cost = 0.841527,	RMSE = 3.708144
+Epoch = 34
+	Train cost = 0.889505,	RMSE = 2.972002
+	Test cost = 0.734635,	RMSE = 2.379598
+Epoch = 35
+	Train cost = 0.871411,	RMSE = 2.880471
+	Test cost = 0.756138,	RMSE = 2.949563
+Epoch = 36
+	Train cost = 0.868435,	RMSE = 2.853099
+	Test cost = 0.682187,	RMSE = 1.864224
+Epoch = 37
+	Train cost = 0.895878,	RMSE = 2.415266
+	Test cost = 0.712655,	RMSE = 1.937513
+Epoch = 38
+	Train cost = 0.886098,	RMSE = 2.743160
+	Test cost = 0.719692,	RMSE = 2.507228
+Epoch = 39
+	Train cost = 0.877521,	RMSE = 3.023145
+	Test cost = 0.685526,	RMSE = 1.866707
+Epoch = 40
+	Train cost = 0.880194,	RMSE = 2.823244
+	Test cost = 0.833928,	RMSE = 3.584672
+Epoch = 41
+	Train cost = 0.873353,	RMSE = 3.002667
+	Test cost = 0.690213,	RMSE = 2.238842
+Epoch = 42
+	Train cost = 0.880325,	RMSE = 2.902559
+	Test cost = 0.686240,	RMSE = 1.753045
+Epoch = 43
+	Train cost = 0.888797,	RMSE = 2.642263
+	Test cost = 0.773385,	RMSE = 2.946109
+Epoch = 44
+	Train cost = 0.866956,	RMSE = 2.989932
+	Test cost = 0.752300,	RMSE = 2.756156
+Epoch = 45
+	Train cost = 0.872545,	RMSE = 2.920997
+	Test cost = 0.681981,	RMSE = 2.171755
+Epoch = 46
+	Train cost = 0.885161,	RMSE = 2.714648
+	Test cost = 0.781389,	RMSE = 3.028590
+Epoch = 47
+	Train cost = 0.851743,	RMSE = 2.996400
+	Test cost = 0.758858,	RMSE = 2.858224
+Epoch = 48
+	Train cost = 0.854389,	RMSE = 2.859681
+	Test cost = 0.686696,	RMSE = 1.638132
+Epoch = 49
+	Train cost = 0.859133,	RMSE = 2.817610
+	Test cost = 0.723458,	RMSE = 1.935978
+Epoch = 50
+	Train cost = 0.866990,	RMSE = 2.628573
+	Test cost = 0.803322,	RMSE = 2.935325
+Epoch = 51
+	Train cost = 0.850037,	RMSE = 2.957513
+	Test cost = 0.820136,	RMSE = 3.529229
+Epoch = 52
+	Train cost = 0.866978,	RMSE = 3.062521
+	Test cost = 0.757159,	RMSE = 2.749816
+Epoch = 53
+	Train cost = 0.840108,	RMSE = 2.821631
+	Test cost = 0.671410,	RMSE = 1.704281
+Epoch = 54
+	Train cost = 0.852087,	RMSE = 2.605175
+	Test cost = 0.736078,	RMSE = 2.647334
+Epoch = 55
+	Train cost = 0.842853,	RMSE = 2.731948
+	Test cost = 0.708361,	RMSE = 2.110595
+Epoch = 56
+	Train cost = 0.838764,	RMSE = 2.886450
+	Test cost = 0.804113,	RMSE = 3.179256
+Epoch = 57
+	Train cost = 0.848187,	RMSE = 2.972017
+	Test cost = 0.664967,	RMSE = 1.862171
+Epoch = 58
+	Train cost = 0.849033,	RMSE = 2.726367
+	Test cost = 0.682421,	RMSE = 1.896034
+Epoch = 59
+	Train cost = 0.854624,	RMSE = 2.769744
+	Test cost = 0.753351,	RMSE = 2.713737
+Epoch = 60
+	Train cost = 0.835912,	RMSE = 2.820916
+	Test cost = 0.722277,	RMSE = 2.417198
+Testing Dyad = 16
+RMSE of Average Prediction = 1.157776
+(3208, 300, 148) (204, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000199,	RMSE = 3.792988
+	Test cost = 1.000180,	RMSE = 3.179272
+Epoch = 2
+	Train cost = 0.999337,	RMSE = 3.740376
+	Test cost = 0.998519,	RMSE = 3.176169
+Epoch = 3
+	Train cost = 0.998577,	RMSE = 3.719751
+	Test cost = 0.997463,	RMSE = 3.167828
+Epoch = 4
+	Train cost = 0.996254,	RMSE = 3.714994
+	Test cost = 0.996066,	RMSE = 3.134912
+Epoch = 5
+	Train cost = 0.995167,	RMSE = 3.649017
+	Test cost = 0.995125,	RMSE = 3.061850
+Epoch = 6
+	Train cost = 0.992148,	RMSE = 3.547413
+	Test cost = 0.991564,	RMSE = 2.960935
+Epoch = 7
+	Train cost = 0.983917,	RMSE = 3.458658
+	Test cost = 0.980852,	RMSE = 2.681026
+Epoch = 8
+	Train cost = 0.963363,	RMSE = 3.327473
+	Test cost = 0.976940,	RMSE = 3.090201
+Epoch = 9
+	Train cost = 0.954041,	RMSE = 3.597103
+	Test cost = 0.944535,	RMSE = 2.403236
+Epoch = 10
+	Train cost = 0.938526,	RMSE = 3.125634
+	Test cost = 0.965489,	RMSE = 3.105491
+Epoch = 11
+	Train cost = 0.925697,	RMSE = 3.294902
+	Test cost = 0.924778,	RMSE = 2.674627
+Epoch = 12
+	Train cost = 0.947085,	RMSE = 2.708085
+	Test cost = 0.936401,	RMSE = 1.573367
+Epoch = 13
+	Train cost = 0.934195,	RMSE = 2.981926
+	Test cost = 0.909277,	RMSE = 2.221223
+Epoch = 14
+	Train cost = 0.910780,	RMSE = 2.801112
+	Test cost = 0.865505,	RMSE = 2.268053
+Epoch = 15
+	Train cost = 0.901468,	RMSE = 3.150261
+	Test cost = 0.892708,	RMSE = 1.968356
+Epoch = 16
+	Train cost = 0.925390,	RMSE = 2.543174
+	Test cost = 0.873384,	RMSE = 1.758040
+Epoch = 17
+	Train cost = 0.917801,	RMSE = 2.825262
+	Test cost = 0.941524,	RMSE = 2.826333
+Epoch = 18
+	Train cost = 0.906346,	RMSE = 3.252237
+	Test cost = 0.897417,	RMSE = 2.157254
+Epoch = 19
+	Train cost = 0.896465,	RMSE = 2.854455
+	Test cost = 0.845094,	RMSE = 1.795242
+Epoch = 20
+	Train cost = 0.892024,	RMSE = 2.903399
+	Test cost = 0.909951,	RMSE = 2.330783
+Epoch = 21
+	Train cost = 0.887462,	RMSE = 2.933136
+	Test cost = 0.906420,	RMSE = 2.692796
+Epoch = 22
+	Train cost = 0.899267,	RMSE = 2.788378
+	Test cost = 0.833994,	RMSE = 1.582687
+Epoch = 23
+	Train cost = 0.934959,	RMSE = 2.443658
+	Test cost = 0.884789,	RMSE = 1.123152
+Epoch = 24
+	Train cost = 0.902011,	RMSE = 2.886779
+	Test cost = 0.839749,	RMSE = 1.842562
+Epoch = 25
+	Train cost = 0.862365,	RMSE = 2.762672
+	Test cost = 0.795300,	RMSE = 1.641041
+Epoch = 26
+	Train cost = 0.885004,	RMSE = 2.878953
+	Test cost = 0.873446,	RMSE = 2.124136
+Epoch = 27
+	Train cost = 0.875003,	RMSE = 2.958826
+	Test cost = 0.854515,	RMSE = 1.151074
+Epoch = 28
+	Train cost = 0.933253,	RMSE = 2.429601
+	Test cost = 0.848749,	RMSE = 1.719801
+Epoch = 29
+	Train cost = 0.881365,	RMSE = 2.832297
+	Test cost = 0.823997,	RMSE = 1.922980
+Epoch = 30
+	Train cost = 0.856245,	RMSE = 2.807406
+	Test cost = 0.751539,	RMSE = 1.452460
+Epoch = 31
+	Train cost = 0.866072,	RMSE = 2.759413
+	Test cost = 0.797858,	RMSE = 1.245998
+Epoch = 32
+	Train cost = 0.873673,	RMSE = 2.944737
+	Test cost = 0.772469,	RMSE = 1.318812
+Epoch = 33
+	Train cost = 0.865699,	RMSE = 2.862236
+	Test cost = 0.836720,	RMSE = 1.441903
+Epoch = 34
+	Train cost = 0.863003,	RMSE = 2.874917
+	Test cost = 0.772357,	RMSE = 1.446740
+Epoch = 35
+	Train cost = 0.862088,	RMSE = 2.928602
+	Test cost = 0.769944,	RMSE = 1.401975
+Epoch = 36
+	Train cost = 0.857162,	RMSE = 2.933755
+	Test cost = 0.792130,	RMSE = 1.617217
+Epoch = 37
+	Train cost = 0.872339,	RMSE = 2.867504
+	Test cost = 0.819928,	RMSE = 1.183008
+Epoch = 38
+	Train cost = 0.869073,	RMSE = 2.887610
+	Test cost = 0.870254,	RMSE = 2.206713
+Epoch = 39
+	Train cost = 0.835646,	RMSE = 2.721568
+	Test cost = 0.810962,	RMSE = 1.344064
+Epoch = 40
+	Train cost = 0.839427,	RMSE = 2.846276
+	Test cost = 0.818415,	RMSE = 1.802038
+Epoch = 41
+	Train cost = 0.851156,	RMSE = 2.825528
+	Test cost = 0.803963,	RMSE = 1.442204
+Epoch = 42
+	Train cost = 0.853006,	RMSE = 2.832272
+	Test cost = 0.816937,	RMSE = 1.760878
+Epoch = 43
+	Train cost = 0.846510,	RMSE = 2.791873
+	Test cost = 0.810644,	RMSE = 1.704365
+Epoch = 44
+	Train cost = 0.844346,	RMSE = 2.816660
+	Test cost = 0.801770,	RMSE = 1.810148
+Epoch = 45
+	Train cost = 0.833836,	RMSE = 2.717514
+	Test cost = 0.805228,	RMSE = 1.654937
+Epoch = 46
+	Train cost = 0.836581,	RMSE = 2.793448
+	Test cost = 0.864014,	RMSE = 1.948305
+Epoch = 47
+	Train cost = 0.846775,	RMSE = 2.769327
+	Test cost = 0.876967,	RMSE = 1.241128
+Epoch = 48
+	Train cost = 0.842223,	RMSE = 2.756889
+	Test cost = 0.843241,	RMSE = 1.864803
+Epoch = 49
+	Train cost = 0.836796,	RMSE = 2.811739
+	Test cost = 0.831276,	RMSE = 1.643522
+Epoch = 50
+	Train cost = 0.822954,	RMSE = 2.765775
+	Test cost = 0.855794,	RMSE = 1.880693
+Epoch = 51
+	Train cost = 0.834929,	RMSE = 2.770085
+	Test cost = 0.838674,	RMSE = 1.406996
+Epoch = 52
+	Train cost = 0.826414,	RMSE = 2.752235
+	Test cost = 0.808996,	RMSE = 1.598168
+Epoch = 53
+	Train cost = 0.817546,	RMSE = 2.713147
+	Test cost = 0.838313,	RMSE = 1.835175
+Epoch = 54
+	Train cost = 0.841634,	RMSE = 2.886831
+	Test cost = 0.842057,	RMSE = 1.550794
+Epoch = 55
+	Train cost = 0.825994,	RMSE = 2.802993
+	Test cost = 0.855604,	RMSE = 2.415007
+Epoch = 56
+	Train cost = 0.816958,	RMSE = 2.798186
+	Test cost = 0.828487,	RMSE = 1.696452
+Epoch = 57
+	Train cost = 0.810216,	RMSE = 2.761339
+	Test cost = 0.876031,	RMSE = 2.281927
+Epoch = 58
+	Train cost = 0.816964,	RMSE = 2.736229
+	Test cost = 0.876504,	RMSE = 1.498735
+Epoch = 59
+	Train cost = 0.828667,	RMSE = 2.716921
+	Test cost = 0.851477,	RMSE = 1.500962
+Epoch = 60
+	Train cost = 0.813235,	RMSE = 2.714945
+	Test cost = 0.839566,	RMSE = 1.512916
+Testing Dyad = 17
+RMSE of Average Prediction = 1.117277
+(3216, 300, 148) (196, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.000863,	RMSE = 3.829810
+	Test cost = 1.000458,	RMSE = 3.259346
+Epoch = 2
+	Train cost = 0.999582,	RMSE = 3.806774
+	Test cost = 0.999259,	RMSE = 3.208434
+Epoch = 3
+	Train cost = 0.999299,	RMSE = 3.758069
+	Test cost = 0.998201,	RMSE = 3.170966
+Epoch = 4
+	Train cost = 0.997116,	RMSE = 3.727092
+	Test cost = 0.996299,	RMSE = 3.133082
+Epoch = 5
+	Train cost = 0.995713,	RMSE = 3.696549
+	Test cost = 0.993502,	RMSE = 3.088166
+Epoch = 6
+	Train cost = 0.991436,	RMSE = 3.608080
+	Test cost = 0.987979,	RMSE = 2.962447
+Epoch = 7
+	Train cost = 0.980758,	RMSE = 3.446816
+	Test cost = 0.965524,	RMSE = 2.551139
+Epoch = 8
+	Train cost = 0.960157,	RMSE = 3.194405
+	Test cost = 0.937732,	RMSE = 2.501856
+Epoch = 9
+	Train cost = 0.943820,	RMSE = 3.424317
+	Test cost = 0.941456,	RMSE = 2.631071
+Epoch = 10
+	Train cost = 0.937280,	RMSE = 3.338481
+	Test cost = 0.951492,	RMSE = 2.792380
+Epoch = 11
+	Train cost = 0.924495,	RMSE = 2.838662
+	Test cost = 0.954789,	RMSE = 2.795323
+Epoch = 12
+	Train cost = 0.924548,	RMSE = 2.576576
+	Test cost = 0.898896,	RMSE = 2.075002
+Epoch = 13
+	Train cost = 0.925724,	RMSE = 2.586845
+	Test cost = 0.917243,	RMSE = 2.785932
+Epoch = 14
+	Train cost = 0.910562,	RMSE = 3.269664
+	Test cost = 0.960900,	RMSE = 3.411054
+Epoch = 15
+	Train cost = 0.909507,	RMSE = 3.264920
+	Test cost = 0.881842,	RMSE = 2.510820
+Epoch = 16
+	Train cost = 0.956690,	RMSE = 2.367766
+	Test cost = 0.924672,	RMSE = 1.567892
+Epoch = 17
+	Train cost = 0.962369,	RMSE = 2.290018
+	Test cost = 0.954194,	RMSE = 1.484272
+Epoch = 18
+	Train cost = 0.953783,	RMSE = 2.292024
+	Test cost = 0.862618,	RMSE = 2.060006
+Epoch = 19
+	Train cost = 0.923482,	RMSE = 2.727854
+	Test cost = 0.882920,	RMSE = 2.447630
+Epoch = 20
+	Train cost = 0.914704,	RMSE = 2.876191
+	Test cost = 0.906155,	RMSE = 2.715873
+Epoch = 21
+	Train cost = 0.911002,	RMSE = 2.365908
+	Test cost = 0.874874,	RMSE = 1.839467
+Epoch = 22
+	Train cost = 0.919525,	RMSE = 2.741960
+	Test cost = 0.896488,	RMSE = 2.542526
+Epoch = 23
+	Train cost = 0.881928,	RMSE = 2.954344
+	Test cost = 0.925816,	RMSE = 2.817527
+Epoch = 24
+	Train cost = 0.886908,	RMSE = 3.223415
+	Test cost = 0.897939,	RMSE = 2.784242
+Epoch = 25
+	Train cost = 0.874269,	RMSE = 2.883760
+	Test cost = 0.931949,	RMSE = 2.963037
+Epoch = 26
+	Train cost = 0.898141,	RMSE = 3.826395
+	Test cost = 0.969214,	RMSE = 4.114967
+Epoch = 27
+	Train cost = 0.910128,	RMSE = 3.836343
+	Test cost = 0.939512,	RMSE = 3.243501
+Epoch = 28
+	Train cost = 0.880360,	RMSE = 2.905040
+	Test cost = 0.909602,	RMSE = 2.692654
+Epoch = 29
+	Train cost = 0.867880,	RMSE = 2.886601
+	Test cost = 0.862312,	RMSE = 2.355425
+Epoch = 30
+	Train cost = 0.880166,	RMSE = 2.825339
+	Test cost = 0.929577,	RMSE = 2.755750
+Epoch = 31
+	Train cost = 0.874075,	RMSE = 2.745136
+	Test cost = 0.874716,	RMSE = 2.374334
+Epoch = 32
+	Train cost = 0.869627,	RMSE = 2.738081
+	Test cost = 0.890290,	RMSE = 2.492956
+Epoch = 33
+	Train cost = 0.853711,	RMSE = 2.699643
+	Test cost = 0.892882,	RMSE = 2.459722
+Epoch = 34
+	Train cost = 0.864609,	RMSE = 2.907122
+	Test cost = 0.922161,	RMSE = 2.779239
+Epoch = 35
+	Train cost = 0.849475,	RMSE = 3.023396
+	Test cost = 0.870910,	RMSE = 2.563521
+Epoch = 36
+	Train cost = 0.866893,	RMSE = 2.939964
+	Test cost = 0.907143,	RMSE = 2.740508
+Epoch = 37
+	Train cost = 0.869282,	RMSE = 2.983775
+	Test cost = 0.835182,	RMSE = 2.118633
+Epoch = 38
+	Train cost = 0.851821,	RMSE = 2.825000
+	Test cost = 0.895758,	RMSE = 2.666985
+Epoch = 39
+	Train cost = 0.842973,	RMSE = 2.893995
+	Test cost = 0.879257,	RMSE = 2.346470
+Epoch = 40
+	Train cost = 0.851941,	RMSE = 2.956444
+	Test cost = 0.915999,	RMSE = 2.621881
+Epoch = 41
+	Train cost = 0.838856,	RMSE = 2.917139
+	Test cost = 0.907340,	RMSE = 2.557857
+Epoch = 42
+	Train cost = 0.848976,	RMSE = 2.920250
+	Test cost = 0.895356,	RMSE = 2.371192
+Epoch = 43
+	Train cost = 0.859421,	RMSE = 2.761692
+	Test cost = 0.854182,	RMSE = 2.203489
+Epoch = 44
+	Train cost = 0.861240,	RMSE = 2.808867
+	Test cost = 0.842416,	RMSE = 2.211536
+Epoch = 45
+	Train cost = 0.843276,	RMSE = 2.719880
+	Test cost = 0.884853,	RMSE = 2.375002
+Epoch = 46
+	Train cost = 0.874440,	RMSE = 2.743200
+	Test cost = 0.885139,	RMSE = 2.303709
+Epoch = 47
+	Train cost = 0.859884,	RMSE = 2.843284
+	Test cost = 0.881946,	RMSE = 2.268526
+Epoch = 48
+	Train cost = 0.838891,	RMSE = 2.747986
+	Test cost = 0.870457,	RMSE = 2.217201
+Epoch = 49
+	Train cost = 0.851895,	RMSE = 2.854629
+	Test cost = 0.880488,	RMSE = 2.304544
+Epoch = 50
+	Train cost = 0.835317,	RMSE = 2.805363
+	Test cost = 0.886514,	RMSE = 2.441112
+Epoch = 51
+	Train cost = 0.851140,	RMSE = 3.044401
+	Test cost = 0.886449,	RMSE = 2.394073
+Epoch = 52
+	Train cost = 0.828111,	RMSE = 2.794072
+	Test cost = 0.824609,	RMSE = 1.997004
+Epoch = 53
+	Train cost = 0.849890,	RMSE = 2.742422
+	Test cost = 0.833099,	RMSE = 2.044085
+Epoch = 54
+	Train cost = 0.845757,	RMSE = 2.782935
+	Test cost = 0.866290,	RMSE = 2.128691
+Epoch = 55
+	Train cost = 0.820968,	RMSE = 2.665319
+	Test cost = 0.860307,	RMSE = 2.076944
+Epoch = 56
+	Train cost = 0.824589,	RMSE = 2.695825
+	Test cost = 0.850919,	RMSE = 2.076351
+Epoch = 57
+	Train cost = 0.830618,	RMSE = 2.714970
+	Test cost = 0.853513,	RMSE = 2.099095
+Epoch = 58
+	Train cost = 0.840268,	RMSE = 2.806460
+	Test cost = 0.870566,	RMSE = 2.164435
+Epoch = 59
+	Train cost = 0.819316,	RMSE = 2.727959
+	Test cost = 0.879833,	RMSE = 2.238826
+Epoch = 60
+	Train cost = 0.827961,	RMSE = 2.679367
+	Test cost = 0.890018,	RMSE = 2.236573
+Testing Dyad = 18
+RMSE of Average Prediction = 1.520631
+(3210, 300, 148) (202, 300, 148)
+naive
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+	Train cost = 1.001106,	RMSE = 3.828174
+	Test cost = 0.998185,	RMSE = 2.712133
+Epoch = 2
+	Train cost = 0.999570,	RMSE = 3.868515
+	Test cost = 0.997185,	RMSE = 2.706099
+Epoch = 3
+	Train cost = 0.998796,	RMSE = 3.840749
+	Test cost = 0.996573,	RMSE = 2.729046
+Epoch = 4
+	Train cost = 0.997497,	RMSE = 3.853852
+	Test cost = 0.995703,	RMSE = 2.715672
+Epoch = 5
+	Train cost = 0.995336,	RMSE = 3.826350
+	Test cost = 0.994828,	RMSE = 2.696038
+Epoch = 6
+	Train cost = 0.992341,	RMSE = 3.730681
+	Test cost = 0.987346,	RMSE = 2.553983
+Epoch = 7
+	Train cost = 0.989143,	RMSE = 3.636710
+	Test cost = 0.983524,	RMSE = 2.486016
+Epoch = 8
+	Train cost = 0.983342,	RMSE = 3.560448
+	Test cost = 0.997543,	RMSE = 2.454791
+Epoch = 9
+	Train cost = 0.987147,	RMSE = 3.431459
+	Test cost = 0.967418,	RMSE = 2.354102
+Epoch = 10
+	Train cost = 0.985619,	RMSE = 3.412931
+	Test cost = 0.967431,	RMSE = 2.304321
+Epoch = 11
+	Train cost = 0.975860,	RMSE = 3.257095
+	Test cost = 0.948121,	RMSE = 2.367641
+Epoch = 12
+	Train cost = 0.958106,	RMSE = 3.136869
+	Test cost = 0.953947,	RMSE = 2.703744
+Epoch = 13
+	Train cost = 0.943501,	RMSE = 3.552411
+	Test cost = 0.911311,	RMSE = 2.421550
+Epoch = 14
+	Train cost = 0.943343,	RMSE = 3.714831
+	Test cost = 0.911492,	RMSE = 2.206460
+Epoch = 15
+	Train cost = 0.933395,	RMSE = 3.232643
+	Test cost = 0.911929,	RMSE = 2.258720
+Epoch = 16
+	Train cost = 0.933559,	RMSE = 2.636890
+	Test cost = 0.835141,	RMSE = 1.273605
+Epoch = 17
+	Train cost = 0.934496,	RMSE = 2.409618
+	Test cost = 0.887731,	RMSE = 1.803670
+Epoch = 18
+	Train cost = 0.919215,	RMSE = 2.690098
+	Test cost = 0.899906,	RMSE = 2.054072
+Epoch = 19
+	Train cost = 0.942582,	RMSE = 2.589580
+	Test cost = 0.834914,	RMSE = 1.470898
+Epoch = 20
+	Train cost = 0.907786,	RMSE = 2.796342
+	Test cost = 0.912264,	RMSE = 2.633507
+Epoch = 21
+	Train cost = 0.904355,	RMSE = 3.136058
+	Test cost = 0.911388,	RMSE = 2.215228
+Epoch = 22
+	Train cost = 0.894645,	RMSE = 2.681136
+	Test cost = 0.898246,	RMSE = 2.342105
+Epoch = 23
+	Train cost = 0.897533,	RMSE = 3.023106
+	Test cost = 0.888475,	RMSE = 1.943396
+Epoch = 24
+	Train cost = 0.902444,	RMSE = 3.015901
+	Test cost = 0.907968,	RMSE = 2.355901
+Epoch = 25
+	Train cost = 0.923108,	RMSE = 2.794133
+	Test cost = 0.914168,	RMSE = 2.348238
+Epoch = 26
+	Train cost = 0.890577,	RMSE = 3.399421
+	Test cost = 0.910357,	RMSE = 2.634436
+Epoch = 27
+	Train cost = 0.868013,	RMSE = 2.918897
+	Test cost = 0.907929,	RMSE = 2.660763
+Epoch = 28
+	Train cost = 0.878150,	RMSE = 2.884588
+	Test cost = 0.906766,	RMSE = 1.978320
+Epoch = 29
+	Train cost = 0.933283,	RMSE = 2.495767
+	Test cost = 0.902054,	RMSE = 1.646901
+Epoch = 30
+	Train cost = 0.905544,	RMSE = 2.607319
+	Test cost = 0.864470,	RMSE = 2.654866
+Epoch = 31
+	Train cost = 0.885005,	RMSE = 3.012199
+	Test cost = 0.915352,	RMSE = 2.704389
+Epoch = 32
+	Train cost = 0.881719,	RMSE = 2.828503
+	Test cost = 0.907019,	RMSE = 2.418145
+Epoch = 33
+	Train cost = 0.865244,	RMSE = 2.952249
+	Test cost = 0.906179,	RMSE = 2.144658
+Epoch = 34
+	Train cost = 0.868666,	RMSE = 2.697362
+	Test cost = 0.890298,	RMSE = 2.067787
+Epoch = 35
+	Train cost = 0.872334,	RMSE = 2.906900
+	Test cost = 0.889055,	RMSE = 2.158212
+Epoch = 36
+	Train cost = 0.871007,	RMSE = 2.886411
+	Test cost = 0.880515,	RMSE = 2.135544
+Epoch = 37
+	Train cost = 0.864529,	RMSE = 2.711575
+	Test cost = 0.882155,	RMSE = 2.580801
+Epoch = 38
+	Train cost = 0.842478,	RMSE = 2.906349
+	Test cost = 0.843661,	RMSE = 1.915705
+Epoch = 39
+	Train cost = 0.866652,	RMSE = 2.937228
+	Test cost = 0.874273,	RMSE = 2.851541
+Epoch = 40
+	Train cost = 0.852580,	RMSE = 2.947919
+	Test cost = 0.827471,	RMSE = 2.293581
+Epoch = 41
+	Train cost = 0.864931,	RMSE = 2.897506
+	Test cost = 0.840350,	RMSE = 2.338843
+Epoch = 42
+	Train cost = 0.855603,	RMSE = 2.864699
+	Test cost = 0.835769,	RMSE = 2.363562
+Epoch = 43
+	Train cost = 0.859703,	RMSE = 2.923392
+	Test cost = 0.808262,	RMSE = 2.165395
+Epoch = 44
+	Train cost = 0.856962,	RMSE = 2.915673
+	Test cost = 0.809397,	RMSE = 1.854265
+Epoch = 45
+	Train cost = 0.878847,	RMSE = 2.851489
+	Test cost = 0.835268,	RMSE = 1.939039
+Epoch = 46
+	Train cost = 0.855864,	RMSE = 2.856734
+	Test cost = 0.844165,	RMSE = 2.151181
+Epoch = 47
+	Train cost = 0.850663,	RMSE = 2.829298
+	Test cost = 0.840490,	RMSE = 2.328634
+Epoch = 48
+	Train cost = 0.841714,	RMSE = 2.895992
+	Test cost = 0.803083,	RMSE = 1.980604
+Epoch = 49
+	Train cost = 0.852291,	RMSE = 2.884698
+	Test cost = 0.839010,	RMSE = 2.434973
+Epoch = 50
+	Train cost = 0.830633,	RMSE = 2.908772
+	Test cost = 0.823238,	RMSE = 1.960259
+Epoch = 51
+	Train cost = 0.843722,	RMSE = 2.618532
+	Test cost = 0.764568,	RMSE = 1.990829
+Epoch = 52
+	Train cost = 0.853778,	RMSE = 2.885614
+	Test cost = 0.835310,	RMSE = 2.096822
+Epoch = 53
+	Train cost = 0.843811,	RMSE = 2.715049
+	Test cost = 0.824295,	RMSE = 2.056184
+Epoch = 54
+	Train cost = 0.851878,	RMSE = 2.956022
+	Test cost = 0.809279,	RMSE = 2.112369
+Epoch = 55
+	Train cost = 0.827387,	RMSE = 2.767366
+	Test cost = 0.827848,	RMSE = 2.078130
+Epoch = 56
+	Train cost = 0.831110,	RMSE = 2.719824
+	Test cost = 0.827886,	RMSE = 2.326049
+Epoch = 57
+	Train cost = 0.847243,	RMSE = 2.957365
+	Test cost = 0.836700,	RMSE = 2.248878
+Epoch = 58
+	Train cost = 0.858011,	RMSE = 2.758449
+	Test cost = 0.736502,	RMSE = 1.893621
+Epoch = 59
+	Train cost = 0.840307,	RMSE = 2.768176
+	Test cost = 0.837565,	RMSE = 2.256803
+Epoch = 60
+	Train cost = 0.812981,	RMSE = 2.743249
+	Test cost = 0.830599,	RMSE = 2.148244
