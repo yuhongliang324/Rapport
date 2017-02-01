@@ -12,12 +12,13 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0., update='adam',
+    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0., weight=0.25, update='adam',
                  drop=0.2, activation='tanh', final_activation=None):
         self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
         self.lamb = lamb
+        self.weight = weight
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
@@ -120,12 +121,13 @@ class RNN_Attention(object):
             loss = T.mean(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
-            loss = pred - y_batch
-            loss = T.mean(loss ** 2)  # 1/batch_size (pred_i - y_i)^2
+            loss_sq = pred - y_batch
+            loss_sq = T.mean(loss_sq ** 2)  # 1/batch_size (pred_i - y_i)^2
             # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
-            loss /= Z
+            loss_krip = loss_sq / Z
+            loss = loss_krip + self.weight * loss_sq
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
@@ -133,4 +135,6 @@ class RNN_Attention(object):
                 'a': a, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc
+        else:
+            ret['loss_krip'] = loss_krip
         return ret
