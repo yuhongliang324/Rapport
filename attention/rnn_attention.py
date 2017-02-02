@@ -12,7 +12,7 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.001, weight=0.25, update='adam',
+    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.0005, weight=0.25, update='adam',
                  drop=0.2, final_activation=None):
         self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
