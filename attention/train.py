@@ -42,7 +42,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 # model name can be added "-only" as suffix
 def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final_activation=None,
-          hidden_dim=None, weight=None, batch_size=64, num_epoch=60):
+          hidden_dim=None, weight=None, batch_size=64, num_epoch=30):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
