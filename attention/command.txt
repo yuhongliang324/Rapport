@@ -20,4 +20,4 @@ nohup python -u train.py -feat audio -fact tanh -w 0.25 > ../logs/audio_tanh_0.2
 nohup python -u train.py -feat audio -fact tanh -w 0.5 > ../logs/audio_tanh_0.5.out 2>&1 &
 
 nohup python -u train.py -feat audio -w 0 -drop 0 > ../logs/audio_drop_0_None_0.out 2>&1 &
-nohup python -u train.py -feat hog -w 0 > ../logs/hog_None_0.out 2>&1 &
+nohup python -u train.py -feat hog -w 0 -drop 0 > ../logs/hog_drop_0_None_0.out 2>&1 &
