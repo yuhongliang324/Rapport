@@ -89,6 +89,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
     losses_krip_train, losses_krip_val = [], []
     best_cost_val = 10000
     best_pred_val = None
+    best_epoch = 0
     for epoch_index in xrange(num_epoch):
         cost_avg, loss_krip_avg, rmse = 0., 0., 0.
         all_pred = []
@@ -110,6 +111,9 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
         if cost_avg_val < best_cost_val:
             best_cost_val = cost_avg_val
             best_pred_val = pred_val
+            best_epoch = epoch_index
+        if epoch_index - best_epoch >= 5 and epoch_index >= 15:
+            return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
