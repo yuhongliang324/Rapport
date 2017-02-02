@@ -8,10 +8,12 @@ nohup python -u train.py -feat audio > ../logs/audio_None.out 2>&1 &
 nohup python -u train.py -feat audio -fact tanh > ../logs/audio_tanh.out 2>&1 &
 nohup python -u train.py -feat audio -fact sigmoid > ../logs/audio_sigm.out 2>&1 &
 
-nohup python -u train.py -feat audio softplus > ../logs/audio_None.out 2>&1 &
-nohup python -u train.py -feat audio softplus -fact tanh > ../logs/audio_tanh.out 2>&1 &
-nohup python -u train.py -feat audio softplus -fact sigmoid > ../logs/audio_sigm.out 2>&1 &
+nohup python -u train.py -feat audio > ../logs/audio_None.out 2>&1 &
+nohup python -u train.py -feat audio -fact tanh > ../logs/audio_tanh.out 2>&1 &
+nohup python -u train.py -feat audio -fact sigmoid > ../logs/audio_sigm.out 2>&1 &
 
+
+nohup python -u train.py -feat audio -w 0 > ../logs/audio_None_0.out 2>&1 &
 nohup python -u train.py -feat audio -w 0.25 > ../logs/audio_None_0.25.out 2>&1 &
 nohup python -u train.py -feat audio -w 0.5> ../logs/audio_None_0.5.out 2>&1 &
 nohup python -u train.py -feat audio -fact tanh -w 0.25 > ../logs/audio_tanh_0.25.out 2>&1 &
