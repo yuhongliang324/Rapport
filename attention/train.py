@@ -37,7 +37,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
     losses_krip_val.append(loss_krip_avg)
     rmse = RMSE(y_test, all_pred)
     print '\tTest cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse)
-    return all_pred
+    return cost_avg, all_pred
 
 
 # model name can be added "-only" as suffix
@@ -87,7 +87,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
 
     costs_train, costs_val = [], []
     losses_krip_train, losses_krip_val = [], []
-    best_cost_train = 10000
+    best_cost_val = 10000
     best_pred_val = None
     for epoch_index in xrange(num_epoch):
         cost_avg, loss_krip_avg, rmse = 0., 0., 0.
@@ -106,9 +106,9 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
         y_predicted = numpy.asarray(all_pred)
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse)
-        pred_val = validate(test_model, y_test, costs_val, losses_krip_val)
-        if cost_avg < best_cost_train:
-            best_cost_train = cost_avg
+        cost_avg_val, pred_val = validate(test_model, y_test, costs_val, losses_krip_val)
+        if cost_avg_val < best_cost_val:
+            best_cost_val = cost_avg_val
             best_pred_val = pred_val
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
