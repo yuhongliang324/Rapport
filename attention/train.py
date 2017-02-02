@@ -177,7 +177,7 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
-    parser.add_argument('-drop', type=float, default=0.25)
+    parser.add_argument('-drop', type=float, default=0.1)
     parser.add_argument('-fact', type=str, default=None)
     parser.add_argument('-w', type=float, default=0.25)
     args = parser.parse_args()

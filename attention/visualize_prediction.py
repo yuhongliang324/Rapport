@@ -50,6 +50,10 @@ def visualize(ground_truth, coder, img_root):
         maxs = numpy.asarray(maxs)
         avgs = numpy.asarray(avgs)
         pred = dyad_pred[dyad]
+        pred = numpy.asarray(pred)
+        if pred[numpy.isnan(pred)].shape[0] == pred.shape[0]:
+            continue
+        print 'Dyad', dyad
         plt.figure(figsize=(20, 6))
         # plt.plot(mins, '--', label='Min Annotation')
         # plt.plot(maxs, '--', label='Max Annotation')
@@ -64,10 +68,16 @@ def visualize(ground_truth, coder, img_root):
 
 def test1():
     slice_ratings = get_ratings()
-    message = 'result_audio_b_drop_0.25_w_0.0_fact_None'
+    message = 'result_audio_b_drop_0.0_w_0.0_fact_None'
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 
+
+def test2():
+    slice_ratings = get_ratings()
+    message = 'svr_result'
+    coder = get_coder('../results/' + message + '.txt')
+    visualize(slice_ratings, coder, '../predictions/' + message)
 
 if __name__ == '__main__':
     test1()
