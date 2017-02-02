@@ -70,7 +70,7 @@ def visualize(ground_truth, coder, img_root):
 
 def test1():
     slice_ratings = get_ratings()
-    message = 'result_hog_ba_drop_0.0_w_0.0_fact_None'
+    message = 'result_audio_b_drop_0.0_w_0.0_fact_None'
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 
@@ -91,5 +91,5 @@ def test3():
 
 
 if __name__ == '__main__':
-    test3()
+    test1()
 

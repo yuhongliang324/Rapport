@@ -125,7 +125,7 @@ def test2():
 
 def test3():
     slice_ratings = get_ratings()
-    coder = get_coder('../results/result_audio_b_drop_0.1_w_0.0_fact_None.txt')
+    coder = get_coder('../results/result_audio_b_drop_0.0_w_0.0_fact_None.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
     print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
@@ -142,7 +142,7 @@ def test3_1():
 def test4():
     slice_ratings = get_ratings()
     coder1 = get_coder('../results/svr_result.txt')
-    coder2 = get_coder('../results/result_audio_b_drop_0.1_w_0.0_fact_None.txt')
+    coder2 = get_coder('../results/result_audio_b_drop_0.0_w_0.0_fact_None.txt')
     coder = combine([coder1, coder2])
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
@@ -150,5 +150,5 @@ def test4():
 
 
 if __name__ == '__main__':
-    test3()
+    test4()
 
