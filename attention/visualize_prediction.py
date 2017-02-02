@@ -9,6 +9,7 @@ import shutil
 import sys
 sys.path.append('..')
 from utils import get_ratings, get_coder
+from ensemble import combine
 
 
 def visualize(ground_truth, coder, img_root):
@@ -55,10 +56,11 @@ def visualize(ground_truth, coder, img_root):
             continue
         print 'Dyad', dyad
         plt.figure(figsize=(20, 6))
+        plt.ylim([0, 7])
         # plt.plot(mins, '--', label='Min Annotation')
-        # plt.plot(maxs, '--', label='Max Annotation')
+        plt.plot(avgs, color='c', label='Ground Truth')
         x = numpy.arange(len(mins))
-        plt.errorbar(x, avgs, yerr=[avgs - mins, maxs - avgs], fmt='c-', label='Annotations')
+        # plt.errorbar(x, avgs, yerr=[avgs - mins, maxs - avgs], fmt='c-', label='Annotations')
         # plt.plot(avgs, label='Average Annotation')
         plt.plot(pred, label='Predictions', color='b', linewidth=2.)
         plt.legend()
@@ -68,7 +70,7 @@ def visualize(ground_truth, coder, img_root):
 
 def test1():
     slice_ratings = get_ratings()
-    message = 'result_audio_b_drop_0.0_w_0.0_fact_None'
+    message = 'result_hog_ba_drop_0.0_w_0.0_fact_None'
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 
@@ -79,6 +81,15 @@ def test2():
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 
+
+def test3():
+    slice_ratings = get_ratings()
+    coder1 = get_coder('../results/result_audio_b_drop_0.1_w_0.0_fact_None.txt')
+    coder2 = get_coder('../results/svr_result.txt')
+    coder = combine([coder1, coder2])
+    visualize(slice_ratings, coder, '../predictions/' + 'rnn+svr')
+
+
 if __name__ == '__main__':
-    test1()
+    test3()
 

@@ -284,9 +284,16 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         feat = data['features']
         if feat.shape[0] < 2500:
             continue
+        '''
         interval = feat.shape[0] // num_frame
         index = ind * interval
-        feat = feat[index]
+        feat = feat[index]'''
+
+        interval = feat.shape[0] // num_frame
+        feat = feat[:interval * num_frame]
+        feat = numpy.reshape(feat, (num_frame, interval, feat.shape[1]))
+        feat = numpy.mean(feat, axis=1)
+
         feat[numpy.isneginf(feat)] = -1.
         feat = normalize(feat, norm='l1', axis=0)
         feat = normalize(feat)
