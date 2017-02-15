@@ -12,7 +12,7 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class dan(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, layers, lamb=0.002, update='adam', activation='relu', drop=0.5):
+    def __init__(self, layers, lamb=100, update='adam', activation='relu', drop=0.5):
         self.layers = layers
         self.n_class = layers[-1]
         self.lamb = lamb
