@@ -113,6 +113,7 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
 
 
 def cross_validation(feature_name='hog', side='b', activation='relu', drop=0.5):
+    print feature_name, side, activation
 
     fn_layers = {'hog': [256, 1], 'gemo': [128, 1], 'au': [48, 1], 'AU': [48, 1], 'audio': [64, 1]}
 
