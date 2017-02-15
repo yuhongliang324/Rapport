@@ -34,7 +34,10 @@ class dan(object):
             W, b = self.init_para(layers[i], layers[i + 1])
             self.Ws.append(W)
             self.bs.append(b)
-            self.theta += [W, b]
+        for W in self.Ws:
+            self.theta.append(W)
+        for b in self.bs:
+            self.theta.append(b)
 
         if self.update == 'adam':
             self.optimize = Adam
@@ -69,7 +72,6 @@ class dan(object):
         numW = len(self.Ws)
         for i in xrange(numW - 1):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
-            rep = T.tanh(rep)
             if self.activation == 'relu':
                 rep = T.maximum(rep, 0)
             elif self.activation == 'sigmoid':
@@ -91,12 +93,12 @@ class dan(object):
             loss = T.mean(-T.log(prob[y_batch]))
         else:
             pred = rep[:, 0]
-            loss_sq = pred - y_batch
-            loss_sq = T.mean(loss_sq ** 2)  # 1/batch_size (pred_i - y_i)^2
-            # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
+            loss = pred - y_batch
+            loss = T.mean(loss ** 2)
+            '''
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
-            loss = loss_sq / Z
+            loss /= Z'''
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
