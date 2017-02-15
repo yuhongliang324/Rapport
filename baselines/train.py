@@ -180,7 +180,7 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
-    parser.add_argument('-drop', type=float, default=0.)
+    parser.add_argument('-drop', type=float, default=0.5)
     parser.add_argument('-act', type=str, default='tanh')
     args = parser.parse_args()
     if args.side is not None:

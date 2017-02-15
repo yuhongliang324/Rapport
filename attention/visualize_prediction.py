@@ -70,7 +70,7 @@ def visualize(ground_truth, coder, img_root):
 
 def test1():
     slice_ratings = get_ratings()
-    message = 'result_audio_b_drop_0.0_w_0.0_fact_None'
+    message = 'result_dan_audio_b_148-64-1_drop_0.0_act_tanh'
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 

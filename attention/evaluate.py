@@ -139,6 +139,14 @@ def test3_1():
     print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
 
 
+def test3_2():
+    slice_ratings = get_ratings()
+    coder = get_coder('../results/result_dan_audio_b_148-64-1_drop_0.0_act_tanh.txt')
+    alpha = get_krip_alpha_given_coder(slice_ratings, coder)
+    rmse, rmse_skyline = get_rmse(slice_ratings, coder)
+    print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
+
+
 def test4():
     slice_ratings = get_ratings()
     coder1 = get_coder('../results/svr_result.txt')
@@ -150,5 +158,5 @@ def test4():
 
 
 if __name__ == '__main__':
-    test4()
+    test3_2()
 
