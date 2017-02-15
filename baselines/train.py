@@ -41,7 +41,7 @@ def validate(test_model, y_test, costs_val, losses_val, batch_size=32):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5, batch_size=64, num_epoch=100):
+def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5, batch_size=64, num_epoch=200):
 
     n_train = X_train.shape[0]
     X_train = X_train.transpose([1, 0, 2])
@@ -107,7 +107,7 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
             best_cost_val = cost_avg_val
             best_pred_val = pred_val
             best_epoch = epoch_index
-        if epoch_index - best_epoch >= 5 and epoch_index >= 50:
+        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch / 2:
             return costs_train, costs_val, losses_train, losses_val, best_pred_val
     return costs_train, costs_val, losses_train, losses_val, best_pred_val
 
@@ -180,7 +180,7 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
-    parser.add_argument('-drop', type=float, default=0.5)
+    parser.add_argument('-drop', type=float, default=0.25)
     parser.add_argument('-act', type=str, default='tanh')
     args = parser.parse_args()
     if args.side is not None:
