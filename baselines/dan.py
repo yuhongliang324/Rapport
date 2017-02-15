@@ -81,6 +81,8 @@ class dan(object):
             else:
                 rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
+        rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
+        rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         batch_size = T.shape(y_batch)[0]
 

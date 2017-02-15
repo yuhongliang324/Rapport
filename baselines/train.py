@@ -124,7 +124,7 @@ def cross_validation(num_hidlayer=1, feature_name='hog', side='b', activation='r
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side)
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False)
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()

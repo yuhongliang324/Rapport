@@ -228,7 +228,7 @@ def load_ratings(rpath=ratings_file):
     return slice_rating
 
 
-def load_audio(root=audio_root, side='b', num_frame=300):
+def load_audio(root=audio_root, side='b', num_frame=300, normalization=True):
     dyad_features = {}
     dyad_slices = {}
     dyad_ratings = {}
@@ -244,7 +244,8 @@ def load_audio(root=audio_root, side='b', num_frame=300):
             continue
         print dname
         dyad = int(dname[1:].split('S')[0])
-        X, slices = load_dyad_audio(dpath, side=side, num_frame=num_frame, valid_slices=valid_slices)
+        X, slices = load_dyad_audio(dpath, side=side, num_frame=num_frame, valid_slices=valid_slices,
+                                    normalization=normalization)
         if X is None:
             continue
         ratings = []
@@ -263,7 +264,7 @@ def load_audio(root=audio_root, side='b', num_frame=300):
     return dyad_features, dyad_ratings, dyad_slices
 
 
-def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
+def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None, normalization=True):
     slice_features = {}
     ind = numpy.arange(num_frame)
 
@@ -295,9 +296,10 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         feat = numpy.mean(feat, axis=1)
 
         feat[numpy.isneginf(feat)] = -1.
-        '''
-        feat = normalize(feat, norm='l1', axis=0)
-        feat = normalize(feat)'''
+
+        if normalization:
+            feat = normalize(feat, norm='l1', axis=0)
+            feat = normalize(feat)
 
         slice_tup = (dyad, session, slice)
         if slice_tup not in slice_features:
