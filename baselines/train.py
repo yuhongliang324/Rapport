@@ -113,7 +113,6 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
 
 
 def cross_validation(feature_name='hog', side='b', activation='relu', drop=0.5):
-    print feature_name, side, activation
 
     fn_layers = {'hog': [256, 1], 'gemo': [128, 1], 'au': [48, 1], 'AU': [48, 1], 'audio': [64, 1]}
 
@@ -177,7 +176,7 @@ def test1():
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
     parser.add_argument('-drop', type=float, default=0.)
-    parser.add_argument('-act', type=str, default=None)
+    parser.add_argument('-act', type=str, default='relu')
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
