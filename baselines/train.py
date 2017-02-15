@@ -52,7 +52,7 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    model = dan(layers, lamb=0., update='adam', activation=activation, drop=drop)
+    model = dan(layers, update='adam', activation=activation, drop=drop)
     symbols = model.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']

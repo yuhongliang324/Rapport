@@ -12,7 +12,7 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class dan(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, layers, lamb=100, update='adam', activation='relu', drop=0.5):
+    def __init__(self, layers, lamb=0.002, update='adam', activation='relu', drop=0.5):
         self.layers = layers
         self.n_class = layers[-1]
         self.lamb = lamb
@@ -56,7 +56,7 @@ class dan(object):
         return W, b
 
     def l2(self):
-        l2 = T.sum([T.sum(p ** 2) for p in self.theta])
+        l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
     def build_model(self):
@@ -101,7 +101,7 @@ class dan(object):
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
             loss /= Z'''
-        cost = loss + self.lamb * self.l2()
+        cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
