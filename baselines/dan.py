@@ -97,10 +97,9 @@ class dan(object):
             pred = rep[:, 0]
             loss = pred - y_batch
             loss = T.mean(loss ** 2)
-            '''
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
-            loss /= Z'''
+            loss /= Z
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
