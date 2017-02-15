@@ -94,13 +94,13 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
             cost, loss, pred = train_model(start, end, 1)
             cost_avg += cost * (end - start)
             loss_avg += loss * (end - start)
+            print pred
             all_pred += pred.tolist()
         cost_avg /= n_train
         loss_avg /= n_train
         costs_train.append(cost_avg)
         losses_train.append(loss_avg)
         y_predicted = numpy.asarray(all_pred)
-        print y_predicted
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tLoss = %f,\tRMSE = %f' % (cost_avg, loss_avg, rmse)
         cost_avg_val, pred_val = validate(test_model, y_test, costs_val, losses_val)
