@@ -102,10 +102,11 @@ class dan(object):
             Z /= batch_size * batch_size
             loss /= Z'''
         cost = loss + self.l2()
+        l = self.l2()
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'l': l}
         if self.n_class > 1:
             ret['acc'] = acc
         return ret
