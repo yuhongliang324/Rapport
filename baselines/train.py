@@ -52,13 +52,12 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    model = dan(layers, lamb=0., update='sgd', activation=activation, drop=drop)
+    model = dan(layers, lamb=0., update='adam', activation=activation, drop=drop)
     symbols = model.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
     pred, loss = symbols['pred'], symbols['loss']
     cost, updates = symbols['cost'], symbols['updates']
-    l = symbols['l']
 
     num_iter = int(ceil(n_train / float(batch_size)))
 
@@ -67,7 +66,7 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
 
     train_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
-                                  outputs=[cost, loss, pred, l], updates=updates,
+                                  outputs=[cost, loss, pred], updates=updates,
                                   givens={
                                       X_batch: X_train_shared[:, start_symbol: end_symbol, :],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
@@ -92,11 +91,9 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
-            cost, loss, pred, l = train_model(start, end, 1)
+            cost, loss, pred = train_model(start, end, 1)
             cost_avg += cost * (end - start)
             loss_avg += loss * (end - start)
-            print pred
-            print l
             all_pred += pred.tolist()
         cost_avg /= n_train
         loss_avg /= n_train
