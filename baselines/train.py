@@ -56,7 +56,7 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
     symbols = model.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
-    att, pred, loss = symbols['a'], symbols['pred'], symbols['loss']
+    pred, loss = symbols['pred'], symbols['loss']
     cost, updates = symbols['cost'], symbols['updates']
 
     num_iter = int(ceil(n_train / float(batch_size)))
@@ -112,9 +112,9 @@ def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5,
     return costs_train, costs_val, losses_train, losses_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', activation='relu', drop=0.5):
+def cross_validation(num_hidlayer=1, feature_name='hog', side='b', activation='relu', drop=0.5):
 
-    fn_layers = {'hog': [256, 1], 'gemo': [128, 1], 'au': [48, 1], 'AU': [48, 1], 'audio': [64, 1]}
+    fn_hid = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
     from data_preprocessing.load_data import load, load_audio
     from data_path import sample_10_root
@@ -132,9 +132,14 @@ def cross_validation(feature_name='hog', side='b', activation='relu', drop=0.5):
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     input_dim = dyad_features[dyads[0]].shape[2]
-    layers = [input_dim] + fn_layers[feature_name]
+    layers = [input_dim]
+    for i in xrange(num_hidlayer):
+        layers.append(fn_hid[feature_name])
+    layers.append(1)
     num_dyad = len(dyads)
-    message = 'dan_' + feature_name + '_' + side + '_drop_' + str(drop) + '_act_' + activation
+    message = 'dan_' + feature_name + '_' + side + '_' + '-'.join([str(x) for x in layers])\
+              + '_drop_' + str(drop) + '_act_' + activation
+    print message
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
