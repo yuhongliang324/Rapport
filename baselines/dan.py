@@ -56,7 +56,7 @@ class dan(object):
         return W, b
 
     def l2(self):
-        l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
+        l2 = T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
     def build_model(self):
@@ -101,7 +101,7 @@ class dan(object):
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
             loss /= Z'''
-        cost = loss + self.l2()
+        cost = loss + self.lamb * self.l2()
         l = self.l2()
         updates = self.optimize(cost, self.theta)
 
