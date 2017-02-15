@@ -295,8 +295,9 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None):
         feat = numpy.mean(feat, axis=1)
 
         feat[numpy.isneginf(feat)] = -1.
+        '''
         feat = normalize(feat, norm='l1', axis=0)
-        feat = normalize(feat)
+        feat = normalize(feat)'''
 
         slice_tup = (dyad, session, slice)
         if slice_tup not in slice_features:
