@@ -105,7 +105,6 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
         y_predicted = numpy.asarray(all_pred)
         rmse = RMSE(y_train, y_predicted)
         print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse)
-        print numpy.sum(att, axis=1)
         cost_avg_val, pred_val = validate(test_model, y_test, costs_val, losses_krip_val)
         if cost_avg_val < best_cost_val:
             best_cost_val = cost_avg_val
@@ -128,7 +127,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=True)
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False)
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
