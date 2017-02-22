@@ -29,23 +29,38 @@ class RNN_Attention(object):
 
         self.name = 'bi-' + self.rnn + '_attention'
 
-        self.W_left, self.b_left = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_left, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_right, self.b_right = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_right, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.theta = [self.W_left, self.U_left, self.b_left, self.W_right, self.U_right, self.b_right]
+        self.W_left_z, self.b_left_z = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_left_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.W_left_r, self.b_left_r = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_left_r, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.W_left_h, self.b_left_h = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_left_h, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+
+        self.W_right_z, self.b_right_z = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_right_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.W_right_r, self.b_right_r = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_right_r, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.W_right_h, self.b_right_h = self.init_para(self.input_dim, self.hidden_dim)
+        self.U_right_h, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+
+        self.theta = [self.W_left_z, self.U_left_z, self.b_left_z,
+                      self.W_left_r, self.U_left_r, self.b_left_r,
+                      self.W_left_h, self.U_left_h, self.b_left_h,
+                      self.W_right_z, self.U_right_z, self.b_right_z,
+                      self.W_right_r, self.U_right_r, self.b_right_r,
+                      self.W_right_h, self.U_right_h, self.b_right_h]
 
         self.W_s, self.b_s = self.init_para(self.input_dim, self.hidden_dim)
         self.U_s, _ = self.init_para(self.hidden_dim, self.hidden_dim)
 
-        w_a = numpy.asarray(self.rng.uniform(
+        self.w_att = numpy.asarray(self.rng.uniform(
             low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
             size=(self.hidden_dim * 2,)), dtype=theano.config.floatX)
-        self.w_a = theano.shared(value=w_a, borrow=True)
+        self.w_att = theano.shared(value=self.w_att, borrow=True)
 
-        self.W_1, self.b_1 = self.init_para(self.hidden_dim, self.n_class)
+        self.W_1, self.b_1 = self.init_para(self.input_dim, self.n_class)
 
-        self.theta += [self.w_a, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
+        self.theta += [self.w_att, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
         if self.update == 'adam':
             self.optimize = Adam
         elif self.update == 'rmsprop':
@@ -66,12 +81,16 @@ class RNN_Attention(object):
         l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
-    def forward(self, X_t, H_tm1):
-        H_t = T.nnet.softplus(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
+    def forward_GRU(self, X_t, H_tm1):
+        Z_t = T.nnet.sigmoid(T.dot(X_t, self.W_left_z) + T.dot(H_tm1, self.U_left_z) + self.b_left_z)
+        R_t = T.nnet.sigmoid(T.dot(X_t, self.W_left_r) + T.dot(H_tm1, self.U_left_r) + self.b_left_r)
+        H_t = Z_t * H_tm1 + (1. - Z_t) * T.tanh(T.dot(X_t, self.W_left_h) + T.dot(R_t * H_tm1, self.U_left_h) + self.b_left_h)
         return H_t
 
-    def backward(self, X_t, H_tm1):
-        H_t = T.nnet.softplus(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
+    def backward_GRU(self, X_t, H_tm1):
+        Z_t = T.nnet.sigmoid(T.dot(X_t, self.W_right_z) + T.dot(H_tm1, self.U_right_z) + self.b_right_z)
+        R_t = T.nnet.sigmoid(T.dot(X_t, self.W_right_r) + T.dot(H_tm1, self.U_right_r) + self.b_right_r)
+        H_t = Z_t * H_tm1 + (1. - Z_t) * T.tanh(T.dot(X_t, self.W_right_h) + T.dot(R_t * H_tm1, self.U_right_h) + self.b_right_h)
         return H_t
 
     def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
@@ -90,15 +109,23 @@ class RNN_Attention(object):
         batch_size = T.shape(y_batch)[0]
 
         # (n_step, batch_size, hidden_dim)
-        H_foward, _ = theano.scan(self.forward, sequences=X_batch,
+        H_foward, _ = theano.scan(self.forward_GRU, sequences=X_batch,
                                   outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
-        H_backward, _ = theano.scan(self.backward, sequences=X_batch[::-1],
+        H_backward, _ = theano.scan(self.backward_GRU, sequences=X_batch[::-1],
                                     outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
         H_backward = H_backward[::-1]
+
+        H = T.concatenate(H_foward, H_backward, axis=2)  # (n_step, batch_size, 2 * hidden_dim)
+        att = T.dot(H, self.w_att)  # (n_step, batch_size)
+        att = T.nnet.softmax(att.T)  # (batch_size, n_step)
+        X_tmp = T.transpose(X_batch, [1, 2, 0])  # (batch_size, input_dim, n_step)
+        rep = T.batched_dot(X_tmp, att)  # (batch_size, input_dim)
+
+        '''
         [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
                                 outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
+        rep = S[-1]  # (batch_size, hidden_dim)'''
 
-        rep = S[-1]  # (batch_size, hidden_dim)
         if self.final_activation == 'tanh':
             rep = T.tanh(rep)
         elif self.final_activation == 'sigmoid':
