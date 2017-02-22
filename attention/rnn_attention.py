@@ -12,13 +12,15 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    # Change lamb to smaller value for hog
-    def __init__(self, input_dim, hidden_dim, n_class, lamb=0., update='adam',
-                 drop=0.2, final_activation=None):
+    # mlp_layers does not contain the input layer (depending on the dimension of representation)
+    def __init__(self, input_dim, hidden_dim, mlp_layers=None, lamb=0., update='adam',
+                 drop=0.2, activation='tanh', final_activation=None):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
-        self.n_class = n_class
+        self.mlp_layers = [input_dim] + mlp_layers
+        self.n_class = mlp_layers[-1]
         self.lamb = lamb
         self.drop = drop
+        self.activation = activation
         self.update = update
         self.rng = numpy.random.RandomState(1234)
         self.final_activation = final_activation
@@ -46,17 +48,29 @@ class RNN_Attention(object):
                       self.W_right_r, self.U_right_r, self.b_right_r,
                       self.W_right_h, self.U_right_h, self.b_right_h]
 
+        '''
         self.W_s, self.b_s = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_s, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        self.U_s, _ = self.init_para(self.hidden_dim, self.hidden_dim)'''
 
         self.w_att = numpy.asarray(self.rng.uniform(
             low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
             size=(self.hidden_dim * 2,)), dtype=theano.config.floatX)
         self.w_att = theano.shared(value=self.w_att, borrow=True)
+        self.theta.append(self.w_att)
 
-        self.W_1, self.b_1 = self.init_para(self.input_dim, self.n_class)
+        self.Ws, self.bs = [], []
 
-        self.theta += [self.w_att, self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
+        num_layers = len(self.mlp_layers)
+        for i in xrange(num_layers - 1):
+            W, b = self.init_para(self.mlp_layers[i], self.mlp_layers[i + 1])
+            self.Ws.append(W)
+            self.bs.append(b)
+        for W in self.Ws:
+            self.theta.append(W)
+        for b in self.bs:
+            self.theta.append(b)
+
+        # self.theta += [self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
         if self.update == 'adam':
             self.optimize = Adam
         elif self.update == 'rmsprop':
@@ -126,8 +140,22 @@ class RNN_Attention(object):
             rep = T.tanh(rep)
         elif self.final_activation == 'sigmoid':
             rep = T.nnet.sigmoid(rep)
-        rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
+
+        # rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
         is_train = T.iscalar('is_train')
+        numW = len(self.Ws)
+        for i in xrange(numW - 1):
+            rep = T.dot(rep, self.Ws[i]) + self.bs[i]
+            if self.activation == 'relu':
+                rep = T.maximum(rep, 0)
+            elif self.activation == 'sigmoid':
+                rep = T.nnet.sigmoid(rep)
+            elif self.activation == 'softplus':
+                rep = T.nnet.softplus(rep)
+            else:
+                rep = T.tanh(rep)
+            rep = dropout(rep, is_train, drop_ratio=self.drop)
+        rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
         rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         if self.n_class > 1:
