@@ -70,9 +70,6 @@ class RNN_Attention(object):
         for b in self.bs:
             self.theta.append(b)
 
-        for i in xrange(num_layers - 1):
-            print self.Ws[i].get_value().shape, self.bs[i].get_value().shape
-
         # self.theta += [self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
         if self.update == 'adam':
             self.optimize = Adam
