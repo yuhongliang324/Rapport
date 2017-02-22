@@ -115,7 +115,7 @@ class RNN_Attention(object):
                                     outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
         H_backward = H_backward[::-1]
 
-        H = T.concatenate(H_foward, H_backward, axis=2)  # (n_step, batch_size, 2 * hidden_dim)
+        H = T.concatenate([H_foward, H_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
         att = T.dot(H, self.w_att)  # (n_step, batch_size)
         att = T.nnet.softmax(att.T)  # (batch_size, n_step)
         X_tmp = T.transpose(X_batch, [1, 2, 0])  # (batch_size, input_dim, n_step)
