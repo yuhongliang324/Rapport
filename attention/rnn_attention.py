@@ -13,12 +13,11 @@ class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
     # Change lamb to smaller value for hog
-    def __init__(self, input_dim, hidden_dim, n_class, lamb=0., weight=0.25, update='adam',
+    def __init__(self, input_dim, hidden_dim, n_class, lamb=0., update='adam',
                  drop=0.2, final_activation=None):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
         self.lamb = lamb
-        self.weight = weight
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
@@ -91,7 +90,7 @@ class RNN_Attention(object):
         return H_t
 
     def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
-        a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_a))
+        a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_att))
         S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
         S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
         return S_t, a_t
@@ -146,7 +145,7 @@ class RNN_Attention(object):
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
             loss_krip = loss_sq / Z
-            loss = loss_krip + self.weight * loss_sq
+            loss = loss_krip
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
