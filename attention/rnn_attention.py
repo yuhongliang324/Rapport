@@ -60,6 +60,7 @@ class RNN_Attention(object):
 
         self.Ws, self.bs = [], []
 
+        '''
         num_layers = len(self.mlp_layers)
         for i in xrange(num_layers - 1):
             W, b = self.init_para(self.mlp_layers[i], self.mlp_layers[i + 1])
@@ -68,7 +69,10 @@ class RNN_Attention(object):
         for W in self.Ws:
             self.theta.append(W)
         for b in self.bs:
-            self.theta.append(b)
+            self.theta.append(b)'''
+
+        self.W_1, self.b_1 = self.init_para(self.input_dim, self.n_class)
+        self.theta += [self.W_1, self.b_1]
 
         # self.theta += [self.W_1, self.b_1, self.W_s, self.U_s, self.b_s]
         if self.update == 'adam':
@@ -141,8 +145,9 @@ class RNN_Attention(object):
         elif self.final_activation == 'sigmoid':
             rep = T.nnet.sigmoid(rep)
 
-        # rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
+        rep = T.dot(rep, self.W_1) + self.b_1  # (batch_size, n_class)
         is_train = T.iscalar('is_train')
+        '''
         numW = len(self.Ws)
         for i in xrange(numW - 1):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
@@ -155,7 +160,7 @@ class RNN_Attention(object):
             else:
                 rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
-        rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
+        rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]'''
         rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         if self.n_class > 1:
