@@ -154,7 +154,7 @@ class RNN_Attention(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-                'a': a, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+                'att': att, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc
         else:

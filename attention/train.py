@@ -61,7 +61,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
-    att, pred, loss, loss_krip = symbols['a'], symbols['pred'], symbols['loss'], symbols['loss_krip']
+    att, pred, loss, loss_krip = symbols['att'], symbols['pred'], symbols['loss'], symbols['loss_krip']
     cost, updates = symbols['cost'], symbols['updates']
 
     num_iter = int(ceil(n_train / float(batch_size)))
