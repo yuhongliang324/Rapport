@@ -54,7 +54,7 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, 1],
+    ra = RNN_Attention(input_dim, hidden_dim, [1],
                        drop=drop, final_activation=final_activation)
     symbols = ra.build_model()
 
