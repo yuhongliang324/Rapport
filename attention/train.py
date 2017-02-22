@@ -41,7 +41,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final_activation=None,
+def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
           hidden_dim=None, weight=None, batch_size=64, num_epoch=30):
 
     n_train = X_train.shape[0]
@@ -54,9 +54,7 @@ def train(X_train, y_train, X_test, y_test, model_name='naive', drop=0.25, final
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    print model_name
-
-    ra = RNN_Attention(input_dim, hidden_dim, 1, rnn=model_name,
+    ra = RNN_Attention(input_dim, hidden_dim, 1,
                        drop=drop, final_activation=final_activation, weight=weight)
     symbols = ra.build_model()
 

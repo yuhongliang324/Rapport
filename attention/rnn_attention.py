@@ -13,9 +13,8 @@ class RNN_Attention(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
     # Change lamb to smaller value for hog
-    def __init__(self, input_dim, hidden_dim, n_class, rnn='naive', lamb=0.0002, weight=0.25, update='adam',
+    def __init__(self, input_dim, hidden_dim, n_class, lamb=0., weight=0.25, update='adam',
                  drop=0.2, final_activation=None):
-        self.rnn = rnn
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = n_class
         self.lamb = lamb
@@ -26,8 +25,6 @@ class RNN_Attention(object):
         self.final_activation = final_activation
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
-
-        self.name = 'bi-' + self.rnn + '_attention'
 
         self.W_left_z, self.b_left_z = self.init_para(self.input_dim, self.hidden_dim)
         self.U_left_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
