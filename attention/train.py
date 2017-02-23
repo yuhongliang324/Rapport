@@ -127,7 +127,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False)
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False, best3=True)
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
@@ -136,7 +136,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    message = 'attention_decision_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
+    message = 'ad_best3_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
