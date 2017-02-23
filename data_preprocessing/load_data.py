@@ -8,8 +8,8 @@ import theano
 sys.path.append('../')
 
 from utils import load_feature_vision, get_ratings
-from data_path import sample_10_root, audio_root, ratings_file
-from sklearn.preprocessing import normalize, StandardScaler
+from data_path import sample_10_root, audio_root, ratings_file, ratings_best3_file
+from sklearn.preprocessing import normalize
 import random
 from scipy.io import loadmat
 
@@ -212,7 +212,11 @@ def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=Tru
     return X1, X2, y
 
 
-def load_ratings(rpath=ratings_file):
+def load_ratings(best3=False):
+    if not best3:
+        rpath = ratings_file
+    else:
+        rpath = ratings_best3_file
     reader = open(rpath)
     lines = reader.readlines()
     reader.close()
@@ -228,13 +232,13 @@ def load_ratings(rpath=ratings_file):
     return slice_rating
 
 
-def load_audio(root=audio_root, side='b', num_frame=300, normalization=True):
+def load_audio(root=audio_root, side='b', num_frame=300, normalization=True, best3=False):
     dyad_features = {}
     dyad_slices = {}
     dyad_ratings = {}
 
     valid_slices = get_valid_slices()
-    slice_rating = load_ratings()
+    slice_rating = load_ratings(best3=best3)
 
     files = os.listdir(root)
     files.sort()

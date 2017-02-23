@@ -6,7 +6,7 @@ from scipy.io import loadmat
 import numpy
 import math
 from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
-from data_path import info_root
+from data_path import info_root, ratings_best3_file
 from scipy.interpolate import interp1d
 
 
@@ -35,6 +35,7 @@ def rename(root):
 
 
 # The main function to get the slice ratings
+# Write ratings.txt
 def get_slice_ratings(rating_root, outfile):
     # The function called by the main slice rating function
     def get_slice_ratings2(rating_csv):
@@ -70,6 +71,20 @@ def get_slice_ratings(rating_root, outfile):
     writer = open(outfile, 'w')
     for slice, rating in slice_rating_sorted:
         writer.write(slice + ',' + str(rating) + '\n')
+    writer.close()
+
+
+# Write ratings_best.txt
+def get_slice_ratings_best3(out_file):
+    slice_ratings = get_ratings(best3=True)
+    slice_avgr = {}
+    for slice, rater_rating in slice_ratings.items():
+        avgr = sum(rater_rating.values()) / float(len(rater_rating.values()))
+        slice_avgr[slice] = avgr
+    slice_avgr_sorted = sorted(slice_avgr.iteritems(), key=lambda d: d[0])
+    writer = open(out_file, 'w')
+    for slice, avgr in slice_avgr_sorted:
+        writer.write(slice.replace('_', ',') + ',' + str(avgr) + '\n')
     writer.close()
 
 
@@ -123,7 +138,7 @@ def interpolate_features(X, suc):
     return f(ind)
 
 
-def get_ratings(rating_root=info_root):
+def get_ratings(rating_root=info_root, best3=True):
     slice_ratings = {}
 
     def get_ratings1(rating_csv):
@@ -149,10 +164,15 @@ def get_ratings(rating_root=info_root):
 
             str_ratings = sp[11:]
 
+            '''
             if SliceName in slice_ratings:
                 rater_rating = slice_ratings[SliceName]
             else:
-                rater_rating = {}
+                rater_rating = {}'''
+
+            # Cover directly:
+            rater_rating = {}
+
             for j, r in enumerate(str_ratings):
                 if r.isdigit():
                     rater_rating[raters[j]] = float(r)
@@ -166,11 +186,37 @@ def get_ratings(rating_root=info_root):
             slice_ratings[SliceName] = rater_rating
 
     files = os.listdir(rating_root)
+    files.sort()
     for fn in files:
         if not fn.endswith('csv'):
             continue
         get_ratings1(os.path.join(rating_root, fn))
+    if best3:
+        slice_ratings = get_best3(slice_ratings)
     return slice_ratings
+
+
+def get_best3(slice_ratings):
+    slice_ratings_best3 = {}
+    for slice, rater_rating in slice_ratings.items():
+        nrater = len(rater_rating)
+        if nrater <= 3:
+            slice_ratings_best3[slice] = rater_rating
+        else:
+            tmp = list(rater_rating.items())
+            min_var = 100000
+            ir1, ir2, ir3 = None, None, None
+            for i in xrange(nrater - 2):
+                for j in xrange(i + 1, nrater - 1):
+                    for k in xrange(j + 1, nrater):
+                        ri, rj, rk = tmp[i][1], tmp[j][1], tmp[k][1]
+                        var = numpy.var([ri, rj, rk])
+                        if var < min_var:
+                            min_var = var
+                            ir1, ir2, ir3 = i, j, k
+            rater_rating_best3 = {tmp[ir1][0]: tmp[ir1][1], tmp[ir2][0]: tmp[ir2][1], tmp[ir3][0]: tmp[ir3][1]}
+            slice_ratings_best3[slice] = rater_rating_best3
+    return slice_ratings_best3
 
 
 def get_coder(file_name):
@@ -274,5 +320,9 @@ def test3():
     get_rater_agreement(info_root, self_included=True)
 
 
+def test4():
+    get_slice_ratings_best3(ratings_best3_file)
+
+
 if __name__ == '__main__':
-    test3()
+    test4()
