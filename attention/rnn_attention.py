@@ -116,7 +116,6 @@ class RNN_Attention(object):
         att = T.nnet.softmax(att.T)  # (batch_size, n_step)
         X_tmp = T.transpose(X_batch, [1, 2, 0])  # (batch_size, input_dim, n_step)
         rep = T.batched_dot(X_tmp, att)  # (batch_size, input_dim)
-
         '''
         [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
                                 outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
