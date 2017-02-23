@@ -136,7 +136,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    message = feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
+    message = 'attention_decision_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
