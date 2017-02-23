@@ -42,7 +42,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 # model name can be added "-only" as suffix
 def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
-          hidden_dim=None, batch_size=64, num_epoch=30):
+          hidden_dim=None, batch_size=64, num_epoch=50): # !!!
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -54,7 +54,7 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, 1],
+    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, 1], dec=False,  # !!!
                        drop=drop, final_activation=final_activation)
     symbols = ra.build_model()
 
@@ -110,12 +110,12 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
             best_cost_val = cost_avg_val
             best_pred_val = pred_val
             best_epoch = epoch_index
-        if epoch_index - best_epoch >= 5 and epoch_index >= 15:
+        if epoch_index - best_epoch >= 5 and epoch_index >= 30: # !!!
             return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='sigmoid'):
+def cross_validation(feature_name='hog', side='b', drop=0., final_activation='sigmoid'):  # !!!
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -127,7 +127,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False, best3=True)
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False, best3=False)  # !!!
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
@@ -136,7 +136,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    message = 'ad_best3_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
+    message = 'attention_only_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)  # !!!
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
