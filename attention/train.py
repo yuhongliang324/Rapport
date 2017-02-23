@@ -128,7 +128,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=True)
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side)
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
@@ -163,7 +163,7 @@ def cross_validation(feature_name='hog', side='b', drop=0.25, final_activation='
         print 'RMSE of Average Prediction = %f' % rmse
         print X_train.shape, X_test.shape
         costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val\
-            = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
+            = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim, drop=drop, weight=weight,
                     final_activation=final_activation)
 
         img_path = os.path.join(img_root, 'dyad_' + str(dyad) + '.png')
