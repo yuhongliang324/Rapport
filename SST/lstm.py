@@ -111,8 +111,6 @@ class LSTM(object):
             pred = T.argmax(prob, axis=-1)
 
             acc = T.mean(T.eq(pred, y_batch))
-
-            # loss = T.mean(-T.log(prob[y_batch]))
             loss = T.mean(T.nnet.categorical_crossentropy(prob, y_batch))
         else:
             pred = rep[:, 0]
