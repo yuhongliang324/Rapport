@@ -132,7 +132,7 @@ def vectorize_data(file_name, token_vec, out_file):
     return Xs, ys
 
 
-def load_data(pkl_file, batch_size=8):
+def load_data(pkl_file, batch_size=32):
     reader = open(pkl_file)
     [Xs, ys] = cPickle.load(reader)
     reader.close()
