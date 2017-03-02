@@ -51,6 +51,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
 
     num_batches_train = len(X_batches_train)
     num_batches_val = len(X_batches_val)
+    num_batches_test = len(X_batches_test)
     for epoch_index in xrange(num_epoch):
         # Training
         cost_ep, acc_ep = 0., 0.
@@ -84,7 +85,6 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
         print '\tValidation cost = %f,\tAccuracy = %f' % (cost_ep, acc_ep)
 
         # Testing
-        num_batches_test = len(X_batches_test)
         cost_test, acc_test = 0., 0.
         total = 0.
         for iter_index in xrange(num_batches_test):
@@ -97,7 +97,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
             total += bs
         cost_test /= total
         acc_test /= total
-        print 'Test cost = %f,\tAccuracy = %f' % (cost_test, acc_test)
+        print '\tTest cost = %f,\tAccuracy = %f' % (cost_test, acc_test)
 
 
 def test1():
