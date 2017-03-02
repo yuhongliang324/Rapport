@@ -215,12 +215,11 @@ class RNN_Attention(object):
         # rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         if self.n_class > 1:
-            prob = T.nnet.softmax(rep)[0]
-            pred = T.argmax(prob)
+            prob = T.nnet.softmax(rep)
+            pred = T.argmax(prob, axis=-1)
 
             acc = T.mean(T.eq(pred, y_batch))
-
-            loss = T.mean(-T.log(prob[y_batch]))
+            loss = T.mean(T.nnet.categorical_crossentropy(prob, y_batch))
         else:
             pred = rep[:, 0]
             loss_sq = pred - y_batch
