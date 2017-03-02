@@ -107,7 +107,7 @@ class LSTM(object):
         # rep = dropout(rep, is_train, drop_ratio=self.drop)
 
         if self.n_class > 1:
-            prob = T.nnet.softmax(rep)[0]
+            prob = T.nnet.softmax(rep)
             s = T.shape(prob)
             pred = T.argmax(prob)
 
