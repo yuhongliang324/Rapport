@@ -59,7 +59,6 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
         for iter_index in xrange(num_batches_train):
             Xb_train.set_value(X_batches_train[iter_index])
             yb_train.set_value(y_batches_train[iter_index])
-            print X_batches_train[iter_index].shape
             cost, acc, pred, att = train_model(1)
             print iter_index, '/', num_batches_train, cost, acc
             bs = X_batches_train[iter_index].shape[1]
