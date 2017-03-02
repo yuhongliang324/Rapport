@@ -30,21 +30,23 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
 
     print 'Compiling function'
 
-    Xb_train, yb_train = theano.shared(X_batches_train[0], borrow=True), theano.shared(y_batches_train[0], borrow=True)
-    Xb_val, yb_val = theano.shared(X_batches_val[0], borrow=True), theano.shared(y_batches_val[0], borrow=True)
+    Xb_train = theano.shared(X_batches_train[0], borrow=True)
+    yb_train = theano.shared(y_batches_train[0].astype('int32'), borrow=True)
+    Xb_val = theano.shared(X_batches_val[0], borrow=True)
+    yb_val = theano.shared(y_batches_val[0].astype('int32'), borrow=True)
 
     train_model = theano.function(inputs=[is_train],
                                   outputs=[cost, acc, pred], updates=updates,
                                   givens={
-                                      X_batch: Xb_train,
-                                      y_batch: T.cast(yb_train, 'int32')},
+                                          X_batch: Xb_train,
+                                          y_batch: yb_train},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     valid_model = theano.function(inputs=[is_train],
                                   outputs=[cost, acc, pred],
                                   givens={
-                                      X_batch: Xb_val,
-                                      y_batch: T.cast(yb_val, 'int32')},
+                                          X_batch: Xb_val,
+                                          y_batch: yb_val},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
 
@@ -57,7 +59,8 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_batches_train):
             Xb_train.set_value(X_batches_train[iter_index])
-            yb_train.set_value(y_batches_train[iter_index])
+            yb_train.set_value(y_batches_train[iter_index].astype('int32'))
+            print Xb_train.get_value().shape, yb_train.get_value().shape
             cost, acc, pred = train_model(1)
             print iter_index, '/', num_batches_train, cost, acc
             bs = X_batches_train[iter_index].shape[1]
