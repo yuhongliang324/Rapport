@@ -3,6 +3,7 @@ import os
 import numpy
 import theano
 import cPickle
+import random
 
 
 data_root = 'processed_data/'
@@ -131,6 +132,51 @@ def vectorize_data(file_name, token_vec, out_file):
     return Xs, ys
 
 
+def load_data(pkl_file, batch_size=8):
+    reader = open(pkl_file)
+    [Xs, ys] = cPickle.load(reader)
+    reader.close()
+    ys = ys.tolist()
+    Xs, ys = sort_by_length(Xs, ys)
+    num = len(Xs)
+    X_batches, y_batches = [], []
+    start, end = 0, 0
+    while start < num:
+        end = min(num, start + batch_size)
+        len_start = Xs[start].shape[0]
+        while Xs[end - 1].shape[0] != len_start:
+            end -= 1
+        X_batches.append(numpy.stack(Xs[start: end]))
+        y_batches.append(numpy.asarray(ys[start: end]))
+        start = end
+    z = zip(X_batches, y_batches)
+    random.shuffle(z)
+    X_batches = [item[0] for item in z]
+    y_batches = [item[1] for item in z]
+
+    for Xb in X_batches:
+        print Xb.shape
+
+    print 'len', len(X_batches), len(y_batches)
+    return X_batches, y_batches
+
+
+def sort_by_length(Xs, ys):
+    def bylen(a, b):
+        if a[2] != b[2]:
+            return a[2] - b[2]
+        return a[3] - b[3]
+    lens = [len(vec) for vec in Xs]
+    num_sent = len(ys)
+    ind = range(num_sent)
+    random.shuffle(ind)
+    cb = zip(Xs, ys, lens, ind)
+    cb.sort(cmp=bylen)
+    Xs = [item[0] for item in cb]
+    ys = [item[1] for item in cb]
+    return Xs, ys
+
+
 def test1():
     tokens = get_dict()
     print len(tokens)
@@ -144,7 +190,10 @@ def test2():
     vectorize_data(test_file, token_vec, test_pkl)
 
 
-if __name__ == '__main__':
-    test2()
+def test3():
+    load_data(train_pkl)
 
+
+if __name__ == '__main__':
+    test3()
 
