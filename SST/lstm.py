@@ -108,6 +108,7 @@ class LSTM(object):
 
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)[0]
+            s = T.shape(prob)
             pred = T.argmax(prob)
 
             acc = T.mean(T.eq(pred, y_batch))
@@ -126,7 +127,7 @@ class LSTM(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'shape': s}
         if self.n_class > 1:
             ret['acc'] = acc
         else:
