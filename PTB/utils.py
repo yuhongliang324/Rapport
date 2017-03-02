@@ -62,8 +62,8 @@ def get_vectors(tokens, vec_file=wordvec_file, out_file=dict_pkl):
     reader.close()
     print len(token_vec)
     print token_vec['the'].shape
-    f = open(out_file, 'r')
-    cPickle.dump(token_vec, f)
+    f = open(out_file, 'wb')
+    cPickle.dump(token_vec, f, protocol=cPickle.HIGHEST_PROTOCOL)
     f.close()
     return token_vec
 
