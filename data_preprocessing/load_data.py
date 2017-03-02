@@ -13,7 +13,7 @@ from sklearn.preprocessing import normalize
 import random
 from scipy.io import loadmat
 
-n_class = 7
+n_class = 5
 
 
 def get_valid_slices():
