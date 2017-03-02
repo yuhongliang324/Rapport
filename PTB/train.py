@@ -103,7 +103,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
 
 def test1():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-hid', type=int, default=256)
+    parser.add_argument('-hid', type=int, default=100)
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-epoch', type=int, default=50)
     args = parser.parse_args()
