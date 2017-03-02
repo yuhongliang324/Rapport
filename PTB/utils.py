@@ -119,7 +119,7 @@ def vectorize_data(file_name, token_vec, out_file):
                 X.append(x_tmp)
             else:
                 X.append(token_vec[UNKNOWN])
-            X = numpy.stack(X)
+        X = numpy.stack(X)
         Xs.append(X)
         ys.append(y)
     ys = numpy.asarray(ys, dtype=theano.config.floatX)
