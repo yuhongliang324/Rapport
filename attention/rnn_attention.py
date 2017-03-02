@@ -15,7 +15,7 @@ class RNN_Attention(object):
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0.00005, dec=True, update='adam',
+    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, update='adam',
                  drop=0.2, final_activation=None):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
