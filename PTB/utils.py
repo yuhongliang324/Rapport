@@ -118,7 +118,7 @@ def vectorize_data(file_name, token_vec, out_file):
                 x_tmp = numpy.mean(x_tmp, axis=0)
                 X.append(x_tmp)
             else:
-                X.append(token_vec[tok])
+                X.append(token_vec[UNKNOWN])
         Xs.append(X)
         ys.append(y)
     ys = numpy.asarray(ys, dtype=theano.config.floatX)
