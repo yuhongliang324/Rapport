@@ -9,8 +9,17 @@ data_root = 'processed_data/'
 train_file = os.path.join(data_root, 'train.txt')
 valid_file = os.path.join(data_root, 'dev.txt')
 test_file = os.path.join(data_root, 'test.txt')
+
+train_pkl = os.path.join(data_root, 'train.pkl')
+valid_pkl = os.path.join(data_root, 'dev.pkl')
+test_pkl = os.path.join(data_root, 'test.pkl')
+
 wordvec_file = '/usr0/home/hongliay/word_vectors/glove.840B.300d.txt'
+
 dict_pkl = os.path.join(data_root, 'token_vec.pkl')
+
+UNKNOWN = '*UNKNOWN*'
+
 
 def get_dict():
     tokens = set()
@@ -68,13 +77,73 @@ def get_vectors(tokens, vec_file=wordvec_file, out_file=dict_pkl):
     return token_vec
 
 
+def load_dict(vec_file=wordvec_file):
+    reader = open(vec_file)
+    token_vec = cPickle.load(reader)
+    reader.close()
+    vecs = token_vec.values()
+    st = numpy.stack(vecs)
+    unk_vec = numpy.mean(st, axis=0)
+    token_vec[UNKNOWN] = unk_vec
+    return token_vec
+
+
+def vectorize_data(file_name, token_vec, out_file):
+    reader = open(file_name)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    Xs = []
+    ys = []
+    for line in lines:
+        sp = line.split()
+        y = int(sp[0])
+        X = []
+        for tok in sp[1:]:
+            if tok == '-lrb-':
+                tok = '('
+            elif tok == '-rrb-':
+                tok = ')'
+            if tok in token_vec:
+                X.append(token_vec[tok])
+            elif '-' in tok:
+                ts = tok.split('-')
+                x_tmp = []
+                for t in ts:
+                    if t in token_vec:
+                        x_tmp.append(token_vec[t])
+                    else:
+                        x_tmp.append(token_vec[UNKNOWN])
+                x_tmp = numpy.stack(x_tmp)
+                x_tmp = numpy.mean(x_tmp, axis=0)
+                X.append(x_tmp)
+            else:
+                X.append(token_vec[tok])
+        Xs.append(X)
+        ys.append(y)
+    ys = numpy.asarray(ys, dtype=theano.config.floatX)
+
+    f = open(out_file, 'wb')
+    cPickle.dump([Xs, ys], f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+
+    return Xs, ys
+
+
 def test1():
     tokens = get_dict()
     print len(tokens)
     get_vectors(tokens)
 
 
+def test2():
+    token_vec = load_dict()
+    vectorize_data(train_file, token_vec, train_pkl)
+    vectorize_data(valid_file, token_vec, valid_pkl)
+    vectorize_data(test_file, token_vec, test_pkl)
+
+
 if __name__ == '__main__':
-    test1()
+    test2()
 
 
