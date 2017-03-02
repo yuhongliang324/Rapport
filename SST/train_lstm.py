@@ -62,7 +62,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
             yb_train.set_value(y_batches_train[iter_index].astype('int32'))
             print Xb_train.get_value().shape, yb_train.get_value().shape
             cost, acc, pred = train_model(1)
-            print iter_index, '/', num_batches_train, cost, acc
+            print pred
             bs = X_batches_train[iter_index].shape[1]
             cost_ep += cost * bs
             acc_ep += acc * bs
@@ -76,7 +76,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
         total = 0.
         for iter_index in xrange(num_batches_val):
             Xb_val.set_value(X_batches_val[iter_index])
-            yb_val.set_value(y_batches_val[iter_index])
+            yb_val.set_value(y_batches_val[iter_index].astype('int32'))
             cost, acc, pred = valid_model(0)
             bs = X_batches_val[iter_index].shape[1]
             cost_ep += cost * bs
@@ -92,7 +92,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
     total = 0.
     for iter_index in xrange(num_batches_test):
         Xb_val.set_value(X_batches_test[iter_index])
-        yb_val.set_value(y_batches_test[iter_index])
+        yb_val.set_value(y_batches_test[iter_index].astype('int32'))
         cost, acc, pred = valid_model(0)
         bs = X_batches_test[iter_index].shape[1]
         cost_test += cost * bs
