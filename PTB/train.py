@@ -2,10 +2,9 @@ __author__ = 'yuhongliang324'
 
 import theano
 import theano.tensor as T
-
-from rnn_attention import RNN_Attention
 import sys
 sys.path.append('../')
+from attention.rnn_attention import RNN_Attention
 import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 
