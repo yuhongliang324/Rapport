@@ -77,7 +77,7 @@ def get_vectors(tokens, vec_file=wordvec_file, out_file=dict_pkl):
     return token_vec
 
 
-def load_dict(vec_file=wordvec_file):
+def load_dict(vec_file=dict_pkl):
     reader = open(vec_file, 'rb')
     token_vec = cPickle.load(reader)
     reader.close()
