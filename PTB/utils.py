@@ -59,6 +59,7 @@ def get_vectors(tokens, vec_file=wordvec_file):
         else:
             break
     print len(token_vec)
+    print token_vec['the'].shape
     return token_vec
 
 
