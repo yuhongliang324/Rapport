@@ -54,7 +54,7 @@ def get_vectors(tokens, vec_file=wordvec_file):
             vec = numpy.asarray(vec, dtype=theano.config.floatX)
             token_vec[tok] = vec
             count += 1
-            if count % 10000 == 0:
+            if count % 1000 == 0:
                 print count
         else:
             break
