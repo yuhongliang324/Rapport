@@ -20,7 +20,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
     X_batches_val = [Xb.transpose([1, 0, 2]) for Xb in X_batches_val]
     X_batches_test = [Xb.transpose([1, 0, 2]) for Xb in X_batches_test]
 
-    model = LSTM(input_dim, hidden_dim, [num_class], drop=drop)
+    model = LSTM(input_dim, hidden_dim, [hidden_dim, num_class], drop=drop)
     symbols = model.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -103,7 +103,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
 def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-hid', type=int, default=100)
-    parser.add_argument('-drop', type=float, default=0.5)
+    parser.add_argument('-drop', type=float, default=0.25)
     parser.add_argument('-epoch', type=int, default=50)
     args = parser.parse_args()
     train(drop=args.drop, hidden_dim=args.hid, num_epoch=args.epoch)
