@@ -179,10 +179,11 @@ class RNN_Attention(object):
                                             outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
             H_dec_backward = H_dec_backward[::-1]
             H_tmp = T.concatenate([H_dec_foward, H_dec_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
-            H_tmp = T.transpose(H_tmp, [1, 2, 0])  # (batch_size, input_dim, n_step)
+            H_tmp = T.transpose(H_tmp, [1, 2, 0])  # (batch_size, 2 * hidden_dim, n_step)
         else:
             H_tmp = T.transpose(X_batch, [1, 2, 0])  # (batch_size, input_dim, n_step)
-        rep = T.batched_dot(H_tmp, att)  # (batch_size, input_dim)
+        rep = T.batched_dot(H_tmp, att)  # (batch_size, 2 * hidden_dim or input_dim)
+        rep = H_att  # !!!
         '''
         [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
                                 outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
