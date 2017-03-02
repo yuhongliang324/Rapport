@@ -2,6 +2,7 @@ __author__ = 'yuhongliang324'
 import os
 import numpy
 import theano
+import cPickle
 
 
 data_root = 'processed_data/'
@@ -9,7 +10,7 @@ train_file = os.path.join(data_root, 'train.txt')
 valid_file = os.path.join(data_root, 'dev.txt')
 test_file = os.path.join(data_root, 'test.txt')
 wordvec_file = '/usr0/home/hongliay/word_vectors/glove.840B.300d.txt'
-
+dict_pkl = os.path.join(data_root, 'token_vec.pkl')
 
 def get_dict():
     tokens = set()
@@ -38,7 +39,7 @@ def get_dict():
     return tokens
 
 
-def get_vectors(tokens, vec_file=wordvec_file):
+def get_vectors(tokens, vec_file=wordvec_file, out_file=dict_pkl):
     token_vec = {}
     reader = open(vec_file)
     count = 0
@@ -58,8 +59,12 @@ def get_vectors(tokens, vec_file=wordvec_file):
             token_vec[tok] = vec
         else:
             break
+    reader.close()
     print len(token_vec)
     print token_vec['the'].shape
+    f = open(out_file, 'r')
+    cPickle.dump(token_vec, f)
+    f.close()
     return token_vec
 
 
