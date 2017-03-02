@@ -20,6 +20,7 @@ wordvec_file = '/usr0/home/hongliay/word_vectors/glove.840B.300d.txt'
 dict_pkl = os.path.join(data_root, 'token_vec.pkl')
 
 UNKNOWN = '*UNKNOWN*'
+num_class = 5
 
 
 def get_dict():
@@ -154,10 +155,6 @@ def load_data(pkl_file, batch_size=32):
     X_batches = [item[0] for item in z]
     y_batches = [item[1] for item in z]
 
-    for Xb in X_batches:
-        print Xb.shape
-
-    print 'len', len(X_batches), len(y_batches)
     return X_batches, y_batches
 
 
