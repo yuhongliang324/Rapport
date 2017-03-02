@@ -45,6 +45,9 @@ def get_vectors(tokens, vec_file=wordvec_file):
     while True:
         line = reader.readline()
         if line:
+            count += 1
+            if count % 100000 == 0:
+                print count
             line = line.strip()
             sp = line.split()
             if sp[0] not in tokens:
@@ -53,9 +56,6 @@ def get_vectors(tokens, vec_file=wordvec_file):
             vec = [float(x) for x in sp[1:]]
             vec = numpy.asarray(vec, dtype=theano.config.floatX)
             token_vec[tok] = vec
-            count += 1
-            if count % 1000 == 0:
-                print count
         else:
             break
     print len(token_vec)
