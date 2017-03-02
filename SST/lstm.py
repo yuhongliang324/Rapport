@@ -102,18 +102,16 @@ class LSTM(object):
             rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
         rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
-        rep = dropout(rep, is_train, drop_ratio=self.drop)
-
-        # rep = dropout(rep, is_train, drop_ratio=self.drop)
+        rep = dropout(rep, is_train, drop_ratio=self.drop)  # (batch_size, num_class)
 
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)
-            s = T.shape(prob)
-            pred = T.argmax(prob)
+            pred = T.argmax(prob, axis=-1)
 
             acc = T.mean(T.eq(pred, y_batch))
 
-            loss = T.mean(-T.log(prob[y_batch]))
+            # loss = T.mean(-T.log(prob[y_batch]))
+            loss = T.mean(T.nnet.categorical_crossentropy(prob, y_batch))
         else:
             pred = rep[:, 0]
             loss_sq = pred - y_batch
@@ -127,7 +125,7 @@ class LSTM(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'shape': s}
+                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc
         else:

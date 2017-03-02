@@ -1,7 +1,6 @@
 __author__ = 'yuhongliang324'
 
 import theano
-import theano.tensor as T
 import sys
 sys.path.append('../')
 from lstm import LSTM
@@ -27,7 +26,6 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
     pred, loss, acc = symbols['pred'], symbols['loss'], symbols['acc']
     cost, updates = symbols['cost'], symbols['updates']
-    s = symbols['shape']
 
     print 'Compiling function'
 
@@ -37,7 +35,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
     yb_val = theano.shared(y_batches_val[0].astype('int32'), borrow=True)
 
     train_model = theano.function(inputs=[is_train],
-                                  outputs=[cost, acc, pred, s], updates=updates,
+                                  outputs=[cost, acc, pred], updates=updates,
                                   givens={
                                           X_batch: Xb_train,
                                           y_batch: yb_train},
@@ -62,9 +60,8 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
             Xb_train.set_value(X_batches_train[iter_index])
             yb_train.set_value(y_batches_train[iter_index].astype('int32'))
             print Xb_train.get_value().shape, yb_train.get_value().shape
-            cost, acc, pred, s = train_model(1)
+            cost, acc, pred = train_model(1)
             print iter_index, '/', num_batches_train, cost, acc
-            print s
             bs = X_batches_train[iter_index].shape[1]
             cost_ep += cost * bs
             acc_ep += acc * bs
