@@ -21,8 +21,8 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
     X_batches_val = [Xb.transpose([1, 0, 2]) for Xb in X_batches_val]
     X_batches_test = [Xb.transpose([1, 0, 2]) for Xb in X_batches_test]
 
-    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, num_class],
-                       drop=drop, final_activation=None, update='sgd')
+    ra = RNN_Attention(input_dim, hidden_dim, [num_class],
+                       drop=drop, final_activation=None)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
