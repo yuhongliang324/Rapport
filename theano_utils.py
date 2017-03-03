@@ -44,7 +44,7 @@ def Adam2(cost, params, lr=0.001, b1=0.9, b2=0.999, e=1e-8):
     return updates
 
 
-def AdaGrad(cost, params, learning_rate=1., epsilon=1e-6):
+def AdaGrad(cost, params, learning_rate=0.01, epsilon=1e-6):
     grads = T.grad(cost=cost, wrt=params)
     updates = OrderedDict()
 
