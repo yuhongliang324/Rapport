@@ -22,7 +22,7 @@ class LSTM(object):
         self.lamb = lamb
         self.bidirection = bidirection
         if self.bidirection:
-            self.mlp_layers = [2 * hidden_dim] + mlp_layers
+            self.mlp_layers = [hidden_dim] + mlp_layers  # !!!
         else:
             self.mlp_layers = [hidden_dim] + mlp_layers
         self.drop = drop
@@ -106,7 +106,8 @@ class LSTM(object):
                                          outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                        T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
             H_back = H_back[::-1]
-            rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)
+            # rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)
+            rep = (rep + H_back[0]) / 2.
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
