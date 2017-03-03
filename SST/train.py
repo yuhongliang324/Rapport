@@ -9,7 +9,7 @@ import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 
 
-def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
+def train(drop=0., hidden_dim=None, batch_size=25, num_epoch=20):
 
     X_batches_train, y_batches_train = load_data(train_pkl, batch_size=batch_size)
     X_batches_val, y_batches_val = load_data(valid_pkl, batch_size=batch_size)
