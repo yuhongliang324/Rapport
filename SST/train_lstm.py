@@ -8,7 +8,7 @@ import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 
 
-def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, batch_size=32, num_epoch=10):
+def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam2', batch_size=25, num_epoch=10):
 
     X_batches_train, y_batches_train = load_data(train_pkl, batch_size=batch_size)
     X_batches_val, y_batches_val = load_data(valid_pkl, batch_size=batch_size)
@@ -20,7 +20,7 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, batch_size=3
     X_batches_val = [Xb.transpose([1, 0, 2]) for Xb in X_batches_val]
     X_batches_test = [Xb.transpose([1, 0, 2]) for Xb in X_batches_test]
 
-    model = LSTM(input_dim, hidden_dim, [num_class], drop=drop, lamb=lamb, bidirection=bidirection)
+    model = LSTM(input_dim, hidden_dim, [num_class], drop=drop, lamb=lamb, bidirection=bidirection, update=update)
     symbols = model.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -107,8 +107,10 @@ def test1():
     parser.add_argument('-epoch', type=int, default=10)
     parser.add_argument('-lamb', type=float, default=0.0001)
     parser.add_argument('-bi', type=bool, default=True)
+    parser.add_argument('update', type=str, default='adam2')
     args = parser.parse_args()
-    train(drop=args.drop, hidden_dim=args.hid, lamb=args.lamb, bidirection=args.bi, num_epoch=args.epoch)
+    train(drop=args.drop, hidden_dim=args.hid, lamb=args.lamb, bidirection=args.bi,
+          update=args.update, num_epoch=args.epoch)
 
 
 if __name__ == '__main__':
