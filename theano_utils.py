@@ -56,7 +56,7 @@ def RMSprop(cost, params, lr=0.001, rho=0.9, epsilon=1e-6):
     return updates
 
 
-def SGD(cost, params, learning_rate=0.01):
+def SGD(cost, params, learning_rate=0.1):
     grads = T.grad(cost=cost, wrt=params)
     updates = []
     for n, (param, grad) in enumerate(zip(params, grads)):
