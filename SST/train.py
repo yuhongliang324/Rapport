@@ -9,7 +9,7 @@ import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 
 
-def train(drop=0., hidden_dim=None, batch_size=25, num_epoch=20):
+def train(drop=0., hidden_dim=None, lamb=0., batch_size=25, num_epoch=20):
 
     X_batches_train, y_batches_train = load_data(train_pkl, batch_size=batch_size)
     X_batches_val, y_batches_val = load_data(valid_pkl, batch_size=batch_size)
@@ -21,7 +21,7 @@ def train(drop=0., hidden_dim=None, batch_size=25, num_epoch=20):
     X_batches_val = [Xb.transpose([1, 0, 2]) for Xb in X_batches_val]
     X_batches_test = [Xb.transpose([1, 0, 2]) for Xb in X_batches_test]
 
-    ra = RNN_Attention(input_dim, hidden_dim, [num_class],
+    ra = RNN_Attention(input_dim, hidden_dim, [num_class], lamb=lamb,
                        drop=drop, final_activation=None, update='adam2')
     symbols = ra.build_model()
 
@@ -106,8 +106,9 @@ def test1():
     parser.add_argument('-hid', type=int, default=100)
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-epoch', type=int, default=50)
+    parser.add_argument('-lamb', type=float, default=0.0001)
     args = parser.parse_args()
-    train(drop=args.drop, hidden_dim=args.hid, num_epoch=args.epoch)
+    train(drop=args.drop, hidden_dim=args.hid, num_epoch=args.epoch, lamb=args.lamb)
 
 
 if __name__ == '__main__':
