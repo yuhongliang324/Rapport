@@ -107,7 +107,7 @@ def test1():
     parser.add_argument('-epoch', type=int, default=10)
     parser.add_argument('-lamb', type=float, default=0.0001)
     parser.add_argument('-bi', type=bool, default=True)
-    parser.add_argument('update', type=str, default='adam2')
+    parser.add_argument('-update', type=str, default='adam2')
     args = parser.parse_args()
     train(drop=args.drop, hidden_dim=args.hid, lamb=args.lamb, bidirection=args.bi,
           update=args.update, num_epoch=args.epoch)
