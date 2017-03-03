@@ -16,11 +16,15 @@ class LSTM(object):
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
     def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2',
-                 drop=0.2):
+                 drop=0.2, bidirection=False):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
-        self.mlp_layers = [hidden_dim] + mlp_layers
+        self.bidirection = bidirection
+        if self.bidirection:
+            self.mlp_layers = [2 * hidden_dim] + mlp_layers
+        else:
+            self.mlp_layers = [hidden_dim] + mlp_layers
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
@@ -94,8 +98,13 @@ class LSTM(object):
         [_, H], _ = theano.scan(self.forward, sequences=X_batch,
                                 outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                               T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-
         rep = H[-1]  # (batch_size, hidden_dim)
+        if self.bidirection:
+            [_, H_back], _ = theano.scan(self.forward, sequences=X_batch[::-1],
+                                         outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
+                                                       T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
+            H_back = H_back[::-1]
+            rep = T.concatenate([rep, H_back[-1]], axis=1)  # (batch_size, hidden_dim)
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
