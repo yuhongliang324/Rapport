@@ -56,7 +56,7 @@ def RMSprop(cost, params, lr=0.001, rho=0.9, epsilon=1e-6):
     return updates
 
 
-def SGD(cost, params, learning_rate=0.1):
+def SimpleSGD(cost, params, learning_rate=0.01):
     grads = T.grad(cost=cost, wrt=params)
     updates = []
     for n, (param, grad) in enumerate(zip(params, grads)):
@@ -65,6 +65,45 @@ def SGD(cost, params, learning_rate=0.1):
 
 theano_seed = numpy.random.randint(2 ** 30)
 theano_rng = RandomStreams(theano_seed)
+
+
+def SGD(cost, params, learning_rate=0.01, momentum=0.9):
+    '''
+    Compute updates for gradient descent with momentum
+
+    :parameters:
+        - cost : theano.tensor.var.TensorVariable
+            Theano cost function to minimize
+        - params : list of theano.tensor.var.TensorVariable
+            Parameters to compute gradient against
+        - learning_rate : float
+            Gradient descent learning rate
+        - momentum : float
+            Momentum parameter, should be at least 0 (standard gradient descent) and less than 1
+
+    :returns:
+        updates : list
+            List of updates, one for each parameter
+    '''
+    # Make sure momentum is a sane value
+    assert 0 <= momentum < 1
+    # List of update steps for each parameter
+    updates = []
+    # Just gradient descent on cost
+    for param in params:
+        # For each parameter, we'll create a previous_step shared variable.
+        # This variable will keep track of the parameter's update step across iterations.
+        # We initialize it to 0
+        previous_step = theano.shared(param.get_value()*0., broadcastable=param.broadcastable)
+        # Each parameter is updated by taking a step in the direction of the gradient.
+        # However, we also "mix in" the previous step according to the given momentum value.
+        # Note that we don't need to derive backpropagation to compute updates - just use T.grad!
+        step = momentum*previous_step - learning_rate*T.grad(cost, param)
+        # Add an update to store the previous step value
+        updates.append((previous_step, step))
+        # Add an update to apply the gradient descent step to the parameter itself
+        updates.append((param, param + step))
+    return updates
 
 
 def dropout(layer, is_train, drop_ratio=0.5):
