@@ -106,7 +106,7 @@ class LSTM(object):
                                          outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
                                                        T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
             H_back = H_back[::-1]
-            rep = T.concatenate([rep, H_back[-1]], axis=1)  # (batch_size, 2 * hidden_dim)
+            rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
