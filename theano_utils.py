@@ -3,6 +3,7 @@ import theano
 import theano.tensor as T
 from theano.tensor.shared_randomstreams import RandomStreams
 import numpy
+from collections import OrderedDict
 
 
 def Adam(cost, params, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
@@ -40,6 +41,22 @@ def Adam2(cost, params, lr=0.001, b1=0.9, b2=0.999, e=1e-8):
         updates.append((m, m_t))
         updates.append((v, v_t))
         updates.append((p, p_t))
+    return updates
+
+
+def AdaGrad(cost, params, learning_rate=1., epsilon=1e-6):
+    grads = T.grad(cost=cost, wrt=params)
+    updates = OrderedDict()
+
+    for param, grad in zip(params, grads):
+        value = param.get_value(borrow=True)
+        accu = theano.shared(numpy.zeros(value.shape, dtype=value.dtype),
+                             broadcastable=param.broadcastable)
+        accu_new = accu + grad ** 2
+        updates[accu] = accu_new
+        updates[param] = param - (learning_rate * grad /
+                                  T.sqrt(accu_new + epsilon))
+
     return updates
 
 

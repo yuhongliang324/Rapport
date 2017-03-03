@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from theano_utils import Adam, Adam2, RMSprop, SGD, dropout
+from theano_utils import Adam, Adam2, AdaGrad, RMSprop, SGD, dropout
 
 
 class LSTM(object):
@@ -58,6 +58,8 @@ class LSTM(object):
             self.optimize = Adam
         elif self.update == 'adam2':
             self.optimize = Adam2
+        elif self.update == 'adagrad':
+            self.optimize = AdaGrad
         elif self.update == 'rmsprop':
             self.optimize = RMSprop
         else:
