@@ -8,7 +8,7 @@ import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 
 
-def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
+def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=10):
 
     X_batches_train, y_batches_train = load_data(train_pkl, batch_size=batch_size)
     X_batches_val, y_batches_val = load_data(valid_pkl, batch_size=batch_size)
@@ -103,7 +103,7 @@ def train(drop=0., hidden_dim=None, batch_size=32, num_epoch=50):
 def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-hid', type=int, default=100)
-    parser.add_argument('-drop', type=float, default=0.)
+    parser.add_argument('-drop', type=float, default=0.5)
     parser.add_argument('-epoch', type=int, default=50)
     args = parser.parse_args()
     train(drop=args.drop, hidden_dim=args.hid, num_epoch=args.epoch)
