@@ -24,7 +24,7 @@ def process_to_single_file(pos_path, neg_path, out_file):
             reader = open(fp)
             lines = reader.readlines()
             reader.close()
-            if len(lines) > 1:
+            if len(lines) == 1:
                 print len(lines)
     write_file(pos_path)
     write_file(neg_path)
