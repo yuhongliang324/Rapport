@@ -8,6 +8,7 @@ import cPickle
 import numpy
 import theano
 from collections import defaultdict
+import random
 
 
 origin_data_root = '/usr0/home/hongliay/datasets/aclImdb/'
@@ -145,6 +146,47 @@ def vectorize_data(file_name, token_ID, out_file):
     f.close()
 
     return xs, ys
+
+
+def load_data(pkl_file, batch_size=32):
+    reader = open(pkl_file)
+    [xs, ys] = cPickle.load(reader)
+    reader.close()
+    xs, ys = SU.sort_by_length(xs, ys)
+    lengths = [len(x) for x in xs]
+
+    n = len(xs)
+    num_batch = n // batch_size
+    start_batches, end_batches, len_batches = [], [], []
+    xs_short = []
+    for i in xrange(num_batch):
+        start, end = i * batch_size, min((i + 1) * batch_size, n)
+        length = lengths[start]
+        for j in xrange(start, end):
+            dif = (lengths[j] - length) // 2
+            xs_short.append(xs[j][dif: dif + length])
+        start_batches.append(start)
+        end_batches.append(end)
+        len_batches.append(length)
+
+    # Pad xs_short
+    maxLen = len_batches[-1]
+    X = numpy.zeros((n, maxLen), dtype=theano.config.floatX) - 1.
+    for i in xrange(num_batch):
+        start, end = start_batches[i], end_batches[i]
+        length = len_batches[i]
+        for j in xrange(start, end):
+            X[j, :length] = numpy.asarray(xs_short[j], dtype='int32')
+    y = numpy.asarray(ys, dtype='int32')
+
+    # shuffle start_batches, end_batches, len_batches
+    z = zip(start_batches, end_batches, len_batches)
+    random.shuffle(z)
+    start_batches = [item[0] for item in z]
+    end_batches = [item[1] for item in z]
+    len_batches = [item[2] for item in z]
+
+    return X, y, start_batches, end_batches, len_batches
 
 
 def test1():
