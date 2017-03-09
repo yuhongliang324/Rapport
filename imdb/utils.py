@@ -4,6 +4,10 @@ from nltk import word_tokenize
 import sys
 sys.path.append('..')
 from SST import utils as SU
+import cPickle
+import numpy
+import theano
+from collections import defaultdict
 
 
 origin_data_root = '/usr0/home/hongliay/datasets/aclImdb/'
@@ -74,6 +78,46 @@ def get_dict():
     return tokens
 
 
+def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
+    token_vec = {}
+    reader = open(vec_file)
+    count = 0
+    while True:
+        line = reader.readline()
+        if line:
+            count += 1
+            if count % 100000 == 0:
+                print count
+            line = line.strip()
+            sp = line.split()
+            if sp[0] not in tokens:
+                continue
+            tok = sp[0]
+            vec = [float(x) for x in sp[1:]]
+            vec = numpy.asarray(vec, dtype=theano.config.floatX)
+            token_vec[tok] = vec
+        else:
+            break
+    reader.close()
+    V = len(token_vec)
+    print V
+
+    E = numpy.zeros((V + 1, token_vec['the'].shape[0]))
+    token_ID = defaultdict(int)
+    curID = 1
+
+    for token, vec in token_vec.items():
+        token_ID[token] = curID
+        E[curID, :] = vec
+        curID += 1
+    E[0, :] = numpy.mean(E[1:], axis=0)
+
+    f = open(out_file, 'wb')
+    cPickle.dump([token_ID, E], f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+    return token_vec
+
+
 def test1():
     process_to_single_file(origin_train_pos_root, origin_train_neg_root, train_file)
     process_to_single_file(origin_test_pos_root, origin_test_neg_root, test_file)
@@ -82,7 +126,7 @@ def test1():
 def test2():
     tokens = get_dict()
     print len(tokens)
-    SU.get_vectors(tokens, out_file=dict_pkl)
+    get_vectors(tokens, out_file=dict_pkl)
 
 
 if __name__ == '__main__':
