@@ -62,7 +62,8 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             cost, acc, pred = train_model(start, end, length, 1)
-            print '\titer = %d / %d, Cost = %f, Acc = %f' % (iter_index + 1, num_batches_train, cost, acc)
+            if (iter_index + 1) % 10 == 0:
+                print '\titer = %d / %d, Cost = %f, Acc = %f' % (iter_index + 1, num_batches_train, cost, acc)
             bs = end - start
             cost_ep += cost * bs
             acc_ep += acc * bs
@@ -78,6 +79,8 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
             start, end = start_batches_test[iter_index], end_batches_test[iter_index]
             length = len_batches_test[iter_index]
             cost, acc, pred = test_model(start, end, length, 0)
+            if (iter_index + 1) % 10 == 0:
+                print '\titer = %d / %d, Cost = %f, Acc = %f' % (iter_index + 1, num_batches_test, cost, acc)
             bs = end - start
             cost_test += cost * bs
             acc_test += acc * bs
