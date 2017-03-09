@@ -37,7 +37,7 @@ def process_to_single_file(pos_path, neg_path, out_file):
             line = line.replace('<br />', ' ')
             tokens = word_tokenize(line)
             line = ' '.join(tokens)
-            writer.write(str(label) + ' ' + line)
+            writer.write(str(label) + ' ' + line + '\n')
 
     write_file(pos_path, POSITIVE)
     write_file(neg_path, NEGATIVE)
