@@ -32,13 +32,12 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
     y_batch, is_train = symbols['y_batch'], symbols['is_train']
     pred, loss, acc = symbols['pred'], symbols['loss'], symbols['acc']
     cost, updates = symbols['cost'], symbols['updates']
-    X_batch = symbols['X_batch']
 
     print 'Compiling function'
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     train_model = theano.function(inputs=[start_symbol, end_symbol, n_step, is_train],
-                                  outputs=[cost, acc, pred, X_batch], updates=updates,
+                                  outputs=[cost, acc, pred], updates=updates,
                                   givens={E_sym: E_shared,
                                           ID_batch: ID_train[start_symbol: end_symbol],
                                           y_batch: y_train[start_symbol: end_symbol]},
@@ -62,10 +61,8 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
         for iter_index in xrange(num_batches_train):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            cost, acc, pred, xb = train_model(start, end, length, 1)
-            print length
+            cost, acc, pred = train_model(start, end, length, 1)
             print '\titer = %d / %d, Cost = %f, Acc = %f' % (iter_index + 1, num_batches_train, cost, acc)
-            print xb.shape
             bs = end - start
             cost_ep += cost * bs
             acc_ep += acc * bs
