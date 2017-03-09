@@ -143,6 +143,7 @@ class LSTM(object):
         ret = {'E': E, 'n_step': n_step, 'ID_batch': ID_batch,
                'y_batch': y_batch, 'is_train': is_train,
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+        ret['X_batch'] = X_batch
         if self.n_class > 1:
             ret['acc'] = acc
         else:
