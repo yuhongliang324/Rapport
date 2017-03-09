@@ -19,6 +19,7 @@ origin_test_neg_root = os.path.join(origin_data_root, 'test/neg/')
 
 POSITIVE = 0
 NEGATIVE = 1
+num_class = 2
 
 data_root = os.path.join(origin_data_root, 'processed_data/')
 train_file = os.path.join(data_root, 'train.txt')
@@ -120,9 +121,9 @@ def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
 
 def load_dict(vec_file=dict_pkl):
     reader = open(vec_file, 'rb')
-    token_ID, _ = cPickle.load(reader)
+    token_ID, E = cPickle.load(reader)
     reader.close()
-    return token_ID
+    return token_ID, E
 
 
 def vectorize_data(file_name, token_ID, out_file):
@@ -183,8 +184,11 @@ def load_data(pkl_file, batch_size=32):
     z = zip(start_batches, end_batches, len_batches)
     random.shuffle(z)
     start_batches = [item[0] for item in z]
+    start_batches = numpy.asarray(start_batches, dtype='int32')
     end_batches = [item[1] for item in z]
+    end_batches = numpy.asarray(end_batches, dtype='int32')
     len_batches = [item[2] for item in z]
+    len_batches = numpy.asarray(len_batches, dtype='int32')
 
     return X, y, start_batches, end_batches, len_batches
 
@@ -201,7 +205,7 @@ def test2():
 
 
 def test3():
-    token_ID = load_dict()
+    token_ID, _ = load_dict()
     vectorize_data(train_file, token_ID, train_pkl)
     vectorize_data(test_file, token_ID, test_pkl)
 
