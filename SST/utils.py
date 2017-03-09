@@ -6,7 +6,7 @@ import cPickle
 import random
 
 
-data_root = 'processed_data/'
+data_root = '/usr0/home/hongliay/datasets/SST/processed_data/'
 train_file = os.path.join(data_root, 'train.txt')
 valid_file = os.path.join(data_root, 'dev.txt')
 test_file = os.path.join(data_root, 'test.txt')
