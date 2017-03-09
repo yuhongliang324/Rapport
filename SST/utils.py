@@ -17,7 +17,7 @@ test_pkl = os.path.join(data_root, 'test.pkl')
 
 wordvec_file = '/usr0/home/hongliay/word_vectors/glove.840B.300d.txt'
 
-dict_pkl = os.path.join(data_root, 'token_vec.pkl')
+dict_pkl = os.path.join(data_root, 'dict.pkl')
 
 UNKNOWN = '*UNKNOWN*'
 num_class = 5

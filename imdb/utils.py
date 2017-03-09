@@ -22,7 +22,11 @@ NEGATIVE = 1
 data_root = os.path.join(origin_data_root, 'processed_data/')
 train_file = os.path.join(data_root, 'train.txt')
 test_file = os.path.join(data_root, 'test.txt')
+
 dict_pkl = os.path.join(data_root, 'token_vec.pkl')
+
+train_pkl = os.path.join(data_root, 'train.pkl')
+test_pkl = os.path.join(data_root, 'test.pkl')
 
 
 def process_to_single_file(pos_path, neg_path, out_file):
@@ -64,10 +68,6 @@ def get_dict():
             words = line.split()
             num_words = len(words)
             for i in xrange(1, num_words):
-                if words[i] == '-lrb-':
-                    words[i] = '('
-                elif words[i] == '-rrb-':
-                    words[i] = ')'
                 tokens.add(words[i])
                 if '-' in words[i]:
                     for w in words[i].split('-'):
@@ -115,7 +115,36 @@ def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
     f = open(out_file, 'wb')
     cPickle.dump([token_ID, E], f, protocol=cPickle.HIGHEST_PROTOCOL)
     f.close()
-    return token_vec
+
+
+def load_dict(vec_file=dict_pkl):
+    reader = open(vec_file, 'rb')
+    token_ID, _ = cPickle.load(reader)
+    reader.close()
+    return token_ID
+
+
+def vectorize_data(file_name, token_ID, out_file):
+    reader = open(file_name)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    xs = []
+    ys = []
+    for line in lines:
+        sp = line.split()
+        y = int(sp[0])
+        x = []
+        for tok in sp[1:]:
+            x.append(token_ID[tok])
+        xs.append(x)
+        ys.append(y)
+
+    f = open(out_file, 'wb')
+    cPickle.dump([xs, ys], f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+
+    return xs, ys
 
 
 def test1():
@@ -129,5 +158,10 @@ def test2():
     get_vectors(tokens, out_file=dict_pkl)
 
 
+def test3():
+    token_ID = load_dict()
+    vectorize_data(train_file, token_ID, train_pkl)
+    vectorize_data(test_file, token_ID, test_pkl)
+
 if __name__ == '__main__':
-    test2()
+    test3()
