@@ -172,7 +172,7 @@ def load_data(pkl_file, batch_size=32):
 
     # Pad xs_short
     maxLen = len_batches[-1]
-    X = numpy.zeros((n, maxLen), dtype=theano.config.floatX) - 1.
+    X = numpy.zeros((n, maxLen), dtype='int32') - 1.
     for i in xrange(num_batch):
         start, end = start_batches[i], end_batches[i]
         length = len_batches[i]
