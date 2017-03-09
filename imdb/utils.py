@@ -23,7 +23,7 @@ data_root = os.path.join(origin_data_root, 'processed_data/')
 train_file = os.path.join(data_root, 'train.txt')
 test_file = os.path.join(data_root, 'test.txt')
 
-dict_pkl = os.path.join(data_root, 'token_vec.pkl')
+dict_pkl = os.path.join(data_root, 'dict.pkl')
 
 train_pkl = os.path.join(data_root, 'train.pkl')
 test_pkl = os.path.join(data_root, 'test.pkl')
