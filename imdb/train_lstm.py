@@ -21,7 +21,7 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
     ID_test = T.cast(theano.shared(X_test, borrow=True), 'int32')
     y_test = theano.shared(y_test, borrow=True)
 
-    E_shared = theano.shared(E, borrow=True)
+    E_shared = theano.shared(E.astype(theano.config.floatX), borrow=True)
 
     input_dim = E.shape[-1]
 
