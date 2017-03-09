@@ -89,7 +89,7 @@ class LSTM(object):
 
     def build_model(self):
         E = T.matrix()  # (V, input_dim)
-        n_step = T.ivector()  # int
+        n_step = T.iscalar()  # int
         ID_batch = T.imatrix()  # (batch_size, maxLen)
         ID_batch = ID_batch[:, :n_step]  # (batch_size, n_step)
         X_batch = E[ID_batch]  # (batch_size, n_step, input_dim)
