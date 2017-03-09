@@ -91,8 +91,8 @@ class LSTM(object):
         E = T.matrix()  # (V, input_dim)
         n_step = T.iscalar()  # int
         ID_batch = T.imatrix()  # (batch_size, maxLen)
-        ID_batch = ID_batch[:, :n_step]  # (batch_size, n_step)
-        X_batch = E[ID_batch]  # (batch_size, n_step, input_dim)
+        ID_batch_cut = ID_batch[:, :n_step]  # (batch_size, n_step)
+        X_batch = E[ID_batch_cut]  # (batch_size, n_step, input_dim)
         X_batch = T.transpose(X_batch, (1, 0, 2))  # (n_step, batch_size, input_dim)
         if self.n_class > 1:
             y_batch = T.ivector()  # (batch_size,)
