@@ -16,9 +16,9 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
     X_test, y_test, start_batches_test, end_batches_test, len_batches_test\
         = load_data(test_pkl, batch_size=batch_size)
     _, E = load_dict()
-    ID_train = theano.shared(X_train, borrow=True)
+    ID_train = T.cast(theano.shared(X_train, borrow=True), 'int32')
     y_train = theano.shared(y_train, borrow=True)
-    ID_test = theano.shared(X_test, borrow=True)
+    ID_test = T.cast(theano.shared(X_test, borrow=True), 'int32')
     y_test = theano.shared(y_test, borrow=True)
 
     E_shared = theano.shared(E, borrow=True)
