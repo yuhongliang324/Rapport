@@ -27,7 +27,8 @@ def process_to_single_file(pos_path, neg_path, out_file):
         for i, fn in enumerate(files):
             if not fn.endswith('txt'):
                 continue
-            print i + 1, '/', num_files
+            if (i + 1) % 1000 == 0:
+                print i + 1, '/', num_files
             fp = os.path.join(dir_path, fn)
             reader = open(fp)
             lines = reader.readlines()
