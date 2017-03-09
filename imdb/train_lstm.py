@@ -63,6 +63,7 @@ def train(drop=0., hidden_dim=None, lamb=0.0001, bidirection=False, update='adam
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             cost, acc, pred, xb = train_model(start, end, length, 1)
+            print length
             print '\titer = %d / %d, Cost = %f, Acc = %f' % (iter_index + 1, num_batches_train, cost, acc)
             print xb.shape
             bs = end - start
