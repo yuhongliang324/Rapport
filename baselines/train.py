@@ -126,7 +126,7 @@ def cross_validation(num_hidlayer=1, feature_name='hog', side='b', activation='r
     if feature_name == 'audio':
         dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False)
     else:
-        dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
+        dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side, norm=False)
     dyads = dyad_features.keys()
     if feature_name == 'au' or feature_name == 'AU':
         for dyad, features in dyad_features.items():
@@ -180,7 +180,7 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-side', type=str, default=None)
-    parser.add_argument('-drop', type=float, default=0.25)
+    parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-act', type=str, default='tanh')
     args = parser.parse_args()
     if args.side is not None:
