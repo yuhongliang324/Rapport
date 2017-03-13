@@ -185,7 +185,7 @@ def test1():
         side = args.side
     else:
         if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            side = 'b'
+            side = 'lr'
         else:
             side = 'ba'
     print args.feat, side
