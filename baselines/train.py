@@ -189,7 +189,7 @@ def test1():
         if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
             side = 'b'
         else:
-            side = 'ba'
+            side = 'lr'
     print args.feat, side
     cross_validation(feature_name=args.feat, side=side, activation=args.act, drop=args.drop)
 

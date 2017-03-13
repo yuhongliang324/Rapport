@@ -124,8 +124,8 @@ def test2():
 
 
 def test3():
-    slice_ratings = get_ratings(best3=True)
-    coder = get_coder('../results/result_dan_audio_b_148-64-1_drop_0.0_act_tanh.txt')
+    slice_ratings = get_ratings(best3=False)
+    coder = get_coder('../results/result_ad_hog_lr_drop_0.0_lamb_5e-05_fact_None.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
     print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
