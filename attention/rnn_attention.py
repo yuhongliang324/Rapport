@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from theano_utils import Adam, RMSprop, SGD, dropout
+from theano_utils import Adam, Adam2, RMSprop, SGD, dropout
 
 
 class RNN_Attention(object):
@@ -15,7 +15,7 @@ class RNN_Attention(object):
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, update='adam',
+    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, update='adam2',
                  drop=0.2, final_activation=None):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
@@ -84,6 +84,8 @@ class RNN_Attention(object):
 
         if self.update == 'adam':
             self.optimize = Adam
+        elif self.update == 'adam2':
+            self.optimize = Adam2
         elif self.update == 'rmsprop':
             self.optimize = RMSprop
         else:
