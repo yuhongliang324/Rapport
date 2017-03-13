@@ -41,8 +41,8 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
-          hidden_dim=None, batch_size=64, num_epoch=50): # !!!
+def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None, dec=True, update='adam',
+          hidden_dim=None, batch_size=64, num_epoch=50):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -54,8 +54,8 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, 1], dec=False,  # !!!
-                       drop=drop, final_activation=final_activation)
+    ra = RNN_Attention(input_dim, hidden_dim, [hidden_dim, 1], dec=dec,
+                       drop=drop, final_activation=final_activation, update=update)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -110,12 +110,12 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
             best_cost_val = cost_avg_val
             best_pred_val = pred_val
             best_epoch = epoch_index
-        if epoch_index - best_epoch >= 5 and epoch_index >= 30: # !!!
+        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 2:
             return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None):
+def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam'):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -127,7 +127,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         tmp = feature_name
     # Use both speakers with adding features
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False, best3=False)  # !!!
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False, best3=False)
     else:
         dyad_features, dyad_ratings, dyad_slices = load(sample_10_root, feature_name=tmp, side=side)
     dyads = dyad_features.keys()
@@ -136,7 +136,11 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         for dyad, features in dyad_features.items():
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
-    message = 'attention_only_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)  # !!!
+    if dec:
+        pref = 'ad'
+    else:
+        pref = 'att_only'
+    message = pref + '_' + feature_name + '_' + side + '_drop_' + str(drop) + '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
@@ -163,7 +167,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         print X_train.shape, X_test.shape
         costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val\
             = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
-                    final_activation=final_activation)
+                    final_activation=final_activation, dec=dec, update=update)
 
         img_path = os.path.join(img_root, 'dyad_' + str(dyad) + '.png')
         plot_loss(img_path, costs_train, costs_val, dyad,
@@ -180,6 +184,8 @@ def test1():
     parser.add_argument('-side', type=str, default=None)
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-fact', type=str, default=None)
+    parser.add_argument('-dec', type=bool, default=True)
+    parser.add_argument('-update', type=str, default='adam')
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
@@ -189,7 +195,7 @@ def test1():
         else:
             side = 'lr'
     print args.feat, side
-    cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact)
+    cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact, dec=args.dec)
 
 
 if __name__ == '__main__':
