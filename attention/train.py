@@ -195,7 +195,8 @@ def test1():
         else:
             side = 'lr'
     print args.feat, side
-    cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact, dec=args.dec)
+    cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
+                     dec=args.dec, update=args.update)
 
 
 if __name__ == '__main__':

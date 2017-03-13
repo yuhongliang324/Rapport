@@ -82,7 +82,7 @@ class RNN_Attention(object):
         for b in self.bs:
             self.theta.append(b)
 
-        print self.update
+        print self.update, self.dec
 
         if self.update == 'adam':
             self.optimize = Adam
