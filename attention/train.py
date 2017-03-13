@@ -115,7 +115,7 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None,
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', drop=0., final_activation='sigmoid'):  # !!!
+def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -185,9 +185,9 @@ def test1():
         side = args.side
     else:
         if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            side = 'lr'
+            side = 'b'
         else:
-            side = 'ba'
+            side = 'lr'
     print args.feat, side
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact)
 
