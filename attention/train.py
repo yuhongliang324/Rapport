@@ -187,7 +187,7 @@ def test1():
     parser.add_argument('-fact', type=str, default=None)
     parser.add_argument('-dec', type=bool, default=True)
     parser.add_argument('-update', type=str, default='adam')
-    parser.add_argument('-lamb', type=float, default=None)
+    parser.add_argument('-lamb', type=float, default=0.)
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
