@@ -200,9 +200,9 @@ def test1():
         lamb = args.lamb
     else:
         if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            lamb = 0.0005
-        else:
             lamb = 0.0002
+        else:
+            lamb = 0.0001
     print args.feat, side
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb)
