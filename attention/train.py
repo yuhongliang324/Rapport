@@ -196,7 +196,7 @@ def test1():
             side = 'b'
         else:
             side = 'lr'
-    if args.lamb is not None:
+    if args.lamb >= 0:
         lamb = args.lamb
     else:
         if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
