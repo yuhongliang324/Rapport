@@ -15,11 +15,12 @@ class RNN_Attention(object):
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, update='adam2',
+    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, model='gru', update='adam2',
                  drop=0.2, final_activation=None):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
+        self.model = model
         self.dec = dec
         if self.dec:
             self.mlp_layers = [2 * hidden_dim] + mlp_layers
@@ -150,12 +151,6 @@ class RNN_Attention(object):
         H_t = Z_t * H_tm1 + (1. - Z_t) * T.tanh(T.dot(X_t, self.W_dec_right_h) + T.dot(R_t * H_tm1, self.U_dec_right_h) +
                                                 self.b_dec_right_h)
         return H_t
-
-    def forward_attention(self, X_t, H_t_left, H_t_right, S_tm1):
-        a_t = T.nnet.sigmoid(T.dot(T.concatenate((H_t_left, H_t_right), axis=1), self.w_att))
-        S_t = T.tanh(T.dot(X_t, self.W_s) + T.dot(S_tm1, self.U_s) + self.b_s)
-        S_t = ((1. - a_t) * S_tm1.T + a_t * S_t.T).T
-        return S_t, a_t
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
