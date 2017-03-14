@@ -135,6 +135,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     hidden_dim = feature_hidden[feature_name]
     if feature_name == 'au' or feature_name == 'AU':
         for dyad, features in dyad_features.items():
+            print features.shape
             dyad_features[dyad] = features[:, :, -35:]
     num_dyad = len(dyads)
     if dec:
@@ -195,7 +196,7 @@ def test1():
     if args.side is not None:
         side = args.side
     else:
-        if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
+        if args.feat == 'audio' or args.feat == 'gemo' or args.feat == 'au' or args.feat == 'AU':
             side = 'b'
         else:
             side = 'lr'
