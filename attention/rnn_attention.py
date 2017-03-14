@@ -42,8 +42,6 @@ class RNN_Attention(object):
                           self.W_att_left_f, self.b_att_left_f, self.U_att_left_f,
                           self.W_att_left_o, self.b_att_left_o, self.U_att_left_o,
                           self.W_att_left_c, self.b_att_left_c, self.U_att_left_c]
-            self.forward_att = self.forward_att_LSTM
-            self.backward_att = self.forward_att_LSTM
             if not share:
                 self.W_att_right_i, self.b_att_right_i, self.U_att_right_i,\
                 self.W_att_right_f, self.b_att_right_f, self.U_att_right_f,\
@@ -53,7 +51,6 @@ class RNN_Attention(object):
                               self.W_att_right_f, self.b_att_right_f, self.U_att_right_f,
                               self.W_att_right_o, self.b_att_right_o, self.U_att_right_o,
                               self.W_att_right_c, self.b_att_right_c, self.U_att_right_c]
-                self.backward_att = self.backward_att_LSTM
             if self.dec:
                 self.W_dec_left_i, self.b_dec_left_i, self.U_dec_left_i,\
                 self.W_dec_left_f, self.b_dec_left_f, self.U_dec_left_f,\
@@ -63,8 +60,6 @@ class RNN_Attention(object):
                               self.W_dec_left_f, self.b_dec_left_f, self.U_dec_left_f,
                               self.W_dec_left_o, self.b_dec_left_o, self.U_dec_left_o,
                               self.W_dec_left_c, self.b_dec_left_c, self.U_dec_left_c]
-                self.forward_dec = self.forward_dec_LSTM
-                self.backward_dec = self.forward_dec_LSTM
                 if not share:
                     self.W_dec_right_i, self.b_dec_right_i, self.U_dec_right_i,\
                     self.W_dec_right_f, self.b_dec_right_f, self.U_dec_right_f,\
@@ -74,7 +69,6 @@ class RNN_Attention(object):
                                   self.W_dec_right_f, self.b_dec_right_f, self.U_dec_right_f,
                                   self.W_dec_right_o, self.b_dec_right_o, self.U_dec_right_o,
                                   self.W_dec_right_c, self.b_dec_right_c, self.U_dec_right_c]
-                    self.backward_dec = self.backward_dec_LSTM
         else:
             self.W_att_left_z, self.b_att_left_z, self.U_att_left_z,\
             self.W_att_left_r, self.b_att_left_r, self.U_att_left_r,\
@@ -82,8 +76,6 @@ class RNN_Attention(object):
             self.theta = [self.W_att_left_z, self.U_att_left_z, self.b_att_left_z,
                           self.W_att_left_r, self.U_att_left_r, self.b_att_left_r,
                           self.W_att_left_h, self.U_att_left_h, self.b_att_left_h]
-            self.forward_att = self.forward_att_GRU
-            self.backward_att = self.forward_att_GRU
             if not share:
                 self.W_att_right_z, self.b_att_right_z, self.U_att_right_z,\
                 self.W_att_right_r, self.b_att_right_r, self.U_att_right_r,\
@@ -91,7 +83,6 @@ class RNN_Attention(object):
                 self.theta += [self.W_att_right_z, self.U_att_right_z, self.b_att_right_z,
                                self.W_att_right_r, self.U_att_right_r, self.b_att_right_r,
                                self.W_att_right_h, self.U_att_right_h, self.b_att_right_h]
-                self.backward_att = self.backward_att_GRU
             if self.dec:
                 self.W_dec_left_z, self.b_dec_left_z, self.U_dec_left_z,\
                 self.W_dec_left_r, self.b_dec_left_r, self.U_dec_left_r,\
@@ -99,8 +90,6 @@ class RNN_Attention(object):
                 self.theta += [self.W_dec_left_z, self.U_dec_left_z, self.b_dec_left_z,
                                self.W_dec_left_r, self.U_dec_left_r, self.b_dec_left_r,
                                self.W_dec_left_h, self.U_dec_left_h, self.b_dec_left_h]
-                self.forward_dec = self.forward_dec_GRU
-                self.backward_dec = self.forward_dec_GRU
                 if not share:
                     self.W_dec_right_z, self.b_dec_right_z, self.U_dec_right_z,\
                     self.W_dec_right_r, self.b_dec_right_r, self.U_dec_right_r,\
@@ -108,7 +97,6 @@ class RNN_Attention(object):
                     self.theta += [self.W_dec_right_z, self.U_dec_right_z, self.b_dec_right_z,
                                    self.W_dec_right_r, self.U_dec_right_r, self.b_dec_right_r,
                                    self.W_dec_right_h, self.U_dec_right_h, self.b_dec_right_h]
-                    self.backward_dec = self.backward_dec_GRU
 
         self.w_att = numpy.asarray(self.rng.uniform(
             low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
@@ -249,14 +237,36 @@ class RNN_Attention(object):
         batch_size = T.shape(y_batch)[0]
 
         # (n_step, batch_size, hidden_dim)
-        H_att_foward, _ = theano.scan(self.forward_att, sequences=X_batch,
-                                      outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
-        H_att_backward, _ = theano.scan(self.backward_att, sequences=X_batch[::-1],
-                                        outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
-
         if self.model == 'lstm':
-            H_att_foward = H_att_foward[-1]
-            H_att_backward = H_att_backward[-1]
+            [_, H_att_foward], _ = theano.scan(self.forward_att_LSTM, sequences=X_batch,
+                                               outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                     dtype=theano.config.floatX),
+                                                             T.zeros((batch_size, self.hidden_dim),
+                                                                     dtype=theano.config.floatX)])
+            if self.share:
+                [_, H_att_backward], _ = theano.scan(self.forward_att_LSTM, sequences=X_batch[::-1],
+                                                     outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX),
+                                                                   T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX)])
+            else:
+                [_, H_att_backward], _ = theano.scan(self.backward_att_LSTM, sequences=X_batch[::-1],
+                                                     outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX),
+                                                                   T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX)])
+        else:
+            H_att_foward, _ = theano.scan(self.forward_att_GRU, sequences=X_batch,
+                                          outputs_info=T.zeros((batch_size, self.hidden_dim),
+                                                               dtype=theano.config.floatX))
+            if self.share:
+                H_att_backward, _ = theano.scan(self.forward_att_GRU, sequences=X_batch[::-1],
+                                                outputs_info=T.zeros((batch_size, self.hidden_dim),
+                                                                     dtype=theano.config.floatX))
+            else:
+                H_att_backward, _ = theano.scan(self.backward_att_GRU, sequences=X_batch[::-1],
+                                                outputs_info=T.zeros((batch_size, self.hidden_dim),
+                                                                     dtype=theano.config.floatX))
 
         H_att_backward = H_att_backward[::-1]
 
@@ -264,13 +274,36 @@ class RNN_Attention(object):
         att = T.dot(H_att, self.w_att)  # (n_step, batch_size)
         att = T.nnet.softmax(att.T)  # (batch_size, n_step)
         if self.dec:
-            H_dec_forward, _ = theano.scan(self.forward_dec, sequences=X_batch,
-                                          outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
-            H_dec_backward, _ = theano.scan(self.backward_dec, sequences=X_batch[::-1],
-                                            outputs_info=T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX))
             if self.model == 'lstm':
-                H_dec_forward = H_dec_forward[-1]
-                H_dec_backward = H_dec_backward[-1]
+                [_, H_dec_forward], _ = theano.scan(self.forward_dec_LSTM, sequences=X_batch,
+                                                    outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX),
+                                                                       T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX)])
+                if self.share:
+                    [_, H_dec_backward], _ = theano.scan(self.forward_dec_LSTM, sequences=X_batch[::-1],
+                                                         outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX),
+                                                                       T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX)])
+                else:
+                    [_, H_dec_backward], _ = theano.scan(self.backward_dec_LSTM, sequences=X_batch[::-1],
+                                                         outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX),
+                                                                       T.zeros((batch_size, self.hidden_dim),
+                                                                               dtype=theano.config.floatX)])
+            else:
+                H_dec_forward, _ = theano.scan(self.forward_dec_GRU, sequences=X_batch,
+                                               outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                     dtype=theano.config.floatX)])
+                if self.share:
+                    H_dec_backward, _ = theano.scan(self.forward_dec_GRU, sequences=X_batch[::-1],
+                                                    outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                          dtype=theano.config.floatX)])
+                else:
+                    H_dec_backward, _ = theano.scan(self.backward_dec_GRU, sequences=X_batch[::-1],
+                                                    outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                          dtype=theano.config.floatX)])
             H_dec_backward = H_dec_backward[::-1]
             H_tmp = T.concatenate([H_dec_forward, H_dec_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
             H_tmp = T.transpose(H_tmp, [1, 2, 0])  # (batch_size, 2 * hidden_dim, n_step)
