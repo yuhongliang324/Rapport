@@ -42,7 +42,7 @@ def validate(test_model, y_test, costs_val, losses_krip_val, batch_size=32):
 
 # model name can be added "-only" as suffix
 def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None, dec=True, update='adam',
-          hidden_dim=None, batch_size=64, num_epoch=40, lamb=0.):
+          hidden_dim=None, batch_size=64, num_epoch=40, lamb=0., model='gru', share=False):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -54,8 +54,8 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None, de
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
 
-    ra = RNN_Attention(input_dim, hidden_dim, [1], dec=dec,
-                       drop=drop, final_activation=final_activation, update=update, lamb=lamb)
+    ra = RNN_Attention(input_dim, hidden_dim, [1], dec=dec, drop=drop, final_activation=final_activation,
+                       update=update, lamb=lamb, model=model, share=share)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
@@ -115,7 +115,8 @@ def train(X_train, y_train, X_test, y_test, drop=0.25, final_activation=None, de
     return costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val
 
 
-def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.):
+def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
+                     model='gru', share=False):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -140,7 +141,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         pref = 'ad'
     else:
         pref = 'att_only'
-    message = pref + '_' + feature_name + '_' + side + '_drop_' + str(drop) + '_lamb_' + str(lamb) +\
+    message = pref + '_' + feature_name + '_' + side + '_model_' + model + '_drop_' + str(drop) + '_lamb_' + str(lamb) +\
               '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
@@ -168,7 +169,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         print X_train.shape, X_test.shape
         costs_train, costs_val, losses_krip_train, losses_krip_val, best_pred_val\
             = train(X_train, y_train, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
-                    final_activation=final_activation, dec=dec, update=update, lamb=lamb)
+                    final_activation=final_activation, dec=dec, update=update, lamb=lamb, model=model, share=share)
 
         img_path = os.path.join(img_root, 'dyad_' + str(dyad) + '.png')
         plot_loss(img_path, costs_train, costs_val, dyad,
@@ -189,6 +190,7 @@ def test1():
     parser.add_argument('-update', type=str, default='adam')
     parser.add_argument('-lamb', type=float, default=0.)
     parser.add_argument('-model', type=str, default='gru')
+    parser.add_argument('-share', type=bool, default=False)
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
@@ -206,7 +208,7 @@ def test1():
             lamb = 5e-5
     print args.feat, side
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
-                     dec=args.dec, update=args.update, lamb=lamb)
+                     dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share)
 
 
 if __name__ == '__main__':
