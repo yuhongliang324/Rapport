@@ -141,8 +141,8 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         pref = 'ad'
     else:
         pref = 'att_only'
-    message = pref + '_' + feature_name + '_' + side + '_model_' + model + '_drop_' + str(drop) + '_lamb_' + str(lamb) +\
-              '_fact_' + str(final_activation)
+    message = pref + '_' + feature_name + '_' + side + '_model_' + model + '_share_' + str(share) + '_drop_' + str(drop)\
+              + '_lamb_' + str(lamb) + '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):

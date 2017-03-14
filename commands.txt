@@ -1,0 +1,4 @@
+nohup python -u train.py -feat audio -model gru -share True > ../logs/audio_gru_share.out 2>&1 &
+nohup python -u train.py -feat audio -model gru -share False > ../logs/audio_gru.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share True > ../logs/audio_lstm_share.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share False > ../logs/audio_lstm.out 2>&1 &
