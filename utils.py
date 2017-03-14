@@ -6,8 +6,9 @@ from scipy.io import loadmat
 import numpy
 import math
 from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
-from data_path import info_root, ratings_best3_file
+from data_path import info_root, ratings_best3_file, data_split_file
 from scipy.interpolate import interp1d
+import random
 
 
 def rename(root):
@@ -305,6 +306,24 @@ def get_rater_agreement(rating_root, self_included=False, num_coders=4):
     print ka(coders, missing_items=missing)
 
 
+def split_dataset(dyads, out_file):
+    size = len(dyads)
+    ind = range(size)
+    while True:
+        random.shuffle(ind)
+        repeat = False
+        for i in xrange(size):
+            if i == ind[i]:
+                repeat = True
+                break
+        if not repeat:
+            break
+    writer = open(out_file, 'w')
+    for i in xrange(size):
+        writer.write(str(dyads[i]) + ' ' + str(dyads[ind[i]]) + '\n')
+    writer.close()
+
+
 data_root = '/multicomp/users/liangke/RAPT/features'
 
 
@@ -324,5 +343,10 @@ def test4():
     get_slice_ratings_best3(ratings_best3_file)
 
 
+def test5():
+    dyads = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18]
+    split_dataset(dyads, data_split_file)
+
+
 if __name__ == '__main__':
-    test4()
+    test5()
