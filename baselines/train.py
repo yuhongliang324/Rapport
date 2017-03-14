@@ -41,7 +41,7 @@ def validate(test_model, y_test, costs_val, losses_val, batch_size=32):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5, batch_size=64, num_epoch=200):
+def train(X_train, y_train, X_test, y_test, layers, activation='relu', drop=0.5, batch_size=64, num_epoch=100):
 
     n_train = X_train.shape[0]
     X_train = X_train.transpose([1, 0, 2])

@@ -140,8 +140,8 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         pref = 'ad'
     else:
         pref = 'att_only'
-    message = pref + '_' + feature_name + '_' + side + '_drop_' + str(drop) + '_lamb_' + str(lamb)\
-              + '_fact_' + str(final_activation)
+    message = pref + '_' + feature_name + '_' + side + '_drop_' + str(drop) + '_lamb_' + str(lamb) +\
+              '_fact_' + str(final_activation)
     writer = open('../results/result_' + message + '.txt', 'w')
     img_root = '../figs/' + message
     if os.path.isdir(img_root):
@@ -188,6 +188,7 @@ def test1():
     parser.add_argument('-dec', type=bool, default=True)
     parser.add_argument('-update', type=str, default='adam')
     parser.add_argument('-lamb', type=float, default=0.)
+    parser.add_argument('-model', type=str, default='gru')
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
