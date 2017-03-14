@@ -207,7 +207,8 @@ def test1():
         else:
             lamb = 5e-5
     print args.feat, side
-    print 'share = ', args.share
+    args.dec = bool(args.dec)
+    args.share = bool(args.share)
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share)
 
