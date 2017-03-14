@@ -135,8 +135,10 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     hidden_dim = feature_hidden[feature_name]
     if feature_name == 'au' or feature_name == 'AU':
         for dyad, features in dyad_features.items():
-            print features.shape
-            dyad_features[dyad] = features[:, :, -35:]
+            if side == 'b':
+                dyad_features[dyad] = numpy.concatenate(features[:, :, -35:])
+            else:
+                dyad_features[dyad] = numpy.concatenate([features[:, :, 392: 427], features[:, :, -35:]], axis=2)
     num_dyad = len(dyads)
     if dec:
         pref = 'ad'
