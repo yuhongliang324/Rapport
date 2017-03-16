@@ -359,7 +359,7 @@ def test4():
 
 
 def test5():
-    dyads = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18]
+    dyads = [3, 4, 7, 8, 9, 10, 11, 12, 16, 17, 18]
     split_dataset(dyads, data_split_file)
 
 
@@ -369,4 +369,4 @@ def test6():
 
 
 if __name__ == '__main__':
-    test6()
+    test5()
