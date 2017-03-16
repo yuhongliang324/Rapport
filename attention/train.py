@@ -47,6 +47,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         shutil.rmtree(img_root)
     os.mkdir(img_root)
     vals, tests = load_split()
+    print dyad_features.keys()
     for vdyad, tdyad in zip(vals, tests):
         X_val = dyad_features[vdyad]
         y_val = dyad_ratings[vdyad].astype('int32')
