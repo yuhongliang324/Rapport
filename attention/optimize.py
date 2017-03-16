@@ -83,7 +83,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
     att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
     cost, updates = symbols['cost'], symbols['updates']
-    loss_krip, acc = symbols['acc'], symbols['loss_krip']
+    loss_krip, acc = symbols['loss_krip'], symbols['acc']
 
     num_iter = n_train // batch_size
 

@@ -73,6 +73,8 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         else:
             rating_mean = numpy.mean(y_train)
             rmse = y_val - rating_mean
+            print y_val
+            print y_val.shape
             rmse = sqrt(numpy.mean(rmse * rmse))
             print 'RMSE of Average Prediction = %f' % rmse
 
