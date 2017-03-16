@@ -30,7 +30,7 @@ def RMSE(y_actual, y_predicted):
 
 def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, category=False):
     n_test = y_val.shape[0]
-    num_iter = n_test // float(batch_size)
+    num_iter = (n_test + batch_size - 1) // float(batch_size)
     all_pred = []
     cost_avg, loss_krip_avg = 0., 0.
     for iter_index in xrange(num_iter):
@@ -85,7 +85,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     cost, updates = symbols['cost'], symbols['updates']
     loss_krip, acc = symbols['loss_krip'], symbols['acc']
 
-    num_iter = n_train // batch_size
+    num_iter = (n_train + batch_size - 1) // batch_size
 
     print 'Compiling function'
 
@@ -140,7 +140,6 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
             loss_krip_avg /= n_train
             losses_krip_train.append(loss_krip_avg)
         y_predicted = numpy.asarray(all_pred)
-        print y_train.shape, y_predicted.shape
         rmse_acc = eval(y_train, y_predicted)
         if category:
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
