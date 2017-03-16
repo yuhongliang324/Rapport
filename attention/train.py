@@ -49,9 +49,9 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     vals, tests = load_split()
     for vdyad, tdyad in zip(vals, tests):
         X_val = dyad_features[vdyad]
-        y_val = dyad_ratings[vdyad]
+        y_val = dyad_ratings[vdyad].astype('int32')
         X_test = dyad_features[tdyad]
-        y_test = dyad_ratings[tdyad]
+        y_test = dyad_ratings[tdyad].astype('int32')
         slices_test = dyad_slices[tdyad]
         feature_list, rating_list = [], []
         for j in xrange(num_dyad):
@@ -60,7 +60,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
             feature_list.append(dyad_features[dyads[j]])
             rating_list.append(dyad_ratings[dyads[j]])
         X_train = numpy.concatenate(feature_list)
-        y_train = numpy.concatenate(rating_list)
+        y_train = numpy.concatenate(rating_list).astype('int32')
 
         print 'Validation Dyad =', vdyad, '\tTesting Dyad =', tdyad
         if category:
