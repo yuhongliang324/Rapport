@@ -140,15 +140,13 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
             loss_krip_avg /= n_train
             losses_krip_train.append(loss_krip_avg)
         y_predicted = numpy.asarray(all_pred)
-        print y_predicted
-        print y_train.shape, y_predicted.shape
-        rmse_acc = eval(y_train, y_predicted)
+        rmse_acc = eval(y_train, y_predicted, category=category)
         if category:
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
         else:
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         cost_avg_val, _ = validate(valid_model, y_val, costs_val, losses_krip_val, category=category)
-        _, pred_test = validate(test_model, y_test, costs_test, losses_krip_test)
+        _, pred_test = validate(test_model, y_test, costs_test, losses_krip_test, category=category)
         if cost_avg_val < best_cost_val:
             best_cost_val = cost_avg_val
             best_pred_test = pred_test
