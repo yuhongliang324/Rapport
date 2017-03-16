@@ -64,10 +64,11 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
 
         print 'Validation Dyad =', vdyad, '\tTesting Dyad =', tdyad
         if category:
-            cnt = numpy.asarray([0, 0, 0])
+            cnt = [0, 0, 0]
             for i in xrange(y_train.shape[0]):
                 cnt[y_train[i]] += 1
-            acc = max(cnt) / float(y_train.shape[0])
+            cnt = numpy.asarray(cnt)
+            acc = numpy.max(cnt) / float(y_train.shape[0])
             cl = numpy.argmax(cnt)
             print 'Majority Accuracy = %f, Majority Class = %d' % (acc, cl)
         else:
