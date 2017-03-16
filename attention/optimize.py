@@ -56,7 +56,7 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
 
 # model name can be added "-only" as suffix
 def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activation=None, dec=True, update='adam',
-          hidden_dim=None, batch_size=64, num_epoch=60, lamb=0., model='gru', share=False, category=False):
+          hidden_dim=None, batch_size=64, num_epoch=80, lamb=0., model='gru', share=False, category=False):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
