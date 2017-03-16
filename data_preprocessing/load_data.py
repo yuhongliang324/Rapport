@@ -100,7 +100,7 @@ def load_dyad_vision(dirname, slice_rating, feature_name='hog', side='ba', min_s
         feat, _ = ret
 
         slice_tup = (dyad, session, slice_id)
-        rating = slice_rating[slice_tup]
+        rating = slice_rating[(int(dyad), int(session), int(slice_id))]
 
         if side == 'lr':
             lfeat, rfeat = feat
