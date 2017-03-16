@@ -1,11 +1,18 @@
-nohup python -u train.py -feat audio -model gru -share 1 -cat 1 > ../logs/audio_gru_share.out 2>&1 &
-nohup python -u train.py -feat audio -model gru -share 0 -cat 1 > ../logs/audio_gru.out 2>&1 &
-nohup python -u train.py -feat audio -model lstm -share 1 -cat 1 > ../logs/audio_lstm_share.out 2>&1 &
-nohup python -u train.py -feat audio -model lstm -share 0 -cat 1 > ../logs/audio_lstm.out 2>&1 &
+nohup python -u train.py -feat audio -model gru -share 1 > ../logs/audio_gru_share.out 2>&1 &
+nohup python -u train.py -feat audio -model gru -share 0 > ../logs/audio_gru.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share 1 > ../logs/audio_lstm_share.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share 0 > ../logs/audio_lstm.out 2>&1 &
 
-nohup python -u train.py -feat au -model gru -share 0 -cat 1 > ../logs/au_gru.out 2>&1 &
-nohup python -u train.py -feat gemo -model gru -share 0 -cat 1 > ../logs/gemo_gru.out 2>&1 &
-nohup python -u train.py -feat hog -model gru -share 0 -cat 1 > ../logs/hog_lstm.out 2>&1 &
+nohup python -u train.py -feat audio -model gru -share 0 -cat 1 > ../logs/audio_gru_cat.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share 0 -cat 1 > ../logs/audio_lstm_cat.out 2>&1 &
+
+nohup python -u train.py -feat au -model gru -share 0 > ../logs/au_gru.out 2>&1 &
+nohup python -u train.py -feat gemo -model gru -share 0 > ../logs/gemo_gru.out 2>&1 &
+nohup python -u train.py -feat hog -model gru -share 0 > ../logs/hog_lstm.out 2>&1 &
+
+nohup python -u train.py -feat au -model gru -share 0 -cat 1 > ../logs/au_gru_cat.out 2>&1 &
+nohup python -u train.py -feat gemo -model gru -share 0 -cat 1 > ../logs/gemo_gru_cat.out 2>&1 &
+nohup python -u train.py -feat hog -model gru -share 0 -cat 1 > ../logs/hog_gru_cat.out 2>&1 &
 
 
 nohup python -u train.py -feat audio -model gru -share 1 -dec 0 > ../logs/audio_gru_share_attonly.out 2>&1 &
