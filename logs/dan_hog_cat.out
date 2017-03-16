@@ -1,0 +1,2759 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+hog lr
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch1_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch2_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch3_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch4_results_large.csv
+D10S1
+D10S2
+D11S1
+D11S2
+D12S1
+D12S2
+D16S2
+D17S1
+D18S1
+D3S1
+D3S2
+D4S1
+D4S2
+D5S1
+D5S2
+D6S1
+D6S2
+D7S1
+D7S2
+D8S1
+D8S2
+D9S1
+D9S2
+[3, 4, 7, 8, 9, 10, 11, 12, 16, 17, 18]
+Validation Dyad = 17 	Testing Dyad = 3
+Majority Accuracy = 0.418026, Majority Class = 2
+(2330, 76, 1360) (179, 76, 1360) (332, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095244,	Accuracy = 0.355794
+	Test cost = 1.087084,	Accuracy = 0.418994
+	Test cost = 1.076255,	Accuracy = 0.448795
+Epoch = 2
+	Train cost = 1.070657,	Accuracy = 0.515451
+	Test cost = 1.064103,	Accuracy = 0.418994
+	Test cost = 1.054971,	Accuracy = 0.472892
+Epoch = 3
+	Train cost = 1.050532,	Accuracy = 0.540773
+	Test cost = 1.045295,	Accuracy = 0.418994
+	Test cost = 1.039510,	Accuracy = 0.451807
+Epoch = 4
+	Train cost = 1.033697,	Accuracy = 0.547210
+	Test cost = 1.030162,	Accuracy = 0.424581
+	Test cost = 1.028302,	Accuracy = 0.463855
+Epoch = 5
+	Train cost = 1.019621,	Accuracy = 0.550644
+	Test cost = 1.018192,	Accuracy = 0.424581
+	Test cost = 1.020659,	Accuracy = 0.469880
+Epoch = 6
+	Train cost = 1.008052,	Accuracy = 0.552361
+	Test cost = 1.009083,	Accuracy = 0.424581
+	Test cost = 1.016002,	Accuracy = 0.472892
+Epoch = 7
+	Train cost = 0.998590,	Accuracy = 0.553219
+	Test cost = 1.002000,	Accuracy = 0.441341
+	Test cost = 1.013136,	Accuracy = 0.472892
+Epoch = 8
+	Train cost = 0.990618,	Accuracy = 0.550215
+	Test cost = 0.996160,	Accuracy = 0.474860
+	Test cost = 1.011243,	Accuracy = 0.460843
+Epoch = 9
+	Train cost = 0.983679,	Accuracy = 0.552790
+	Test cost = 0.990902,	Accuracy = 0.525140
+	Test cost = 1.009830,	Accuracy = 0.451807
+Epoch = 10
+	Train cost = 0.977441,	Accuracy = 0.558369
+	Test cost = 0.985880,	Accuracy = 0.547486
+	Test cost = 1.008538,	Accuracy = 0.475904
+Epoch = 11
+	Train cost = 0.971676,	Accuracy = 0.561373
+	Test cost = 0.981023,	Accuracy = 0.597765
+	Test cost = 1.007303,	Accuracy = 0.472892
+Epoch = 12
+	Train cost = 0.966308,	Accuracy = 0.565665
+	Test cost = 0.976176,	Accuracy = 0.614525
+	Test cost = 1.006072,	Accuracy = 0.478916
+Epoch = 13
+	Train cost = 0.961263,	Accuracy = 0.567382
+	Test cost = 0.971194,	Accuracy = 0.592179
+	Test cost = 1.004897,	Accuracy = 0.478916
+Epoch = 14
+	Train cost = 0.956512,	Accuracy = 0.566094
+	Test cost = 0.966160,	Accuracy = 0.614525
+	Test cost = 1.003729,	Accuracy = 0.475904
+Epoch = 15
+	Train cost = 0.952010,	Accuracy = 0.567811
+	Test cost = 0.961119,	Accuracy = 0.620112
+	Test cost = 1.002637,	Accuracy = 0.466867
+Epoch = 16
+	Train cost = 0.947747,	Accuracy = 0.568240
+	Test cost = 0.956145,	Accuracy = 0.620112
+	Test cost = 1.001576,	Accuracy = 0.469880
+Epoch = 17
+	Train cost = 0.943706,	Accuracy = 0.572103
+	Test cost = 0.951345,	Accuracy = 0.631285
+	Test cost = 1.000540,	Accuracy = 0.472892
+Epoch = 18
+	Train cost = 0.939852,	Accuracy = 0.571674
+	Test cost = 0.946747,	Accuracy = 0.631285
+	Test cost = 0.999561,	Accuracy = 0.475904
+Epoch = 19
+	Train cost = 0.936202,	Accuracy = 0.572532
+	Test cost = 0.942331,	Accuracy = 0.631285
+	Test cost = 0.998632,	Accuracy = 0.466867
+Epoch = 20
+	Train cost = 0.932732,	Accuracy = 0.573820
+	Test cost = 0.938145,	Accuracy = 0.631285
+	Test cost = 0.997732,	Accuracy = 0.469880
+Epoch = 21
+	Train cost = 0.929426,	Accuracy = 0.575536
+	Test cost = 0.934235,	Accuracy = 0.631285
+	Test cost = 0.996873,	Accuracy = 0.469880
+Epoch = 22
+	Train cost = 0.926269,	Accuracy = 0.576395
+	Test cost = 0.930500,	Accuracy = 0.631285
+	Test cost = 0.996030,	Accuracy = 0.472892
+Epoch = 23
+	Train cost = 0.923249,	Accuracy = 0.579399
+	Test cost = 0.926977,	Accuracy = 0.631285
+	Test cost = 0.995187,	Accuracy = 0.475904
+Epoch = 24
+	Train cost = 0.920346,	Accuracy = 0.581116
+	Test cost = 0.923621,	Accuracy = 0.631285
+	Test cost = 0.994341,	Accuracy = 0.472892
+Epoch = 25
+	Train cost = 0.917563,	Accuracy = 0.581974
+	Test cost = 0.920438,	Accuracy = 0.631285
+	Test cost = 0.993487,	Accuracy = 0.472892
+Epoch = 26
+	Train cost = 0.914878,	Accuracy = 0.582403
+	Test cost = 0.917403,	Accuracy = 0.631285
+	Test cost = 0.992624,	Accuracy = 0.472892
+Epoch = 27
+	Train cost = 0.912286,	Accuracy = 0.581974
+	Test cost = 0.914491,	Accuracy = 0.631285
+	Test cost = 0.991752,	Accuracy = 0.472892
+Epoch = 28
+	Train cost = 0.909779,	Accuracy = 0.582403
+	Test cost = 0.911706,	Accuracy = 0.631285
+	Test cost = 0.990887,	Accuracy = 0.472892
+Epoch = 29
+	Train cost = 0.907355,	Accuracy = 0.581545
+	Test cost = 0.909020,	Accuracy = 0.631285
+	Test cost = 0.990015,	Accuracy = 0.475904
+Epoch = 30
+	Train cost = 0.904999,	Accuracy = 0.585837
+	Test cost = 0.906432,	Accuracy = 0.631285
+	Test cost = 0.989145,	Accuracy = 0.475904
+Epoch = 31
+	Train cost = 0.902709,	Accuracy = 0.586266
+	Test cost = 0.903907,	Accuracy = 0.631285
+	Test cost = 0.988254,	Accuracy = 0.484940
+Epoch = 32
+	Train cost = 0.900472,	Accuracy = 0.587554
+	Test cost = 0.901447,	Accuracy = 0.631285
+	Test cost = 0.987345,	Accuracy = 0.484940
+Epoch = 33
+	Train cost = 0.898290,	Accuracy = 0.589270
+	Test cost = 0.899023,	Accuracy = 0.631285
+	Test cost = 0.986433,	Accuracy = 0.481928
+Epoch = 34
+	Train cost = 0.896152,	Accuracy = 0.590987
+	Test cost = 0.896666,	Accuracy = 0.631285
+	Test cost = 0.985518,	Accuracy = 0.478916
+Epoch = 35
+	Train cost = 0.894061,	Accuracy = 0.590987
+	Test cost = 0.894370,	Accuracy = 0.631285
+	Test cost = 0.984600,	Accuracy = 0.490964
+Epoch = 36
+	Train cost = 0.892007,	Accuracy = 0.593991
+	Test cost = 0.892111,	Accuracy = 0.631285
+	Test cost = 0.983668,	Accuracy = 0.487952
+Epoch = 37
+	Train cost = 0.889991,	Accuracy = 0.595279
+	Test cost = 0.889901,	Accuracy = 0.631285
+	Test cost = 0.982719,	Accuracy = 0.484940
+Epoch = 38
+	Train cost = 0.888010,	Accuracy = 0.595279
+	Test cost = 0.887730,	Accuracy = 0.631285
+	Test cost = 0.981766,	Accuracy = 0.484940
+Epoch = 39
+	Train cost = 0.886054,	Accuracy = 0.597425
+	Test cost = 0.885599,	Accuracy = 0.631285
+	Test cost = 0.980796,	Accuracy = 0.484940
+Epoch = 40
+	Train cost = 0.884136,	Accuracy = 0.598712
+	Test cost = 0.883510,	Accuracy = 0.631285
+	Test cost = 0.979817,	Accuracy = 0.493976
+Epoch = 41
+	Train cost = 0.882244,	Accuracy = 0.600429
+	Test cost = 0.881430,	Accuracy = 0.631285
+	Test cost = 0.978842,	Accuracy = 0.496988
+Epoch = 42
+	Train cost = 0.880377,	Accuracy = 0.601717
+	Test cost = 0.879390,	Accuracy = 0.631285
+	Test cost = 0.977859,	Accuracy = 0.496988
+Epoch = 43
+	Train cost = 0.878533,	Accuracy = 0.601717
+	Test cost = 0.877346,	Accuracy = 0.631285
+	Test cost = 0.976860,	Accuracy = 0.500000
+Epoch = 44
+	Train cost = 0.876712,	Accuracy = 0.602575
+	Test cost = 0.875356,	Accuracy = 0.631285
+	Test cost = 0.975851,	Accuracy = 0.500000
+Epoch = 45
+	Train cost = 0.874912,	Accuracy = 0.605150
+	Test cost = 0.873389,	Accuracy = 0.631285
+	Test cost = 0.974834,	Accuracy = 0.506024
+Epoch = 46
+	Train cost = 0.873129,	Accuracy = 0.606438
+	Test cost = 0.871464,	Accuracy = 0.631285
+	Test cost = 0.973812,	Accuracy = 0.509036
+Epoch = 47
+	Train cost = 0.871363,	Accuracy = 0.607296
+	Test cost = 0.869547,	Accuracy = 0.625698
+	Test cost = 0.972785,	Accuracy = 0.512048
+Epoch = 48
+	Train cost = 0.869612,	Accuracy = 0.606867
+	Test cost = 0.867659,	Accuracy = 0.625698
+	Test cost = 0.971746,	Accuracy = 0.518072
+Epoch = 49
+	Train cost = 0.867880,	Accuracy = 0.607725
+	Test cost = 0.865774,	Accuracy = 0.625698
+	Test cost = 0.970695,	Accuracy = 0.521084
+Epoch = 50
+	Train cost = 0.866158,	Accuracy = 0.609013
+	Test cost = 0.863936,	Accuracy = 0.631285
+	Test cost = 0.969647,	Accuracy = 0.521084
+Epoch = 51
+	Train cost = 0.864454,	Accuracy = 0.609013
+	Test cost = 0.862100,	Accuracy = 0.631285
+	Test cost = 0.968575,	Accuracy = 0.521084
+Epoch = 52
+	Train cost = 0.862755,	Accuracy = 0.609871
+	Test cost = 0.860280,	Accuracy = 0.636872
+	Test cost = 0.967507,	Accuracy = 0.521084
+Epoch = 53
+	Train cost = 0.861075,	Accuracy = 0.609442
+	Test cost = 0.858487,	Accuracy = 0.636872
+	Test cost = 0.966426,	Accuracy = 0.518072
+Epoch = 54
+	Train cost = 0.859400,	Accuracy = 0.610730
+	Test cost = 0.856674,	Accuracy = 0.636872
+	Test cost = 0.965319,	Accuracy = 0.518072
+Epoch = 55
+	Train cost = 0.857730,	Accuracy = 0.611159
+	Test cost = 0.854887,	Accuracy = 0.636872
+	Test cost = 0.964229,	Accuracy = 0.518072
+Epoch = 56
+	Train cost = 0.856076,	Accuracy = 0.612876
+	Test cost = 0.853129,	Accuracy = 0.631285
+	Test cost = 0.963106,	Accuracy = 0.518072
+Epoch = 57
+	Train cost = 0.854423,	Accuracy = 0.614592
+	Test cost = 0.851363,	Accuracy = 0.631285
+	Test cost = 0.961986,	Accuracy = 0.521084
+Epoch = 58
+	Train cost = 0.852779,	Accuracy = 0.616309
+	Test cost = 0.849621,	Accuracy = 0.631285
+	Test cost = 0.960858,	Accuracy = 0.521084
+Epoch = 59
+	Train cost = 0.851143,	Accuracy = 0.616309
+	Test cost = 0.847885,	Accuracy = 0.631285
+	Test cost = 0.959728,	Accuracy = 0.521084
+Epoch = 60
+	Train cost = 0.849513,	Accuracy = 0.618026
+	Test cost = 0.846154,	Accuracy = 0.631285
+	Test cost = 0.958590,	Accuracy = 0.518072
+Epoch = 61
+	Train cost = 0.847892,	Accuracy = 0.618884
+	Test cost = 0.844434,	Accuracy = 0.631285
+	Test cost = 0.957461,	Accuracy = 0.518072
+Epoch = 62
+	Train cost = 0.846277,	Accuracy = 0.620601
+	Test cost = 0.842720,	Accuracy = 0.631285
+	Test cost = 0.956311,	Accuracy = 0.521084
+Epoch = 63
+	Train cost = 0.844671,	Accuracy = 0.621888
+	Test cost = 0.841027,	Accuracy = 0.631285
+	Test cost = 0.955171,	Accuracy = 0.527108
+Epoch = 64
+	Train cost = 0.843065,	Accuracy = 0.622747
+	Test cost = 0.839325,	Accuracy = 0.631285
+	Test cost = 0.954029,	Accuracy = 0.527108
+Epoch = 65
+	Train cost = 0.841469,	Accuracy = 0.622747
+	Test cost = 0.837658,	Accuracy = 0.631285
+	Test cost = 0.952884,	Accuracy = 0.530120
+Epoch = 66
+	Train cost = 0.839874,	Accuracy = 0.623605
+	Test cost = 0.835988,	Accuracy = 0.631285
+	Test cost = 0.951726,	Accuracy = 0.530120
+Epoch = 67
+	Train cost = 0.838282,	Accuracy = 0.624893
+	Test cost = 0.834314,	Accuracy = 0.631285
+	Test cost = 0.950573,	Accuracy = 0.533133
+Epoch = 68
+	Train cost = 0.836696,	Accuracy = 0.624893
+	Test cost = 0.832657,	Accuracy = 0.636872
+	Test cost = 0.949404,	Accuracy = 0.533133
+Epoch = 69
+	Train cost = 0.835111,	Accuracy = 0.626180
+	Test cost = 0.831019,	Accuracy = 0.636872
+	Test cost = 0.948242,	Accuracy = 0.533133
+Epoch = 70
+	Train cost = 0.833531,	Accuracy = 0.627039
+	Test cost = 0.829382,	Accuracy = 0.636872
+	Test cost = 0.947063,	Accuracy = 0.533133
+Epoch = 71
+	Train cost = 0.831952,	Accuracy = 0.628755
+	Test cost = 0.827741,	Accuracy = 0.636872
+	Test cost = 0.945885,	Accuracy = 0.536145
+Epoch = 72
+	Train cost = 0.830377,	Accuracy = 0.628755
+	Test cost = 0.826116,	Accuracy = 0.636872
+	Test cost = 0.944698,	Accuracy = 0.536145
+Epoch = 73
+	Train cost = 0.828803,	Accuracy = 0.630043
+	Test cost = 0.824490,	Accuracy = 0.636872
+	Test cost = 0.943500,	Accuracy = 0.536145
+Epoch = 74
+	Train cost = 0.827232,	Accuracy = 0.632189
+	Test cost = 0.822868,	Accuracy = 0.642458
+	Test cost = 0.942293,	Accuracy = 0.545181
+Epoch = 75
+	Train cost = 0.825658,	Accuracy = 0.633906
+	Test cost = 0.821238,	Accuracy = 0.642458
+	Test cost = 0.941071,	Accuracy = 0.551205
+Epoch = 76
+	Train cost = 0.824085,	Accuracy = 0.635193
+	Test cost = 0.819625,	Accuracy = 0.642458
+	Test cost = 0.939861,	Accuracy = 0.554217
+Epoch = 77
+	Train cost = 0.822520,	Accuracy = 0.636052
+	Test cost = 0.818029,	Accuracy = 0.642458
+	Test cost = 0.938633,	Accuracy = 0.554217
+Epoch = 78
+	Train cost = 0.820949,	Accuracy = 0.636481
+	Test cost = 0.816427,	Accuracy = 0.642458
+	Test cost = 0.937406,	Accuracy = 0.557229
+Epoch = 79
+	Train cost = 0.819382,	Accuracy = 0.638197
+	Test cost = 0.814835,	Accuracy = 0.642458
+	Test cost = 0.936192,	Accuracy = 0.560241
+Epoch = 80
+	Train cost = 0.817819,	Accuracy = 0.639914
+	Test cost = 0.813234,	Accuracy = 0.642458
+	Test cost = 0.934942,	Accuracy = 0.563253
+Validation Dyad = 8 	Testing Dyad = 4
+Majority Accuracy = 0.423451, Majority Class = 2
+(1953, 76, 1360) (138, 76, 1360) (95, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095400,	Accuracy = 0.367640
+	Test cost = 1.086405,	Accuracy = 0.601449
+	Test cost = 1.073045,	Accuracy = 0.631579
+Epoch = 2
+	Train cost = 1.070281,	Accuracy = 0.541731
+	Test cost = 1.073917,	Accuracy = 0.630435
+	Test cost = 1.045306,	Accuracy = 0.663158
+Epoch = 3
+	Train cost = 1.048808,	Accuracy = 0.558116
+	Test cost = 1.061775,	Accuracy = 0.637681
+	Test cost = 1.019100,	Accuracy = 0.684211
+Epoch = 4
+	Train cost = 1.030105,	Accuracy = 0.565796
+	Test cost = 1.050162,	Accuracy = 0.652174
+	Test cost = 0.994541,	Accuracy = 0.684211
+Epoch = 5
+	Train cost = 1.013770,	Accuracy = 0.570405
+	Test cost = 1.039130,	Accuracy = 0.659420
+	Test cost = 0.971955,	Accuracy = 0.684211
+Epoch = 6
+	Train cost = 0.999715,	Accuracy = 0.570405
+	Test cost = 1.028499,	Accuracy = 0.666667
+	Test cost = 0.952186,	Accuracy = 0.684211
+Epoch = 7
+	Train cost = 0.987895,	Accuracy = 0.576037
+	Test cost = 1.018095,	Accuracy = 0.666667
+	Test cost = 0.935500,	Accuracy = 0.684211
+Epoch = 8
+	Train cost = 0.977974,	Accuracy = 0.579621
+	Test cost = 1.007701,	Accuracy = 0.673913
+	Test cost = 0.921137,	Accuracy = 0.684211
+Epoch = 9
+	Train cost = 0.969493,	Accuracy = 0.582693
+	Test cost = 0.997212,	Accuracy = 0.688406
+	Test cost = 0.908570,	Accuracy = 0.684211
+Epoch = 10
+	Train cost = 0.962025,	Accuracy = 0.590374
+	Test cost = 0.986584,	Accuracy = 0.681159
+	Test cost = 0.897333,	Accuracy = 0.684211
+Epoch = 11
+	Train cost = 0.955243,	Accuracy = 0.591398
+	Test cost = 0.975815,	Accuracy = 0.681159
+	Test cost = 0.887090,	Accuracy = 0.684211
+Epoch = 12
+	Train cost = 0.948966,	Accuracy = 0.592422
+	Test cost = 0.964989,	Accuracy = 0.681159
+	Test cost = 0.877549,	Accuracy = 0.684211
+Epoch = 13
+	Train cost = 0.943092,	Accuracy = 0.594470
+	Test cost = 0.954268,	Accuracy = 0.681159
+	Test cost = 0.868547,	Accuracy = 0.684211
+Epoch = 14
+	Train cost = 0.937559,	Accuracy = 0.593958
+	Test cost = 0.943746,	Accuracy = 0.673913
+	Test cost = 0.859980,	Accuracy = 0.684211
+Epoch = 15
+	Train cost = 0.932334,	Accuracy = 0.593958
+	Test cost = 0.933495,	Accuracy = 0.673913
+	Test cost = 0.851887,	Accuracy = 0.684211
+Epoch = 16
+	Train cost = 0.927398,	Accuracy = 0.595494
+	Test cost = 0.923512,	Accuracy = 0.673913
+	Test cost = 0.844262,	Accuracy = 0.684211
+Epoch = 17
+	Train cost = 0.922721,	Accuracy = 0.599590
+	Test cost = 0.913925,	Accuracy = 0.673913
+	Test cost = 0.837172,	Accuracy = 0.684211
+Epoch = 18
+	Train cost = 0.918304,	Accuracy = 0.599590
+	Test cost = 0.904759,	Accuracy = 0.673913
+	Test cost = 0.830529,	Accuracy = 0.684211
+Epoch = 19
+	Train cost = 0.914117,	Accuracy = 0.599078
+	Test cost = 0.896044,	Accuracy = 0.673913
+	Test cost = 0.824360,	Accuracy = 0.684211
+Epoch = 20
+	Train cost = 0.910155,	Accuracy = 0.598054
+	Test cost = 0.887731,	Accuracy = 0.673913
+	Test cost = 0.818621,	Accuracy = 0.684211
+Epoch = 21
+	Train cost = 0.906409,	Accuracy = 0.598566
+	Test cost = 0.879864,	Accuracy = 0.673913
+	Test cost = 0.813294,	Accuracy = 0.684211
+Epoch = 22
+	Train cost = 0.902857,	Accuracy = 0.598566
+	Test cost = 0.872411,	Accuracy = 0.673913
+	Test cost = 0.808334,	Accuracy = 0.684211
+Epoch = 23
+	Train cost = 0.899493,	Accuracy = 0.600614
+	Test cost = 0.865423,	Accuracy = 0.673913
+	Test cost = 0.803712,	Accuracy = 0.684211
+Epoch = 24
+	Train cost = 0.896296,	Accuracy = 0.601639
+	Test cost = 0.858812,	Accuracy = 0.673913
+	Test cost = 0.799413,	Accuracy = 0.684211
+Epoch = 25
+	Train cost = 0.893249,	Accuracy = 0.603175
+	Test cost = 0.852564,	Accuracy = 0.673913
+	Test cost = 0.795442,	Accuracy = 0.684211
+Epoch = 26
+	Train cost = 0.890340,	Accuracy = 0.604199
+	Test cost = 0.846666,	Accuracy = 0.673913
+	Test cost = 0.791761,	Accuracy = 0.684211
+Epoch = 27
+	Train cost = 0.887546,	Accuracy = 0.604199
+	Test cost = 0.841169,	Accuracy = 0.673913
+	Test cost = 0.788390,	Accuracy = 0.684211
+Epoch = 28
+	Train cost = 0.884869,	Accuracy = 0.605735
+	Test cost = 0.835993,	Accuracy = 0.673913
+	Test cost = 0.785280,	Accuracy = 0.684211
+Epoch = 29
+	Train cost = 0.882294,	Accuracy = 0.605735
+	Test cost = 0.831130,	Accuracy = 0.673913
+	Test cost = 0.782401,	Accuracy = 0.684211
+Epoch = 30
+	Train cost = 0.879813,	Accuracy = 0.606759
+	Test cost = 0.826563,	Accuracy = 0.673913
+	Test cost = 0.779736,	Accuracy = 0.684211
+Epoch = 31
+	Train cost = 0.877414,	Accuracy = 0.607783
+	Test cost = 0.822230,	Accuracy = 0.673913
+	Test cost = 0.777254,	Accuracy = 0.684211
+Epoch = 32
+	Train cost = 0.875084,	Accuracy = 0.608807
+	Test cost = 0.818123,	Accuracy = 0.673913
+	Test cost = 0.774914,	Accuracy = 0.684211
+Epoch = 33
+	Train cost = 0.872818,	Accuracy = 0.609319
+	Test cost = 0.814161,	Accuracy = 0.673913
+	Test cost = 0.772701,	Accuracy = 0.684211
+Epoch = 34
+	Train cost = 0.870619,	Accuracy = 0.610855
+	Test cost = 0.810403,	Accuracy = 0.673913
+	Test cost = 0.770625,	Accuracy = 0.684211
+Epoch = 35
+	Train cost = 0.868475,	Accuracy = 0.612903
+	Test cost = 0.806762,	Accuracy = 0.673913
+	Test cost = 0.768648,	Accuracy = 0.684211
+Epoch = 36
+	Train cost = 0.866381,	Accuracy = 0.611879
+	Test cost = 0.803280,	Accuracy = 0.673913
+	Test cost = 0.766782,	Accuracy = 0.684211
+Epoch = 37
+	Train cost = 0.864330,	Accuracy = 0.612903
+	Test cost = 0.799922,	Accuracy = 0.673913
+	Test cost = 0.764987,	Accuracy = 0.684211
+Epoch = 38
+	Train cost = 0.862322,	Accuracy = 0.613415
+	Test cost = 0.796665,	Accuracy = 0.673913
+	Test cost = 0.763273,	Accuracy = 0.684211
+Epoch = 39
+	Train cost = 0.860354,	Accuracy = 0.614951
+	Test cost = 0.793511,	Accuracy = 0.673913
+	Test cost = 0.761610,	Accuracy = 0.684211
+Epoch = 40
+	Train cost = 0.858415,	Accuracy = 0.616999
+	Test cost = 0.790436,	Accuracy = 0.673913
+	Test cost = 0.760001,	Accuracy = 0.684211
+Epoch = 41
+	Train cost = 0.856510,	Accuracy = 0.616487
+	Test cost = 0.787421,	Accuracy = 0.673913
+	Test cost = 0.758446,	Accuracy = 0.684211
+Epoch = 42
+	Train cost = 0.854632,	Accuracy = 0.616999
+	Test cost = 0.784481,	Accuracy = 0.673913
+	Test cost = 0.756936,	Accuracy = 0.684211
+Epoch = 43
+	Train cost = 0.852775,	Accuracy = 0.618024
+	Test cost = 0.781630,	Accuracy = 0.673913
+	Test cost = 0.755463,	Accuracy = 0.684211
+Epoch = 44
+	Train cost = 0.850947,	Accuracy = 0.617512
+	Test cost = 0.778834,	Accuracy = 0.673913
+	Test cost = 0.754037,	Accuracy = 0.684211
+Epoch = 45
+	Train cost = 0.849134,	Accuracy = 0.618536
+	Test cost = 0.776093,	Accuracy = 0.673913
+	Test cost = 0.752642,	Accuracy = 0.684211
+Epoch = 46
+	Train cost = 0.847340,	Accuracy = 0.620072
+	Test cost = 0.773392,	Accuracy = 0.673913
+	Test cost = 0.751264,	Accuracy = 0.684211
+Epoch = 47
+	Train cost = 0.845567,	Accuracy = 0.620072
+	Test cost = 0.770726,	Accuracy = 0.673913
+	Test cost = 0.749907,	Accuracy = 0.684211
+Epoch = 48
+	Train cost = 0.843808,	Accuracy = 0.620584
+	Test cost = 0.768077,	Accuracy = 0.673913
+	Test cost = 0.748559,	Accuracy = 0.684211
+Epoch = 49
+	Train cost = 0.842064,	Accuracy = 0.622120
+	Test cost = 0.765461,	Accuracy = 0.673913
+	Test cost = 0.747245,	Accuracy = 0.684211
+Epoch = 50
+	Train cost = 0.840334,	Accuracy = 0.621608
+	Test cost = 0.762857,	Accuracy = 0.673913
+	Test cost = 0.745948,	Accuracy = 0.684211
+Epoch = 51
+	Train cost = 0.838619,	Accuracy = 0.622120
+	Test cost = 0.760288,	Accuracy = 0.673913
+	Test cost = 0.744672,	Accuracy = 0.684211
+Epoch = 52
+	Train cost = 0.836913,	Accuracy = 0.622632
+	Test cost = 0.757726,	Accuracy = 0.673913
+	Test cost = 0.743413,	Accuracy = 0.684211
+Epoch = 53
+	Train cost = 0.835220,	Accuracy = 0.623656
+	Test cost = 0.755205,	Accuracy = 0.673913
+	Test cost = 0.742166,	Accuracy = 0.684211
+Epoch = 54
+	Train cost = 0.833534,	Accuracy = 0.624168
+	Test cost = 0.752678,	Accuracy = 0.673913
+	Test cost = 0.740943,	Accuracy = 0.684211
+Epoch = 55
+	Train cost = 0.831859,	Accuracy = 0.623656
+	Test cost = 0.750189,	Accuracy = 0.673913
+	Test cost = 0.739748,	Accuracy = 0.684211
+Epoch = 56
+	Train cost = 0.830195,	Accuracy = 0.625192
+	Test cost = 0.747703,	Accuracy = 0.666667
+	Test cost = 0.738547,	Accuracy = 0.684211
+Epoch = 57
+	Train cost = 0.828543,	Accuracy = 0.626216
+	Test cost = 0.745236,	Accuracy = 0.666667
+	Test cost = 0.737372,	Accuracy = 0.684211
+Epoch = 58
+	Train cost = 0.826897,	Accuracy = 0.627752
+	Test cost = 0.742783,	Accuracy = 0.666667
+	Test cost = 0.736180,	Accuracy = 0.684211
+Epoch = 59
+	Train cost = 0.825258,	Accuracy = 0.628776
+	Test cost = 0.740315,	Accuracy = 0.666667
+	Test cost = 0.735021,	Accuracy = 0.684211
+Epoch = 60
+	Train cost = 0.823628,	Accuracy = 0.630312
+	Test cost = 0.737880,	Accuracy = 0.666667
+	Test cost = 0.733846,	Accuracy = 0.684211
+Epoch = 61
+	Train cost = 0.822001,	Accuracy = 0.630312
+	Test cost = 0.735433,	Accuracy = 0.666667
+	Test cost = 0.732692,	Accuracy = 0.684211
+Epoch = 62
+	Train cost = 0.820387,	Accuracy = 0.629288
+	Test cost = 0.732982,	Accuracy = 0.666667
+	Test cost = 0.731535,	Accuracy = 0.684211
+Epoch = 63
+	Train cost = 0.818773,	Accuracy = 0.629800
+	Test cost = 0.730557,	Accuracy = 0.666667
+	Test cost = 0.730394,	Accuracy = 0.684211
+Epoch = 64
+	Train cost = 0.817167,	Accuracy = 0.630824
+	Test cost = 0.728100,	Accuracy = 0.666667
+	Test cost = 0.729241,	Accuracy = 0.684211
+Epoch = 65
+	Train cost = 0.815559,	Accuracy = 0.630824
+	Test cost = 0.725688,	Accuracy = 0.666667
+	Test cost = 0.728098,	Accuracy = 0.684211
+Epoch = 66
+	Train cost = 0.813963,	Accuracy = 0.632873
+	Test cost = 0.723241,	Accuracy = 0.666667
+	Test cost = 0.726951,	Accuracy = 0.684211
+Epoch = 67
+	Train cost = 0.812364,	Accuracy = 0.632873
+	Test cost = 0.720828,	Accuracy = 0.673913
+	Test cost = 0.725811,	Accuracy = 0.673684
+Epoch = 68
+	Train cost = 0.810769,	Accuracy = 0.635433
+	Test cost = 0.718387,	Accuracy = 0.681159
+	Test cost = 0.724672,	Accuracy = 0.673684
+Epoch = 69
+	Train cost = 0.809183,	Accuracy = 0.636457
+	Test cost = 0.715968,	Accuracy = 0.681159
+	Test cost = 0.723546,	Accuracy = 0.673684
+Epoch = 70
+	Train cost = 0.807593,	Accuracy = 0.636969
+	Test cost = 0.713540,	Accuracy = 0.681159
+	Test cost = 0.722397,	Accuracy = 0.673684
+Epoch = 71
+	Train cost = 0.806009,	Accuracy = 0.638505
+	Test cost = 0.711120,	Accuracy = 0.681159
+	Test cost = 0.721278,	Accuracy = 0.673684
+Epoch = 72
+	Train cost = 0.804423,	Accuracy = 0.640041
+	Test cost = 0.708709,	Accuracy = 0.681159
+	Test cost = 0.720114,	Accuracy = 0.673684
+Epoch = 73
+	Train cost = 0.802843,	Accuracy = 0.642089
+	Test cost = 0.706298,	Accuracy = 0.681159
+	Test cost = 0.718985,	Accuracy = 0.673684
+Epoch = 74
+	Train cost = 0.801262,	Accuracy = 0.641577
+	Test cost = 0.703875,	Accuracy = 0.681159
+	Test cost = 0.717842,	Accuracy = 0.694737
+Epoch = 75
+	Train cost = 0.799685,	Accuracy = 0.643625
+	Test cost = 0.701483,	Accuracy = 0.681159
+	Test cost = 0.716683,	Accuracy = 0.694737
+Epoch = 76
+	Train cost = 0.798105,	Accuracy = 0.643113
+	Test cost = 0.699085,	Accuracy = 0.681159
+	Test cost = 0.715543,	Accuracy = 0.694737
+Epoch = 77
+	Train cost = 0.796532,	Accuracy = 0.643113
+	Test cost = 0.696683,	Accuracy = 0.681159
+	Test cost = 0.714383,	Accuracy = 0.694737
+Epoch = 78
+	Train cost = 0.794954,	Accuracy = 0.643113
+	Test cost = 0.694290,	Accuracy = 0.688406
+	Test cost = 0.713222,	Accuracy = 0.694737
+Epoch = 79
+	Train cost = 0.793385,	Accuracy = 0.644649
+	Test cost = 0.691886,	Accuracy = 0.688406
+	Test cost = 0.712089,	Accuracy = 0.694737
+Epoch = 80
+	Train cost = 0.791812,	Accuracy = 0.645673
+	Test cost = 0.689484,	Accuracy = 0.688406
+	Test cost = 0.710916,	Accuracy = 0.694737
+Validation Dyad = 3 	Testing Dyad = 7
+Majority Accuracy = 0.413553, Majority Class = 0
+(2302, 76, 1360) (332, 76, 1360) (386, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095372,	Accuracy = 0.350999
+	Test cost = 1.076791,	Accuracy = 0.457831
+	Test cost = 1.085132,	Accuracy = 0.424870
+Epoch = 2
+	Train cost = 1.071470,	Accuracy = 0.509991
+	Test cost = 1.055630,	Accuracy = 0.472892
+	Test cost = 1.070488,	Accuracy = 0.463731
+Epoch = 3
+	Train cost = 1.051817,	Accuracy = 0.531277
+	Test cost = 1.040179,	Accuracy = 0.463855
+	Test cost = 1.058710,	Accuracy = 0.458549
+Epoch = 4
+	Train cost = 1.035392,	Accuracy = 0.540834
+	Test cost = 1.028895,	Accuracy = 0.469880
+	Test cost = 1.049386,	Accuracy = 0.458549
+Epoch = 5
+	Train cost = 1.021641,	Accuracy = 0.545613
+	Test cost = 1.021051,	Accuracy = 0.472892
+	Test cost = 1.042310,	Accuracy = 0.463731
+Epoch = 6
+	Train cost = 1.010291,	Accuracy = 0.545178
+	Test cost = 1.016145,	Accuracy = 0.460843
+	Test cost = 1.037156,	Accuracy = 0.458549
+Epoch = 7
+	Train cost = 1.000995,	Accuracy = 0.543875
+	Test cost = 1.013094,	Accuracy = 0.448795
+	Test cost = 1.033537,	Accuracy = 0.461140
+Epoch = 8
+	Train cost = 0.993179,	Accuracy = 0.548219
+	Test cost = 1.011052,	Accuracy = 0.451807
+	Test cost = 1.030981,	Accuracy = 0.458549
+Epoch = 9
+	Train cost = 0.986365,	Accuracy = 0.551260
+	Test cost = 1.009527,	Accuracy = 0.448795
+	Test cost = 1.029136,	Accuracy = 0.455959
+Epoch = 10
+	Train cost = 0.980241,	Accuracy = 0.553866
+	Test cost = 1.008226,	Accuracy = 0.460843
+	Test cost = 1.027714,	Accuracy = 0.453368
+Epoch = 11
+	Train cost = 0.974613,	Accuracy = 0.560382
+	Test cost = 1.006978,	Accuracy = 0.466867
+	Test cost = 1.026529,	Accuracy = 0.450777
+Epoch = 12
+	Train cost = 0.969362,	Accuracy = 0.561685
+	Test cost = 1.005764,	Accuracy = 0.478916
+	Test cost = 1.025486,	Accuracy = 0.448187
+Epoch = 13
+	Train cost = 0.964420,	Accuracy = 0.562120
+	Test cost = 1.004585,	Accuracy = 0.478916
+	Test cost = 1.024531,	Accuracy = 0.450777
+Epoch = 14
+	Train cost = 0.959746,	Accuracy = 0.564292
+	Test cost = 1.003444,	Accuracy = 0.481928
+	Test cost = 1.023618,	Accuracy = 0.453368
+Epoch = 15
+	Train cost = 0.955331,	Accuracy = 0.566030
+	Test cost = 1.002346,	Accuracy = 0.481928
+	Test cost = 1.022704,	Accuracy = 0.455959
+Epoch = 16
+	Train cost = 0.951146,	Accuracy = 0.567333
+	Test cost = 1.001298,	Accuracy = 0.472892
+	Test cost = 1.021786,	Accuracy = 0.458549
+Epoch = 17
+	Train cost = 0.947194,	Accuracy = 0.569070
+	Test cost = 1.000287,	Accuracy = 0.466867
+	Test cost = 1.020867,	Accuracy = 0.466321
+Epoch = 18
+	Train cost = 0.943447,	Accuracy = 0.567333
+	Test cost = 0.999301,	Accuracy = 0.472892
+	Test cost = 1.019927,	Accuracy = 0.468912
+Epoch = 19
+	Train cost = 0.939897,	Accuracy = 0.569070
+	Test cost = 0.998345,	Accuracy = 0.475904
+	Test cost = 1.018981,	Accuracy = 0.463731
+Epoch = 20
+	Train cost = 0.936543,	Accuracy = 0.571242
+	Test cost = 0.997430,	Accuracy = 0.475904
+	Test cost = 1.018030,	Accuracy = 0.463731
+Epoch = 21
+	Train cost = 0.933353,	Accuracy = 0.572546
+	Test cost = 0.996538,	Accuracy = 0.469880
+	Test cost = 1.017082,	Accuracy = 0.468912
+Epoch = 22
+	Train cost = 0.930314,	Accuracy = 0.572980
+	Test cost = 0.995660,	Accuracy = 0.466867
+	Test cost = 1.016135,	Accuracy = 0.468912
+Epoch = 23
+	Train cost = 0.927420,	Accuracy = 0.573849
+	Test cost = 0.994787,	Accuracy = 0.466867
+	Test cost = 1.015180,	Accuracy = 0.479275
+Epoch = 24
+	Train cost = 0.924646,	Accuracy = 0.574718
+	Test cost = 0.993937,	Accuracy = 0.469880
+	Test cost = 1.014225,	Accuracy = 0.489637
+Epoch = 25
+	Train cost = 0.921994,	Accuracy = 0.576890
+	Test cost = 0.993086,	Accuracy = 0.466867
+	Test cost = 1.013277,	Accuracy = 0.484456
+Epoch = 26
+	Train cost = 0.919447,	Accuracy = 0.576455
+	Test cost = 0.992231,	Accuracy = 0.472892
+	Test cost = 1.012339,	Accuracy = 0.484456
+Epoch = 27
+	Train cost = 0.916993,	Accuracy = 0.577758
+	Test cost = 0.991375,	Accuracy = 0.469880
+	Test cost = 1.011408,	Accuracy = 0.481865
+Epoch = 28
+	Train cost = 0.914625,	Accuracy = 0.579062
+	Test cost = 0.990524,	Accuracy = 0.463855
+	Test cost = 1.010484,	Accuracy = 0.479275
+Epoch = 29
+	Train cost = 0.912340,	Accuracy = 0.580799
+	Test cost = 0.989678,	Accuracy = 0.469880
+	Test cost = 1.009558,	Accuracy = 0.484456
+Epoch = 30
+	Train cost = 0.910128,	Accuracy = 0.582971
+	Test cost = 0.988816,	Accuracy = 0.472892
+	Test cost = 1.008624,	Accuracy = 0.481865
+Epoch = 31
+	Train cost = 0.907979,	Accuracy = 0.583406
+	Test cost = 0.987963,	Accuracy = 0.472892
+	Test cost = 1.007685,	Accuracy = 0.487047
+Epoch = 32
+	Train cost = 0.905887,	Accuracy = 0.585143
+	Test cost = 0.987106,	Accuracy = 0.478916
+	Test cost = 1.006745,	Accuracy = 0.484456
+Epoch = 33
+	Train cost = 0.903848,	Accuracy = 0.587315
+	Test cost = 0.986243,	Accuracy = 0.481928
+	Test cost = 1.005811,	Accuracy = 0.479275
+Epoch = 34
+	Train cost = 0.901857,	Accuracy = 0.588619
+	Test cost = 0.985384,	Accuracy = 0.481928
+	Test cost = 1.004888,	Accuracy = 0.479275
+Epoch = 35
+	Train cost = 0.899911,	Accuracy = 0.589922
+	Test cost = 0.984518,	Accuracy = 0.484940
+	Test cost = 1.003972,	Accuracy = 0.484456
+Epoch = 36
+	Train cost = 0.898005,	Accuracy = 0.589053
+	Test cost = 0.983646,	Accuracy = 0.484940
+	Test cost = 1.003057,	Accuracy = 0.489637
+Epoch = 37
+	Train cost = 0.896134,	Accuracy = 0.590791
+	Test cost = 0.982755,	Accuracy = 0.487952
+	Test cost = 1.002136,	Accuracy = 0.489637
+Epoch = 38
+	Train cost = 0.894298,	Accuracy = 0.591659
+	Test cost = 0.981863,	Accuracy = 0.490964
+	Test cost = 1.001206,	Accuracy = 0.487047
+Epoch = 39
+	Train cost = 0.892494,	Accuracy = 0.592528
+	Test cost = 0.980952,	Accuracy = 0.487952
+	Test cost = 1.000281,	Accuracy = 0.487047
+Epoch = 40
+	Train cost = 0.890714,	Accuracy = 0.593397
+	Test cost = 0.980034,	Accuracy = 0.487952
+	Test cost = 0.999340,	Accuracy = 0.489637
+Epoch = 41
+	Train cost = 0.888964,	Accuracy = 0.594266
+	Test cost = 0.979106,	Accuracy = 0.490964
+	Test cost = 0.998399,	Accuracy = 0.492228
+Epoch = 42
+	Train cost = 0.887238,	Accuracy = 0.596872
+	Test cost = 0.978157,	Accuracy = 0.490964
+	Test cost = 0.997445,	Accuracy = 0.492228
+Epoch = 43
+	Train cost = 0.885533,	Accuracy = 0.598610
+	Test cost = 0.977212,	Accuracy = 0.493976
+	Test cost = 0.996499,	Accuracy = 0.494819
+Epoch = 44
+	Train cost = 0.883851,	Accuracy = 0.599913
+	Test cost = 0.976244,	Accuracy = 0.490964
+	Test cost = 0.995546,	Accuracy = 0.494819
+Epoch = 45
+	Train cost = 0.882184,	Accuracy = 0.599479
+	Test cost = 0.975279,	Accuracy = 0.500000
+	Test cost = 0.994596,	Accuracy = 0.494819
+Epoch = 46
+	Train cost = 0.880538,	Accuracy = 0.598610
+	Test cost = 0.974304,	Accuracy = 0.512048
+	Test cost = 0.993622,	Accuracy = 0.497409
+Epoch = 47
+	Train cost = 0.878902,	Accuracy = 0.601216
+	Test cost = 0.973314,	Accuracy = 0.512048
+	Test cost = 0.992653,	Accuracy = 0.494819
+Epoch = 48
+	Train cost = 0.877282,	Accuracy = 0.600782
+	Test cost = 0.972319,	Accuracy = 0.521084
+	Test cost = 0.991657,	Accuracy = 0.494819
+Epoch = 49
+	Train cost = 0.875669,	Accuracy = 0.602520
+	Test cost = 0.971301,	Accuracy = 0.524096
+	Test cost = 0.990657,	Accuracy = 0.494819
+Epoch = 50
+	Train cost = 0.874070,	Accuracy = 0.603823
+	Test cost = 0.970287,	Accuracy = 0.524096
+	Test cost = 0.989649,	Accuracy = 0.502591
+Epoch = 51
+	Train cost = 0.872480,	Accuracy = 0.604692
+	Test cost = 0.969253,	Accuracy = 0.524096
+	Test cost = 0.988641,	Accuracy = 0.505181
+Epoch = 52
+	Train cost = 0.870902,	Accuracy = 0.606864
+	Test cost = 0.968230,	Accuracy = 0.521084
+	Test cost = 0.987633,	Accuracy = 0.505181
+Epoch = 53
+	Train cost = 0.869332,	Accuracy = 0.607298
+	Test cost = 0.967180,	Accuracy = 0.524096
+	Test cost = 0.986625,	Accuracy = 0.505181
+Epoch = 54
+	Train cost = 0.867772,	Accuracy = 0.608167
+	Test cost = 0.966139,	Accuracy = 0.530120
+	Test cost = 0.985599,	Accuracy = 0.507772
+Epoch = 55
+	Train cost = 0.866216,	Accuracy = 0.607732
+	Test cost = 0.965097,	Accuracy = 0.527108
+	Test cost = 0.984570,	Accuracy = 0.507772
+Epoch = 56
+	Train cost = 0.864673,	Accuracy = 0.608167
+	Test cost = 0.964041,	Accuracy = 0.527108
+	Test cost = 0.983528,	Accuracy = 0.510363
+Epoch = 57
+	Train cost = 0.863131,	Accuracy = 0.609470
+	Test cost = 0.962981,	Accuracy = 0.527108
+	Test cost = 0.982486,	Accuracy = 0.510363
+Epoch = 58
+	Train cost = 0.861598,	Accuracy = 0.612945
+	Test cost = 0.961906,	Accuracy = 0.527108
+	Test cost = 0.981433,	Accuracy = 0.510363
+Epoch = 59
+	Train cost = 0.860066,	Accuracy = 0.613380
+	Test cost = 0.960826,	Accuracy = 0.530120
+	Test cost = 0.980362,	Accuracy = 0.510363
+Epoch = 60
+	Train cost = 0.858543,	Accuracy = 0.615117
+	Test cost = 0.959744,	Accuracy = 0.530120
+	Test cost = 0.979293,	Accuracy = 0.515544
+Epoch = 61
+	Train cost = 0.857025,	Accuracy = 0.614683
+	Test cost = 0.958661,	Accuracy = 0.533133
+	Test cost = 0.978218,	Accuracy = 0.510363
+Epoch = 62
+	Train cost = 0.855508,	Accuracy = 0.615986
+	Test cost = 0.957570,	Accuracy = 0.539157
+	Test cost = 0.977141,	Accuracy = 0.510363
+Epoch = 63
+	Train cost = 0.853999,	Accuracy = 0.617724
+	Test cost = 0.956485,	Accuracy = 0.539157
+	Test cost = 0.976043,	Accuracy = 0.507772
+Epoch = 64
+	Train cost = 0.852493,	Accuracy = 0.618593
+	Test cost = 0.955391,	Accuracy = 0.539157
+	Test cost = 0.974955,	Accuracy = 0.510363
+Epoch = 65
+	Train cost = 0.850989,	Accuracy = 0.619027
+	Test cost = 0.954286,	Accuracy = 0.539157
+	Test cost = 0.973850,	Accuracy = 0.510363
+Epoch = 66
+	Train cost = 0.849487,	Accuracy = 0.620330
+	Test cost = 0.953166,	Accuracy = 0.539157
+	Test cost = 0.972736,	Accuracy = 0.510363
+Epoch = 67
+	Train cost = 0.847988,	Accuracy = 0.620765
+	Test cost = 0.952032,	Accuracy = 0.539157
+	Test cost = 0.971617,	Accuracy = 0.510363
+Epoch = 68
+	Train cost = 0.846484,	Accuracy = 0.622502
+	Test cost = 0.950896,	Accuracy = 0.539157
+	Test cost = 0.970492,	Accuracy = 0.510363
+Epoch = 69
+	Train cost = 0.844989,	Accuracy = 0.624240
+	Test cost = 0.949736,	Accuracy = 0.542169
+	Test cost = 0.969362,	Accuracy = 0.515544
+Epoch = 70
+	Train cost = 0.843483,	Accuracy = 0.625543
+	Test cost = 0.948595,	Accuracy = 0.542169
+	Test cost = 0.968231,	Accuracy = 0.515544
+Epoch = 71
+	Train cost = 0.841990,	Accuracy = 0.626412
+	Test cost = 0.947441,	Accuracy = 0.545181
+	Test cost = 0.967084,	Accuracy = 0.515544
+Epoch = 72
+	Train cost = 0.840494,	Accuracy = 0.626412
+	Test cost = 0.946277,	Accuracy = 0.548193
+	Test cost = 0.965932,	Accuracy = 0.518135
+Epoch = 73
+	Train cost = 0.838996,	Accuracy = 0.626412
+	Test cost = 0.945118,	Accuracy = 0.545181
+	Test cost = 0.964770,	Accuracy = 0.518135
+Epoch = 74
+	Train cost = 0.837504,	Accuracy = 0.626412
+	Test cost = 0.943959,	Accuracy = 0.545181
+	Test cost = 0.963615,	Accuracy = 0.518135
+Epoch = 75
+	Train cost = 0.836013,	Accuracy = 0.628149
+	Test cost = 0.942787,	Accuracy = 0.545181
+	Test cost = 0.962432,	Accuracy = 0.523316
+Epoch = 76
+	Train cost = 0.834519,	Accuracy = 0.629018
+	Test cost = 0.941604,	Accuracy = 0.542169
+	Test cost = 0.961259,	Accuracy = 0.523316
+Epoch = 77
+	Train cost = 0.833022,	Accuracy = 0.628584
+	Test cost = 0.940432,	Accuracy = 0.542169
+	Test cost = 0.960078,	Accuracy = 0.523316
+Epoch = 78
+	Train cost = 0.831531,	Accuracy = 0.629018
+	Test cost = 0.939245,	Accuracy = 0.545181
+	Test cost = 0.958873,	Accuracy = 0.523316
+Epoch = 79
+	Train cost = 0.830037,	Accuracy = 0.630756
+	Test cost = 0.938070,	Accuracy = 0.551205
+	Test cost = 0.957675,	Accuracy = 0.525907
+Epoch = 80
+	Train cost = 0.828538,	Accuracy = 0.632059
+	Test cost = 0.936885,	Accuracy = 0.548193
+	Test cost = 0.956477,	Accuracy = 0.528497
+Validation Dyad = 16 	Testing Dyad = 8
+Majority Accuracy = 0.416409, Majority Class = 2
+(2267, 76, 1360) (201, 76, 1360) (138, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.094906,	Accuracy = 0.360829
+	Test cost = 1.091119,	Accuracy = 0.412935
+	Test cost = 1.083483,	Accuracy = 0.623188
+Epoch = 2
+	Train cost = 1.070102,	Accuracy = 0.524041
+	Test cost = 1.083290,	Accuracy = 0.412935
+	Test cost = 1.069320,	Accuracy = 0.644928
+Epoch = 3
+	Train cost = 1.049680,	Accuracy = 0.539921
+	Test cost = 1.076632,	Accuracy = 0.442786
+	Test cost = 1.056236,	Accuracy = 0.659420
+Epoch = 4
+	Train cost = 1.032530,	Accuracy = 0.549625
+	Test cost = 1.071057,	Accuracy = 0.497512
+	Test cost = 1.044296,	Accuracy = 0.659420
+Epoch = 5
+	Train cost = 1.018239,	Accuracy = 0.553154
+	Test cost = 1.066440,	Accuracy = 0.522388
+	Test cost = 1.033355,	Accuracy = 0.673913
+Epoch = 6
+	Train cost = 1.006560,	Accuracy = 0.559330
+	Test cost = 1.062638,	Accuracy = 0.522388
+	Test cost = 1.023260,	Accuracy = 0.673913
+Epoch = 7
+	Train cost = 0.997048,	Accuracy = 0.560212
+	Test cost = 1.059541,	Accuracy = 0.527363
+	Test cost = 1.013637,	Accuracy = 0.673913
+Epoch = 8
+	Train cost = 0.989088,	Accuracy = 0.562417
+	Test cost = 1.056802,	Accuracy = 0.527363
+	Test cost = 1.004338,	Accuracy = 0.673913
+Epoch = 9
+	Train cost = 0.982141,	Accuracy = 0.562417
+	Test cost = 1.054197,	Accuracy = 0.542289
+	Test cost = 0.995029,	Accuracy = 0.681159
+Epoch = 10
+	Train cost = 0.975865,	Accuracy = 0.569034
+	Test cost = 1.051641,	Accuracy = 0.542289
+	Test cost = 0.985643,	Accuracy = 0.681159
+Epoch = 11
+	Train cost = 0.970059,	Accuracy = 0.570357
+	Test cost = 1.048995,	Accuracy = 0.542289
+	Test cost = 0.976068,	Accuracy = 0.681159
+Epoch = 12
+	Train cost = 0.964601,	Accuracy = 0.572563
+	Test cost = 1.046282,	Accuracy = 0.557214
+	Test cost = 0.966445,	Accuracy = 0.681159
+Epoch = 13
+	Train cost = 0.959463,	Accuracy = 0.569475
+	Test cost = 1.043497,	Accuracy = 0.557214
+	Test cost = 0.956859,	Accuracy = 0.681159
+Epoch = 14
+	Train cost = 0.954582,	Accuracy = 0.570357
+	Test cost = 1.040752,	Accuracy = 0.572139
+	Test cost = 0.947472,	Accuracy = 0.681159
+Epoch = 15
+	Train cost = 0.949947,	Accuracy = 0.571240
+	Test cost = 1.038056,	Accuracy = 0.572139
+	Test cost = 0.938307,	Accuracy = 0.681159
+Epoch = 16
+	Train cost = 0.945552,	Accuracy = 0.574327
+	Test cost = 1.035404,	Accuracy = 0.572139
+	Test cost = 0.929372,	Accuracy = 0.673913
+Epoch = 17
+	Train cost = 0.941388,	Accuracy = 0.578297
+	Test cost = 1.032826,	Accuracy = 0.572139
+	Test cost = 0.920683,	Accuracy = 0.673913
+Epoch = 18
+	Train cost = 0.937418,	Accuracy = 0.579621
+	Test cost = 1.030301,	Accuracy = 0.572139
+	Test cost = 0.912200,	Accuracy = 0.673913
+Epoch = 19
+	Train cost = 0.933633,	Accuracy = 0.579180
+	Test cost = 1.027874,	Accuracy = 0.577114
+	Test cost = 0.903986,	Accuracy = 0.673913
+Epoch = 20
+	Train cost = 0.930019,	Accuracy = 0.577856
+	Test cost = 1.025588,	Accuracy = 0.577114
+	Test cost = 0.896111,	Accuracy = 0.673913
+Epoch = 21
+	Train cost = 0.926568,	Accuracy = 0.580944
+	Test cost = 1.023388,	Accuracy = 0.577114
+	Test cost = 0.888540,	Accuracy = 0.673913
+Epoch = 22
+	Train cost = 0.923271,	Accuracy = 0.582708
+	Test cost = 1.021353,	Accuracy = 0.577114
+	Test cost = 0.881364,	Accuracy = 0.673913
+Epoch = 23
+	Train cost = 0.920112,	Accuracy = 0.583150
+	Test cost = 1.019455,	Accuracy = 0.577114
+	Test cost = 0.874491,	Accuracy = 0.673913
+Epoch = 24
+	Train cost = 0.917088,	Accuracy = 0.586237
+	Test cost = 1.017684,	Accuracy = 0.572139
+	Test cost = 0.867944,	Accuracy = 0.673913
+Epoch = 25
+	Train cost = 0.914185,	Accuracy = 0.584914
+	Test cost = 1.015982,	Accuracy = 0.572139
+	Test cost = 0.861669,	Accuracy = 0.673913
+Epoch = 26
+	Train cost = 0.911402,	Accuracy = 0.584914
+	Test cost = 1.014400,	Accuracy = 0.572139
+	Test cost = 0.855656,	Accuracy = 0.673913
+Epoch = 27
+	Train cost = 0.908706,	Accuracy = 0.586678
+	Test cost = 1.012932,	Accuracy = 0.567164
+	Test cost = 0.849899,	Accuracy = 0.673913
+Epoch = 28
+	Train cost = 0.906105,	Accuracy = 0.585355
+	Test cost = 1.011591,	Accuracy = 0.567164
+	Test cost = 0.844428,	Accuracy = 0.673913
+Epoch = 29
+	Train cost = 0.903582,	Accuracy = 0.586678
+	Test cost = 1.010327,	Accuracy = 0.567164
+	Test cost = 0.839177,	Accuracy = 0.673913
+Epoch = 30
+	Train cost = 0.901140,	Accuracy = 0.589325
+	Test cost = 1.009205,	Accuracy = 0.562189
+	Test cost = 0.834189,	Accuracy = 0.673913
+Epoch = 31
+	Train cost = 0.898769,	Accuracy = 0.591531
+	Test cost = 1.008147,	Accuracy = 0.567164
+	Test cost = 0.829382,	Accuracy = 0.673913
+Epoch = 32
+	Train cost = 0.896464,	Accuracy = 0.593295
+	Test cost = 1.007198,	Accuracy = 0.562189
+	Test cost = 0.824798,	Accuracy = 0.673913
+Epoch = 33
+	Train cost = 0.894223,	Accuracy = 0.593736
+	Test cost = 1.006365,	Accuracy = 0.562189
+	Test cost = 0.820407,	Accuracy = 0.673913
+Epoch = 34
+	Train cost = 0.892035,	Accuracy = 0.594618
+	Test cost = 1.005566,	Accuracy = 0.562189
+	Test cost = 0.816184,	Accuracy = 0.673913
+Epoch = 35
+	Train cost = 0.889901,	Accuracy = 0.594618
+	Test cost = 1.004897,	Accuracy = 0.557214
+	Test cost = 0.812159,	Accuracy = 0.673913
+Epoch = 36
+	Train cost = 0.887813,	Accuracy = 0.595942
+	Test cost = 1.004270,	Accuracy = 0.557214
+	Test cost = 0.808289,	Accuracy = 0.673913
+Epoch = 37
+	Train cost = 0.885771,	Accuracy = 0.597706
+	Test cost = 1.003763,	Accuracy = 0.557214
+	Test cost = 0.804575,	Accuracy = 0.673913
+Epoch = 38
+	Train cost = 0.883764,	Accuracy = 0.598588
+	Test cost = 1.003307,	Accuracy = 0.552239
+	Test cost = 0.800977,	Accuracy = 0.673913
+Epoch = 39
+	Train cost = 0.881800,	Accuracy = 0.599912
+	Test cost = 1.002922,	Accuracy = 0.542289
+	Test cost = 0.797498,	Accuracy = 0.673913
+Epoch = 40
+	Train cost = 0.879862,	Accuracy = 0.601235
+	Test cost = 1.002637,	Accuracy = 0.542289
+	Test cost = 0.794140,	Accuracy = 0.673913
+Epoch = 41
+	Train cost = 0.877957,	Accuracy = 0.600353
+	Test cost = 1.002359,	Accuracy = 0.537313
+	Test cost = 0.790879,	Accuracy = 0.673913
+Epoch = 42
+	Train cost = 0.876076,	Accuracy = 0.601676
+	Test cost = 1.002209,	Accuracy = 0.537313
+	Test cost = 0.787723,	Accuracy = 0.673913
+Epoch = 43
+	Train cost = 0.874227,	Accuracy = 0.603441
+	Test cost = 1.002022,	Accuracy = 0.532338
+	Test cost = 0.784605,	Accuracy = 0.673913
+Epoch = 44
+	Train cost = 0.872404,	Accuracy = 0.603441
+	Test cost = 1.001985,	Accuracy = 0.537313
+	Test cost = 0.781599,	Accuracy = 0.673913
+Epoch = 45
+	Train cost = 0.870601,	Accuracy = 0.604764
+	Test cost = 1.001962,	Accuracy = 0.542289
+	Test cost = 0.778641,	Accuracy = 0.666667
+Epoch = 46
+	Train cost = 0.868819,	Accuracy = 0.607411
+	Test cost = 1.002047,	Accuracy = 0.542289
+	Test cost = 0.775767,	Accuracy = 0.666667
+Epoch = 47
+	Train cost = 0.867058,	Accuracy = 0.607852
+	Test cost = 1.002181,	Accuracy = 0.542289
+	Test cost = 0.772947,	Accuracy = 0.666667
+Epoch = 48
+	Train cost = 0.865311,	Accuracy = 0.608293
+	Test cost = 1.002363,	Accuracy = 0.542289
+	Test cost = 0.770174,	Accuracy = 0.666667
+Epoch = 49
+	Train cost = 0.863586,	Accuracy = 0.609616
+	Test cost = 1.002562,	Accuracy = 0.532338
+	Test cost = 0.767435,	Accuracy = 0.666667
+Epoch = 50
+	Train cost = 0.861870,	Accuracy = 0.610057
+	Test cost = 1.002857,	Accuracy = 0.532338
+	Test cost = 0.764747,	Accuracy = 0.666667
+Validation Dyad = 12 	Testing Dyad = 9
+Majority Accuracy = 0.414155, Majority Class = 2
+(2289, 76, 1360) (28, 76, 1360) (314, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095140,	Accuracy = 0.357798
+	Test cost = 1.070116,	Accuracy = 0.892857
+	Test cost = 1.089612,	Accuracy = 0.417197
+Epoch = 2
+	Train cost = 1.071461,	Accuracy = 0.530363
+	Test cost = 1.029172,	Accuracy = 0.964286
+	Test cost = 1.079686,	Accuracy = 0.429936
+Epoch = 3
+	Train cost = 1.051735,	Accuracy = 0.555264
+	Test cost = 0.991612,	Accuracy = 0.964286
+	Test cost = 1.072649,	Accuracy = 0.442675
+Epoch = 4
+	Train cost = 1.034905,	Accuracy = 0.561817
+	Test cost = 0.956061,	Accuracy = 0.964286
+	Test cost = 1.068155,	Accuracy = 0.452229
+Epoch = 5
+	Train cost = 1.020578,	Accuracy = 0.562691
+	Test cost = 0.923719,	Accuracy = 0.964286
+	Test cost = 1.065478,	Accuracy = 0.449045
+Epoch = 6
+	Train cost = 1.008576,	Accuracy = 0.561817
+	Test cost = 0.895236,	Accuracy = 0.928571
+	Test cost = 1.063995,	Accuracy = 0.445860
+Epoch = 7
+	Train cost = 0.998600,	Accuracy = 0.560944
+	Test cost = 0.870940,	Accuracy = 0.928571
+	Test cost = 1.062990,	Accuracy = 0.449045
+Epoch = 8
+	Train cost = 0.990143,	Accuracy = 0.564439
+	Test cost = 0.850395,	Accuracy = 0.892857
+	Test cost = 1.061945,	Accuracy = 0.452229
+Epoch = 9
+	Train cost = 0.982703,	Accuracy = 0.564875
+	Test cost = 0.832896,	Accuracy = 0.857143
+	Test cost = 1.060687,	Accuracy = 0.452229
+Epoch = 10
+	Train cost = 0.975952,	Accuracy = 0.562691
+	Test cost = 0.817977,	Accuracy = 0.857143
+	Test cost = 1.059127,	Accuracy = 0.452229
+Epoch = 11
+	Train cost = 0.969710,	Accuracy = 0.566623
+	Test cost = 0.804813,	Accuracy = 0.857143
+	Test cost = 1.057307,	Accuracy = 0.452229
+Epoch = 12
+	Train cost = 0.963895,	Accuracy = 0.567497
+	Test cost = 0.793256,	Accuracy = 0.857143
+	Test cost = 1.055260,	Accuracy = 0.449045
+Epoch = 13
+	Train cost = 0.958444,	Accuracy = 0.568370
+	Test cost = 0.783058,	Accuracy = 0.857143
+	Test cost = 1.053120,	Accuracy = 0.452229
+Epoch = 14
+	Train cost = 0.953315,	Accuracy = 0.568807
+	Test cost = 0.773592,	Accuracy = 0.857143
+	Test cost = 1.050826,	Accuracy = 0.455414
+Epoch = 15
+	Train cost = 0.948492,	Accuracy = 0.570555
+	Test cost = 0.764703,	Accuracy = 0.857143
+	Test cost = 1.048451,	Accuracy = 0.461783
+Epoch = 16
+	Train cost = 0.943942,	Accuracy = 0.570118
+	Test cost = 0.755945,	Accuracy = 0.857143
+	Test cost = 1.046015,	Accuracy = 0.464968
+Epoch = 17
+	Train cost = 0.939636,	Accuracy = 0.569244
+	Test cost = 0.747538,	Accuracy = 0.857143
+	Test cost = 1.043548,	Accuracy = 0.471338
+Epoch = 18
+	Train cost = 0.935554,	Accuracy = 0.569681
+	Test cost = 0.739280,	Accuracy = 0.857143
+	Test cost = 1.041031,	Accuracy = 0.477707
+Epoch = 19
+	Train cost = 0.931686,	Accuracy = 0.571429
+	Test cost = 0.731113,	Accuracy = 0.857143
+	Test cost = 1.038468,	Accuracy = 0.477707
+Epoch = 20
+	Train cost = 0.928009,	Accuracy = 0.575360
+	Test cost = 0.722732,	Accuracy = 0.857143
+	Test cost = 1.035869,	Accuracy = 0.477707
+Epoch = 21
+	Train cost = 0.924509,	Accuracy = 0.576671
+	Test cost = 0.714276,	Accuracy = 0.892857
+	Test cost = 1.033264,	Accuracy = 0.480892
+Epoch = 22
+	Train cost = 0.921162,	Accuracy = 0.575797
+	Test cost = 0.705630,	Accuracy = 0.892857
+	Test cost = 1.030637,	Accuracy = 0.480892
+Epoch = 23
+	Train cost = 0.917954,	Accuracy = 0.579292
+	Test cost = 0.696793,	Accuracy = 0.892857
+	Test cost = 1.028015,	Accuracy = 0.487261
+Epoch = 24
+	Train cost = 0.914875,	Accuracy = 0.582350
+	Test cost = 0.687652,	Accuracy = 0.892857
+	Test cost = 1.025385,	Accuracy = 0.484076
+Epoch = 25
+	Train cost = 0.911920,	Accuracy = 0.581477
+	Test cost = 0.678230,	Accuracy = 0.928571
+	Test cost = 1.022741,	Accuracy = 0.487261
+Epoch = 26
+	Train cost = 0.909069,	Accuracy = 0.581040
+	Test cost = 0.668648,	Accuracy = 0.964286
+	Test cost = 1.020108,	Accuracy = 0.506369
+Epoch = 27
+	Train cost = 0.906317,	Accuracy = 0.583661
+	Test cost = 0.658999,	Accuracy = 0.964286
+	Test cost = 1.017492,	Accuracy = 0.509554
+Epoch = 28
+	Train cost = 0.903652,	Accuracy = 0.584098
+	Test cost = 0.649212,	Accuracy = 0.964286
+	Test cost = 1.014899,	Accuracy = 0.519108
+Epoch = 29
+	Train cost = 0.901073,	Accuracy = 0.582787
+	Test cost = 0.639381,	Accuracy = 0.964286
+	Test cost = 1.012360,	Accuracy = 0.525478
+Epoch = 30
+	Train cost = 0.898562,	Accuracy = 0.585408
+	Test cost = 0.629349,	Accuracy = 0.964286
+	Test cost = 1.009855,	Accuracy = 0.531847
+Epoch = 31
+	Train cost = 0.896125,	Accuracy = 0.588030
+	Test cost = 0.619336,	Accuracy = 0.964286
+	Test cost = 1.007407,	Accuracy = 0.538217
+Epoch = 32
+	Train cost = 0.893759,	Accuracy = 0.590651
+	Test cost = 0.609319,	Accuracy = 0.964286
+	Test cost = 1.004989,	Accuracy = 0.531847
+Epoch = 33
+	Train cost = 0.891453,	Accuracy = 0.592835
+	Test cost = 0.599351,	Accuracy = 0.964286
+	Test cost = 1.002616,	Accuracy = 0.528662
+Epoch = 34
+	Train cost = 0.889203,	Accuracy = 0.593272
+	Test cost = 0.589198,	Accuracy = 0.964286
+	Test cost = 1.000274,	Accuracy = 0.531847
+Epoch = 35
+	Train cost = 0.886998,	Accuracy = 0.594583
+	Test cost = 0.579159,	Accuracy = 0.964286
+	Test cost = 0.997973,	Accuracy = 0.531847
+Epoch = 36
+	Train cost = 0.884838,	Accuracy = 0.596767
+	Test cost = 0.569028,	Accuracy = 0.964286
+	Test cost = 0.995692,	Accuracy = 0.531847
+Epoch = 37
+	Train cost = 0.882718,	Accuracy = 0.598515
+	Test cost = 0.559166,	Accuracy = 0.964286
+	Test cost = 0.993454,	Accuracy = 0.535032
+Epoch = 38
+	Train cost = 0.880636,	Accuracy = 0.598515
+	Test cost = 0.549236,	Accuracy = 0.964286
+	Test cost = 0.991259,	Accuracy = 0.538217
+Epoch = 39
+	Train cost = 0.878588,	Accuracy = 0.601573
+	Test cost = 0.539538,	Accuracy = 0.964286
+	Test cost = 0.989092,	Accuracy = 0.547771
+Epoch = 40
+	Train cost = 0.876576,	Accuracy = 0.600699
+	Test cost = 0.529916,	Accuracy = 0.964286
+	Test cost = 0.986975,	Accuracy = 0.550955
+Epoch = 41
+	Train cost = 0.874592,	Accuracy = 0.601136
+	Test cost = 0.520235,	Accuracy = 0.964286
+	Test cost = 0.984873,	Accuracy = 0.554140
+Epoch = 42
+	Train cost = 0.872639,	Accuracy = 0.601136
+	Test cost = 0.510859,	Accuracy = 0.964286
+	Test cost = 0.982809,	Accuracy = 0.557325
+Epoch = 43
+	Train cost = 0.870711,	Accuracy = 0.603757
+	Test cost = 0.501609,	Accuracy = 0.964286
+	Test cost = 0.980780,	Accuracy = 0.560510
+Epoch = 44
+	Train cost = 0.868807,	Accuracy = 0.604631
+	Test cost = 0.492542,	Accuracy = 0.964286
+	Test cost = 0.978788,	Accuracy = 0.566879
+Epoch = 45
+	Train cost = 0.866926,	Accuracy = 0.606378
+	Test cost = 0.483674,	Accuracy = 0.964286
+	Test cost = 0.976814,	Accuracy = 0.566879
+Epoch = 46
+	Train cost = 0.865062,	Accuracy = 0.606378
+	Test cost = 0.475005,	Accuracy = 0.964286
+	Test cost = 0.974871,	Accuracy = 0.566879
+Epoch = 47
+	Train cost = 0.863220,	Accuracy = 0.606378
+	Test cost = 0.466431,	Accuracy = 0.964286
+	Test cost = 0.972953,	Accuracy = 0.566879
+Epoch = 48
+	Train cost = 0.861395,	Accuracy = 0.607689
+	Test cost = 0.458080,	Accuracy = 0.964286
+	Test cost = 0.971061,	Accuracy = 0.563694
+Epoch = 49
+	Train cost = 0.859585,	Accuracy = 0.608563
+	Test cost = 0.449994,	Accuracy = 0.964286
+	Test cost = 0.969189,	Accuracy = 0.563694
+Epoch = 50
+	Train cost = 0.857792,	Accuracy = 0.610310
+	Test cost = 0.442043,	Accuracy = 0.964286
+	Test cost = 0.967341,	Accuracy = 0.563694
+Epoch = 51
+	Train cost = 0.856011,	Accuracy = 0.610310
+	Test cost = 0.434295,	Accuracy = 0.964286
+	Test cost = 0.965505,	Accuracy = 0.563694
+Epoch = 52
+	Train cost = 0.854246,	Accuracy = 0.609436
+	Test cost = 0.426689,	Accuracy = 0.964286
+	Test cost = 0.963685,	Accuracy = 0.557325
+Epoch = 53
+	Train cost = 0.852491,	Accuracy = 0.609436
+	Test cost = 0.419349,	Accuracy = 0.964286
+	Test cost = 0.961882,	Accuracy = 0.554140
+Epoch = 54
+	Train cost = 0.850751,	Accuracy = 0.609000
+	Test cost = 0.412149,	Accuracy = 0.964286
+	Test cost = 0.960099,	Accuracy = 0.554140
+Epoch = 55
+	Train cost = 0.849018,	Accuracy = 0.609873
+	Test cost = 0.405177,	Accuracy = 0.964286
+	Test cost = 0.958332,	Accuracy = 0.550955
+Epoch = 56
+	Train cost = 0.847292,	Accuracy = 0.610310
+	Test cost = 0.398288,	Accuracy = 0.964286
+	Test cost = 0.956576,	Accuracy = 0.550955
+Epoch = 57
+	Train cost = 0.845577,	Accuracy = 0.610747
+	Test cost = 0.391584,	Accuracy = 0.964286
+	Test cost = 0.954842,	Accuracy = 0.554140
+Epoch = 58
+	Train cost = 0.843871,	Accuracy = 0.612495
+	Test cost = 0.385054,	Accuracy = 0.964286
+	Test cost = 0.953114,	Accuracy = 0.550955
+Epoch = 59
+	Train cost = 0.842171,	Accuracy = 0.613805
+	Test cost = 0.378637,	Accuracy = 0.964286
+	Test cost = 0.951395,	Accuracy = 0.550955
+Epoch = 60
+	Train cost = 0.840477,	Accuracy = 0.613805
+	Test cost = 0.372443,	Accuracy = 0.964286
+	Test cost = 0.949696,	Accuracy = 0.554140
+Epoch = 61
+	Train cost = 0.838791,	Accuracy = 0.615116
+	Test cost = 0.366342,	Accuracy = 0.964286
+	Test cost = 0.948004,	Accuracy = 0.554140
+Epoch = 62
+	Train cost = 0.837108,	Accuracy = 0.615990
+	Test cost = 0.360487,	Accuracy = 0.964286
+	Test cost = 0.946326,	Accuracy = 0.554140
+Epoch = 63
+	Train cost = 0.835431,	Accuracy = 0.617300
+	Test cost = 0.354733,	Accuracy = 0.964286
+	Test cost = 0.944655,	Accuracy = 0.557325
+Epoch = 64
+	Train cost = 0.833756,	Accuracy = 0.617737
+	Test cost = 0.349131,	Accuracy = 0.964286
+	Test cost = 0.942990,	Accuracy = 0.560510
+Epoch = 65
+	Train cost = 0.832087,	Accuracy = 0.619048
+	Test cost = 0.343755,	Accuracy = 0.964286
+	Test cost = 0.941342,	Accuracy = 0.560510
+Epoch = 66
+	Train cost = 0.830418,	Accuracy = 0.621232
+	Test cost = 0.338395,	Accuracy = 0.964286
+	Test cost = 0.939694,	Accuracy = 0.560510
+Epoch = 67
+	Train cost = 0.828758,	Accuracy = 0.622979
+	Test cost = 0.333283,	Accuracy = 0.964286
+	Test cost = 0.938053,	Accuracy = 0.563694
+Epoch = 68
+	Train cost = 0.827096,	Accuracy = 0.624727
+	Test cost = 0.328219,	Accuracy = 0.964286
+	Test cost = 0.936423,	Accuracy = 0.566879
+Epoch = 69
+	Train cost = 0.825441,	Accuracy = 0.625601
+	Test cost = 0.323376,	Accuracy = 0.964286
+	Test cost = 0.934795,	Accuracy = 0.566879
+Epoch = 70
+	Train cost = 0.823785,	Accuracy = 0.626911
+	Test cost = 0.318565,	Accuracy = 0.964286
+	Test cost = 0.933182,	Accuracy = 0.563694
+Epoch = 71
+	Train cost = 0.822136,	Accuracy = 0.626474
+	Test cost = 0.313870,	Accuracy = 0.964286
+	Test cost = 0.931568,	Accuracy = 0.563694
+Epoch = 72
+	Train cost = 0.820484,	Accuracy = 0.626911
+	Test cost = 0.309364,	Accuracy = 0.964286
+	Test cost = 0.929958,	Accuracy = 0.563694
+Epoch = 73
+	Train cost = 0.818841,	Accuracy = 0.626911
+	Test cost = 0.304831,	Accuracy = 0.964286
+	Test cost = 0.928352,	Accuracy = 0.560510
+Epoch = 74
+	Train cost = 0.817190,	Accuracy = 0.626911
+	Test cost = 0.300543,	Accuracy = 0.964286
+	Test cost = 0.926760,	Accuracy = 0.560510
+Epoch = 75
+	Train cost = 0.815549,	Accuracy = 0.628222
+	Test cost = 0.296237,	Accuracy = 0.964286
+	Test cost = 0.925168,	Accuracy = 0.563694
+Epoch = 76
+	Train cost = 0.813905,	Accuracy = 0.629533
+	Test cost = 0.292176,	Accuracy = 0.964286
+	Test cost = 0.923572,	Accuracy = 0.563694
+Epoch = 77
+	Train cost = 0.812264,	Accuracy = 0.629096
+	Test cost = 0.288156,	Accuracy = 0.964286
+	Test cost = 0.921993,	Accuracy = 0.563694
+Epoch = 78
+	Train cost = 0.810622,	Accuracy = 0.631280
+	Test cost = 0.284219,	Accuracy = 0.964286
+	Test cost = 0.920400,	Accuracy = 0.563694
+Epoch = 79
+	Train cost = 0.808983,	Accuracy = 0.633028
+	Test cost = 0.280432,	Accuracy = 0.964286
+	Test cost = 0.918819,	Accuracy = 0.563694
+Epoch = 80
+	Train cost = 0.807342,	Accuracy = 0.633464
+	Test cost = 0.276653,	Accuracy = 0.964286
+	Test cost = 0.917234,	Accuracy = 0.566879
+Validation Dyad = 11 	Testing Dyad = 10
+Majority Accuracy = 0.420687, Majority Class = 2
+(2301, 76, 1360) (324, 76, 1360) (304, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095135,	Accuracy = 0.377662
+	Test cost = 1.079934,	Accuracy = 0.592593
+	Test cost = 1.061765,	Accuracy = 0.697368
+Epoch = 2
+	Train cost = 1.072210,	Accuracy = 0.523685
+	Test cost = 1.054800,	Accuracy = 0.586420
+	Test cost = 1.026335,	Accuracy = 0.697368
+Epoch = 3
+	Train cost = 1.053417,	Accuracy = 0.539765
+	Test cost = 1.033972,	Accuracy = 0.586420
+	Test cost = 0.995135,	Accuracy = 0.697368
+Epoch = 4
+	Train cost = 1.037690,	Accuracy = 0.546284
+	Test cost = 1.016315,	Accuracy = 0.586420
+	Test cost = 0.967123,	Accuracy = 0.697368
+Epoch = 5
+	Train cost = 1.024490,	Accuracy = 0.546284
+	Test cost = 1.001320,	Accuracy = 0.586420
+	Test cost = 0.942197,	Accuracy = 0.697368
+Epoch = 6
+	Train cost = 1.013487,	Accuracy = 0.546284
+	Test cost = 0.988689,	Accuracy = 0.586420
+	Test cost = 0.920342,	Accuracy = 0.697368
+Epoch = 7
+	Train cost = 1.004356,	Accuracy = 0.550630
+	Test cost = 0.978136,	Accuracy = 0.586420
+	Test cost = 0.901270,	Accuracy = 0.697368
+Epoch = 8
+	Train cost = 0.996571,	Accuracy = 0.551934
+	Test cost = 0.969254,	Accuracy = 0.586420
+	Test cost = 0.884775,	Accuracy = 0.697368
+Epoch = 9
+	Train cost = 0.989747,	Accuracy = 0.556714
+	Test cost = 0.961617,	Accuracy = 0.586420
+	Test cost = 0.870481,	Accuracy = 0.697368
+Epoch = 10
+	Train cost = 0.983588,	Accuracy = 0.555845
+	Test cost = 0.954900,	Accuracy = 0.586420
+	Test cost = 0.858078,	Accuracy = 0.697368
+Epoch = 11
+	Train cost = 0.977921,	Accuracy = 0.557584
+	Test cost = 0.948845,	Accuracy = 0.586420
+	Test cost = 0.847280,	Accuracy = 0.697368
+Epoch = 12
+	Train cost = 0.972660,	Accuracy = 0.557584
+	Test cost = 0.943368,	Accuracy = 0.589506
+	Test cost = 0.837875,	Accuracy = 0.697368
+Epoch = 13
+	Train cost = 0.967760,	Accuracy = 0.557584
+	Test cost = 0.938370,	Accuracy = 0.589506
+	Test cost = 0.829650,	Accuracy = 0.697368
+Epoch = 14
+	Train cost = 0.963191,	Accuracy = 0.560191
+	Test cost = 0.933759,	Accuracy = 0.589506
+	Test cost = 0.822441,	Accuracy = 0.697368
+Epoch = 15
+	Train cost = 0.958911,	Accuracy = 0.560626
+	Test cost = 0.929441,	Accuracy = 0.589506
+	Test cost = 0.816141,	Accuracy = 0.697368
+Epoch = 16
+	Train cost = 0.954895,	Accuracy = 0.561930
+	Test cost = 0.925396,	Accuracy = 0.589506
+	Test cost = 0.810635,	Accuracy = 0.697368
+Epoch = 17
+	Train cost = 0.951108,	Accuracy = 0.565841
+	Test cost = 0.921575,	Accuracy = 0.589506
+	Test cost = 0.805781,	Accuracy = 0.697368
+Epoch = 18
+	Train cost = 0.947534,	Accuracy = 0.568449
+	Test cost = 0.917951,	Accuracy = 0.589506
+	Test cost = 0.801475,	Accuracy = 0.697368
+Epoch = 19
+	Train cost = 0.944160,	Accuracy = 0.570187
+	Test cost = 0.914488,	Accuracy = 0.589506
+	Test cost = 0.797669,	Accuracy = 0.697368
+Epoch = 20
+	Train cost = 0.940962,	Accuracy = 0.570187
+	Test cost = 0.911139,	Accuracy = 0.589506
+	Test cost = 0.794293,	Accuracy = 0.697368
+Epoch = 21
+	Train cost = 0.937908,	Accuracy = 0.570621
+	Test cost = 0.907868,	Accuracy = 0.589506
+	Test cost = 0.791264,	Accuracy = 0.697368
+Epoch = 22
+	Train cost = 0.934984,	Accuracy = 0.571056
+	Test cost = 0.904697,	Accuracy = 0.589506
+	Test cost = 0.788520,	Accuracy = 0.697368
+Epoch = 23
+	Train cost = 0.932168,	Accuracy = 0.571056
+	Test cost = 0.901587,	Accuracy = 0.589506
+	Test cost = 0.786020,	Accuracy = 0.697368
+Epoch = 24
+	Train cost = 0.929455,	Accuracy = 0.571056
+	Test cost = 0.898555,	Accuracy = 0.589506
+	Test cost = 0.783726,	Accuracy = 0.697368
+Epoch = 25
+	Train cost = 0.926836,	Accuracy = 0.571925
+	Test cost = 0.895587,	Accuracy = 0.589506
+	Test cost = 0.781613,	Accuracy = 0.697368
+Epoch = 26
+	Train cost = 0.924302,	Accuracy = 0.573229
+	Test cost = 0.892677,	Accuracy = 0.589506
+	Test cost = 0.779644,	Accuracy = 0.697368
+Epoch = 27
+	Train cost = 0.921845,	Accuracy = 0.572794
+	Test cost = 0.889818,	Accuracy = 0.592593
+	Test cost = 0.777793,	Accuracy = 0.697368
+Epoch = 28
+	Train cost = 0.919457,	Accuracy = 0.575837
+	Test cost = 0.886997,	Accuracy = 0.592593
+	Test cost = 0.776039,	Accuracy = 0.697368
+Epoch = 29
+	Train cost = 0.917130,	Accuracy = 0.576706
+	Test cost = 0.884204,	Accuracy = 0.595679
+	Test cost = 0.774361,	Accuracy = 0.697368
+Epoch = 30
+	Train cost = 0.914856,	Accuracy = 0.579313
+	Test cost = 0.881449,	Accuracy = 0.598765
+	Test cost = 0.772749,	Accuracy = 0.697368
+Epoch = 31
+	Train cost = 0.912633,	Accuracy = 0.582790
+	Test cost = 0.878721,	Accuracy = 0.598765
+	Test cost = 0.771192,	Accuracy = 0.697368
+Epoch = 32
+	Train cost = 0.910451,	Accuracy = 0.583659
+	Test cost = 0.876031,	Accuracy = 0.601852
+	Test cost = 0.769688,	Accuracy = 0.697368
+Epoch = 33
+	Train cost = 0.908316,	Accuracy = 0.584528
+	Test cost = 0.873386,	Accuracy = 0.601852
+	Test cost = 0.768234,	Accuracy = 0.697368
+Epoch = 34
+	Train cost = 0.906218,	Accuracy = 0.587136
+	Test cost = 0.870766,	Accuracy = 0.601852
+	Test cost = 0.766814,	Accuracy = 0.697368
+Epoch = 35
+	Train cost = 0.904153,	Accuracy = 0.587136
+	Test cost = 0.868159,	Accuracy = 0.601852
+	Test cost = 0.765425,	Accuracy = 0.697368
+Epoch = 36
+	Train cost = 0.902120,	Accuracy = 0.588005
+	Test cost = 0.865587,	Accuracy = 0.608025
+	Test cost = 0.764062,	Accuracy = 0.697368
+Epoch = 37
+	Train cost = 0.900123,	Accuracy = 0.590178
+	Test cost = 0.863034,	Accuracy = 0.608025
+	Test cost = 0.762722,	Accuracy = 0.697368
+Epoch = 38
+	Train cost = 0.898149,	Accuracy = 0.591482
+	Test cost = 0.860509,	Accuracy = 0.611111
+	Test cost = 0.761401,	Accuracy = 0.697368
+Epoch = 39
+	Train cost = 0.896205,	Accuracy = 0.592786
+	Test cost = 0.858013,	Accuracy = 0.617284
+	Test cost = 0.760104,	Accuracy = 0.697368
+Epoch = 40
+	Train cost = 0.894282,	Accuracy = 0.592786
+	Test cost = 0.855528,	Accuracy = 0.617284
+	Test cost = 0.758826,	Accuracy = 0.697368
+Epoch = 41
+	Train cost = 0.892385,	Accuracy = 0.594524
+	Test cost = 0.853071,	Accuracy = 0.617284
+	Test cost = 0.757565,	Accuracy = 0.697368
+Epoch = 42
+	Train cost = 0.890508,	Accuracy = 0.594090
+	Test cost = 0.850631,	Accuracy = 0.620370
+	Test cost = 0.756316,	Accuracy = 0.697368
+Epoch = 43
+	Train cost = 0.888651,	Accuracy = 0.594524
+	Test cost = 0.848200,	Accuracy = 0.623457
+	Test cost = 0.755076,	Accuracy = 0.697368
+Epoch = 44
+	Train cost = 0.886806,	Accuracy = 0.594524
+	Test cost = 0.845782,	Accuracy = 0.623457
+	Test cost = 0.753843,	Accuracy = 0.697368
+Epoch = 45
+	Train cost = 0.884983,	Accuracy = 0.594524
+	Test cost = 0.843397,	Accuracy = 0.623457
+	Test cost = 0.752627,	Accuracy = 0.697368
+Epoch = 46
+	Train cost = 0.883172,	Accuracy = 0.597132
+	Test cost = 0.841021,	Accuracy = 0.623457
+	Test cost = 0.751415,	Accuracy = 0.697368
+Epoch = 47
+	Train cost = 0.881378,	Accuracy = 0.598001
+	Test cost = 0.838663,	Accuracy = 0.623457
+	Test cost = 0.750219,	Accuracy = 0.697368
+Epoch = 48
+	Train cost = 0.879598,	Accuracy = 0.599305
+	Test cost = 0.836313,	Accuracy = 0.629630
+	Test cost = 0.749030,	Accuracy = 0.697368
+Epoch = 49
+	Train cost = 0.877828,	Accuracy = 0.600608
+	Test cost = 0.833969,	Accuracy = 0.623457
+	Test cost = 0.747843,	Accuracy = 0.697368
+Epoch = 50
+	Train cost = 0.876069,	Accuracy = 0.599305
+	Test cost = 0.831640,	Accuracy = 0.623457
+	Test cost = 0.746669,	Accuracy = 0.697368
+Epoch = 51
+	Train cost = 0.874324,	Accuracy = 0.601478
+	Test cost = 0.829328,	Accuracy = 0.626543
+	Test cost = 0.745493,	Accuracy = 0.703947
+Epoch = 52
+	Train cost = 0.872588,	Accuracy = 0.603651
+	Test cost = 0.827028,	Accuracy = 0.629630
+	Test cost = 0.744322,	Accuracy = 0.707237
+Epoch = 53
+	Train cost = 0.870860,	Accuracy = 0.604085
+	Test cost = 0.824735,	Accuracy = 0.629630
+	Test cost = 0.743160,	Accuracy = 0.707237
+Epoch = 54
+	Train cost = 0.869144,	Accuracy = 0.604085
+	Test cost = 0.822459,	Accuracy = 0.632716
+	Test cost = 0.742005,	Accuracy = 0.707237
+Epoch = 55
+	Train cost = 0.867437,	Accuracy = 0.604520
+	Test cost = 0.820201,	Accuracy = 0.632716
+	Test cost = 0.740841,	Accuracy = 0.707237
+Epoch = 56
+	Train cost = 0.865734,	Accuracy = 0.604954
+	Test cost = 0.817941,	Accuracy = 0.638889
+	Test cost = 0.739684,	Accuracy = 0.707237
+Epoch = 57
+	Train cost = 0.864040,	Accuracy = 0.606258
+	Test cost = 0.815692,	Accuracy = 0.638889
+	Test cost = 0.738529,	Accuracy = 0.707237
+Epoch = 58
+	Train cost = 0.862345,	Accuracy = 0.607127
+	Test cost = 0.813439,	Accuracy = 0.638889
+	Test cost = 0.737372,	Accuracy = 0.707237
+Epoch = 59
+	Train cost = 0.860659,	Accuracy = 0.606693
+	Test cost = 0.811204,	Accuracy = 0.638889
+	Test cost = 0.736217,	Accuracy = 0.707237
+Epoch = 60
+	Train cost = 0.858982,	Accuracy = 0.607127
+	Test cost = 0.808966,	Accuracy = 0.638889
+	Test cost = 0.735061,	Accuracy = 0.707237
+Epoch = 61
+	Train cost = 0.857305,	Accuracy = 0.607562
+	Test cost = 0.806744,	Accuracy = 0.645062
+	Test cost = 0.733900,	Accuracy = 0.707237
+Epoch = 62
+	Train cost = 0.855632,	Accuracy = 0.610169
+	Test cost = 0.804517,	Accuracy = 0.651235
+	Test cost = 0.732743,	Accuracy = 0.707237
+Epoch = 63
+	Train cost = 0.853964,	Accuracy = 0.611039
+	Test cost = 0.802301,	Accuracy = 0.654321
+	Test cost = 0.731572,	Accuracy = 0.707237
+Epoch = 64
+	Train cost = 0.852296,	Accuracy = 0.611473
+	Test cost = 0.800096,	Accuracy = 0.654321
+	Test cost = 0.730410,	Accuracy = 0.707237
+Epoch = 65
+	Train cost = 0.850631,	Accuracy = 0.612342
+	Test cost = 0.797897,	Accuracy = 0.657407
+	Test cost = 0.729230,	Accuracy = 0.707237
+Epoch = 66
+	Train cost = 0.848971,	Accuracy = 0.613646
+	Test cost = 0.795706,	Accuracy = 0.663580
+	Test cost = 0.728059,	Accuracy = 0.707237
+Epoch = 67
+	Train cost = 0.847316,	Accuracy = 0.614515
+	Test cost = 0.793510,	Accuracy = 0.663580
+	Test cost = 0.726880,	Accuracy = 0.707237
+Epoch = 68
+	Train cost = 0.845659,	Accuracy = 0.616254
+	Test cost = 0.791325,	Accuracy = 0.666667
+	Test cost = 0.725708,	Accuracy = 0.707237
+Epoch = 69
+	Train cost = 0.844010,	Accuracy = 0.617992
+	Test cost = 0.789151,	Accuracy = 0.666667
+	Test cost = 0.724530,	Accuracy = 0.707237
+Epoch = 70
+	Train cost = 0.842356,	Accuracy = 0.618427
+	Test cost = 0.786970,	Accuracy = 0.666667
+	Test cost = 0.723347,	Accuracy = 0.710526
+Epoch = 71
+	Train cost = 0.840707,	Accuracy = 0.619731
+	Test cost = 0.784792,	Accuracy = 0.672840
+	Test cost = 0.722150,	Accuracy = 0.710526
+Epoch = 72
+	Train cost = 0.839054,	Accuracy = 0.621904
+	Test cost = 0.782623,	Accuracy = 0.672840
+	Test cost = 0.720972,	Accuracy = 0.710526
+Epoch = 73
+	Train cost = 0.837410,	Accuracy = 0.623207
+	Test cost = 0.780449,	Accuracy = 0.672840
+	Test cost = 0.719778,	Accuracy = 0.710526
+Epoch = 74
+	Train cost = 0.835758,	Accuracy = 0.624076
+	Test cost = 0.778280,	Accuracy = 0.672840
+	Test cost = 0.718587,	Accuracy = 0.710526
+Epoch = 75
+	Train cost = 0.834113,	Accuracy = 0.624511
+	Test cost = 0.776119,	Accuracy = 0.675926
+	Test cost = 0.717388,	Accuracy = 0.710526
+Epoch = 76
+	Train cost = 0.832465,	Accuracy = 0.625380
+	Test cost = 0.773959,	Accuracy = 0.675926
+	Test cost = 0.716194,	Accuracy = 0.710526
+Epoch = 77
+	Train cost = 0.830817,	Accuracy = 0.625380
+	Test cost = 0.771802,	Accuracy = 0.679012
+	Test cost = 0.714991,	Accuracy = 0.713816
+Epoch = 78
+	Train cost = 0.829169,	Accuracy = 0.625815
+	Test cost = 0.769654,	Accuracy = 0.679012
+	Test cost = 0.713780,	Accuracy = 0.713816
+Epoch = 79
+	Train cost = 0.827525,	Accuracy = 0.627119
+	Test cost = 0.767505,	Accuracy = 0.679012
+	Test cost = 0.712570,	Accuracy = 0.713816
+Epoch = 80
+	Train cost = 0.825874,	Accuracy = 0.627119
+	Test cost = 0.765356,	Accuracy = 0.679012
+	Test cost = 0.711358,	Accuracy = 0.713816
+Validation Dyad = 10 	Testing Dyad = 11
+Majority Accuracy = 0.420687, Majority Class = 2
+(2301, 76, 1360) (304, 76, 1360) (324, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095135,	Accuracy = 0.377662
+	Test cost = 1.061765,	Accuracy = 0.697368
+	Test cost = 1.079934,	Accuracy = 0.592593
+Epoch = 2
+	Train cost = 1.072210,	Accuracy = 0.523685
+	Test cost = 1.026335,	Accuracy = 0.697368
+	Test cost = 1.054800,	Accuracy = 0.586420
+Epoch = 3
+	Train cost = 1.053417,	Accuracy = 0.539765
+	Test cost = 0.995135,	Accuracy = 0.697368
+	Test cost = 1.033972,	Accuracy = 0.586420
+Epoch = 4
+	Train cost = 1.037690,	Accuracy = 0.546284
+	Test cost = 0.967123,	Accuracy = 0.697368
+	Test cost = 1.016315,	Accuracy = 0.586420
+Epoch = 5
+	Train cost = 1.024490,	Accuracy = 0.546284
+	Test cost = 0.942197,	Accuracy = 0.697368
+	Test cost = 1.001320,	Accuracy = 0.586420
+Epoch = 6
+	Train cost = 1.013487,	Accuracy = 0.546284
+	Test cost = 0.920342,	Accuracy = 0.697368
+	Test cost = 0.988689,	Accuracy = 0.586420
+Epoch = 7
+	Train cost = 1.004356,	Accuracy = 0.550630
+	Test cost = 0.901270,	Accuracy = 0.697368
+	Test cost = 0.978136,	Accuracy = 0.586420
+Epoch = 8
+	Train cost = 0.996571,	Accuracy = 0.551934
+	Test cost = 0.884775,	Accuracy = 0.697368
+	Test cost = 0.969254,	Accuracy = 0.586420
+Epoch = 9
+	Train cost = 0.989747,	Accuracy = 0.556714
+	Test cost = 0.870481,	Accuracy = 0.697368
+	Test cost = 0.961617,	Accuracy = 0.586420
+Epoch = 10
+	Train cost = 0.983588,	Accuracy = 0.555845
+	Test cost = 0.858078,	Accuracy = 0.697368
+	Test cost = 0.954900,	Accuracy = 0.586420
+Epoch = 11
+	Train cost = 0.977921,	Accuracy = 0.557584
+	Test cost = 0.847280,	Accuracy = 0.697368
+	Test cost = 0.948845,	Accuracy = 0.586420
+Epoch = 12
+	Train cost = 0.972660,	Accuracy = 0.557584
+	Test cost = 0.837875,	Accuracy = 0.697368
+	Test cost = 0.943368,	Accuracy = 0.589506
+Epoch = 13
+	Train cost = 0.967760,	Accuracy = 0.557584
+	Test cost = 0.829650,	Accuracy = 0.697368
+	Test cost = 0.938370,	Accuracy = 0.589506
+Epoch = 14
+	Train cost = 0.963191,	Accuracy = 0.560191
+	Test cost = 0.822441,	Accuracy = 0.697368
+	Test cost = 0.933759,	Accuracy = 0.589506
+Epoch = 15
+	Train cost = 0.958911,	Accuracy = 0.560626
+	Test cost = 0.816141,	Accuracy = 0.697368
+	Test cost = 0.929441,	Accuracy = 0.589506
+Epoch = 16
+	Train cost = 0.954895,	Accuracy = 0.561930
+	Test cost = 0.810635,	Accuracy = 0.697368
+	Test cost = 0.925396,	Accuracy = 0.589506
+Epoch = 17
+	Train cost = 0.951108,	Accuracy = 0.565841
+	Test cost = 0.805781,	Accuracy = 0.697368
+	Test cost = 0.921575,	Accuracy = 0.589506
+Epoch = 18
+	Train cost = 0.947534,	Accuracy = 0.568449
+	Test cost = 0.801475,	Accuracy = 0.697368
+	Test cost = 0.917951,	Accuracy = 0.589506
+Epoch = 19
+	Train cost = 0.944160,	Accuracy = 0.570187
+	Test cost = 0.797669,	Accuracy = 0.697368
+	Test cost = 0.914488,	Accuracy = 0.589506
+Epoch = 20
+	Train cost = 0.940962,	Accuracy = 0.570187
+	Test cost = 0.794293,	Accuracy = 0.697368
+	Test cost = 0.911139,	Accuracy = 0.589506
+Epoch = 21
+	Train cost = 0.937908,	Accuracy = 0.570621
+	Test cost = 0.791264,	Accuracy = 0.697368
+	Test cost = 0.907868,	Accuracy = 0.589506
+Epoch = 22
+	Train cost = 0.934984,	Accuracy = 0.571056
+	Test cost = 0.788520,	Accuracy = 0.697368
+	Test cost = 0.904697,	Accuracy = 0.589506
+Epoch = 23
+	Train cost = 0.932168,	Accuracy = 0.571056
+	Test cost = 0.786020,	Accuracy = 0.697368
+	Test cost = 0.901587,	Accuracy = 0.589506
+Epoch = 24
+	Train cost = 0.929455,	Accuracy = 0.571056
+	Test cost = 0.783726,	Accuracy = 0.697368
+	Test cost = 0.898555,	Accuracy = 0.589506
+Epoch = 25
+	Train cost = 0.926836,	Accuracy = 0.571925
+	Test cost = 0.781613,	Accuracy = 0.697368
+	Test cost = 0.895587,	Accuracy = 0.589506
+Epoch = 26
+	Train cost = 0.924302,	Accuracy = 0.573229
+	Test cost = 0.779644,	Accuracy = 0.697368
+	Test cost = 0.892677,	Accuracy = 0.589506
+Epoch = 27
+	Train cost = 0.921845,	Accuracy = 0.572794
+	Test cost = 0.777793,	Accuracy = 0.697368
+	Test cost = 0.889818,	Accuracy = 0.592593
+Epoch = 28
+	Train cost = 0.919457,	Accuracy = 0.575837
+	Test cost = 0.776039,	Accuracy = 0.697368
+	Test cost = 0.886997,	Accuracy = 0.592593
+Epoch = 29
+	Train cost = 0.917130,	Accuracy = 0.576706
+	Test cost = 0.774361,	Accuracy = 0.697368
+	Test cost = 0.884204,	Accuracy = 0.595679
+Epoch = 30
+	Train cost = 0.914856,	Accuracy = 0.579313
+	Test cost = 0.772749,	Accuracy = 0.697368
+	Test cost = 0.881449,	Accuracy = 0.598765
+Epoch = 31
+	Train cost = 0.912633,	Accuracy = 0.582790
+	Test cost = 0.771192,	Accuracy = 0.697368
+	Test cost = 0.878721,	Accuracy = 0.598765
+Epoch = 32
+	Train cost = 0.910451,	Accuracy = 0.583659
+	Test cost = 0.769688,	Accuracy = 0.697368
+	Test cost = 0.876031,	Accuracy = 0.601852
+Epoch = 33
+	Train cost = 0.908316,	Accuracy = 0.584528
+	Test cost = 0.768234,	Accuracy = 0.697368
+	Test cost = 0.873386,	Accuracy = 0.601852
+Epoch = 34
+	Train cost = 0.906218,	Accuracy = 0.587136
+	Test cost = 0.766814,	Accuracy = 0.697368
+	Test cost = 0.870766,	Accuracy = 0.601852
+Epoch = 35
+	Train cost = 0.904153,	Accuracy = 0.587136
+	Test cost = 0.765425,	Accuracy = 0.697368
+	Test cost = 0.868159,	Accuracy = 0.601852
+Epoch = 36
+	Train cost = 0.902120,	Accuracy = 0.588005
+	Test cost = 0.764062,	Accuracy = 0.697368
+	Test cost = 0.865587,	Accuracy = 0.608025
+Epoch = 37
+	Train cost = 0.900123,	Accuracy = 0.590178
+	Test cost = 0.762722,	Accuracy = 0.697368
+	Test cost = 0.863034,	Accuracy = 0.608025
+Epoch = 38
+	Train cost = 0.898149,	Accuracy = 0.591482
+	Test cost = 0.761401,	Accuracy = 0.697368
+	Test cost = 0.860509,	Accuracy = 0.611111
+Epoch = 39
+	Train cost = 0.896205,	Accuracy = 0.592786
+	Test cost = 0.760104,	Accuracy = 0.697368
+	Test cost = 0.858013,	Accuracy = 0.617284
+Epoch = 40
+	Train cost = 0.894282,	Accuracy = 0.592786
+	Test cost = 0.758826,	Accuracy = 0.697368
+	Test cost = 0.855528,	Accuracy = 0.617284
+Epoch = 41
+	Train cost = 0.892385,	Accuracy = 0.594524
+	Test cost = 0.757565,	Accuracy = 0.697368
+	Test cost = 0.853071,	Accuracy = 0.617284
+Epoch = 42
+	Train cost = 0.890508,	Accuracy = 0.594090
+	Test cost = 0.756316,	Accuracy = 0.697368
+	Test cost = 0.850631,	Accuracy = 0.620370
+Epoch = 43
+	Train cost = 0.888651,	Accuracy = 0.594524
+	Test cost = 0.755076,	Accuracy = 0.697368
+	Test cost = 0.848200,	Accuracy = 0.623457
+Epoch = 44
+	Train cost = 0.886806,	Accuracy = 0.594524
+	Test cost = 0.753843,	Accuracy = 0.697368
+	Test cost = 0.845782,	Accuracy = 0.623457
+Epoch = 45
+	Train cost = 0.884983,	Accuracy = 0.594524
+	Test cost = 0.752627,	Accuracy = 0.697368
+	Test cost = 0.843397,	Accuracy = 0.623457
+Epoch = 46
+	Train cost = 0.883172,	Accuracy = 0.597132
+	Test cost = 0.751415,	Accuracy = 0.697368
+	Test cost = 0.841021,	Accuracy = 0.623457
+Epoch = 47
+	Train cost = 0.881378,	Accuracy = 0.598001
+	Test cost = 0.750219,	Accuracy = 0.697368
+	Test cost = 0.838663,	Accuracy = 0.623457
+Epoch = 48
+	Train cost = 0.879598,	Accuracy = 0.599305
+	Test cost = 0.749030,	Accuracy = 0.697368
+	Test cost = 0.836313,	Accuracy = 0.629630
+Epoch = 49
+	Train cost = 0.877828,	Accuracy = 0.600608
+	Test cost = 0.747843,	Accuracy = 0.697368
+	Test cost = 0.833969,	Accuracy = 0.623457
+Epoch = 50
+	Train cost = 0.876069,	Accuracy = 0.599305
+	Test cost = 0.746669,	Accuracy = 0.697368
+	Test cost = 0.831640,	Accuracy = 0.623457
+Epoch = 51
+	Train cost = 0.874324,	Accuracy = 0.601478
+	Test cost = 0.745493,	Accuracy = 0.703947
+	Test cost = 0.829328,	Accuracy = 0.626543
+Epoch = 52
+	Train cost = 0.872588,	Accuracy = 0.603651
+	Test cost = 0.744322,	Accuracy = 0.707237
+	Test cost = 0.827028,	Accuracy = 0.629630
+Epoch = 53
+	Train cost = 0.870860,	Accuracy = 0.604085
+	Test cost = 0.743160,	Accuracy = 0.707237
+	Test cost = 0.824735,	Accuracy = 0.629630
+Epoch = 54
+	Train cost = 0.869144,	Accuracy = 0.604085
+	Test cost = 0.742005,	Accuracy = 0.707237
+	Test cost = 0.822459,	Accuracy = 0.632716
+Epoch = 55
+	Train cost = 0.867437,	Accuracy = 0.604520
+	Test cost = 0.740841,	Accuracy = 0.707237
+	Test cost = 0.820201,	Accuracy = 0.632716
+Epoch = 56
+	Train cost = 0.865734,	Accuracy = 0.604954
+	Test cost = 0.739684,	Accuracy = 0.707237
+	Test cost = 0.817941,	Accuracy = 0.638889
+Epoch = 57
+	Train cost = 0.864040,	Accuracy = 0.606258
+	Test cost = 0.738529,	Accuracy = 0.707237
+	Test cost = 0.815692,	Accuracy = 0.638889
+Epoch = 58
+	Train cost = 0.862345,	Accuracy = 0.607127
+	Test cost = 0.737372,	Accuracy = 0.707237
+	Test cost = 0.813439,	Accuracy = 0.638889
+Epoch = 59
+	Train cost = 0.860659,	Accuracy = 0.606693
+	Test cost = 0.736217,	Accuracy = 0.707237
+	Test cost = 0.811204,	Accuracy = 0.638889
+Epoch = 60
+	Train cost = 0.858982,	Accuracy = 0.607127
+	Test cost = 0.735061,	Accuracy = 0.707237
+	Test cost = 0.808966,	Accuracy = 0.638889
+Epoch = 61
+	Train cost = 0.857305,	Accuracy = 0.607562
+	Test cost = 0.733900,	Accuracy = 0.707237
+	Test cost = 0.806744,	Accuracy = 0.645062
+Epoch = 62
+	Train cost = 0.855632,	Accuracy = 0.610169
+	Test cost = 0.732743,	Accuracy = 0.707237
+	Test cost = 0.804517,	Accuracy = 0.651235
+Epoch = 63
+	Train cost = 0.853964,	Accuracy = 0.611039
+	Test cost = 0.731572,	Accuracy = 0.707237
+	Test cost = 0.802301,	Accuracy = 0.654321
+Epoch = 64
+	Train cost = 0.852296,	Accuracy = 0.611473
+	Test cost = 0.730410,	Accuracy = 0.707237
+	Test cost = 0.800096,	Accuracy = 0.654321
+Epoch = 65
+	Train cost = 0.850631,	Accuracy = 0.612342
+	Test cost = 0.729230,	Accuracy = 0.707237
+	Test cost = 0.797897,	Accuracy = 0.657407
+Epoch = 66
+	Train cost = 0.848971,	Accuracy = 0.613646
+	Test cost = 0.728059,	Accuracy = 0.707237
+	Test cost = 0.795706,	Accuracy = 0.663580
+Epoch = 67
+	Train cost = 0.847316,	Accuracy = 0.614515
+	Test cost = 0.726880,	Accuracy = 0.707237
+	Test cost = 0.793510,	Accuracy = 0.663580
+Epoch = 68
+	Train cost = 0.845659,	Accuracy = 0.616254
+	Test cost = 0.725708,	Accuracy = 0.707237
+	Test cost = 0.791325,	Accuracy = 0.666667
+Epoch = 69
+	Train cost = 0.844010,	Accuracy = 0.617992
+	Test cost = 0.724530,	Accuracy = 0.707237
+	Test cost = 0.789151,	Accuracy = 0.666667
+Epoch = 70
+	Train cost = 0.842356,	Accuracy = 0.618427
+	Test cost = 0.723347,	Accuracy = 0.710526
+	Test cost = 0.786970,	Accuracy = 0.666667
+Epoch = 71
+	Train cost = 0.840707,	Accuracy = 0.619731
+	Test cost = 0.722150,	Accuracy = 0.710526
+	Test cost = 0.784792,	Accuracy = 0.672840
+Epoch = 72
+	Train cost = 0.839054,	Accuracy = 0.621904
+	Test cost = 0.720972,	Accuracy = 0.710526
+	Test cost = 0.782623,	Accuracy = 0.672840
+Epoch = 73
+	Train cost = 0.837410,	Accuracy = 0.623207
+	Test cost = 0.719778,	Accuracy = 0.710526
+	Test cost = 0.780449,	Accuracy = 0.672840
+Epoch = 74
+	Train cost = 0.835758,	Accuracy = 0.624076
+	Test cost = 0.718587,	Accuracy = 0.710526
+	Test cost = 0.778280,	Accuracy = 0.672840
+Epoch = 75
+	Train cost = 0.834113,	Accuracy = 0.624511
+	Test cost = 0.717388,	Accuracy = 0.710526
+	Test cost = 0.776119,	Accuracy = 0.675926
+Epoch = 76
+	Train cost = 0.832465,	Accuracy = 0.625380
+	Test cost = 0.716194,	Accuracy = 0.710526
+	Test cost = 0.773959,	Accuracy = 0.675926
+Epoch = 77
+	Train cost = 0.830817,	Accuracy = 0.625380
+	Test cost = 0.714991,	Accuracy = 0.713816
+	Test cost = 0.771802,	Accuracy = 0.679012
+Epoch = 78
+	Train cost = 0.829169,	Accuracy = 0.625815
+	Test cost = 0.713780,	Accuracy = 0.713816
+	Test cost = 0.769654,	Accuracy = 0.679012
+Epoch = 79
+	Train cost = 0.827525,	Accuracy = 0.627119
+	Test cost = 0.712570,	Accuracy = 0.713816
+	Test cost = 0.767505,	Accuracy = 0.679012
+Epoch = 80
+	Train cost = 0.825874,	Accuracy = 0.627119
+	Test cost = 0.711358,	Accuracy = 0.713816
+	Test cost = 0.765356,	Accuracy = 0.679012
+Validation Dyad = 4 	Testing Dyad = 12
+Majority Accuracy = 0.427112, Majority Class = 0
+(2154, 76, 1360) (95, 76, 1360) (28, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.095107,	Accuracy = 0.372795
+	Test cost = 1.071286,	Accuracy = 0.652632
+	Test cost = 1.069235,	Accuracy = 0.928571
+Epoch = 2
+	Train cost = 1.070123,	Accuracy = 0.548282
+	Test cost = 1.040826,	Accuracy = 0.673684
+	Test cost = 1.033685,	Accuracy = 0.964286
+Epoch = 3
+	Train cost = 1.048876,	Accuracy = 0.553853
+	Test cost = 1.012268,	Accuracy = 0.684211
+	Test cost = 1.001697,	Accuracy = 0.857143
+Epoch = 4
+	Train cost = 1.030477,	Accuracy = 0.563603
+	Test cost = 0.985712,	Accuracy = 0.684211
+	Test cost = 0.971805,	Accuracy = 0.785714
+Epoch = 5
+	Train cost = 1.014508,	Accuracy = 0.566852
+	Test cost = 0.961650,	Accuracy = 0.684211
+	Test cost = 0.944405,	Accuracy = 0.714286
+Epoch = 6
+	Train cost = 1.000878,	Accuracy = 0.572423
+	Test cost = 0.941120,	Accuracy = 0.684211
+	Test cost = 0.920284,	Accuracy = 0.678571
+Epoch = 7
+	Train cost = 0.989477,	Accuracy = 0.575209
+	Test cost = 0.923720,	Accuracy = 0.684211
+	Test cost = 0.899705,	Accuracy = 0.642857
+Epoch = 8
+	Train cost = 0.979803,	Accuracy = 0.577994
+	Test cost = 0.908779,	Accuracy = 0.684211
+	Test cost = 0.882321,	Accuracy = 0.642857
+Epoch = 9
+	Train cost = 0.971403,	Accuracy = 0.583101
+	Test cost = 0.895869,	Accuracy = 0.684211
+	Test cost = 0.867799,	Accuracy = 0.642857
+Epoch = 10
+	Train cost = 0.963877,	Accuracy = 0.587744
+	Test cost = 0.884363,	Accuracy = 0.684211
+	Test cost = 0.855697,	Accuracy = 0.642857
+Epoch = 11
+	Train cost = 0.956985,	Accuracy = 0.587744
+	Test cost = 0.873993,	Accuracy = 0.684211
+	Test cost = 0.845038,	Accuracy = 0.642857
+Epoch = 12
+	Train cost = 0.950569,	Accuracy = 0.586815
+	Test cost = 0.864381,	Accuracy = 0.684211
+	Test cost = 0.835767,	Accuracy = 0.607143
+Epoch = 13
+	Train cost = 0.944554,	Accuracy = 0.590065
+	Test cost = 0.855468,	Accuracy = 0.684211
+	Test cost = 0.827249,	Accuracy = 0.607143
+Epoch = 14
+	Train cost = 0.938896,	Accuracy = 0.592386
+	Test cost = 0.847184,	Accuracy = 0.684211
+	Test cost = 0.819203,	Accuracy = 0.607143
+Epoch = 15
+	Train cost = 0.933599,	Accuracy = 0.594708
+	Test cost = 0.839538,	Accuracy = 0.684211
+	Test cost = 0.811538,	Accuracy = 0.607143
+Epoch = 16
+	Train cost = 0.928628,	Accuracy = 0.595172
+	Test cost = 0.832493,	Accuracy = 0.684211
+	Test cost = 0.803869,	Accuracy = 0.607143
+Epoch = 17
+	Train cost = 0.923967,	Accuracy = 0.597493
+	Test cost = 0.825969,	Accuracy = 0.684211
+	Test cost = 0.796144,	Accuracy = 0.607143
+Epoch = 18
+	Train cost = 0.919600,	Accuracy = 0.595636
+	Test cost = 0.819980,	Accuracy = 0.684211
+	Test cost = 0.787892,	Accuracy = 0.607143
+Epoch = 19
+	Train cost = 0.915491,	Accuracy = 0.593779
+	Test cost = 0.814443,	Accuracy = 0.684211
+	Test cost = 0.779412,	Accuracy = 0.607143
+Epoch = 20
+	Train cost = 0.911618,	Accuracy = 0.594243
+	Test cost = 0.809367,	Accuracy = 0.684211
+	Test cost = 0.770323,	Accuracy = 0.678571
+Epoch = 21
+	Train cost = 0.907959,	Accuracy = 0.593779
+	Test cost = 0.804659,	Accuracy = 0.684211
+	Test cost = 0.760797,	Accuracy = 0.750000
+Epoch = 22
+	Train cost = 0.904493,	Accuracy = 0.594708
+	Test cost = 0.800290,	Accuracy = 0.684211
+	Test cost = 0.751010,	Accuracy = 0.821429
+Epoch = 23
+	Train cost = 0.901210,	Accuracy = 0.596565
+	Test cost = 0.796278,	Accuracy = 0.684211
+	Test cost = 0.740768,	Accuracy = 0.857143
+Epoch = 24
+	Train cost = 0.898089,	Accuracy = 0.597029
+	Test cost = 0.792595,	Accuracy = 0.684211
+	Test cost = 0.730193,	Accuracy = 0.892857
+Epoch = 25
+	Train cost = 0.895118,	Accuracy = 0.598886
+	Test cost = 0.789226,	Accuracy = 0.684211
+	Test cost = 0.719146,	Accuracy = 0.928571
+Epoch = 26
+	Train cost = 0.892284,	Accuracy = 0.602136
+	Test cost = 0.786104,	Accuracy = 0.684211
+	Test cost = 0.707996,	Accuracy = 0.928571
+Epoch = 27
+	Train cost = 0.889569,	Accuracy = 0.603993
+	Test cost = 0.783224,	Accuracy = 0.684211
+	Test cost = 0.696394,	Accuracy = 0.928571
+Epoch = 28
+	Train cost = 0.886953,	Accuracy = 0.603993
+	Test cost = 0.780550,	Accuracy = 0.684211
+	Test cost = 0.684716,	Accuracy = 0.928571
+Epoch = 29
+	Train cost = 0.884420,	Accuracy = 0.604921
+	Test cost = 0.778055,	Accuracy = 0.684211
+	Test cost = 0.672941,	Accuracy = 0.928571
+Epoch = 30
+	Train cost = 0.881961,	Accuracy = 0.605850
+	Test cost = 0.775730,	Accuracy = 0.684211
+	Test cost = 0.661055,	Accuracy = 0.928571
+Epoch = 31
+	Train cost = 0.879572,	Accuracy = 0.605850
+	Test cost = 0.773549,	Accuracy = 0.684211
+	Test cost = 0.649294,	Accuracy = 0.928571
+Epoch = 32
+	Train cost = 0.877241,	Accuracy = 0.606314
+	Test cost = 0.771495,	Accuracy = 0.684211
+	Test cost = 0.637249,	Accuracy = 0.928571
+Epoch = 33
+	Train cost = 0.874974,	Accuracy = 0.606778
+	Test cost = 0.769553,	Accuracy = 0.684211
+	Test cost = 0.625364,	Accuracy = 0.964286
+Epoch = 34
+	Train cost = 0.872756,	Accuracy = 0.607707
+	Test cost = 0.767742,	Accuracy = 0.684211
+	Test cost = 0.613476,	Accuracy = 0.964286
+Epoch = 35
+	Train cost = 0.870590,	Accuracy = 0.607242
+	Test cost = 0.766006,	Accuracy = 0.684211
+	Test cost = 0.601766,	Accuracy = 0.964286
+Epoch = 36
+	Train cost = 0.868461,	Accuracy = 0.608635
+	Test cost = 0.764351,	Accuracy = 0.684211
+	Test cost = 0.590101,	Accuracy = 0.964286
+Epoch = 37
+	Train cost = 0.866377,	Accuracy = 0.609099
+	Test cost = 0.762752,	Accuracy = 0.684211
+	Test cost = 0.578580,	Accuracy = 0.964286
+Epoch = 38
+	Train cost = 0.864328,	Accuracy = 0.610492
+	Test cost = 0.761227,	Accuracy = 0.684211
+	Test cost = 0.567226,	Accuracy = 0.964286
+Epoch = 39
+	Train cost = 0.862314,	Accuracy = 0.611421
+	Test cost = 0.759750,	Accuracy = 0.684211
+	Test cost = 0.556009,	Accuracy = 0.964286
+Epoch = 40
+	Train cost = 0.860331,	Accuracy = 0.611885
+	Test cost = 0.758341,	Accuracy = 0.684211
+	Test cost = 0.545068,	Accuracy = 0.964286
+Epoch = 41
+	Train cost = 0.858380,	Accuracy = 0.610956
+	Test cost = 0.756988,	Accuracy = 0.684211
+	Test cost = 0.534262,	Accuracy = 0.964286
+Epoch = 42
+	Train cost = 0.856454,	Accuracy = 0.613742
+	Test cost = 0.755674,	Accuracy = 0.684211
+	Test cost = 0.523759,	Accuracy = 0.964286
+Epoch = 43
+	Train cost = 0.854551,	Accuracy = 0.616063
+	Test cost = 0.754400,	Accuracy = 0.684211
+	Test cost = 0.513407,	Accuracy = 0.964286
+Epoch = 44
+	Train cost = 0.852662,	Accuracy = 0.616063
+	Test cost = 0.753170,	Accuracy = 0.684211
+	Test cost = 0.503310,	Accuracy = 0.964286
+Epoch = 45
+	Train cost = 0.850795,	Accuracy = 0.616527
+	Test cost = 0.751981,	Accuracy = 0.684211
+	Test cost = 0.493322,	Accuracy = 0.964286
+Epoch = 46
+	Train cost = 0.848946,	Accuracy = 0.616992
+	Test cost = 0.750811,	Accuracy = 0.684211
+	Test cost = 0.483644,	Accuracy = 0.964286
+Epoch = 47
+	Train cost = 0.847113,	Accuracy = 0.617456
+	Test cost = 0.749649,	Accuracy = 0.684211
+	Test cost = 0.474175,	Accuracy = 0.964286
+Epoch = 48
+	Train cost = 0.845295,	Accuracy = 0.617920
+	Test cost = 0.748518,	Accuracy = 0.684211
+	Test cost = 0.464926,	Accuracy = 0.964286
+Epoch = 49
+	Train cost = 0.843496,	Accuracy = 0.617920
+	Test cost = 0.747409,	Accuracy = 0.684211
+	Test cost = 0.455979,	Accuracy = 0.964286
+Epoch = 50
+	Train cost = 0.841705,	Accuracy = 0.618849
+	Test cost = 0.746316,	Accuracy = 0.684211
+	Test cost = 0.447136,	Accuracy = 0.964286
+Epoch = 51
+	Train cost = 0.839928,	Accuracy = 0.618849
+	Test cost = 0.745221,	Accuracy = 0.684211
+	Test cost = 0.438627,	Accuracy = 0.964286
+Epoch = 52
+	Train cost = 0.838160,	Accuracy = 0.620241
+	Test cost = 0.744151,	Accuracy = 0.684211
+	Test cost = 0.430391,	Accuracy = 0.964286
+Epoch = 53
+	Train cost = 0.836406,	Accuracy = 0.620706
+	Test cost = 0.743089,	Accuracy = 0.684211
+	Test cost = 0.422293,	Accuracy = 0.964286
+Epoch = 54
+	Train cost = 0.834657,	Accuracy = 0.622098
+	Test cost = 0.742052,	Accuracy = 0.684211
+	Test cost = 0.414414,	Accuracy = 0.964286
+Epoch = 55
+	Train cost = 0.832920,	Accuracy = 0.624420
+	Test cost = 0.740998,	Accuracy = 0.684211
+	Test cost = 0.406753,	Accuracy = 0.964286
+Epoch = 56
+	Train cost = 0.831187,	Accuracy = 0.625348
+	Test cost = 0.739969,	Accuracy = 0.684211
+	Test cost = 0.399289,	Accuracy = 0.964286
+Epoch = 57
+	Train cost = 0.829468,	Accuracy = 0.624884
+	Test cost = 0.738926,	Accuracy = 0.694737
+	Test cost = 0.392044,	Accuracy = 0.964286
+Epoch = 58
+	Train cost = 0.827750,	Accuracy = 0.626741
+	Test cost = 0.737910,	Accuracy = 0.694737
+	Test cost = 0.384919,	Accuracy = 0.964286
+Epoch = 59
+	Train cost = 0.826043,	Accuracy = 0.627669
+	Test cost = 0.736889,	Accuracy = 0.694737
+	Test cost = 0.378011,	Accuracy = 0.964286
+Epoch = 60
+	Train cost = 0.824340,	Accuracy = 0.627669
+	Test cost = 0.735868,	Accuracy = 0.705263
+	Test cost = 0.371318,	Accuracy = 0.964286
+Epoch = 61
+	Train cost = 0.822639,	Accuracy = 0.629062
+	Test cost = 0.734848,	Accuracy = 0.705263
+	Test cost = 0.364797,	Accuracy = 0.964286
+Epoch = 62
+	Train cost = 0.820947,	Accuracy = 0.630455
+	Test cost = 0.733841,	Accuracy = 0.705263
+	Test cost = 0.358374,	Accuracy = 0.964286
+Epoch = 63
+	Train cost = 0.819255,	Accuracy = 0.632776
+	Test cost = 0.732823,	Accuracy = 0.705263
+	Test cost = 0.352229,	Accuracy = 0.964286
+Epoch = 64
+	Train cost = 0.817573,	Accuracy = 0.633705
+	Test cost = 0.731818,	Accuracy = 0.705263
+	Test cost = 0.346173,	Accuracy = 0.964286
+Epoch = 65
+	Train cost = 0.815891,	Accuracy = 0.636955
+	Test cost = 0.730814,	Accuracy = 0.694737
+	Test cost = 0.340348,	Accuracy = 0.964286
+Epoch = 66
+	Train cost = 0.814215,	Accuracy = 0.637419
+	Test cost = 0.729811,	Accuracy = 0.694737
+	Test cost = 0.334655,	Accuracy = 0.964286
+Epoch = 67
+	Train cost = 0.812543,	Accuracy = 0.638347
+	Test cost = 0.728801,	Accuracy = 0.694737
+	Test cost = 0.329126,	Accuracy = 0.964286
+Epoch = 68
+	Train cost = 0.810873,	Accuracy = 0.640204
+	Test cost = 0.727806,	Accuracy = 0.694737
+	Test cost = 0.323695,	Accuracy = 0.964286
+Epoch = 69
+	Train cost = 0.809207,	Accuracy = 0.641133
+	Test cost = 0.726799,	Accuracy = 0.705263
+	Test cost = 0.318413,	Accuracy = 0.964286
+Epoch = 70
+	Train cost = 0.807543,	Accuracy = 0.642061
+	Test cost = 0.725784,	Accuracy = 0.705263
+	Test cost = 0.313336,	Accuracy = 0.964286
+Epoch = 71
+	Train cost = 0.805880,	Accuracy = 0.644383
+	Test cost = 0.724759,	Accuracy = 0.705263
+	Test cost = 0.308302,	Accuracy = 0.964286
+Epoch = 72
+	Train cost = 0.804217,	Accuracy = 0.644847
+	Test cost = 0.723724,	Accuracy = 0.705263
+	Test cost = 0.303474,	Accuracy = 0.964286
+Epoch = 73
+	Train cost = 0.802558,	Accuracy = 0.645775
+	Test cost = 0.722713,	Accuracy = 0.705263
+	Test cost = 0.298812,	Accuracy = 0.964286
+Epoch = 74
+	Train cost = 0.800903,	Accuracy = 0.646240
+	Test cost = 0.721684,	Accuracy = 0.705263
+	Test cost = 0.294180,	Accuracy = 0.964286
+Epoch = 75
+	Train cost = 0.799248,	Accuracy = 0.648097
+	Test cost = 0.720681,	Accuracy = 0.705263
+	Test cost = 0.289684,	Accuracy = 0.964286
+Epoch = 76
+	Train cost = 0.797597,	Accuracy = 0.648561
+	Test cost = 0.719637,	Accuracy = 0.705263
+	Test cost = 0.285343,	Accuracy = 0.964286
+Epoch = 77
+	Train cost = 0.795947,	Accuracy = 0.649954
+	Test cost = 0.718651,	Accuracy = 0.705263
+	Test cost = 0.281053,	Accuracy = 0.964286
+Epoch = 78
+	Train cost = 0.794295,	Accuracy = 0.651346
+	Test cost = 0.717592,	Accuracy = 0.705263
+	Test cost = 0.276937,	Accuracy = 0.964286
+Epoch = 79
+	Train cost = 0.792651,	Accuracy = 0.653203
+	Test cost = 0.716602,	Accuracy = 0.694737
+	Test cost = 0.272874,	Accuracy = 0.964286
+Epoch = 80
+	Train cost = 0.790997,	Accuracy = 0.653203
+	Test cost = 0.715550,	Accuracy = 0.694737
+	Test cost = 0.268916,	Accuracy = 0.964286
+Validation Dyad = 18 	Testing Dyad = 16
+Majority Accuracy = 0.423420, Majority Class = 0
+(2468, 76, 1360) (167, 76, 1360) (201, 76, 1360)
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.094561,	Accuracy = 0.364263
+	Test cost = 1.081368,	Accuracy = 0.287425
+	Test cost = 1.087855,	Accuracy = 0.477612
+Epoch = 2
+	Train cost = 1.069748,	Accuracy = 0.532010
+	Test cost = 1.034380,	Accuracy = 0.658683
+	Test cost = 1.074234,	Accuracy = 0.577114
+Epoch = 3
+	Train cost = 1.049415,	Accuracy = 0.536467
+	Test cost = 0.990559,	Accuracy = 0.712575
+	Test cost = 1.062089,	Accuracy = 0.572139
+Epoch = 4
+	Train cost = 1.032483,	Accuracy = 0.544571
+	Test cost = 0.951527,	Accuracy = 0.772455
+	Test cost = 1.051172,	Accuracy = 0.572139
+Epoch = 5
+	Train cost = 1.018487,	Accuracy = 0.549838
+	Test cost = 0.918112,	Accuracy = 0.778443
+	Test cost = 1.041268,	Accuracy = 0.577114
+Epoch = 6
+	Train cost = 1.007127,	Accuracy = 0.552674
+	Test cost = 0.890350,	Accuracy = 0.784431
+	Test cost = 1.032424,	Accuracy = 0.567164
+Epoch = 7
+	Train cost = 0.997821,	Accuracy = 0.553079
+	Test cost = 0.867104,	Accuracy = 0.784431
+	Test cost = 1.024286,	Accuracy = 0.567164
+Epoch = 8
+	Train cost = 0.989857,	Accuracy = 0.557131
+	Test cost = 0.847360,	Accuracy = 0.778443
+	Test cost = 1.016587,	Accuracy = 0.567164
+Epoch = 9
+	Train cost = 0.982775,	Accuracy = 0.563614
+	Test cost = 0.830036,	Accuracy = 0.784431
+	Test cost = 1.009215,	Accuracy = 0.567164
+Epoch = 10
+	Train cost = 0.976290,	Accuracy = 0.566045
+	Test cost = 0.814528,	Accuracy = 0.796407
+	Test cost = 1.002166,	Accuracy = 0.567164
+Epoch = 11
+	Train cost = 0.970242,	Accuracy = 0.568071
+	Test cost = 0.800386,	Accuracy = 0.796407
+	Test cost = 0.995362,	Accuracy = 0.567164
+Epoch = 12
+	Train cost = 0.964543,	Accuracy = 0.568882
+	Test cost = 0.787177,	Accuracy = 0.796407
+	Test cost = 0.988781,	Accuracy = 0.567164
+Epoch = 13
+	Train cost = 0.959169,	Accuracy = 0.568071
+	Test cost = 0.774787,	Accuracy = 0.796407
+	Test cost = 0.982459,	Accuracy = 0.567164
+Epoch = 14
+	Train cost = 0.954075,	Accuracy = 0.569287
+	Test cost = 0.763028,	Accuracy = 0.796407
+	Test cost = 0.976461,	Accuracy = 0.567164
+Epoch = 15
+	Train cost = 0.949263,	Accuracy = 0.570502
+	Test cost = 0.751939,	Accuracy = 0.796407
+	Test cost = 0.970853,	Accuracy = 0.567164
+Epoch = 16
+	Train cost = 0.944727,	Accuracy = 0.572123
+	Test cost = 0.741538,	Accuracy = 0.790419
+	Test cost = 0.965567,	Accuracy = 0.567164
+Epoch = 17
+	Train cost = 0.940432,	Accuracy = 0.573339
+	Test cost = 0.731772,	Accuracy = 0.790419
+	Test cost = 0.960557,	Accuracy = 0.567164
+Epoch = 18
+	Train cost = 0.936364,	Accuracy = 0.572528
+	Test cost = 0.722652,	Accuracy = 0.784431
+	Test cost = 0.955820,	Accuracy = 0.567164
+Epoch = 19
+	Train cost = 0.932495,	Accuracy = 0.575770
+	Test cost = 0.714109,	Accuracy = 0.784431
+	Test cost = 0.951309,	Accuracy = 0.567164
+Epoch = 20
+	Train cost = 0.928810,	Accuracy = 0.576985
+	Test cost = 0.706075,	Accuracy = 0.784431
+	Test cost = 0.946989,	Accuracy = 0.567164
+Epoch = 21
+	Train cost = 0.925310,	Accuracy = 0.579417
+	Test cost = 0.698649,	Accuracy = 0.784431
+	Test cost = 0.942839,	Accuracy = 0.567164
+Epoch = 22
+	Train cost = 0.921964,	Accuracy = 0.580227
+	Test cost = 0.691700,	Accuracy = 0.784431
+	Test cost = 0.938830,	Accuracy = 0.567164
+Epoch = 23
+	Train cost = 0.918772,	Accuracy = 0.580632
+	Test cost = 0.685195,	Accuracy = 0.784431
+	Test cost = 0.934945,	Accuracy = 0.567164
+Epoch = 24
+	Train cost = 0.915711,	Accuracy = 0.582253
+	Test cost = 0.679162,	Accuracy = 0.784431
+	Test cost = 0.931178,	Accuracy = 0.567164
+Epoch = 25
+	Train cost = 0.912771,	Accuracy = 0.584279
+	Test cost = 0.673454,	Accuracy = 0.790419
+	Test cost = 0.927494,	Accuracy = 0.567164
+Epoch = 26
+	Train cost = 0.909938,	Accuracy = 0.585494
+	Test cost = 0.668156,	Accuracy = 0.790419
+	Test cost = 0.923896,	Accuracy = 0.567164
+Epoch = 27
+	Train cost = 0.907194,	Accuracy = 0.588736
+	Test cost = 0.663201,	Accuracy = 0.790419
+	Test cost = 0.920363,	Accuracy = 0.572139
+Epoch = 28
+	Train cost = 0.904551,	Accuracy = 0.588331
+	Test cost = 0.658581,	Accuracy = 0.790419
+	Test cost = 0.916895,	Accuracy = 0.572139
+Epoch = 29
+	Train cost = 0.901987,	Accuracy = 0.589141
+	Test cost = 0.654265,	Accuracy = 0.790419
+	Test cost = 0.913473,	Accuracy = 0.572139
+Epoch = 30
+	Train cost = 0.899496,	Accuracy = 0.590762
+	Test cost = 0.650224,	Accuracy = 0.796407
+	Test cost = 0.910075,	Accuracy = 0.572139
+Epoch = 31
+	Train cost = 0.897080,	Accuracy = 0.592788
+	Test cost = 0.646432,	Accuracy = 0.796407
+	Test cost = 0.906721,	Accuracy = 0.572139
+Epoch = 32
+	Train cost = 0.894716,	Accuracy = 0.591572
+	Test cost = 0.642866,	Accuracy = 0.796407
+	Test cost = 0.903393,	Accuracy = 0.577114
+Epoch = 33
+	Train cost = 0.892411,	Accuracy = 0.593193
+	Test cost = 0.639521,	Accuracy = 0.796407
+	Test cost = 0.900088,	Accuracy = 0.577114
+Epoch = 34
+	Train cost = 0.890155,	Accuracy = 0.594814
+	Test cost = 0.636333,	Accuracy = 0.796407
+	Test cost = 0.896804,	Accuracy = 0.577114
+Epoch = 35
+	Train cost = 0.887947,	Accuracy = 0.595219
+	Test cost = 0.633303,	Accuracy = 0.796407
+	Test cost = 0.893547,	Accuracy = 0.577114
+Epoch = 36
+	Train cost = 0.885788,	Accuracy = 0.596434
+	Test cost = 0.630438,	Accuracy = 0.796407
+	Test cost = 0.890317,	Accuracy = 0.582090
+Epoch = 37
+	Train cost = 0.883665,	Accuracy = 0.598460
+	Test cost = 0.627701,	Accuracy = 0.796407
+	Test cost = 0.887110,	Accuracy = 0.582090
+Epoch = 38
+	Train cost = 0.881582,	Accuracy = 0.598460
+	Test cost = 0.625082,	Accuracy = 0.796407
+	Test cost = 0.883930,	Accuracy = 0.582090
+Epoch = 39
+	Train cost = 0.879530,	Accuracy = 0.601297
+	Test cost = 0.622568,	Accuracy = 0.790419
+	Test cost = 0.880775,	Accuracy = 0.582090
+Epoch = 40
+	Train cost = 0.877508,	Accuracy = 0.600891
+	Test cost = 0.620148,	Accuracy = 0.790419
+	Test cost = 0.877656,	Accuracy = 0.582090
+Epoch = 41
+	Train cost = 0.875517,	Accuracy = 0.602917
+	Test cost = 0.617838,	Accuracy = 0.790419
+	Test cost = 0.874567,	Accuracy = 0.587065
+Epoch = 42
+	Train cost = 0.873552,	Accuracy = 0.603728
+	Test cost = 0.615581,	Accuracy = 0.790419
+	Test cost = 0.871500,	Accuracy = 0.587065
+Epoch = 43
+	Train cost = 0.871609,	Accuracy = 0.604538
+	Test cost = 0.613414,	Accuracy = 0.790419
+	Test cost = 0.868455,	Accuracy = 0.587065
+Epoch = 44
+	Train cost = 0.869687,	Accuracy = 0.603728
+	Test cost = 0.611280,	Accuracy = 0.790419
+	Test cost = 0.865432,	Accuracy = 0.597015
+Epoch = 45
+	Train cost = 0.867787,	Accuracy = 0.605754
+	Test cost = 0.609211,	Accuracy = 0.790419
+	Test cost = 0.862431,	Accuracy = 0.601990
+Epoch = 46
+	Train cost = 0.865907,	Accuracy = 0.606564
+	Test cost = 0.607171,	Accuracy = 0.796407
+	Test cost = 0.859446,	Accuracy = 0.606965
+Epoch = 47
+	Train cost = 0.864042,	Accuracy = 0.607374
+	Test cost = 0.605189,	Accuracy = 0.796407
+	Test cost = 0.856482,	Accuracy = 0.611940
+Epoch = 48
+	Train cost = 0.862195,	Accuracy = 0.607780
+	Test cost = 0.603232,	Accuracy = 0.796407
+	Test cost = 0.853531,	Accuracy = 0.611940
+Epoch = 49
+	Train cost = 0.860361,	Accuracy = 0.608995
+	Test cost = 0.601318,	Accuracy = 0.796407
+	Test cost = 0.850591,	Accuracy = 0.611940
+Epoch = 50
+	Train cost = 0.858546,	Accuracy = 0.608995
+	Test cost = 0.599440,	Accuracy = 0.796407
+	Test cost = 0.847666,	Accuracy = 0.616915
+Epoch = 51
+	Train cost = 0.856740,	Accuracy = 0.610211
+	Test cost = 0.597581,	Accuracy = 0.796407
+	Test cost = 0.844758,	Accuracy = 0.616915
+Epoch = 52
+	Train cost = 0.854945,	Accuracy = 0.610211
+	Test cost = 0.595756,	Accuracy = 0.796407
+	Test cost = 0.841863,	Accuracy = 0.616915
+Epoch = 53
+	Train cost = 0.853163,	Accuracy = 0.611021
+	Test cost = 0.593929,	Accuracy = 0.796407
+	Test cost = 0.838987,	Accuracy = 0.616915
+Epoch = 54
+	Train cost = 0.851390,	Accuracy = 0.611021
+	Test cost = 0.592142,	Accuracy = 0.796407
+	Test cost = 0.836122,	Accuracy = 0.611940
+Epoch = 55
+	Train cost = 0.849621,	Accuracy = 0.611831
+	Test cost = 0.590361,	Accuracy = 0.796407
+	Test cost = 0.833281,	Accuracy = 0.626866
+Epoch = 56
