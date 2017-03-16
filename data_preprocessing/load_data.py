@@ -323,10 +323,13 @@ def test2():
 
 
 def test3():
-    slice_rating = load_ratings(category=True, best3=True)
+    slice_rating = load_ratings(category=True, best3=False)
     count = [0, 0, 0]
     for rating in slice_rating.values():
         count[rating] += 1
+    s = sum(count)
+    for i in xrange(3):
+        count[i] /= float(s)
     print count
 
 

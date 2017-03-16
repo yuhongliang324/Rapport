@@ -86,8 +86,12 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                     category=category)
 
         img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
-        plot_loss(img_path, costs_train, costs_val, vdyad,
-                  losses_krip_train=losses_krip_train, losses_krip_val=losses_krip_val)
+        if category:
+            plot_loss(img_path, vdyad, costs_train, costs_val, costs_test=costs_test)
+        else:
+            plot_loss(img_path, vdyad, costs_train, costs_val,
+                      losses_krip_train=losses_krip_train, losses_krip_val=losses_krip_val,
+                      costs_test=costs_test, losses_krip_test=losses_krip_test)
         for i in xrange(y_test.shape[0]):
             writer.write(str(tdyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
                          ',' + str(best_pred_test[i]) + ',' + str(y_test[i]) + '\n')
