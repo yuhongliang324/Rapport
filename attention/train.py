@@ -62,7 +62,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         X_train = numpy.concatenate(feature_list)
         y_train = numpy.concatenate(rating_list)
 
-        print 'Validation Dyad =', vdyad
+        print 'Validation Dyad =', vdyad, '\tTesting Dyad =', tdyad
         if category:
             cnt = numpy.asarray([0, 0, 0])
             for i in xrange(y_train.shape[0]):
