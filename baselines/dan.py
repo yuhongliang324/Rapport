@@ -87,12 +87,11 @@ class dan(object):
         batch_size = T.shape(y_batch)[0]
 
         if self.n_class > 1:
-            prob = T.nnet.softmax(rep)[0]
-            pred = T.argmax(prob)
+            prob = T.nnet.softmax(rep)
+            pred = T.argmax(prob, axis=-1)
 
             acc = T.mean(T.eq(pred, y_batch))
-
-            loss = T.mean(-T.log(prob[y_batch]))
+            loss = T.mean(T.nnet.categorical_crossentropy(prob, y_batch))
         else:
             pred = rep[:, 0]
             loss = pred - y_batch
@@ -107,4 +106,5 @@ class dan(object):
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
         if self.n_class > 1:
             ret['acc'] = acc
+            ret['prob'] = prob  # For computing AUC
         return ret
