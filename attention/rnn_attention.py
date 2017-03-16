@@ -357,9 +357,11 @@ class RNN_Attention(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-                'att': att, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates}
+               'att': att, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
+               'acc': None, 'loss_krip': None}
         if self.n_class > 1:
             ret['acc'] = acc
         else:
             ret['loss_krip'] = loss_krip
+            ret['prob'] = prob  # For computing AUC
         return ret

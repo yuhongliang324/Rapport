@@ -6,7 +6,7 @@ from scipy.io import loadmat
 import numpy
 import math
 from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
-from data_path import info_root, ratings_best3_file, data_split_file
+from data_path import info_root, ratings_best3_file, data_split_file, rating_class_file, rating_class_best3_file
 from scipy.interpolate import interp1d
 import random
 
@@ -37,9 +37,9 @@ def rename(root):
 
 # The main function to get the slice ratings
 # Write ratings.txt
-def get_slice_ratings(rating_root, outfile):
+def write_slice_ratings(rating_root, outfile):
     # The function called by the main slice rating function
-    def get_slice_ratings2(rating_csv):
+    def write_slice_ratings2(rating_csv):
         print rating_csv
         reader = open(rating_csv)
         lines = reader.readlines()
@@ -62,7 +62,7 @@ def get_slice_ratings(rating_root, outfile):
     for fn in files:
         if not fn.endswith('csv'):
             continue
-        ret = get_slice_ratings2(os.path.join(rating_root, fn))
+        ret = write_slice_ratings2(os.path.join(rating_root, fn))
         for dyad, session, slice, rating in ret:
             slice_name = str(dyad) + ',' + str(session) + ',' + str(slice).zfill(3)
             slice_num[slice_name] += 1
@@ -76,7 +76,7 @@ def get_slice_ratings(rating_root, outfile):
 
 
 # Write ratings_best.txt
-def get_slice_ratings_best3(out_file):
+def write_slice_ratings_best3(out_file):
     slice_ratings = get_ratings(best3=True)
     slice_avgr = {}
     for slice, rater_rating in slice_ratings.items():
@@ -89,37 +89,38 @@ def get_slice_ratings_best3(out_file):
     writer.close()
 
 
-# side: l - left only, r - right only, lr - left and right, b - concatenation of lr, ba - adding of lr
-def load_feature_vision(mat_file, feature_name='hog', side='ba'):
-    lfeat_name = 'left_' + feature_name + '_feature'
-    rfeat_name = 'right_' + feature_name + '_feature'
-    data = loadmat(mat_file)
-    lfeat, rfeat = data[lfeat_name], data[rfeat_name]
-    lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
-    lfeat = interpolate_features(lfeat, lsuc)
-    rfeat = interpolate_features(rfeat, rsuc)
-    rating = float(data['label'][0])
-    if side == 'l':
-        if lfeat is None or lfeat.dtype == numpy.int16:
-            return None
-        return lfeat, lsuc, rating
-    elif side == 'r':
-        if rfeat is None or rfeat.dtype == numpy.int16:
-            return None
-        return rfeat, rsuc, rating
-    elif side == 'lr':
-        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
-            return None
-        return (lfeat, rfeat), (lsuc, rsuc), rating
-    else:
-        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
-            return None
-        if 'a' in side:  # Use add for both sides
-            feat = lfeat + rfeat
+def write_slice_rating_classes(out_file, best3=True):
+    slice_ratings = get_ratings(best3=best3, ignore0=False)
+    rr_count = defaultdict(float)
+    for rrs in slice_ratings.values():
+        for rater, rating in rrs.items():
+            rr = rater + '_' + str(int(rating))
+            rr_count[rr] += 1
+    content = []
+    for slice, rrs in slice_ratings.items():
+        weights = [0. for _ in xrange(3)]
+        for rater, rating in rrs.items():
+            rr = rater + '_' + str(int(rating))
+            w = 1. / rr_count[rr]
+            if rating < 4:
+                weights[0] += w
+            elif rating > 4:
+                weights[2] += w
+            else:
+                weights[1] += w
+        sp = slice.split('_')
+        dyad, session, sliceID = sp[0], sp[1], sp[2].zfill(3)
+        if weights[0] > weights[1] and weights[0] > weights[2]:
+            cl = 0
+        elif weights[2] > weights[0] and weights[2] > weights[1]:
+            cl = 2
         else:
-            feat = numpy.concatenate((lfeat, rfeat), axis=1)
-        suc = numpy.logical_and(lsuc == 1, rsuc == 1)
-        return feat, suc, rating
+            cl = 1
+        content.append(dyad + ',' + session + ',' + sliceID + ',' + str(cl))
+    content.sort()
+    writer = open(out_file, 'w')
+    writer.write('\n'.join(content))
+    writer.close()
 
 
 def interpolate_features(X, suc):
@@ -139,7 +140,7 @@ def interpolate_features(X, suc):
     return f(ind)
 
 
-def get_ratings(rating_root=info_root, best3=True):
+def get_ratings(rating_root=info_root, best3=True, ignore0=True):
     slice_ratings = {}
 
     def get_ratings1(rating_csv):
@@ -177,12 +178,13 @@ def get_ratings(rating_root=info_root, best3=True):
             for j, r in enumerate(str_ratings):
                 if r.isdigit():
                     rater_rating[raters[j]] = float(r)
-            num_inval = 0
-            for rater, rating in rater_rating.items():
-                if rating == 0:
-                    num_inval += 1
-            if num_inval >= 2:
-                continue
+            if ignore0:
+                num_inval = 0
+                for rater, rating in rater_rating.items():
+                    if rating == 0:
+                        num_inval += 1
+                if num_inval >= 2:
+                    continue
 
             slice_ratings[SliceName] = rater_rating
 
@@ -324,6 +326,19 @@ def split_dataset(dyads, out_file):
     writer.close()
 
 
+def load_split(split_file=data_split_file):
+    reader = open(split_file)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    vals, tests = [], []
+    for line in lines:
+        sp = line.split()
+        tests.append(int(sp[0]))
+        vals.append(int(sp[1]))
+    return vals, tests
+
+
 data_root = '/multicomp/users/liangke/RAPT/features'
 
 
@@ -332,7 +347,7 @@ def test1():
 
 
 def test2():
-    get_slice_ratings(info_root, os.path.join(info_root, 'ratings.txt'))
+    write_slice_ratings(info_root, os.path.join(info_root, 'ratings.txt'))
 
 
 def test3():
@@ -340,7 +355,7 @@ def test3():
 
 
 def test4():
-    get_slice_ratings_best3(ratings_best3_file)
+    write_slice_ratings_best3(ratings_best3_file)
 
 
 def test5():
@@ -348,5 +363,10 @@ def test5():
     split_dataset(dyads, data_split_file)
 
 
+def test6():
+    write_slice_rating_classes(rating_class_file, best3=False)
+    write_slice_rating_classes(rating_class_best3_file, best3=True)
+
+
 if __name__ == '__main__':
-    test5()
+    test6()

@@ -7,10 +7,9 @@ import theano
 
 sys.path.append('../')
 
-from utils import load_feature_vision, get_ratings
-from data_path import sample_10_root, audio_root, ratings_file, ratings_best3_file
+from utils import get_ratings, interpolate_features
+from data_path import sample_10_root, audio_root, ratings_file, ratings_best3_file, rating_class_file, rating_class_best3_file
 from sklearn.preprocessing import normalize
-import random
 from scipy.io import loadmat
 
 n_class = 5
@@ -31,8 +30,9 @@ def get_valid_slices():
     return valid_slices
 
 
-def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
+def load_vision(dirname, feature_name='hog', side='ba', min_step=76, normalization=True, best3=False, category=False):
     valid_slices = get_valid_slices()
+    slice_ratings = load_ratings(category=category, best3=best3)
 
     dyad_features = {}
     dyad_ratings = {}
@@ -46,8 +46,9 @@ def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
         if not (os.path.isdir(session_dir) and fn.startswith('D')):
             continue
         dyad = int(fn[1:].split('S')[0])
-        features, ratings, slices = load_dyad(session_dir, feature_name=feature_name, side=side, min_step=min_step,
-                                              norm=norm, valid_slices=valid_slices)
+        features, ratings, slices = load_dyad_vision(session_dir, slice_ratings, feature_name=feature_name, side=side,
+                                                     min_step=min_step, normalization=normalization,
+                                                     valid_slices=valid_slices)
         if features is None:
             continue
         if min_step is not None:
@@ -64,7 +65,7 @@ def load(dirname, feature_name='hog', side='ba', min_step=76, norm=True):
     return dyad_features, dyad_ratings, dyad_slices
 
 
-def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, valid_slices=None):
+def load_dyad_vision(dirname, slice_rating, feature_name='hog', side='ba', min_step=76, normalization=True, valid_slices=None):
     def add_to_features(feat, rating, slice, features, ratings, slices, prev_step, min_step=76):
         if feat.shape[0] < min_step:
             return prev_step
@@ -96,13 +97,14 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
         ret = load_feature_vision(mat_file, feature_name=feature_name, side=side)
         if ret is None:
             continue
-        feat, _, rating = ret
+        feat, _ = ret
 
         slice_tup = (dyad, session, slice_id)
+        rating = slice_rating[slice_tup]
 
         if side == 'lr':
             lfeat, rfeat = feat
-            if norm:
+            if normalize:
                 if feature_name == 'gemo':
                     lfeat = normalize(lfeat, norm='l1', axis=0)
                     lfeat = normalize(lfeat)
@@ -118,7 +120,7 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
             prev_step = add_to_features(rfeat, rating, slice_tup, features, ratings, slices,
                                         prev_step, min_step=min_step)
         else:
-            if norm:
+            if normalization:
                 feat = normalize(feat)
             prev_step = add_to_features(feat, rating, slice_tup, features, ratings, slices,
                                         prev_step, min_step=min_step)
@@ -130,93 +132,55 @@ def load_dyad(dirname, feature_name='hog', side='ba', min_step=76, norm=True, va
     return features, ratings, slices
 
 
-def load_pairs(dirname, feature_name='hog', side='lr', min_step=76, norm=True, n_class=1):
-    dyad_X1 = {}
-    dyad_X2 = {}
-    dyad_gaps = {}
-
-    files = os.listdir(dirname)
-    files.sort()
-    for fn in files:
-        print fn
-        session_dir = os.path.join(dirname, fn)
-        if not (os.path.isdir(session_dir) and fn.startswith('D')):
-            continue
-        dyad = int(fn[1:].split('S')[0])
-        X1, X2, y = load_dyad_pairs(session_dir, feature_name=feature_name, side=side, min_step=min_step,
-                                    norm=norm, n_class=n_class)
-        if min_step is not None:
-            X1 = X1[:, :min_step, :]
-            X2 = X2[:, :min_step, :]
-        if dyad in dyad_X1:
-            dyad_X1[dyad] = numpy.concatenate((dyad_X1[dyad], X1), axis=0)
-            dyad_X2[dyad] = numpy.concatenate((dyad_X2[dyad], X2), axis=0)
-            dyad_gaps[dyad] = numpy.concatenate((dyad_gaps[dyad], y), axis=0)
+# side: l - left only, r - right only, lr - left and right, b - concatenation of lr, ba - adding of lr
+def load_feature_vision(mat_file, feature_name='hog', side='ba'):
+    if feature_name == 'au' or feature_name == 'AU':
+        fn = 'gemo'
+    else:
+        fn = feature_name
+    lfeat_name = 'left_' + fn + '_feature'
+    rfeat_name = 'right_' + fn + '_feature'
+    data = loadmat(mat_file)
+    lfeat, rfeat = data[lfeat_name], data[rfeat_name]
+    if feature_name == 'au':
+        lfeat, rfeat = lfeat[-35:], rfeat[-35:]
+    lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
+    lfeat = interpolate_features(lfeat, lsuc)
+    rfeat = interpolate_features(rfeat, rsuc)
+    if side == 'l':
+        if lfeat is None or lfeat.dtype == numpy.int16:
+            return None
+        return lfeat, lsuc
+    elif side == 'r':
+        if rfeat is None or rfeat.dtype == numpy.int16:
+            return None
+        return rfeat, rsuc
+    elif side == 'lr':
+        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+            return None
+        return (lfeat, rfeat), (lsuc, rsuc)
+    else:
+        if lfeat is None or rfeat is None or lfeat.dtype == numpy.int16 or rfeat.dtype == numpy.int16:
+            return None
+        if 'a' in side:  # Use add for both sides
+            feat = lfeat + rfeat
         else:
-            dyad_X1[dyad] = X1
-            dyad_X2[dyad] = X2
-            dyad_gaps[dyad] = y
-    return dyad_X1, dyad_X2, dyad_gaps
+            feat = numpy.concatenate((lfeat, rfeat), axis=1)
+        suc = numpy.logical_and(lsuc == 1, rsuc == 1)
+        return feat, suc
 
 
-def load_dyad_pairs(dirname, feature_name='hog', side='b', min_step=76, norm=True, prob=.4, n_class=1):
-    features1, features2, gaps = [], [], []
-
-    def add_to_pair(features, ratings):
-        def comp(a, b, threshold=0.5):
-            if n_class == 1:
-                return a - b
-            elif n_class == 2:
-                if a < b:
-                    return 0
-                else:
-                    return 1
-            else:
-                if abs(a - b) < threshold:
-                    return 2
-                elif a < b:
-                    return 0
-                else:
-                    return 1
-
-        for i in xrange(ratings.shape[0] - 1):
-            for j in xrange(i + 1, ratings.shape[0]):
-                if abs(ratings[i] - ratings[j]) < 3:
-                    continue
-                r = random.random()
-                if r > prob:
-                    continue
-                r = random.random()
-                if r < 0.5:
-                    f1, f2 = features[i], features[j]
-                    gap = comp(ratings[i], ratings[j])
-
-                else:
-                    f1, f2 = features[j], features[i]
-                    gap = comp(ratings[j], ratings[i])
-                features1.append(f1)
-                features2.append(f2)
-                gaps.append(gap)
-
-    if side == 'lr':
-        features, ratings = load_dyad(dirname, feature_name, 'l', min_step=min_step, norm=norm)
-        add_to_pair(features, ratings)
-        features, ratings = load_dyad(dirname, feature_name, 'r', min_step=min_step, norm=norm)
-        add_to_pair(features, ratings)
+def load_ratings(category=False, best3=False):
+    if not category:
+        if not best3:
+            rpath = ratings_file
+        else:
+            rpath = ratings_best3_file
     else:
-        features, ratings = load_dyad(dirname, feature_name, side=side, min_step=min_step, norm=norm)
-        add_to_pair(features, ratings)
-    X1 = numpy.stack(features1, axis=0).astype(theano.config.floatX)
-    X2 = numpy.stack(features2, axis=0).astype(theano.config.floatX)
-    y = numpy.asarray(gaps, dtype=theano.config.floatX)
-    return X1, X2, y
-
-
-def load_ratings(best3=False):
-    if not best3:
-        rpath = ratings_file
-    else:
-        rpath = ratings_best3_file
+        if not best3:
+            rpath = rating_class_file
+        else:
+            rpath = rating_class_best3_file
     reader = open(rpath)
     lines = reader.readlines()
     reader.close()
@@ -227,18 +191,21 @@ def load_ratings(best3=False):
     for line in lines:
         sp = line.split(',')
         dyad, session, slice = int(sp[0]), int(sp[1]), int(sp[2])
-        rating = float(sp[3])
+        if not category:
+            rating = float(sp[3])
+        else:
+            rating = int(sp[3])
         slice_rating[(dyad, session, slice)] = rating
     return slice_rating
 
 
-def load_audio(root=audio_root, side='b', num_frame=300, normalization=True, best3=False):
+def load_audio(root=audio_root, side='b', num_frame=300, normalization=True, best3=False, category=False):
     dyad_features = {}
     dyad_slices = {}
     dyad_ratings = {}
 
     valid_slices = get_valid_slices()
-    slice_rating = load_ratings(best3=best3)
+    slice_rating = load_ratings(category=category, best3=best3)
 
     files = os.listdir(root)
     files.sort()
@@ -270,7 +237,6 @@ def load_audio(root=audio_root, side='b', num_frame=300, normalization=True, bes
 
 def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None, normalization=True):
     slice_features = {}
-    ind = numpy.arange(num_frame)
 
     files = os.listdir(dirname)
     files.sort()
@@ -316,7 +282,7 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None, normali
         for slice, feats in slice_features.items():
             slices.append(slice)
             features.append(feats['left'])
-            slices.append(slices)
+            slices.append(slice)
             features.append(feats['right'])
     elif side == 'l':
         for slice, feats in slice_features.items():
@@ -349,12 +315,20 @@ def load_dyad_audio(dirname, side='b', num_frame=300, valid_slices=None, normali
 
 
 def test1():
-    load(sample_10_root)
+    load_vision(sample_10_root)
 
 
 def test2():
     load_audio()
 
 
+def test3():
+    slice_rating = load_ratings(category=True, best3=True)
+    count = [0, 0, 0]
+    for rating in slice_rating.values():
+        count[rating] += 1
+    print count
+
+
 if __name__ == '__main__':
-    test2()
+    test3()
