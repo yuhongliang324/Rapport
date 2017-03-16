@@ -49,7 +49,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     vals, tests = load_split()
     for vdyad, tdyad in zip(vals, tests):
         X_val = dyad_features[vdyad]
-        y_val = dyad_features[vdyad]
+        y_val = dyad_ratings[vdyad]
         X_test = dyad_features[tdyad]
         y_test = dyad_ratings[tdyad]
         slices_test = dyad_slices[tdyad]
@@ -73,8 +73,6 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         else:
             rating_mean = numpy.mean(y_train)
             rmse = y_val - rating_mean
-            print y_val
-            print y_val.shape
             rmse = sqrt(numpy.mean(rmse * rmse))
             print 'RMSE of Average Prediction = %f' % rmse
 

@@ -93,7 +93,6 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     if category:
         outputs = [cost, acc, pred]
     else:
-        print cost, loss_krip, pred
         outputs = [cost, loss_krip, pred]
 
     train_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
