@@ -30,7 +30,7 @@ def RMSE(y_actual, y_predicted):
 
 def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, category=False):
     n_test = y_val.shape[0]
-    num_iter = (n_test + batch_size - 1) // float(batch_size)
+    num_iter = (n_test + batch_size - 1) // batch_size
     all_pred = []
     cost_avg, loss_krip_avg = 0., 0.
     for iter_index in xrange(num_iter):
