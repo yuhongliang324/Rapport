@@ -143,7 +143,7 @@ def load_feature_vision(mat_file, feature_name='hog', side='ba'):
     data = loadmat(mat_file)
     lfeat, rfeat = data[lfeat_name], data[rfeat_name]
     if feature_name == 'au':
-        lfeat, rfeat = lfeat[-35:], rfeat[-35:]
+        lfeat, rfeat = lfeat[:, -35:], rfeat[:, -35:]
     lsuc, rsuc = numpy.squeeze(data['left_success']), numpy.squeeze(data['right_success'])
     lfeat = interpolate_features(lfeat, lsuc)
     rfeat = interpolate_features(rfeat, rsuc)
