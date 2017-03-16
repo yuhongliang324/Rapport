@@ -46,7 +46,7 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
     if not category:
         loss_krip_avg /= n_test
         losses_krip_val.append(loss_krip_avg)
-    rmse_acc = eval(y_val, all_pred)
+    rmse_acc = eval(y_val, all_pred, category=category)
     if category:
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
     else:
