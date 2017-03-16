@@ -119,7 +119,8 @@ class RNN_Attention(object):
         for b in self.bs:
             self.theta.append(b)
 
-        print 'dec =', self.dec, 'model =', self.model, 'lambda =', self.lamb, 'share =', self.share
+        print 'dec =', self.dec, 'model =', self.model, 'lambda =', self.lamb,\
+            'share =', self.share, '#class =', self.n_class
 
         if self.update == 'adam':
             self.optimize = Adam
@@ -361,7 +362,7 @@ class RNN_Attention(object):
                'acc': None, 'loss_krip': None}
         if self.n_class > 1:
             ret['acc'] = acc
+            ret['prob'] = prob  # For computing AUC
         else:
             ret['loss_krip'] = loss_krip
-            ret['prob'] = prob  # For computing AUC
         return ret
