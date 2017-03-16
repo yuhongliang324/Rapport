@@ -127,7 +127,8 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
-                     dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share)
+                     dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
+                     category=args.cat, best3=args.best3)
 
 
 if __name__ == '__main__':
