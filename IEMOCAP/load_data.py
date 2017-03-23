@@ -4,6 +4,7 @@ from scipy.io import loadmat
 import numpy
 import random
 import theano
+from sklearn.preprocessing import normalize
 
 
 data_root = '/multicomp/users/liangke/MM/datasets/IEMOCAP/features'
@@ -55,6 +56,8 @@ def load_feature_session(session_path, feature_name):
                 X = data['audio_features']
             else:
                 X = data['rotated_features']
+                X = normalize(X, norm='l1', axis=0)  # !!!
+                X = normalize(X)  # !!!
             X[numpy.isneginf(X)] = -1.
             X[numpy.isnan(X)] = 0.
             Xs.append(X)
