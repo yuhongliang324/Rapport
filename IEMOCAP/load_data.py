@@ -14,7 +14,7 @@ def load_feature(feature_name='audio'):
     session_Xs = {}
     session_y = {}
     for session in sessions:
-        if not session.startswith('Session4'):
+        if not session.startswith('Session'):
             continue
         print session
         sessionID = int(session[-1])
