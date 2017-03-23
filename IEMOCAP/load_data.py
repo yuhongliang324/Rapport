@@ -23,14 +23,19 @@ def load_feature(feature_name='audio'):
         session_Xs[sessionID] = Xs
         session_y[sessionID] = y
     sessionIDs = session_y.keys()
-    min_len = 1000000
-    max_len = 0
+    len500, len1000, len2000, len3000 = 0, 0, 0, 0
     for sessionID in sessionIDs:
         Xs = session_Xs[sessionID]
         for X in Xs:
-            min_len = min(min_len, X.shape[0])
-            max_len = max(max_len, X.shape[0])
-    print min_len, max_len
+            if X.shape[0] > 500:
+                len500 += 1
+            if X.shape[0] > 1000:
+                len1000 += 1
+            if X.shape[0] > 2000:
+                len2000 += 1
+            if X.shape[0] > 3000:
+                len3000 += 1
+    print len500, len1000, len2000, len3000
 
 
 def load_feature_session(session_path, feature_name):
