@@ -45,6 +45,9 @@ def load_feature_session(session_path, feature_name):
         for mat in mats:
             if not mat.endswith('mat'):
                 continue
+            if mat == 'Ses04F_script02_1_M039.mat':
+                print 'aa'
+                continue
             mat_path = os.path.join(video_path, mat)
             print mat_path
             data = loadmat(mat_path)
