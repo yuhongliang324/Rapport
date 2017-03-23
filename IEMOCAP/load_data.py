@@ -5,7 +5,7 @@ from scipy.io import loadmat
 
 data_root = '/multicomp/users/liangke/MM/datasets/IEMOCAP/features'
 # Order: Angry, Happy, Sad, Neutral
-oldl_newl = {2: 0, 8: 1, 5: 2, 9: 3}
+oldl_newl = {2: 0, 8: 1, 5: 2, 9: 3, 3: 1}
 
 
 def load_feature(feature_name='audio'):
