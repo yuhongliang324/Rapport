@@ -67,7 +67,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     y_test_shared = theano.shared(y_test, borrow=True)
 
     if category:
-        n_class = 3
+        n_class = 4
     else:
         n_class = 1
 
@@ -77,7 +77,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
     att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
     cost, updates = symbols['cost'], symbols['updates']
-    loss_krip, acc = symbols['acc']
+    loss_krip, acc = symbols['loss_krip'], symbols['acc']
 
     print 'Compiling function'
 
