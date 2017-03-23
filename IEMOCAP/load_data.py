@@ -52,7 +52,7 @@ def load_feature_session(session_path, feature_name):
                 continue
             label = oldl_newl[label]
             if feature_name == 'audio':
-                X = data['audio_feautures']
+                X = data['audio_features']
             else:
                 X = data['rotated_features']
             Xs.append(X)
