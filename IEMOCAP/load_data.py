@@ -37,6 +37,14 @@ def load_feature(feature_name='audio'):
                 len3000 += 1
     print len500, len1000, len2000, len3000
 
+    minlen, maxlen = 100000, 0
+    for sessionID in sessionIDs:
+        Xs = session_Xs[sessionID]
+        for X in Xs:
+            minlen = min(minlen, X.shape[0])
+            maxlen = max(maxlen, X.shape[0])
+    print minlen, maxlen
+
 
 def load_feature_session(session_path, feature_name):
     Xs = []
@@ -71,7 +79,7 @@ def load_feature_session(session_path, feature_name):
 
 
 def test1():
-    load_feature()
+    load_feature(feature_name='video')
 
 
 if __name__ == '__main__':
