@@ -144,7 +144,8 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             best_rmse_acc = rmse_acc_test
             best_actual_test = actual_test
             best_pred_test = pred_test
-        if (category and rmse_acc > best_rmse_acc) or ((not category) and rmse_acc < best_rmse_acc):
+            best_epoch = epoch_index
+        if (category and rmse_acc_test > best_rmse_acc) or ((not category) and rmse_acc_test < best_rmse_acc):
             best_rmse_acc = rmse_acc
             best_actual_test = actual_test
             best_pred_test = pred_test
