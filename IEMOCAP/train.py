@@ -81,7 +81,7 @@ def test1():
     parser.add_argument('-lamb', type=float, default=0.)
     parser.add_argument('-model', type=str, default='gru')
     parser.add_argument('-share', type=int, default=0)
-    parser.add_argument('-cat', type=int, default=0)
+    parser.add_argument('-cat', type=int, default=1)
     parser.add_argument('-maxlen', type=int, default=1000)
     parser.add_argument('-rate', type=int, default=5)
     args = parser.parse_args()
