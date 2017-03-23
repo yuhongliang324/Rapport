@@ -20,7 +20,9 @@ def evaluate(fn):
     right4 = sum(right)
     total4 = sum(total)
     for i in xrange(len(right)):
-        right /= float(total)
+        right[i] /= float(total[i])
     for i in xrange(len(right)):
         print Emotions[i], right[i], '\t'
     print right4 / float(total4)
+
+evaluate('results/result_ad_video_model_lstm_share_False_lamb_0.0_drop_0.0_cat.txt')
