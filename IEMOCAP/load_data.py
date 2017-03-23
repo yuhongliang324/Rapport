@@ -49,7 +49,6 @@ def load_feature_session(session_path, feature_name):
                 print 'aa'
                 continue
             mat_path = os.path.join(video_path, mat)
-            print mat_path
             data = loadmat(mat_path)
             label = data['emotion_label'][0][0]
             if label not in oldl_newl:
