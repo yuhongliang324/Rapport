@@ -21,6 +21,8 @@ def load_feature(feature_name='audio'):
             continue
         print session
         sessionID = int(session[-1])
+        if sessionID > 3:  # !!!
+            continue
         session_path = os.path.join(data_root, session)
         Xs, y = load_feature_session(session_path, feature_name)
         session_Xs[sessionID] = Xs
@@ -44,7 +46,6 @@ def load_feature_session(session_path, feature_name):
             if not mat.endswith('mat'):
                 continue
             if mat == 'Ses04F_script02_1_M039.mat':
-                print 'aa'
                 continue
             mat_path = os.path.join(video_path, mat)
             data = loadmat(mat_path)
