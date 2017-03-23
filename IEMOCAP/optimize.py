@@ -116,7 +116,6 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     num_iter = len(start_batches_train)
     for epoch_index in xrange(num_epoch):
         cost_avg = 0.
-        acc_avg = 0.
         all_actual, all_pred = [], []
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
@@ -124,13 +123,11 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             length = len_batches_train[iter_index]
             cost, tmp, pred = train_model(start, end, length, 1)
             cost_avg += cost * (end - start)
-            acc_avg += tmp * (end - start)
             all_actual += y_train[start: end].tolist()
             all_pred += pred.tolist()
             if (iter_index + 1) % 100 == 0:
                 print iter_index + 1, '/', num_iter
         cost_avg /= n_train
-        acc_avg /= n_train
         costs_train.append(cost_avg)
         y_actual = numpy.asarray(all_actual)
         y_predicted = numpy.asarray(all_pred)
@@ -140,7 +137,6 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
         else:
             print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-        print acc_avg
         cost_avg_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
                                                      y_test, costs_test, category=category)
         if cost_avg_test < best_cost_test:

@@ -77,7 +77,7 @@ def test1():
     parser = argparse.ArgumentParser()
     parser.add_argument('-feat', type=str, default='audio')
     parser.add_argument('-dec', type=int, default=1)
-    parser.add_argument('-update', type=str, default='adam2')
+    parser.add_argument('-update', type=str, default='adam')
     parser.add_argument('-lamb', type=float, default=0.)
     parser.add_argument('-model', type=str, default='gru')
     parser.add_argument('-share', type=int, default=0)
