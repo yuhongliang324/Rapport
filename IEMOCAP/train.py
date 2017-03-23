@@ -7,7 +7,7 @@ from math import sqrt
 from optimize import train
 
 
-def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0.,
+def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
                      model='gru', share=False, category=True, maxlen=1000, sample_rate=5):
 
     feature_hidden = {'video': 128, 'audio': 64}
@@ -18,7 +18,8 @@ def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0.,
         pref = 'ad'
     else:
         pref = 'att_only'
-    message = pref + '_' + feature_name + '_model_' + model + '_share_' + str(share) + '_lamb_' + str(lamb)
+    message = pref + '_' + feature_name + '_model_' + model + '_share_' + str(share) + '_lamb_' + str(lamb)\
+              + '_drop_' + str(drop)
     if category:
         message += '_cat'
     writer = open('results/result_' + message + '.txt', 'w')
@@ -66,7 +67,7 @@ def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0.,
 
         best_actual_test, best_pred_test\
             = train(inputs_train, inputs_test, hidden_dim=hidden_dim, dec=dec, update=update,
-                    lamb=lamb, model=model, share=share, category=category)
+                    lamb=lamb, model=model, share=share, category=category, drop=drop)
 
         for i in xrange(y_test.shape[0]):
             writer.write(str(best_pred_test[i]) + ',' + str(best_actual_test[i]) + '\n')
@@ -84,13 +85,14 @@ def test1():
     parser.add_argument('-cat', type=int, default=1)
     parser.add_argument('-maxlen', type=int, default=1000)
     parser.add_argument('-rate', type=int, default=5)
+    parser.add_argument('-drop', type=float, default=0.)
     args = parser.parse_args()
 
     print args.feat
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
-    cross_validation(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb,
+    cross_validation(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                      model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
 
 

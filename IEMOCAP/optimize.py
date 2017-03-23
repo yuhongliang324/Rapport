@@ -56,7 +56,7 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
-          lamb=0., model='gru', share=False, category=False, num_epoch=40):
+          lamb=0., drop=0., model='gru', share=False, category=False, num_epoch=40):
 
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train = inputs_train
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test = inputs_test
@@ -76,7 +76,8 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     else:
         n_class = 1
 
-    ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, update=update, lamb=lamb, model=model, share=share)
+    ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, update=update, lamb=lamb, drop=drop,
+                       model=model, share=share)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
