@@ -14,7 +14,7 @@ def load_feature(feature_name='audio'):
     session_Xs = {}
     session_y = {}
     for session in sessions:
-        if not session.startswith('Session'):
+        if not session.startswith('Session5'):
             continue
         print session
         sessionID = int(session[-1])
@@ -46,6 +46,7 @@ def load_feature_session(session_path, feature_name):
             if not mat.endswith('mat'):
                 continue
             mat_path = os.path.join(video_path, mat)
+            print mat_path
             data = loadmat(mat_path)
             label = data['emotion_label'][0][0]
             if label not in oldl_newl:
