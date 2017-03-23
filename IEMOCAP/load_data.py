@@ -123,7 +123,7 @@ def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5
 
     # Pad Xs_short
     maxLen = len_batches[-1]
-    Xs = numpy.zeros((size, maxLen), dtype=theano.config.floatX)
+    Xs = numpy.zeros((size, maxLen, X_list[0].shape[-1]), dtype=theano.config.floatX)
     for i in xrange(num_batch):
         start, end = start_batches[i], end_batches[i]
         length = len_batches[i]
