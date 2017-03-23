@@ -64,12 +64,12 @@ def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0.,
         inputs_train = (Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train)
         inputs_test = (Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test)
 
-        best_pred_test\
+        best_actual_test, best_pred_test\
             = train(inputs_train, inputs_test, hidden_dim=hidden_dim, dec=dec, update=update,
                     lamb=lamb, model=model, share=share, category=category)
 
         for i in xrange(y_test.shape[0]):
-            writer.write(str(best_pred_test[i]) + ',' + str(y_test[i]) + '\n')
+            writer.write(str(best_pred_test[i]) + ',' + str(best_actual_test[i]) + '\n')
     writer.close()
 
 

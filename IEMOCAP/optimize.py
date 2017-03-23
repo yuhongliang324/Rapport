@@ -31,7 +31,7 @@ def RMSE(y_actual, y_predicted):
 def test(test_model, start_batches_test, end_batches_test, len_batches_test,
          y_test, costs_test, category=False):
     n_test = y_test.shape[0]
-    all_pred = []
+    all_actual, all_pred = [], []
     cost_avg = 0.
     num_iter = len(start_batches_test)
     for iter_index in xrange(num_iter):
@@ -39,17 +39,20 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
         length = len_batches_test[iter_index]
         cost, tmp, pred = test_model(start, end, length, 0)
         cost_avg += cost * (end - start)
+        all_actual += y_test[start: end].tolist()
         all_pred += pred.tolist()
         if (iter_index + 1) % 100 == 0:
                 print iter_index + 1, '/', num_iter
     cost_avg /= n_test
     costs_test.append(cost_avg)
-    rmse_acc = eval(y_test, all_pred, category=category)
+    y_actual = numpy.asarray(all_actual)
+    y_predicted = numpy.asarray(all_pred)
+    rmse_acc = eval(y_actual, y_predicted, category=category)
     if category:
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
     else:
         print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-    return cost_avg, all_pred
+    return cost_avg, y_actual, y_predicted
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
@@ -107,37 +110,46 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
 
     costs_train, costs_test = [], []
     best_cost_test = 10000
+    best_actual_test = None
     best_pred_test = None
     best_epoch = 0
     num_iter = len(start_batches_train)
     for epoch_index in xrange(num_epoch):
-        cost_avg, rmse = 0., 0.
-        all_pred = []
+        cost_avg = 0.
+        acc_avg = 0.
+        all_actual, all_pred = [], []
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             cost, tmp, pred = train_model(start, end, length, 1)
             cost_avg += cost * (end - start)
+            acc_avg += tmp * (end - start)
+            all_actual += y_train[start: end].tolist()
             all_pred += pred.tolist()
             if (iter_index + 1) % 100 == 0:
                 print iter_index + 1, '/', num_iter
         cost_avg /= n_train
+        acc_avg /= n_train
         costs_train.append(cost_avg)
+        y_actual = numpy.asarray(all_actual)
         y_predicted = numpy.asarray(all_pred)
-        rmse_acc = eval(y_train, y_predicted, category=category)
+
+        rmse_acc = eval(y_actual, y_predicted, category=category)
         if category:
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
         else:
             print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-        cost_avg_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
-                                        y_test, costs_test, category=category)
+        print acc_avg
+        cost_avg_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
+                                                     y_test, costs_test, category=category)
         if cost_avg_test < best_cost_test:
             best_cost_test = cost_avg_test
+            best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
         # Early Stopping
         if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
-            return best_pred_test
+            return best_actual_test, best_pred_test
     # Krip losses only make sense for regression (category = False)
-    return best_pred_test
+    return best_actual_test, best_pred_test
