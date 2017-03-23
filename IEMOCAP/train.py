@@ -86,18 +86,11 @@ def test1():
     parser.add_argument('-rate', type=int, default=5)
     args = parser.parse_args()
 
-    if args.lamb >= 0:
-        lamb = args.lamb
-    else:
-        if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            lamb = 1e-4
-        else:
-            lamb = 5e-5
     print args.feat
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
-    cross_validation(feature_name=args.feat, dec=args.dec, update=args.update, lamb=lamb,
+    cross_validation(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb,
                      model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
 
 

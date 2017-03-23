@@ -37,10 +37,11 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
-        cost, tmp, pred, xb = test_model(start, end, length, 0)
-        print xb
+        cost, tmp, pred = test_model(start, end, length, 0)
         cost_avg += cost * (end - start)
         all_pred += pred.tolist()
+        if (iter_index + 1) % 100 == 0:
+                print iter_index + 1, '/', num_iter
     cost_avg /= n_test
     costs_test.append(cost_avg)
     rmse_acc = eval(y_test, all_pred, category=category)
@@ -52,7 +53,7 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
-          lamb=0., model='gru', share=False, category=False, num_epoch=100):
+          lamb=0., model='gru', share=False, category=False, num_epoch=50):
 
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train = inputs_train
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test = inputs_test
@@ -85,9 +86,9 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     len_symbol = T.iscalar()
     if category:
-        outputs = [cost, acc, pred, X_batch]
+        outputs = [cost, acc, pred]
     else:
-        outputs = [cost, loss_krip, pred, X_batch]
+        outputs = [cost, loss_krip, pred]
 
     train_model = theano.function(inputs=[start_symbol, end_symbol, len_symbol, is_train],
                                   outputs=outputs, updates=updates,
@@ -116,11 +117,11 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            print length
-            cost, tmp, pred, xb = train_model(start, end, length, 1)
-            print xb
+            cost, tmp, pred = train_model(start, end, length, 1)
             cost_avg += cost * (end - start)
             all_pred += pred.tolist()
+            if (iter_index + 1) % 100 == 0:
+                print iter_index + 1, '/', num_iter
         cost_avg /= n_train
         costs_train.append(cost_avg)
         y_predicted = numpy.asarray(all_pred)
@@ -136,7 +137,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             best_pred_test = pred_test
             best_epoch = epoch_index
         # Early Stopping
-        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 2 and best_epoch > 2:
+        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
             return best_pred_test
     # Krip losses only make sense for regression (category = False)
     return best_pred_test

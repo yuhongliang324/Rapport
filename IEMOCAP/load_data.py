@@ -21,8 +21,6 @@ def load_feature(feature_name='audio'):
             continue
         print session
         sessionID = int(session[-1])
-        if sessionID > 3:  # !!!
-            continue
         session_path = os.path.join(data_root, session)
         Xs, y = load_feature_session(session_path, feature_name)
         session_Xs[sessionID] = Xs
