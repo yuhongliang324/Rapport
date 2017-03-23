@@ -7,16 +7,14 @@ import theano
 
 sys.path.append('../')
 
-from utils import get_ratings, interpolate_features
+from utils import get_all_ratings, interpolate_features
 from data_path import sample_10_root, audio_root, ratings_file, ratings_best3_file, rating_class_file, rating_class_best3_file
 from sklearn.preprocessing import normalize
 from scipy.io import loadmat
 
-n_class = 5
-
 
 def get_valid_slices():
-    slice_ratings = get_ratings()
+    slice_ratings = get_all_ratings()
     candidates = slice_ratings.keys()
     valid_slices = set()
     for cand in candidates:
@@ -165,7 +163,7 @@ def load_feature_vision(mat_file, feature_name='hog', side='ba'):
         if 'a' in side:  # Use add for both sides
             feat = lfeat + rfeat
         else:
-            feat = numpy.concatenate((lfeat, rfeat), axis=1)
+            feat = numpy.concatenate((lfeat, rfeat), axis=1)  # !!!
         suc = numpy.logical_and(lsuc == 1, rsuc == 1)
         return feat, suc
 

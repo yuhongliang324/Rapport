@@ -1,13 +1,13 @@
 __author__ = 'yuhongliang324'
 import sys
 sys.path.append('..')
-from utils import get_ratings, get_coder
+from utils import get_all_ratings, get_coder
 import math
 from ensemble import combine
 
 
 def load_gt():
-    slice_ratings = get_ratings()
+    slice_ratings = get_all_ratings()
     print set(slice_ratings.keys())
 
 
@@ -119,12 +119,12 @@ def test1():
 
 
 def test2():
-    slice_ratings = get_ratings()
+    slice_ratings = get_all_ratings()
     get_krip_alpha(slice_ratings)
 
 
 def test3():
-    slice_ratings = get_ratings(best3=False)
+    slice_ratings = get_all_ratings(best3=False)
     coder = get_coder('../results/result_ad_au_lr_model_gru_share_False_drop_0.0_lamb_0.0_fact_None.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
@@ -132,7 +132,7 @@ def test3():
 
 
 def test3_1():
-    slice_ratings = get_ratings(best3=True)
+    slice_ratings = get_all_ratings(best3=True)
     coder = get_coder('../results/svr_result_1.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
@@ -140,7 +140,7 @@ def test3_1():
 
 
 def test3_2():
-    slice_ratings = get_ratings(best3=False)
+    slice_ratings = get_all_ratings(best3=False)
     coder = get_coder('../results/result_dan_audio_b_148-64-1_drop_0.0_act_tanh.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
@@ -148,7 +148,7 @@ def test3_2():
 
 
 def test4():
-    slice_ratings = get_ratings(best3=False)
+    slice_ratings = get_all_ratings(best3=False)
     coder1 = get_coder('../results/result_attention_decision_hog_ba_drop_0.0_fact_None.txt')
     coder2 = get_coder('../results/result_ad_audio_b_drop_0.0_fact_None.txt')
     coder = combine([coder1, coder2])

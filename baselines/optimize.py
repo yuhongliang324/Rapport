@@ -32,7 +32,7 @@ def validate(val_model, y_val, costs_val, batch_size=32, category=False):
 
 
 # model name can be added "-only" as suffix
-def train(X_train, y_train, X_val, y_val, X_test, y_test, layers, drop=0.25, batch_size=64, num_epoch=80,
+def train(X_train, y_train, X_val, y_val, X_test, y_test, layers, drop=0.25, batch_size=64, num_epoch=100,
           category=False, activation='relu'):
 
     n_train = X_train.shape[0]

@@ -140,7 +140,7 @@ def interpolate_features(X, suc):
     return f(ind)
 
 
-def get_ratings(rating_root=info_root, best3=True, ignore0=True):
+def get_all_ratings(rating_root=info_root, best3=True, ignore0=True):
     slice_ratings = {}
 
     def get_ratings1(rating_csv):

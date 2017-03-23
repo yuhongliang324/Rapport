@@ -1,3 +1,5 @@
+Ours:
+
 nohup python -u train.py -feat audio -model gru -share 1 > ../logs/audio_gru_share.out 2>&1 &
 nohup python -u train.py -feat audio -model gru -share 0 > ../logs/audio_gru.out 2>&1 &
 nohup python -u train.py -feat audio -model lstm -share 1 > ../logs/audio_lstm_share.out 2>&1 &
@@ -19,3 +21,9 @@ nohup python -u train.py -feat audio -model gru -share 1 -dec 0 > ../logs/audio_
 nohup python -u train.py -feat audio -model gru -share 0 -dec 0 > ../logs/audio_gru_attonly.out 2>&1 &
 nohup python -u train.py -feat audio -model lstm -share 1 -dec 0 > ../logs/audio_lstm_share_attonly.out 2>&1 &
 nohup python -u train.py -feat audio -model lstm -share 0 -dec 0 > ../logs/audio_lstm_attonly.out 2>&1 &
+
+DAN:
+nohup python -u train.py -feat audio -cat 1 > ../logs/dan_audio_cat.out 2>&1 &
+nohup python -u train.py -feat hog -cat 1 > ../logs/dan_hog_cat.out 2>&1 &
+nohup python -u train.py -feat gemo -cat 1 > ../logs/dan_gemo_cat.out 2>&1 &
+nohup python -u train.py -feat au -cat 1 > ../logs/dan_au_cat.out 2>&1 &
