@@ -118,6 +118,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             cost, tmp, pred = train_model(start, end, length, 1)
+            print pred.shape
             cost_avg += cost * (end - start)
             all_pred += pred.tolist()
             if (iter_index + 1) % 100 == 0:
