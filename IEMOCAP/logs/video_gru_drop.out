@@ -1,0 +1,91 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 2: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+video
+Session1
+Session2
+Session3
+Session4
+Session5
+Features loaded
+Majority Accuracy = 0.353917, Majority Class = 3
+(4406, 199, 165) (1085, 194, 165)
+dec = True model = gru lambda = 0.0 share = False #class = 4
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 276
+200 / 276
+	Train cost = 1.368318,	Accuracy = 0.287335
+	Test cost = 1.344344,	Accuracy = 0.316129
+Epoch = 2
+100 / 276
+200 / 276
+	Train cost = 1.349350,	Accuracy = 0.319791
+	Test cost = 1.305381,	Accuracy = 0.442396
+Epoch = 3
+100 / 276
+200 / 276
+	Train cost = 1.330997,	Accuracy = 0.331139
+	Test cost = 1.252553,	Accuracy = 0.452535
+Epoch = 4
+100 / 276
+200 / 276
+	Train cost = 1.313473,	Accuracy = 0.343168
+	Test cost = 1.256193,	Accuracy = 0.416590
+Epoch = 5
+100 / 276
+200 / 276
+	Train cost = 1.306831,	Accuracy = 0.352701
+	Test cost = 1.288610,	Accuracy = 0.347465
+Epoch = 6
+100 / 276
+200 / 276
+	Train cost = 1.299178,	Accuracy = 0.357467
+	Test cost = 1.262765,	Accuracy = 0.418433
+Epoch = 7
+100 / 276
+200 / 276
+	Train cost = 1.284121,	Accuracy = 0.366546
+	Test cost = 1.215191,	Accuracy = 0.469124
+Epoch = 8
+100 / 276
+200 / 276
+	Train cost = 1.286182,	Accuracy = 0.372220
+	Test cost = 1.263322,	Accuracy = 0.371429
+Epoch = 9
+100 / 276
+200 / 276
+	Train cost = 1.289990,	Accuracy = 0.363368
+	Test cost = 1.250472,	Accuracy = 0.384332
+Epoch = 10
+100 / 276
+200 / 276
+	Train cost = 1.274622,	Accuracy = 0.376305
+	Test cost = 1.263773,	Accuracy = 0.396313
+Epoch = 11
+100 / 276
+200 / 276
+	Train cost = 1.259413,	Accuracy = 0.389696
+	Test cost = 1.296430,	Accuracy = 0.346544
+Epoch = 12
+100 / 276
+200 / 276
+	Train cost = 1.256323,	Accuracy = 0.388561
+	Test cost = 1.333406,	Accuracy = 0.298618
+Epoch = 13
+100 / 276
+200 / 276
+	Train cost = 1.242203,	Accuracy = 0.396051
+	Test cost = 1.297700,	Accuracy = 0.381567
+Epoch = 14
+100 / 276
+200 / 276
+	Train cost = 1.238514,	Accuracy = 0.399682
+	Test cost = 1.251038,	Accuracy = 0.427650
+Epoch = 15
+100 / 276

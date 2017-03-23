@@ -1,0 +1,111 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+audio
+Session1
+Session2
+Session3
+Session4
+Session5
+Features loaded
+Majority Accuracy = 0.353917, Majority Class = 3
+(4406, 199, 74) (1085, 190, 74)
+dec = True model = gru lambda = 0.0 share = False #class = 4
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 276
+200 / 276
+	Train cost = 1.275559,	Accuracy = 0.362687
+	Test cost = 1.207008,	Accuracy = 0.407373
+Epoch = 2
+100 / 276
+200 / 276
+	Train cost = 1.228677,	Accuracy = 0.396959
+	Test cost = 1.223567,	Accuracy = 0.370507
+Epoch = 3
+100 / 276
+200 / 276
+	Train cost = 1.222717,	Accuracy = 0.396051
+	Test cost = 1.206868,	Accuracy = 0.386175
+Epoch = 4
+100 / 276
+200 / 276
+	Train cost = 1.220589,	Accuracy = 0.399228
+	Test cost = 1.192588,	Accuracy = 0.395392
+Epoch = 5
+100 / 276
+200 / 276
+	Train cost = 1.189741,	Accuracy = 0.409442
+	Test cost = 1.157559,	Accuracy = 0.446083
+Epoch = 6
+100 / 276
+200 / 276
+	Train cost = 1.183800,	Accuracy = 0.416931
+	Test cost = 1.189947,	Accuracy = 0.412903
+Epoch = 7
+100 / 276
+200 / 276
+	Train cost = 1.164026,	Accuracy = 0.431230
+	Test cost = 1.158275,	Accuracy = 0.453456
+Epoch = 8
+100 / 276
+200 / 276
+	Train cost = 1.159999,	Accuracy = 0.430776
+	Test cost = 1.188961,	Accuracy = 0.403687
+Epoch = 9
+100 / 276
+200 / 276
+	Train cost = 1.134789,	Accuracy = 0.449160
+	Test cost = 1.195979,	Accuracy = 0.404608
+Epoch = 10
+100 / 276
+200 / 276
+	Train cost = 1.133233,	Accuracy = 0.448933
+	Test cost = 1.177758,	Accuracy = 0.423963
+Epoch = 11
+100 / 276
+200 / 276
+	Train cost = 1.103410,	Accuracy = 0.480027
+	Test cost = 1.194333,	Accuracy = 0.402765
+Epoch = 12
+100 / 276
+200 / 276
+	Train cost = 1.105764,	Accuracy = 0.469360
+	Test cost = 1.168615,	Accuracy = 0.423041
+Epoch = 13
+100 / 276
+200 / 276
+	Train cost = 1.084672,	Accuracy = 0.488425
+	Test cost = 1.204573,	Accuracy = 0.396313
+Epoch = 14
+100 / 276
+200 / 276
+	Train cost = 1.074754,	Accuracy = 0.488425
+	Test cost = 1.199224,	Accuracy = 0.410138
+Epoch = 15
+100 / 276
+200 / 276
+	Train cost = 1.063800,	Accuracy = 0.491148
+	Test cost = 1.176604,	Accuracy = 0.422120
+Epoch = 16
+100 / 276
+200 / 276
+	Train cost = 1.029880,	Accuracy = 0.511802
+	Test cost = 1.234056,	Accuracy = 0.400000
+Epoch = 17
+100 / 276
+200 / 276
+	Train cost = 1.023190,	Accuracy = 0.506809
+	Test cost = 1.215512,	Accuracy = 0.419355
+Epoch = 18
+100 / 276
+200 / 276
+	Train cost = 1.011592,	Accuracy = 0.521788
+	Test cost = 1.265081,	Accuracy = 0.392627
+Epoch = 19
+100 / 276
