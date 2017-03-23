@@ -28,14 +28,16 @@ def RMSE(y_actual, y_predicted):
     return rmse
 
 
-def test(test_model, y_test, costs_test, batch_size=32, category=False):
+def test(test_model, start_batches_test, end_batches_test, len_batches_test,
+         y_test, costs_test, category=False):
     n_test = y_test.shape[0]
-    num_iter = (n_test + batch_size - 1) // batch_size
     all_pred = []
     cost_avg = 0.
+    num_iter = len(start_batches_test)
     for iter_index in xrange(num_iter):
-        start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
-        cost, tmp, pred = test_model(start, end, 0)
+        start, end = start_batches_test[iter_index], end_batches_test[iter_index]
+        length = len_batches_test[iter_index]
+        cost, tmp, pred = test_model(start, end, length, 0)
         cost_avg += cost * (end - start)
         all_pred += pred.tolist()
     cost_avg /= n_test
@@ -107,12 +109,13 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     best_epoch = 0
     num_iter = len(start_batches_train)
     for epoch_index in xrange(num_epoch):
-        cost_avg, loss_krip_avg, rmse = 0., 0., 0.
+        cost_avg, rmse = 0., 0.
         all_pred = []
         print 'Epoch = %d' % (epoch_index + 1)
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
+            print length
             cost, tmp, pred = train_model(start, end, length, 1)
             cost_avg += cost * (end - start)
             all_pred += pred.tolist()
@@ -124,7 +127,8 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
         else:
             print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-        cost_avg_test, pred_test = test(test_model, y_test, costs_test, category=category)
+        cost_avg_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
+                                        y_test, costs_test, category=category)
         if cost_avg_test < best_cost_test:
             best_cost_test = cost_avg_test
             best_pred_test = pred_test
