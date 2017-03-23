@@ -52,11 +52,11 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
     else:
         print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-    return cost_avg, y_actual, y_predicted
+    return rmse_acc, y_actual, y_predicted
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
-          lamb=0., model='gru', share=False, category=False, num_epoch=50):
+          lamb=0., model='gru', share=False, category=False, num_epoch=40):
 
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train = inputs_train
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test = inputs_test
@@ -109,7 +109,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     print 'Compilation done 2'
 
     costs_train, costs_test = [], []
-    best_cost_test = 10000
+    best_rmse_acc = None
     best_actual_test = None
     best_pred_test = None
     best_epoch = 0
@@ -137,15 +137,19 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
         else:
             print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-        cost_avg_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
+        rmse_acc_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
                                                      y_test, costs_test, category=category)
-        if cost_avg_test < best_cost_test:
-            best_cost_test = cost_avg_test
+        if best_rmse_acc is None:
+            best_rmse_acc = rmse_acc_test
+            best_actual_test = actual_test
+            best_pred_test = pred_test
+        if (category and rmse_acc > best_rmse_acc) or ((not category) and rmse_acc < best_rmse_acc):
+            best_rmse_acc = rmse_acc
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
         # Early Stopping
-        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
+        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 2 and best_epoch > 2:
             return best_actual_test, best_pred_test
     # Krip losses only make sense for regression (category = False)
     return best_actual_test, best_pred_test
