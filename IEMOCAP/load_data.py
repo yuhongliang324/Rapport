@@ -21,6 +21,8 @@ def load_feature(feature_name='audio'):
             continue
         print session
         sessionID = int(session[-1])
+        if session > 3:
+            continue
         session_path = os.path.join(data_root, session)
         Xs, y = load_feature_session(session_path, feature_name)
         session_Xs[sessionID] = Xs
@@ -109,7 +111,7 @@ def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5
     start_batches, end_batches, len_batches = [], [], []
     Xs_short = []
     for i in xrange(num_batch):
-        start, end = i * batch_size, min((i + 1) * batch_size, n)
+        start, end = i * batch_size, min((i + 1) * batch_size, size)
         length = X_list[start].shape[0]
         for j in xrange(start, end):
             dif = (X_list[j].shape[0] - length) // 2
