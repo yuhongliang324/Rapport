@@ -15,6 +15,7 @@ def get_openface_features():
     reader = open(raw_openface_pkl)
     data = pickle.load(reader)
     reader.close()
+    print 'OpenFace features loaded'
 
     # key of data: video ID
     # key of data[videoID]: segment ID
@@ -40,7 +41,7 @@ def get_audio_features():
     return data
 
 
-# video_range: the output of get_open_face_features
+# video_range: the output of get_openface_features
 def get_facet_features(video_range):
     files = os.listdir(raw_facet_root)
     files.sort()
@@ -54,6 +55,7 @@ def get_facet_features(video_range):
         features = numpy.loadtxt(video_path, skiprows=1, delimiter=',')
         segID_cont = video_range[videoID]
         for segID, cont in segID_cont.items():
+            print cont.keys()
             start_time, end_time = cont['start_time'], cont['end_time']
             start_frame, end_frame = int(start_time * 30), int(end_time * 30)
             feat = features[start_frame: end_frame + 1]
