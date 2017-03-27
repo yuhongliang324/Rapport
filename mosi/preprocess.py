@@ -34,7 +34,7 @@ def get_audio_features():
         d = loadmat(mat_path)
         feat = d['features']
         videoID = mat[:11]
-        segID = mat[12:]
+        segID = mat[12:-4]
         if videoID not in data:
             data[videoID] = {}
         data[videoID][segID] = feat
@@ -54,14 +54,10 @@ def get_facet_features(video_range):
         video_path = os.path.join(raw_facet_root, csv)
         features = numpy.loadtxt(video_path, skiprows=1, delimiter=',')
         segID_cont = video_range[videoID]
-        print videoID, segID_cont.keys()
         for segID, cont in segID_cont.items():
-            print 'cont', cont.keys()
             start_time, end_time = cont['start_time'], cont['end_time']
             start_frame, end_frame = int(start_time * 30), int(end_time * 30)
             feat = features[start_frame: end_frame + 1]
-            if segID.endswith('.mat'):
-                segID = segID[:-4]
             data[videoID][segID] = feat
     return data
 
