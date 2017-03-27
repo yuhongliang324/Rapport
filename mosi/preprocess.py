@@ -26,7 +26,8 @@ def get_audio_features():
     for mat in mats:
         if not mat.endswith('mat'):
             continue
-        print mat[11]
+        if not mat[11] == '_':
+            print mat[11]
 
 
 get_audio_features()
