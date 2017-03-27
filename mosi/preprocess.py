@@ -1,7 +1,7 @@
 __author__ = 'yuhongliang324'
 import os
 import cPickle as pickle
-from scipy.io import loadmat
+from scipy.io import loadmat, savemat
 import numpy
 
 
@@ -12,6 +12,7 @@ raw_facet_root = os.path.join(raw_data_root, 'FACET_GIOTA')
 raw_hog_root = os.path.join(raw_data_root, 'HOG/PCA_HOG')
 
 data_root = '/multicomp/datasets/mosi/Features'
+data_root_mat = '/multicomp/datasets/mosi/Features_mat'
 
 
 def get_openface_features():
@@ -106,12 +107,29 @@ def write_features(data_openface, data_audio, data_facet, data_hog):
         writer.close()
 
 
+def write_features_mat(data_openface, data_audio, data_facet, data_hog):
+    videoIDs = data_openface.keys()
+    for videoID in videoIDs:
+        print videoID
+        segID_cont = data_openface[videoID]
+        for segID, cont in segID_cont.items():
+            new_cont = {'start_time': cont['start_time'], 'end_time': cont['end_time'], 'label': cont['sentiment']}
+            feat_openface = cont['openface']
+            new_cont['openface'] = numpy.asarray(feat_openface, dtype=numpy.float32)
+            new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
+            new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
+            new_cont['hog'] = numpy.asarray(data_hog[videoID][segID], dtype=numpy.float32)
+            seg_path = os.path.join(data_root_mat, videoID + '_' + segID + '.mat')
+            savemat(seg_path, new_cont)
+
+
 def test1():
     data_hog = get_hog_features()
     data_openface = get_openface_features()
     data_audio = get_audio_features()
     data_facet = get_facet_features(data_openface)
-    write_features(data_openface, data_audio, data_facet, data_hog)
+    # write_features(data_openface, data_audio, data_facet, data_hog)
+    write_features_mat(data_openface, data_audio, data_facet, data_hog)
 
 
 if __name__ == '__main__':
