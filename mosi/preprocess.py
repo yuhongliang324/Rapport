@@ -9,6 +9,7 @@ raw_data_root = '/multicomp/datasets/mosi'
 raw_openface_pkl = os.path.join(raw_data_root, 'OpenFaceFeatures.pkl')
 raw_audio_root = os.path.join(raw_data_root, 'Audio/segment')
 raw_facet_root = os.path.join(raw_data_root, 'FACET_GIOTA')
+raw_hog_root = os.path.join(raw_data_root, 'HOG/PCA_HOG')
 
 data_root = '/multicomp/datasets/mosi/Features'
 
@@ -40,6 +41,26 @@ def get_audio_features():
         if videoID not in data:
             data[videoID] = {}
         data[videoID][segID] = feat
+    print 'Audio features loaded'
+    return data
+
+
+def get_hog_features():
+    data = {}
+    mats = os.listdir(raw_hog_root)
+    mats.sort()
+    for mat in mats:
+        if not mat.endswith('mat'):
+            continue
+        mat_path = os.path.join(raw_hog_root, mat)
+        d = loadmat(mat_path)
+        feat = d['hog_feature']
+        videoID = mat[:11]
+        segID = mat[12:-4]
+        if videoID not in data:
+            data[videoID] = {}
+        data[videoID][segID] = feat
+    print 'HOG features loaded'
     return data
 
 
@@ -61,10 +82,11 @@ def get_facet_features(video_range):
             start_frame, end_frame = int(start_time * 30), int(end_time * 30)
             feat = features[start_frame: end_frame + 1]
             data[videoID][segID] = feat
+    print 'Facet features loaded'
     return data
 
 
-def write_features(data_openface, data_audio, data_facet):
+def write_features(data_openface, data_audio, data_facet, data_hog):
     videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
@@ -78,6 +100,19 @@ def write_features(data_openface, data_audio, data_facet):
             new_cont['openface'] = numpy.asarray(feat_openface, dtype=numpy.float32)
             new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
             new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
+            new_cont['hog'] = numpy.asarray(data_hog[videoID][segID], dtype=numpy.float32)
             data[segID] = new_cont
         pickle.dump(data, writer)
         writer.close()
+
+
+def test1():
+    data_hog = get_hog_features()
+    data_openface = get_openface_features()
+    data_audio = get_audio_features()
+    data_facet = get_facet_features(data_openface)
+    write_features(data_openface, data_audio, data_facet, data_hog)
+
+
+if __name__ == '__main__':
+    test1()
