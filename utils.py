@@ -77,7 +77,7 @@ def write_slice_ratings(rating_root, outfile):
 
 # Write ratings_best.txt
 def write_slice_ratings_best3(out_file):
-    slice_ratings = get_ratings(best3=True)
+    slice_ratings = get_all_ratings(best3=True)
     slice_avgr = {}
     for slice, rater_rating in slice_ratings.items():
         avgr = sum(rater_rating.values()) / float(len(rater_rating.values()))
@@ -90,7 +90,7 @@ def write_slice_ratings_best3(out_file):
 
 
 def write_slice_rating_classes(out_file, best3=True):
-    slice_ratings = get_ratings(best3=best3, ignore0=False)
+    slice_ratings = get_all_ratings(best3=best3, ignore0=False)
     rr_count = defaultdict(float)
     for rrs in slice_ratings.values():
         for rater, rating in rrs.items():
@@ -246,7 +246,7 @@ def get_coder(file_name):
 
 
 def get_rater_agreement(rating_root, self_included=False, num_coders=4):
-    slice_ratings = get_ratings(rating_root)
+    slice_ratings = get_all_ratings(rating_root)
 
     # get RMSE
     rmse = 0.
