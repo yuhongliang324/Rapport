@@ -60,3 +60,12 @@ nohup python -u train.py -feat facet -model gru -share 0 -drop 0.5 -lamb 0.001 -
 
 Best for OpenFace:
 nohup python -u train.py -feat openface -model gru -share 0 -drop 0.5 -lamb 0.0001 -cat 0 > logs/openface_gru_reg.out 2>&1 &
+
+For MOSI DAN:
+nohup python -u train.py -feat audio -model dan -share 0 -drop 0.5 -lamb 0.001 > logs/audio_dan.out 2>&1 &
+nohup python -u train.py -feat facet -model dan -share 0 -drop 0.5 -lamb 0.0 > logs/facet_dan.out 2>&1 &
+nohup python -u train.py -feat openface -model dan -share 1 -drop 0.5 -lamb 0.0001 > logs/openface_dan.out 2>&1 &
+
+nohup python -u train.py -feat audio -model dan -share 0 -drop 0.5 -lamb 0.001 -cat 0 > logs/audio_dan_reg.out 2>&1 &
+nohup python -u train.py -feat facet -model dan -share 0 -drop 0.5 -lamb 0.001 -cat 0 > logs/facet_dam_reg.out 2>&1 &
+nohup python -u train.py -feat openface -model dan -share 0 -drop 0.5 -lamb 0.0001 -cat 0 > logs/openface_dan_reg.out 2>&1 &
