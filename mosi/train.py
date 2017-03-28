@@ -35,6 +35,8 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
 
     Xs_test_list, y_test_list = [], []
     for session in tests:
+        if session not in session_Xs:
+            continue
         Xs_test_list += session_Xs[session]
         y_test_list += session_y[session]
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test \
@@ -44,6 +46,8 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
 
     Xs_train_list, y_train_list = [], []
     for session in trains:
+        if session not in session_Xs:
+            continue
         Xs_train_list += session_Xs[session]
         y_train_list += session_y[session]
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train \
