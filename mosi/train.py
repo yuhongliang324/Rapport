@@ -93,7 +93,7 @@ def test1():
     parser.add_argument('-share', type=int, default=0)
     parser.add_argument('-cat', type=int, default=1)
     parser.add_argument('-maxlen', type=int, default=1000)
-    parser.add_argument('-rate', type=int, default=5)
+    parser.add_argument('-rate', type=int, default=2)
     parser.add_argument('-drop', type=float, default=0.)
     args = parser.parse_args()
 
@@ -101,8 +101,8 @@ def test1():
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
-    if args.feat == 'facet':
-        args.rate = 2
+    if args.feat == 'audio':
+        args.rate = 5
     experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
 

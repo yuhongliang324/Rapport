@@ -122,6 +122,8 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
+            if length == 0:
+                continue
             cost, tmp, pred = train_model(start, end, length, 1)
             cost_avg += cost * (end - start)
             all_actual += y_train[start: end].tolist()
