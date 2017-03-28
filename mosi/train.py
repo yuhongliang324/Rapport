@@ -72,7 +72,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
 
     best_actual_test, best_pred_test \
         = train(inputs_train, inputs_test, hidden_dim=hidden_dim, dec=dec, update=update,
-                lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=4)
+                lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2)
 
     for i in xrange(y_test.shape[0]):
         writer.write(str(best_pred_test[i]) + ',' + str(best_actual_test[i]) + '\n')
