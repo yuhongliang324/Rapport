@@ -89,7 +89,7 @@ def get_facet_features(video_range):
     return data
 
 
-def write_features(data_openface, data_audio, data_facet, data_hog):
+def write_features(data_openface, data_audio, data_facet):
     videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
@@ -142,16 +142,14 @@ def split_data():
 
 
 def test1():
-    data_hog = get_hog_features()
     data_openface = get_openface_features()
     data_audio = get_audio_features()
     data_facet = get_facet_features(data_openface)
-    # write_features(data_openface, data_audio, data_facet, data_hog)
-    write_features_mat(data_openface, data_audio, data_facet, data_hog)
+    write_features(data_openface, data_audio, data_facet)
 
 
 def test2():
     split_data()
 
 if __name__ == '__main__':
-    test2()
+    test1()
