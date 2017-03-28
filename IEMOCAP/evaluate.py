@@ -45,8 +45,8 @@ def test2():
 
 
 def test3():
-    evaluate_reg('../mosi/results/result_ad_audio_model_dan_share_False_lamb_0.0_drop_0.0_cat.txt')
+    evaluate_reg('../mosi/results/result_ad_openface_model_dan_share_False_lamb_0.0001_drop_0.5.txt')
 
 
 if __name__ == '__main__':
-    test2()
+    test3()
