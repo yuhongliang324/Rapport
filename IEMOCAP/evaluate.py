@@ -31,7 +31,7 @@ def test1():
 
 
 def test2():
-    evaluate('../mosi/results/result_ad_audio_model_gru_share_False_lamb_0.0_drop_0.5_cat.txt', num_class=2)
+    evaluate('../mosi/results/result_ad_openface_model_gru_share_True_lamb_0.0001_drop_0.5_cat.txt', num_class=2)
 
 
 if __name__ == '__main__':

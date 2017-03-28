@@ -5,7 +5,6 @@ from load_data import load, load_split
 import sys
 sys.path.append('../')
 import numpy
-from math import sqrt
 from IEMOCAP.optimize import train
 from IEMOCAP.load_data import pad
 
@@ -65,9 +64,9 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
         print 'Majority Accuracy = %f, Majority Class = %d' % (acc, cl)
     else:
         rating_mean = numpy.mean(y_train)
-        rmse = y_test - rating_mean
-        rmse = sqrt(numpy.mean(rmse * rmse))
-        print 'RMSE of Average Prediction = %f' % rmse
+        mae = numpy.abs(y_test - rating_mean)
+        mae = numpy.mean(mae)
+        print 'MAE of Average Prediction = %f' % mae
 
     print Xs_train.shape, Xs_test.shape
 

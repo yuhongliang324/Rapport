@@ -132,7 +132,7 @@ def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5
         length = len_batches[i]
         for j in xrange(start, end):
             Xs[j, :length, :] = Xs_short[j]
-    y = numpy.asarray(y_list, dtype='int32')
+    y = numpy.asarray(y_list, dtype=theano.config.floatX)
 
     # Shuffle start_batches, end_batches, len_batches
     z = zip(start_batches, end_batches, len_batches)

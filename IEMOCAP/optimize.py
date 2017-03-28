@@ -20,12 +20,20 @@ def eval(y_actual, y_predicted, category=False):
         acc = float(right) / y_actual.shape[0]
         return acc
     else:
-        return RMSE(y_actual, y_predicted)
+        return MAE(y_actual, y_predicted)
 
 
 def RMSE(y_actual, y_predicted):
     rmse = sqrt(mean_squared_error(y_actual, y_predicted))
     return rmse
+
+
+def MAE(y_actual, y_predicted):
+    dist = 0.
+    for i in xrange(y_actual.shape[0]):
+        dist += abs(y_actual[i] - y_predicted[i])
+    mae = dist / y_actual.shape[0]
+    return mae
 
 
 def test(test_model, start_batches_test, end_batches_test, len_batches_test,
@@ -47,12 +55,12 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
     costs_test.append(cost_avg)
     y_actual = numpy.asarray(all_actual)
     y_predicted = numpy.asarray(all_pred)
-    rmse_acc = eval(y_actual, y_predicted, category=category)
+    mae_acc = eval(y_actual, y_predicted, category=category)
     if category:
-        print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
+        print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
     else:
-        print '\tTest cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-    return rmse_acc, y_actual, y_predicted
+        print '\tTest cost = %f,\tMAE = %f' % (cost_avg, mae_acc)
+    return mae_acc, y_actual, y_predicted
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
@@ -110,7 +118,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     print 'Compilation done 2'
 
     costs_train, costs_test = [], []
-    best_rmse_acc = None
+    best_mae_acc = None
     best_actual_test = None
     best_pred_test = None
     best_epoch = 0
@@ -135,20 +143,20 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         y_actual = numpy.asarray(all_actual)
         y_predicted = numpy.asarray(all_pred)
 
-        rmse_acc = eval(y_actual, y_predicted, category=category)
+        mae_acc = eval(y_actual, y_predicted, category=category)
         if category:
-            print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
+            print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
         else:
-            print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
-        rmse_acc_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
+            print '\tTrain cost = %f,\tMAE = %f' % (cost_avg, mae_acc)
+        mae_acc_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
                                                      y_test, costs_test, category=category)
-        if best_rmse_acc is None:
-            best_rmse_acc = rmse_acc_test
+        if best_mae_acc is None:
+            best_mae_acc = mae_acc_test
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
-        elif (category and rmse_acc_test > best_rmse_acc) or ((not category) and rmse_acc_test < best_rmse_acc):
-            best_rmse_acc = rmse_acc_test
+        elif (category and mae_acc_test > best_mae_acc) or ((not category) and mae_acc_test < best_mae_acc):
+            best_mae_acc = mae_acc_test
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
