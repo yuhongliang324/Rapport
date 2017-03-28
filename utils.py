@@ -2,13 +2,13 @@ __author__ = 'yuhongliang324'
 
 import os
 from collections import defaultdict
-from scipy.io import loadmat
 import numpy
 import math
 from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
 from data_path import info_root, ratings_best3_file, data_split_file, rating_class_file, rating_class_best3_file
 from scipy.interpolate import interp1d
 import random
+from sklearn.preprocessing import StandardScaler
 
 
 def rename(root):
@@ -337,6 +337,20 @@ def load_split(split_file=data_split_file):
         tests.append(int(sp[0]))
         vals.append(int(sp[1]))
     return vals, tests
+
+
+# Input: a list of X arrays
+def standardize(X_list):
+    Xs = numpy.concatenate(X_list, axis=0)
+    Xs_std = StandardScaler().fit_transform(Xs)
+
+    X_list_std = []
+    start = 0
+    for X in X_list:
+        end = start + X.shape[0]
+        X_list_std.append(Xs_std[start: end])
+        start = end
+    return X_list_std
 
 
 data_root = '/multicomp/users/liangke/RAPT/features'

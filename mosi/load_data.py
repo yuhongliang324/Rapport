@@ -4,6 +4,9 @@ from preprocess import data_root, split_file
 import cPickle as pickle
 import os
 import numpy
+import sys
+sys.path.append('..')
+from utils import standardize
 
 
 def load(feature_name='audio', category=False):
@@ -36,6 +39,7 @@ def load(feature_name='audio', category=False):
                 else:
                     l = 0
                 session_y[videoID].append(l)
+        session_Xs[videoID] = standardize(session_Xs[videoID])
     return session_Xs, session_y
 
 
