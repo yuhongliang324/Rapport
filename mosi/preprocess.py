@@ -103,7 +103,6 @@ def write_features(data_openface, data_audio, data_facet):
             new_cont['openface'] = numpy.asarray(feat_openface, dtype=numpy.float32)
             new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
             new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
-            new_cont['hog'] = numpy.asarray(data_hog[videoID][segID], dtype=numpy.float32)
             data[segID] = new_cont
         pickle.dump(data, writer)
         writer.close()
@@ -120,7 +119,6 @@ def write_features_mat(data_openface, data_audio, data_facet, data_hog):
             new_cont['openface'] = numpy.asarray(feat_openface, dtype=numpy.float32)
             new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
             new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
-            new_cont['hog'] = numpy.asarray(data_hog[videoID][segID], dtype=numpy.float32)
             seg_path = os.path.join(data_root_mat, videoID + '_' + segID + '.mat')
             savemat(seg_path, new_cont)
 
