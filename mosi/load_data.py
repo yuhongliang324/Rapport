@@ -1,11 +1,11 @@
 __author__ = 'yuhongliang324'
 
-from preprocess import data_root
+from preprocess import data_root, split_file
 import cPickle as pickle
 import os
 
 
-def load(feat_name='audio', category=False):
+def load(feature_name='audio', category=False):
     files = os.listdir(data_root)
     files.sort()
     session_Xs = {}
@@ -13,6 +13,7 @@ def load(feat_name='audio', category=False):
     for fn in files:
         if not fn.endswith('pkl'):
             continue
+        print fn
         videoID = fn[:-4]
         session_Xs[videoID] = []
         session_y[videoID] = []
@@ -22,7 +23,7 @@ def load(feat_name='audio', category=False):
         reader.close()
         conts = segID_cont.values()
         for cont in conts:
-            session_Xs[videoID].append(cont[feat_name])
+            session_Xs[videoID].append(cont[feature_name])
             if not category:
                 session_y[videoID].append(cont['label'])
             else:
@@ -32,3 +33,13 @@ def load(feat_name='audio', category=False):
                     l = 0
                 session_y[videoID].append(l)
     return session_Xs, session_y
+
+
+def load_split():
+    reader = open(split_file)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    tests = lines[0].split()
+    trains = lines[1].split()
+    return tests, trains
