@@ -10,12 +10,11 @@ from IEMOCAP.optimize import train
 from IEMOCAP.load_data import pad
 
 
-def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
+def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
                      model='gru', share=False, category=True, maxlen=1000, sample_rate=5):
 
     feature_hidden = {'video': 128, 'audio': 64}
     session_Xs, session_y = load(feature_name=feature_name)
-    sessions = session_Xs.keys()
     hidden_dim = feature_hidden[feature_name]
     if dec:
         pref = 'ad'
@@ -98,7 +97,7 @@ def test1():
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
-    cross_validation(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
+    experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                      model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
 
 
