@@ -22,7 +22,7 @@ def evaluate(fn, num_class=4):
     for i in xrange(len(right)):
         right[i] /= float(total[i])
     for i in xrange(len(right)):
-        print Emotions[i], right[i], '\t'
+        print Emotions[i], right[i]
     print right4 / float(total4)
 
 
@@ -31,7 +31,7 @@ def test1():
 
 
 def test2():
-    evaluate('../mosi/results/result_ad_audio_model_gru_share_False_lamb_0.0_drop_0.0_cat.txt', num_class=2)
+    evaluate('../mosi/results/result_ad_audio_model_gru_share_False_lamb_0.0_drop_0.5_cat.txt', num_class=2)
 
 
 if __name__ == '__main__':
