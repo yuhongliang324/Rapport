@@ -341,6 +341,7 @@ def load_split(split_file=data_split_file):
 
 # Input: a list of X arrays
 def standardize(X_list):
+    '''
     dim = X_list[0].shape[1]
     same = True
     for X in X_list:
@@ -348,7 +349,7 @@ def standardize(X_list):
             same = False
             break
     if not same:
-        print [X.shape[1] for X in X_list]
+        print [X.shape[1] for X in X_list]'''
     Xs = numpy.concatenate(X_list, axis=0)
     Xs_std = StandardScaler().fit_transform(Xs)
 

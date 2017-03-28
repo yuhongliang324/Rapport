@@ -30,6 +30,8 @@ def load(feature_name='audio', category=False):
         conts = segID_cont.values()
         for cont in conts:
             X = cont[feature_name]
+            if len(X.shape) == 1:
+                continue
             X[numpy.isnan(X)] = 0.
             X[numpy.isneginf(X)] = -1.
             session_Xs[videoID].append(X)
