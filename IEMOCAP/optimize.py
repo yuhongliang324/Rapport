@@ -56,7 +56,7 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
 
 
 def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
-          lamb=0., drop=0., model='gru', share=False, category=False, num_epoch=40):
+          lamb=0., drop=0., model='gru', share=False, category=False, num_epoch=40, num_class=None):
 
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train = inputs_train
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test = inputs_test
@@ -72,7 +72,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
     y_test_shared = theano.shared(y_test, borrow=True)
 
     if category:
-        n_class = 4
+        n_class = num_class
     else:
         n_class = 1
 
@@ -146,6 +146,7 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             best_pred_test = pred_test
             best_epoch = epoch_index
         if (category and rmse_acc_test > best_rmse_acc) or ((not category) and rmse_acc_test < best_rmse_acc):
+            print 'Best epoch', epoch_index + 1
             best_rmse_acc = rmse_acc
             best_actual_test = actual_test
             best_pred_test = pred_test
@@ -153,5 +154,4 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         # Early Stopping
         if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 2 and best_epoch > 2:
             return best_actual_test, best_pred_test
-    # Krip losses only make sense for regression (category = False)
     return best_actual_test, best_pred_test

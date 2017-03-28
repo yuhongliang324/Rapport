@@ -4,13 +4,13 @@ __author__ = 'yuhongliang324'
 Emotions = ['Angry', 'Happy', 'Sad', 'Neutral']
 
 
-def evaluate(fn):
+def evaluate(fn, num_class=4):
     reader = open(fn)
     lines = reader.readlines()
     reader.close()
     lines = map(lambda x: x.strip(), lines)
-    right = [0, 0, 0, 0]
-    total = [0, 0, 0, 0]
+    right = [0 for _ in xrange(num_class)]
+    total = [0 for _ in xrange(num_class)]
     for line in lines:
         sp = line.split(',')
         pred, actual = int(sp[0]), int(sp[1])
@@ -25,4 +25,14 @@ def evaluate(fn):
         print Emotions[i], right[i], '\t'
     print right4 / float(total4)
 
-evaluate('results/result_ad_video_model_lstm_share_False_lamb_0.0_drop_0.0_cat.txt')
+
+def test1():
+    evaluate('results/result_ad_video_model_lstm_share_False_lamb_0.0_drop_0.0_cat.txt')
+
+
+def test2():
+    evaluate('../mosi/results/result_ad_audio_model_gru_share_False_lamb_0.0_drop_0.0_cat.txt', num_class=2)
+
+
+if __name__ == '__main__':
+    test2()
