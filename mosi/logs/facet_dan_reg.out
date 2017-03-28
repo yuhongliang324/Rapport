@@ -100,13 +100,166 @@ yvsjCA6Y5Fc.pkl
 zhpQhgha_KU.pkl
 MAE of Average Prediction = 1.401523
 (1743, 238, 48) (441, 196, 48)
-Traceback (most recent call last):
-  File "train.py", line 110, in <module>
-    test1()
-  File "train.py", line 106, in test1
-    model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
-  File "train.py", line 78, in experiment
-    lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2)
-  File "../IEMOCAP/optimize.py", line 93, in train
-    acc = symbols['acc']
-KeyError: 'acc'
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.039042,	MAE = 1.373624
+	Test cost = 1.023479,	MAE = 1.387049
+Epoch = 2
+100 / 109
+	Train cost = 1.002778,	MAE = 1.370874
+	Test cost = 0.998873,	MAE = 1.381262
+Epoch = 3
+100 / 109
+	Train cost = 0.957792,	MAE = 1.388701
+	Test cost = 0.991776,	MAE = 1.407527
+Epoch = 4
+100 / 109
+	Train cost = 0.988099,	MAE = 1.457984
+	Test cost = 0.975541,	MAE = 1.407688
+Epoch = 5
+100 / 109
+	Train cost = 0.948113,	MAE = 1.492567
+	Test cost = 0.971610,	MAE = 1.426575
+Epoch = 6
+100 / 109
+	Train cost = 0.936691,	MAE = 1.473772
+	Test cost = 0.965131,	MAE = 1.445884
+Epoch = 7
+100 / 109
+	Train cost = 0.894516,	MAE = 1.492859
+	Test cost = 0.973339,	MAE = 1.463352
+Epoch = 8
+100 / 109
+	Train cost = 0.886816,	MAE = 1.517266
+	Test cost = 0.970404,	MAE = 1.457672
+Epoch = 9
+100 / 109
+	Train cost = 0.915068,	MAE = 1.512783
+	Test cost = 0.981446,	MAE = 1.463481
+Epoch = 10
+100 / 109
+	Train cost = 0.887519,	MAE = 1.492412
+	Test cost = 0.991214,	MAE = 1.460255
+Epoch = 11
+100 / 109
+	Train cost = 0.903041,	MAE = 1.484488
+	Test cost = 0.990061,	MAE = 1.460565
+Epoch = 12
+100 / 109
+	Train cost = 0.866325,	MAE = 1.476968
+	Test cost = 0.983308,	MAE = 1.470133
+Epoch = 13
+100 / 109
+	Train cost = 0.911263,	MAE = 1.542826
+	Test cost = 0.985653,	MAE = 1.462525
+Epoch = 14
+100 / 109
+	Train cost = 0.898386,	MAE = 1.527183
+	Test cost = 0.976082,	MAE = 1.466079
+Epoch = 15
+100 / 109
+	Train cost = 0.893033,	MAE = 1.550474
+	Test cost = 0.968873,	MAE = 1.473746
+Epoch = 16
+100 / 109
+	Train cost = 0.901976,	MAE = 1.539007
+	Test cost = 0.977979,	MAE = 1.465888
+Epoch = 17
+100 / 109
+	Train cost = 0.880343,	MAE = 1.521214
+	Test cost = 0.977147,	MAE = 1.466010
+Epoch = 18
+100 / 109
+	Train cost = 0.917514,	MAE = 1.551033
+	Test cost = 0.993584,	MAE = 1.452809
+Epoch = 19
+100 / 109
+	Train cost = 0.902360,	MAE = 1.479743
+	Test cost = 0.992247,	MAE = 1.457033
+Epoch = 20
+100 / 109
+	Train cost = 0.884191,	MAE = 1.490437
+	Test cost = 0.991020,	MAE = 1.460032
+Epoch = 21
+100 / 109
+	Train cost = 0.859965,	MAE = 1.507047
+	Test cost = 0.986261,	MAE = 1.456810
+Epoch = 22
+100 / 109
+	Train cost = 0.909690,	MAE = 1.484937
+	Test cost = 0.995381,	MAE = 1.452266
+Epoch = 23
+100 / 109
+	Train cost = 0.863331,	MAE = 1.482499
+	Test cost = 0.998395,	MAE = 1.468776
+Epoch = 24
+100 / 109
+	Train cost = 0.873988,	MAE = 1.502911
+	Test cost = 0.990816,	MAE = 1.479582
+Epoch = 25
+100 / 109
+	Train cost = 0.909369,	MAE = 1.508443
+	Test cost = 1.005631,	MAE = 1.460788
+Epoch = 26
+100 / 109
+	Train cost = 0.875212,	MAE = 1.483484
+	Test cost = 1.002984,	MAE = 1.459235
+Epoch = 27
+100 / 109
+	Train cost = 0.890204,	MAE = 1.464947
+	Test cost = 0.993707,	MAE = 1.478295
+Epoch = 28
+100 / 109
+	Train cost = 0.852287,	MAE = 1.487958
+	Test cost = 0.996293,	MAE = 1.472701
+Epoch = 29
+100 / 109
+	Train cost = 0.864519,	MAE = 1.500457
+	Test cost = 1.001967,	MAE = 1.481781
+Epoch = 30
+100 / 109
+	Train cost = 0.876706,	MAE = 1.491814
+	Test cost = 1.000115,	MAE = 1.473166
+Epoch = 31
+100 / 109
+	Train cost = 0.854184,	MAE = 1.484314
+	Test cost = 0.998258,	MAE = 1.484367
+Epoch = 32
+100 / 109
+	Train cost = 0.834782,	MAE = 1.436972
+	Test cost = 1.001803,	MAE = 1.479770
+Epoch = 33
+100 / 109
+	Train cost = 0.884596,	MAE = 1.475772
+	Test cost = 1.010204,	MAE = 1.473724
+Epoch = 34
+100 / 109
+	Train cost = 0.848127,	MAE = 1.469493
+	Test cost = 1.005381,	MAE = 1.481194
+Epoch = 35
+100 / 109
+	Train cost = 0.884596,	MAE = 1.534212
+	Test cost = 1.013159,	MAE = 1.485276
+Epoch = 36
+100 / 109
+	Train cost = 0.884270,	MAE = 1.479146
+	Test cost = 1.019419,	MAE = 1.480828
+Epoch = 37
+100 / 109
+	Train cost = 0.833333,	MAE = 1.469730
+	Test cost = 1.019791,	MAE = 1.489617
+Epoch = 38
+100 / 109
+	Train cost = 0.855100,	MAE = 1.493055
+	Test cost = 1.009466,	MAE = 1.480841
+Epoch = 39
+100 / 109
+	Train cost = 0.850500,	MAE = 1.445513
+	Test cost = 1.009514,	MAE = 1.488492
+Epoch = 40
+100 / 109
+	Train cost = 0.871783,	MAE = 1.457793
+	Test cost = 1.010634,	MAE = 1.485643
