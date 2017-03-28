@@ -3,6 +3,7 @@ import os
 import cPickle as pickle
 from scipy.io import loadmat, savemat
 import numpy
+import random
 
 
 raw_data_root = '/multicomp/datasets/mosi'
@@ -13,6 +14,7 @@ raw_hog_root = os.path.join(raw_data_root, 'HOG/PCA_HOG')
 
 data_root = '/multicomp/datasets/mosi/Features'
 data_root_mat = '/multicomp/datasets/mosi/Features_mat'
+split_file = os.path.join(raw_data_root, 'split.txt')
 
 
 def get_openface_features():
@@ -123,6 +125,22 @@ def write_features_mat(data_openface, data_audio, data_facet, data_hog):
             savemat(seg_path, new_cont)
 
 
+def split_data():
+    files = os.listdir(data_root)
+    files = map(lambda x: x[:-4], files)
+    total = len(files)
+    num_test = int(0.2 * total)
+    test_set = random.sample(files, num_test)
+    train_set = []
+    for fn in files:
+        if fn in test_set:
+            continue
+        train_set.append(fn)
+    writer = open(split_file, 'w')
+    writer.write(' '.join(test_set) + '\n')
+    writer.write(' '.join(train_set) + '\n')
+
+
 def test1():
     data_hog = get_hog_features()
     data_openface = get_openface_features()
@@ -132,5 +150,8 @@ def test1():
     write_features_mat(data_openface, data_audio, data_facet, data_hog)
 
 
+def test2():
+    split_data()
+
 if __name__ == '__main__':
-    test1()
+    test2()
