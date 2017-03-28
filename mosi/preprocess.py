@@ -141,11 +141,8 @@ def split_data():
 
 def test1():
     data_openface = get_openface_features()
-    print len(data_openface['c5xsKMxpXnc'])
     data_audio = get_audio_features()
-    print len(data_audio['c5xsKMxpXnc'])
     data_facet = get_facet_features(data_openface)
-    print len(data_facet['c5xsKMxpXnc'])
     write_features(data_openface, data_audio, data_facet)
 
 
