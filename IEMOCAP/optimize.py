@@ -9,6 +9,7 @@ import sys
 sys.path.append('../')
 
 from attention.rnn_attention import RNN_Attention
+from baselines.dan import dan
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -83,15 +84,23 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         n_class = num_class
     else:
         n_class = 1
+    if model == 'dan':
+        ra = dan([input_dim, input_dim, n_class], lamb=lamb, update=update, drop=drop)
+        symbols = ra.build_model()
+        X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
+        pred, loss = symbols['pred'], symbols['loss']
+        cost, updates = symbols['cost'], symbols['updates']
+        acc = symbols['acc']
+        loss_krip = loss
+    else:
+        ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, update=update, lamb=lamb, drop=drop,
+                           model=model, share=share)
+        symbols = ra.build_model()
 
-    ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, update=update, lamb=lamb, drop=drop,
-                       model=model, share=share)
-    symbols = ra.build_model()
-
-    X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
-    att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
-    cost, updates = symbols['cost'], symbols['updates']
-    loss_krip, acc = symbols['loss_krip'], symbols['acc']
+        X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
+        att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
+        cost, updates = symbols['cost'], symbols['updates']
+        loss_krip, acc = symbols['loss_krip'], symbols['acc']
 
     print 'Compiling function'
 
