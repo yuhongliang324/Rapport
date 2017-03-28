@@ -13,7 +13,7 @@ from IEMOCAP.load_data import pad
 def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
                      model='gru', share=False, category=True, maxlen=1000, sample_rate=5):
 
-    feature_hidden = {'video': 128, 'audio': 64}
+    feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256}
     session_Xs, session_y = load(feature_name=feature_name, category=category)
     hidden_dim = feature_hidden[feature_name]
     if dec:
