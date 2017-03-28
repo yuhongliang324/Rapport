@@ -39,6 +39,7 @@ def load(feature_name='audio', category=False):
                 else:
                     l = 0
                 session_y[videoID].append(l)
+        print videoID, len(session_Xs[videoID])
         session_Xs[videoID] = standardize(session_Xs[videoID])
     return session_Xs, session_y
 
