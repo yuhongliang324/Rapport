@@ -1,0 +1,183 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 2: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+openface
+03bSnISJMiM.pkl
+0h-zjBukYpk.pkl
+1DmNV9C1hbY.pkl
+1iG0909rllw.pkl
+2WGyTLYerpo.pkl
+2iD-tVS8NPw.pkl
+5W7Z1C_fDaE.pkl
+6Egk_28TtTM.pkl
+6_0THN4chvY.pkl
+73jzhE8R1TQ.pkl
+7JsX8y1ysxY.pkl
+8OtFthrtaJM.pkl
+8d-gEyoeBzc.pkl
+8qrpnFRGt2A.pkl
+9J25DZhivz8.pkl
+9T9Hf74oK10.pkl
+9c67fiY0wGQ.pkl
+9qR7uwkblbs.pkl
+Af8D0E4ZXaw.pkl
+BI97DNYfe5I.pkl
+BXuRRbG0Ugk.pkl
+Bfr499ggo-0.pkl
+BioHAh1qJAQ.pkl
+BvYR0L6f2Ig.pkl
+Ci-AH39fi3Y.pkl
+Clx4VXItLTE.pkl
+Dg_0XKD0Mf4.pkl
+G-xst2euQUc.pkl
+G6GlGvlkxAQ.pkl
+GWuJjcEuzt8.pkl
+HEsqda8_d0Q.pkl
+I5y0__X72p0.pkl
+Iu2PFX3z_1s.pkl
+IumbAb8q2dM.pkl
+Jkswaaud0hk.pkl
+LSi-o-IrDMs.pkl
+MLal-t_vJPM.pkl
+Njd1F0vZSm4.pkl
+Nzq88NnDkEk.pkl
+OQvJTdtJ2H4.pkl
+OtBXNcAL_lE.pkl
+Oz06ZWiO20M.pkl
+POKffnXeBds.pkl
+PZ-lDQFboO8.pkl
+QN9ZIUWUXsY.pkl
+Qr1Ca94K55A.pkl
+Sqr0AcuoNnk.pkl
+TvyZBvOMOTc.pkl
+VCslbP0mgZI.pkl
+VbQk4H8hgr0.pkl
+Vj1wYRQjB-o.pkl
+W8NXH0Djyww.pkl
+WKA5OygbEKI.pkl
+X3j2zQgwYgE.pkl
+ZAIRrfG22O0.pkl
+ZUXBRvtny7o.pkl
+_dI--eQ6qVU.pkl
+aiEXnCPZubE.pkl
+atnd_PF-Lbs.pkl
+bOL9jKpeJRs.pkl
+bvLlb-M3UXU.pkl
+c5xsKMxpXnc.pkl
+c7UH_rxdZv4.pkl
+cM3Yna7AavY.pkl
+cW1FSBF59ik.pkl
+cXypl4FnoZo.pkl
+d3_k5Xpfmik.pkl
+d6hH302o4v8.pkl
+dq3Nf_lMPnE.pkl
+etzxEpPuc6I.pkl
+f9O3YtZ2VfI.pkl
+f_pcplsH_V0.pkl
+fvVhgmXxadc.pkl
+iiK8YX8oH1E.pkl
+jUzDDGyPkXU.pkl
+k5Y_838nuGo.pkl
+lXPQBPVc5Cw.pkl
+nbWiPyCm4g0.pkl
+nzpVDcQ0ywM.pkl
+ob23OKe5a9Q.pkl
+pLTX3ipuDJI.pkl
+phBUpBr1hSo.pkl
+rnaNMUZpvvg.pkl
+tIrG4oNLFzE.pkl
+tStelxIAHjw.pkl
+tmZoasNr4rU.pkl
+v0zCBqDeKcE.pkl
+vvZ4IcEtiZc.pkl
+vyB00TXsimI.pkl
+wMbj6ajWbic.pkl
+yDtzw_Y-7RU.pkl
+yvsjCA6Y5Fc.pkl
+zhpQhgha_KU.pkl
+Majority Accuracy = 0.528345, Majority Class = 0
+(1742, 241, 431) (441, 196, 431)
+dec = True model = lstm lambda = 0.0001 share = True #class = 2 drop = 0.5 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.146391,	Accuracy = 0.509185
+	Test cost = 0.985557,	Accuracy = 0.569161
+Epoch = 2
+100 / 109
+	Train cost = 0.937363,	Accuracy = 0.538462
+	Test cost = 0.905465,	Accuracy = 0.514739
+Epoch = 3
+100 / 109
+	Train cost = 0.853873,	Accuracy = 0.557979
+	Test cost = 0.874880,	Accuracy = 0.562358
+Epoch = 4
+100 / 109
+	Train cost = 0.811843,	Accuracy = 0.610792
+	Test cost = 0.854636,	Accuracy = 0.535147
+Epoch = 5
+100 / 109
+	Train cost = 0.783765,	Accuracy = 0.615385
+	Test cost = 0.845300,	Accuracy = 0.528345
+Epoch = 6
+100 / 109
+	Train cost = 0.753811,	Accuracy = 0.642365
+	Test cost = 0.871058,	Accuracy = 0.494331
+Epoch = 7
+100 / 109
+	Train cost = 0.735862,	Accuracy = 0.655568
+	Test cost = 0.874977,	Accuracy = 0.503401
+Epoch = 8
+100 / 109
+	Train cost = 0.706007,	Accuracy = 0.677382
+	Test cost = 0.882121,	Accuracy = 0.501134
+Epoch = 9
+100 / 109
+	Train cost = 0.691574,	Accuracy = 0.708381
+	Test cost = 0.889344,	Accuracy = 0.519274
+Epoch = 10
+100 / 109
+	Train cost = 0.660297,	Accuracy = 0.733639
+	Test cost = 0.937901,	Accuracy = 0.494331
+Epoch = 11
+100 / 109
+	Train cost = 0.640989,	Accuracy = 0.746269
+	Test cost = 0.967259,	Accuracy = 0.521542
+Epoch = 12
+100 / 109
+	Train cost = 0.615471,	Accuracy = 0.760620
+	Test cost = 1.002680,	Accuracy = 0.501134
+Epoch = 13
+100 / 109
+	Train cost = 0.578924,	Accuracy = 0.793915
+	Test cost = 1.032788,	Accuracy = 0.473923
+Epoch = 14
+100 / 109
+	Train cost = 0.571949,	Accuracy = 0.796211
+	Test cost = 1.039236,	Accuracy = 0.503401
+Epoch = 15
+100 / 109
+	Train cost = 0.559629,	Accuracy = 0.815155
+	Test cost = 1.109159,	Accuracy = 0.482993
+Epoch = 16
+100 / 109
+	Train cost = 0.527753,	Accuracy = 0.824340
+	Test cost = 1.124494,	Accuracy = 0.489796
+Epoch = 17
+100 / 109
+	Train cost = 0.512106,	Accuracy = 0.829506
+	Test cost = 1.184956,	Accuracy = 0.523810
+Epoch = 18
+100 / 109
+	Train cost = 0.526361,	Accuracy = 0.811711
+	Test cost = 1.205335,	Accuracy = 0.519274
+Epoch = 19
+100 / 109
+	Train cost = 0.514639,	Accuracy = 0.836969
+	Test cost = 1.196036,	Accuracy = 0.494331
+Epoch = 20

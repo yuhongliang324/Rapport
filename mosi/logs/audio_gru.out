@@ -1,0 +1,172 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+audio
+03bSnISJMiM.pkl
+0h-zjBukYpk.pkl
+1DmNV9C1hbY.pkl
+1iG0909rllw.pkl
+2WGyTLYerpo.pkl
+2iD-tVS8NPw.pkl
+5W7Z1C_fDaE.pkl
+6Egk_28TtTM.pkl
+6_0THN4chvY.pkl
+73jzhE8R1TQ.pkl
+7JsX8y1ysxY.pkl
+8OtFthrtaJM.pkl
+8d-gEyoeBzc.pkl
+8qrpnFRGt2A.pkl
+9J25DZhivz8.pkl
+9T9Hf74oK10.pkl
+9c67fiY0wGQ.pkl
+9qR7uwkblbs.pkl
+Af8D0E4ZXaw.pkl
+BI97DNYfe5I.pkl
+BXuRRbG0Ugk.pkl
+Bfr499ggo-0.pkl
+BioHAh1qJAQ.pkl
+BvYR0L6f2Ig.pkl
+Ci-AH39fi3Y.pkl
+Clx4VXItLTE.pkl
+Dg_0XKD0Mf4.pkl
+G-xst2euQUc.pkl
+G6GlGvlkxAQ.pkl
+GWuJjcEuzt8.pkl
+HEsqda8_d0Q.pkl
+I5y0__X72p0.pkl
+Iu2PFX3z_1s.pkl
+IumbAb8q2dM.pkl
+Jkswaaud0hk.pkl
+LSi-o-IrDMs.pkl
+MLal-t_vJPM.pkl
+Njd1F0vZSm4.pkl
+Nzq88NnDkEk.pkl
+OQvJTdtJ2H4.pkl
+OtBXNcAL_lE.pkl
+Oz06ZWiO20M.pkl
+POKffnXeBds.pkl
+PZ-lDQFboO8.pkl
+QN9ZIUWUXsY.pkl
+Qr1Ca94K55A.pkl
+Sqr0AcuoNnk.pkl
+TvyZBvOMOTc.pkl
+VCslbP0mgZI.pkl
+VbQk4H8hgr0.pkl
+Vj1wYRQjB-o.pkl
+W8NXH0Djyww.pkl
+WKA5OygbEKI.pkl
+X3j2zQgwYgE.pkl
+ZAIRrfG22O0.pkl
+ZUXBRvtny7o.pkl
+_dI--eQ6qVU.pkl
+aiEXnCPZubE.pkl
+atnd_PF-Lbs.pkl
+bOL9jKpeJRs.pkl
+bvLlb-M3UXU.pkl
+c5xsKMxpXnc.pkl
+c7UH_rxdZv4.pkl
+cM3Yna7AavY.pkl
+cW1FSBF59ik.pkl
+cXypl4FnoZo.pkl
+d3_k5Xpfmik.pkl
+d6hH302o4v8.pkl
+dq3Nf_lMPnE.pkl
+etzxEpPuc6I.pkl
+f9O3YtZ2VfI.pkl
+f_pcplsH_V0.pkl
+fvVhgmXxadc.pkl
+iiK8YX8oH1E.pkl
+jUzDDGyPkXU.pkl
+k5Y_838nuGo.pkl
+lXPQBPVc5Cw.pkl
+nbWiPyCm4g0.pkl
+nzpVDcQ0ywM.pkl
+ob23OKe5a9Q.pkl
+pLTX3ipuDJI.pkl
+phBUpBr1hSo.pkl
+rnaNMUZpvvg.pkl
+tIrG4oNLFzE.pkl
+tStelxIAHjw.pkl
+tmZoasNr4rU.pkl
+v0zCBqDeKcE.pkl
+vvZ4IcEtiZc.pkl
+vyB00TXsimI.pkl
+wMbj6ajWbic.pkl
+yDtzw_Y-7RU.pkl
+yvsjCA6Y5Fc.pkl
+zhpQhgha_KU.pkl
+Majority Accuracy = 0.528345, Majority Class = 0
+(1743, 188, 74) (441, 186, 74)
+dec = True model = gru lambda = 0.001 share = False #class = 2 drop = 0.5 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.188448,	Accuracy = 0.500861
+	Test cost = 0.871077,	Accuracy = 0.557823
+Epoch = 2
+100 / 109
+	Train cost = 0.815186,	Accuracy = 0.549053
+	Test cost = 0.785585,	Accuracy = 0.566893
+Epoch = 3
+100 / 109
+	Train cost = 0.762821,	Accuracy = 0.549627
+	Test cost = 0.765010,	Accuracy = 0.496599
+Epoch = 4
+100 / 109
+	Train cost = 0.732164,	Accuracy = 0.573723
+	Test cost = 0.755416,	Accuracy = 0.507937
+Epoch = 5
+100 / 109
+	Train cost = 0.723329,	Accuracy = 0.567986
+	Test cost = 0.735910,	Accuracy = 0.519274
+Epoch = 6
+100 / 109
+	Train cost = 0.709980,	Accuracy = 0.591509
+	Test cost = 0.735004,	Accuracy = 0.541950
+Epoch = 7
+100 / 109
+	Train cost = 0.696333,	Accuracy = 0.591509
+	Test cost = 0.741460,	Accuracy = 0.535147
+Epoch = 8
+100 / 109
+	Train cost = 0.690895,	Accuracy = 0.587493
+	Test cost = 0.736568,	Accuracy = 0.551020
+Epoch = 9
+100 / 109
+	Train cost = 0.686734,	Accuracy = 0.624211
+	Test cost = 0.738954,	Accuracy = 0.532880
+Epoch = 10
+100 / 109
+	Train cost = 0.677478,	Accuracy = 0.600115
+	Test cost = 0.742518,	Accuracy = 0.546485
+Epoch = 11
+100 / 109
+	Train cost = 0.675775,	Accuracy = 0.623064
+	Test cost = 0.749337,	Accuracy = 0.541950
+Epoch = 12
+100 / 109
+	Train cost = 0.677871,	Accuracy = 0.612737
+	Test cost = 0.751960,	Accuracy = 0.537415
+Epoch = 13
+100 / 109
+	Train cost = 0.659381,	Accuracy = 0.655192
+	Test cost = 0.779006,	Accuracy = 0.510204
+Epoch = 14
+100 / 109
+	Train cost = 0.654442,	Accuracy = 0.655192
+	Test cost = 0.775824,	Accuracy = 0.553288
+Epoch = 15
+100 / 109
+	Train cost = 0.651874,	Accuracy = 0.654045
+	Test cost = 0.787410,	Accuracy = 0.560091
+Epoch = 16
+100 / 109
+	Train cost = 0.640526,	Accuracy = 0.676420
+	Test cost = 0.787579,	Accuracy = 0.566893
+Epoch = 17
+100 / 109

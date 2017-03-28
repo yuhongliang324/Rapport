@@ -1,0 +1,163 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 2: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+openface
+03bSnISJMiM.pkl
+0h-zjBukYpk.pkl
+1DmNV9C1hbY.pkl
+1iG0909rllw.pkl
+2WGyTLYerpo.pkl
+2iD-tVS8NPw.pkl
+5W7Z1C_fDaE.pkl
+6Egk_28TtTM.pkl
+6_0THN4chvY.pkl
+73jzhE8R1TQ.pkl
+7JsX8y1ysxY.pkl
+8OtFthrtaJM.pkl
+8d-gEyoeBzc.pkl
+8qrpnFRGt2A.pkl
+9J25DZhivz8.pkl
+9T9Hf74oK10.pkl
+9c67fiY0wGQ.pkl
+9qR7uwkblbs.pkl
+Af8D0E4ZXaw.pkl
+BI97DNYfe5I.pkl
+BXuRRbG0Ugk.pkl
+Bfr499ggo-0.pkl
+BioHAh1qJAQ.pkl
+BvYR0L6f2Ig.pkl
+Ci-AH39fi3Y.pkl
+Clx4VXItLTE.pkl
+Dg_0XKD0Mf4.pkl
+G-xst2euQUc.pkl
+G6GlGvlkxAQ.pkl
+GWuJjcEuzt8.pkl
+HEsqda8_d0Q.pkl
+I5y0__X72p0.pkl
+Iu2PFX3z_1s.pkl
+IumbAb8q2dM.pkl
+Jkswaaud0hk.pkl
+LSi-o-IrDMs.pkl
+MLal-t_vJPM.pkl
+Njd1F0vZSm4.pkl
+Nzq88NnDkEk.pkl
+OQvJTdtJ2H4.pkl
+OtBXNcAL_lE.pkl
+Oz06ZWiO20M.pkl
+POKffnXeBds.pkl
+PZ-lDQFboO8.pkl
+QN9ZIUWUXsY.pkl
+Qr1Ca94K55A.pkl
+Sqr0AcuoNnk.pkl
+TvyZBvOMOTc.pkl
+VCslbP0mgZI.pkl
+VbQk4H8hgr0.pkl
+Vj1wYRQjB-o.pkl
+W8NXH0Djyww.pkl
+WKA5OygbEKI.pkl
+X3j2zQgwYgE.pkl
+ZAIRrfG22O0.pkl
+ZUXBRvtny7o.pkl
+_dI--eQ6qVU.pkl
+aiEXnCPZubE.pkl
+atnd_PF-Lbs.pkl
+bOL9jKpeJRs.pkl
+bvLlb-M3UXU.pkl
+c5xsKMxpXnc.pkl
+c7UH_rxdZv4.pkl
+cM3Yna7AavY.pkl
+cW1FSBF59ik.pkl
+cXypl4FnoZo.pkl
+d3_k5Xpfmik.pkl
+d6hH302o4v8.pkl
+dq3Nf_lMPnE.pkl
+etzxEpPuc6I.pkl
+f9O3YtZ2VfI.pkl
+f_pcplsH_V0.pkl
+fvVhgmXxadc.pkl
+iiK8YX8oH1E.pkl
+jUzDDGyPkXU.pkl
+k5Y_838nuGo.pkl
+lXPQBPVc5Cw.pkl
+nbWiPyCm4g0.pkl
+nzpVDcQ0ywM.pkl
+ob23OKe5a9Q.pkl
+pLTX3ipuDJI.pkl
+phBUpBr1hSo.pkl
+rnaNMUZpvvg.pkl
+tIrG4oNLFzE.pkl
+tStelxIAHjw.pkl
+tmZoasNr4rU.pkl
+v0zCBqDeKcE.pkl
+vvZ4IcEtiZc.pkl
+vyB00TXsimI.pkl
+wMbj6ajWbic.pkl
+yDtzw_Y-7RU.pkl
+yvsjCA6Y5Fc.pkl
+zhpQhgha_KU.pkl
+Majority Accuracy = 0.528345, Majority Class = 0
+(1742, 241, 431) (441, 196, 431)
+dec = True model = gru lambda = 0.0001 share = True #class = 2 drop = 0.5 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.268287,	Accuracy = 0.493111
+	Test cost = 1.130746,	Accuracy = 0.480726
+Epoch = 2
+100 / 109
+	Train cost = 1.076628,	Accuracy = 0.514925
+	Test cost = 1.060446,	Accuracy = 0.458050
+Epoch = 3
+100 / 109
+	Train cost = 0.981043,	Accuracy = 0.561998
+	Test cost = 1.002382,	Accuracy = 0.514739
+Epoch = 4
+100 / 109
+	Train cost = 0.910880,	Accuracy = 0.592997
+	Test cost = 1.000926,	Accuracy = 0.478458
+Epoch = 5
+100 / 109
+	Train cost = 0.810599,	Accuracy = 0.676808
+	Test cost = 1.004563,	Accuracy = 0.489796
+Epoch = 6
+100 / 109
+	Train cost = 0.763592,	Accuracy = 0.703789
+	Test cost = 1.008791,	Accuracy = 0.507937
+Epoch = 7
+100 / 109
+	Train cost = 0.701431,	Accuracy = 0.735936
+	Test cost = 1.057608,	Accuracy = 0.503401
+Epoch = 8
+100 / 109
+	Train cost = 0.658837,	Accuracy = 0.755454
+	Test cost = 1.077875,	Accuracy = 0.535147
+Epoch = 9
+100 / 109
+	Train cost = 0.647887,	Accuracy = 0.756602
+	Test cost = 1.202759,	Accuracy = 0.471655
+Epoch = 10
+100 / 109
+	Train cost = 0.591041,	Accuracy = 0.794489
+	Test cost = 1.177129,	Accuracy = 0.501134
+Epoch = 11
+100 / 109
+	Train cost = 0.578841,	Accuracy = 0.797359
+	Test cost = 1.209295,	Accuracy = 0.494331
+Epoch = 12
+100 / 109
+	Train cost = 0.620518,	Accuracy = 0.782434
+	Test cost = 1.347259,	Accuracy = 0.462585
+Epoch = 13
+100 / 109
+	Train cost = 0.565423,	Accuracy = 0.816877
+	Test cost = 1.306015,	Accuracy = 0.489796
+Epoch = 14
+100 / 109
+	Train cost = 0.507218,	Accuracy = 0.833525
+	Test cost = 1.433282,	Accuracy = 0.478458
+Epoch = 15
