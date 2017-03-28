@@ -120,7 +120,7 @@ class RNN_Attention(object):
             self.theta.append(b)
 
         print 'dec =', self.dec, 'model =', self.model, 'lambda =', self.lamb,\
-            'share =', self.share, '#class =', self.n_class
+            'share =', self.share, '#class =', self.n_class, 'drop =', self.drop, 'update =', self.update
 
         if self.update == 'adam':
             self.optimize = Adam
