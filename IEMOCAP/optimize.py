@@ -140,15 +140,13 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             print '\tTrain cost = %f,\tRMSE = %f' % (cost_avg, rmse_acc)
         rmse_acc_test, actual_test, pred_test = test(test_model, start_batches_test, end_batches_test, len_batches_test,
                                                      y_test, costs_test, category=category)
-        print 'best', best_rmse_acc, '\t', 'rmse_acc_test', rmse_acc_test
         if best_rmse_acc is None:
             best_rmse_acc = rmse_acc_test
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
         elif (category and rmse_acc_test > best_rmse_acc) or ((not category) and rmse_acc_test < best_rmse_acc):
-            print '-----Best epoch', epoch_index + 1
-            best_rmse_acc = rmse_acc
+            best_rmse_acc = rmse_acc_test
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
