@@ -98,7 +98,7 @@ def test1():
     args.share = bool(args.share)
     args.cat = bool(args.cat)
     experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
-                     model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
+               model=args.model, share=args.share, category=args.cat, maxlen=args.maxlen, sample_rate=args.rate)
 
 
 if __name__ == '__main__':
