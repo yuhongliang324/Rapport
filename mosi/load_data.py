@@ -3,6 +3,7 @@ __author__ = 'yuhongliang324'
 from preprocess import data_root, split_file
 import cPickle as pickle
 import os
+import numpy
 
 
 def load(feature_name='audio', category=False):
@@ -23,7 +24,10 @@ def load(feature_name='audio', category=False):
         reader.close()
         conts = segID_cont.values()
         for cont in conts:
-            session_Xs[videoID].append(cont[feature_name])
+            X = cont[feature_name]
+            X[numpy.isnan(X)] = 0.
+            X[numpy.isneginf(X)] = -1.
+            session_Xs[videoID].append(X)
             if not category:
                 session_y[videoID].append(cont['label'])
             else:
