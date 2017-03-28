@@ -1,0 +1,174 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+audio
+03bSnISJMiM.pkl
+0h-zjBukYpk.pkl
+1DmNV9C1hbY.pkl
+1iG0909rllw.pkl
+2WGyTLYerpo.pkl
+2iD-tVS8NPw.pkl
+5W7Z1C_fDaE.pkl
+6Egk_28TtTM.pkl
+6_0THN4chvY.pkl
+73jzhE8R1TQ.pkl
+7JsX8y1ysxY.pkl
+8OtFthrtaJM.pkl
+8d-gEyoeBzc.pkl
+8qrpnFRGt2A.pkl
+9J25DZhivz8.pkl
+9T9Hf74oK10.pkl
+9c67fiY0wGQ.pkl
+9qR7uwkblbs.pkl
+Af8D0E4ZXaw.pkl
+BI97DNYfe5I.pkl
+BXuRRbG0Ugk.pkl
+Bfr499ggo-0.pkl
+BioHAh1qJAQ.pkl
+BvYR0L6f2Ig.pkl
+Ci-AH39fi3Y.pkl
+Clx4VXItLTE.pkl
+Dg_0XKD0Mf4.pkl
+G-xst2euQUc.pkl
+G6GlGvlkxAQ.pkl
+GWuJjcEuzt8.pkl
+HEsqda8_d0Q.pkl
+I5y0__X72p0.pkl
+Iu2PFX3z_1s.pkl
+IumbAb8q2dM.pkl
+Jkswaaud0hk.pkl
+LSi-o-IrDMs.pkl
+MLal-t_vJPM.pkl
+Njd1F0vZSm4.pkl
+Nzq88NnDkEk.pkl
+OQvJTdtJ2H4.pkl
+OtBXNcAL_lE.pkl
+Oz06ZWiO20M.pkl
+POKffnXeBds.pkl
+PZ-lDQFboO8.pkl
+QN9ZIUWUXsY.pkl
+Qr1Ca94K55A.pkl
+Sqr0AcuoNnk.pkl
+TvyZBvOMOTc.pkl
+VCslbP0mgZI.pkl
+VbQk4H8hgr0.pkl
+Vj1wYRQjB-o.pkl
+W8NXH0Djyww.pkl
+WKA5OygbEKI.pkl
+X3j2zQgwYgE.pkl
+ZAIRrfG22O0.pkl
+ZUXBRvtny7o.pkl
+_dI--eQ6qVU.pkl
+aiEXnCPZubE.pkl
+atnd_PF-Lbs.pkl
+bOL9jKpeJRs.pkl
+bvLlb-M3UXU.pkl
+c5xsKMxpXnc.pkl
+c7UH_rxdZv4.pkl
+cM3Yna7AavY.pkl
+cW1FSBF59ik.pkl
+cXypl4FnoZo.pkl
+d3_k5Xpfmik.pkl
+d6hH302o4v8.pkl
+dq3Nf_lMPnE.pkl
+etzxEpPuc6I.pkl
+f9O3YtZ2VfI.pkl
+f_pcplsH_V0.pkl
+fvVhgmXxadc.pkl
+iiK8YX8oH1E.pkl
+jUzDDGyPkXU.pkl
+k5Y_838nuGo.pkl
+lXPQBPVc5Cw.pkl
+nbWiPyCm4g0.pkl
+nzpVDcQ0ywM.pkl
+ob23OKe5a9Q.pkl
+pLTX3ipuDJI.pkl
+phBUpBr1hSo.pkl
+rnaNMUZpvvg.pkl
+tIrG4oNLFzE.pkl
+tStelxIAHjw.pkl
+tmZoasNr4rU.pkl
+v0zCBqDeKcE.pkl
+vvZ4IcEtiZc.pkl
+vyB00TXsimI.pkl
+wMbj6ajWbic.pkl
+yDtzw_Y-7RU.pkl
+yvsjCA6Y5Fc.pkl
+zhpQhgha_KU.pkl
+MAE of Average Prediction = 1.401523
+(1743, 188, 74) (441, 186, 74)
+dec = True model = lstm lambda = 0.001 share = False #class = 1 drop = 0.5 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.498661,	MAE = 1.721447
+	Test cost = 1.136981,	MAE = 1.798841
+Epoch = 2
+100 / 109
+	Train cost = 1.086598,	MAE = 1.689932
+	Test cost = 1.081878,	MAE = 1.437146
+Epoch = 3
+100 / 109
+	Train cost = 1.038925,	MAE = 1.592134
+	Test cost = 1.027664,	MAE = 1.429935
+Epoch = 4
+100 / 109
+	Train cost = 0.951975,	MAE = 1.553070
+	Test cost = 0.968818,	MAE = 1.424885
+Epoch = 5
+100 / 109
+	Train cost = 0.956453,	MAE = 1.561181
+	Test cost = 0.988617,	MAE = 1.441224
+Epoch = 6
+100 / 109
+	Train cost = 0.905225,	MAE = 1.526158
+	Test cost = 1.030374,	MAE = 1.462602
+Epoch = 7
+100 / 109
+	Train cost = 0.875636,	MAE = 1.473641
+	Test cost = 0.995620,	MAE = 1.474969
+Epoch = 8
+100 / 109
+	Train cost = 0.848163,	MAE = 1.451213
+	Test cost = 0.991925,	MAE = 1.481063
+Epoch = 9
+100 / 109
+	Train cost = 0.813600,	MAE = 1.484089
+	Test cost = 0.964345,	MAE = 1.415035
+Epoch = 10
+100 / 109
+	Train cost = 0.805487,	MAE = 1.430334
+	Test cost = 0.987903,	MAE = 1.437982
+Epoch = 11
+100 / 109
+	Train cost = 0.799883,	MAE = 1.426534
+	Test cost = 1.025876,	MAE = 1.447355
+Epoch = 12
+100 / 109
+	Train cost = 0.763112,	MAE = 1.366076
+	Test cost = 1.001902,	MAE = 1.412673
+Epoch = 13
+100 / 109
+	Train cost = 0.755553,	MAE = 1.345934
+	Test cost = 1.055452,	MAE = 1.468981
+Epoch = 14
+100 / 109
+	Train cost = 0.723659,	MAE = 1.323157
+	Test cost = 1.049109,	MAE = 1.467496
+Epoch = 15
+100 / 109
+	Train cost = 0.715963,	MAE = 1.307769
+	Test cost = 1.024238,	MAE = 1.435060
+Epoch = 16
+100 / 109
+	Train cost = 0.689142,	MAE = 1.282877
+	Test cost = 1.026392,	MAE = 1.446398
+Epoch = 17
+100 / 109
+	Train cost = 0.670627,	MAE = 1.259037
+	Test cost = 1.043513,	MAE = 1.450090

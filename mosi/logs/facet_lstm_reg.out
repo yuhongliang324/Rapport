@@ -1,0 +1,266 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 1: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+facet
+03bSnISJMiM.pkl
+0h-zjBukYpk.pkl
+1DmNV9C1hbY.pkl
+1iG0909rllw.pkl
+2WGyTLYerpo.pkl
+2iD-tVS8NPw.pkl
+5W7Z1C_fDaE.pkl
+6Egk_28TtTM.pkl
+6_0THN4chvY.pkl
+73jzhE8R1TQ.pkl
+7JsX8y1ysxY.pkl
+8OtFthrtaJM.pkl
+8d-gEyoeBzc.pkl
+8qrpnFRGt2A.pkl
+9J25DZhivz8.pkl
+9T9Hf74oK10.pkl
+9c67fiY0wGQ.pkl
+9qR7uwkblbs.pkl
+Af8D0E4ZXaw.pkl
+BI97DNYfe5I.pkl
+BXuRRbG0Ugk.pkl
+Bfr499ggo-0.pkl
+BioHAh1qJAQ.pkl
+BvYR0L6f2Ig.pkl
+Ci-AH39fi3Y.pkl
+Clx4VXItLTE.pkl
+Dg_0XKD0Mf4.pkl
+G-xst2euQUc.pkl
+G6GlGvlkxAQ.pkl
+GWuJjcEuzt8.pkl
+HEsqda8_d0Q.pkl
+I5y0__X72p0.pkl
+Iu2PFX3z_1s.pkl
+IumbAb8q2dM.pkl
+Jkswaaud0hk.pkl
+LSi-o-IrDMs.pkl
+MLal-t_vJPM.pkl
+Njd1F0vZSm4.pkl
+Nzq88NnDkEk.pkl
+OQvJTdtJ2H4.pkl
+OtBXNcAL_lE.pkl
+Oz06ZWiO20M.pkl
+POKffnXeBds.pkl
+PZ-lDQFboO8.pkl
+QN9ZIUWUXsY.pkl
+Qr1Ca94K55A.pkl
+Sqr0AcuoNnk.pkl
+TvyZBvOMOTc.pkl
+VCslbP0mgZI.pkl
+VbQk4H8hgr0.pkl
+Vj1wYRQjB-o.pkl
+W8NXH0Djyww.pkl
+WKA5OygbEKI.pkl
+X3j2zQgwYgE.pkl
+ZAIRrfG22O0.pkl
+ZUXBRvtny7o.pkl
+_dI--eQ6qVU.pkl
+aiEXnCPZubE.pkl
+atnd_PF-Lbs.pkl
+bOL9jKpeJRs.pkl
+bvLlb-M3UXU.pkl
+c5xsKMxpXnc.pkl
+c7UH_rxdZv4.pkl
+cM3Yna7AavY.pkl
+cW1FSBF59ik.pkl
+cXypl4FnoZo.pkl
+d3_k5Xpfmik.pkl
+d6hH302o4v8.pkl
+dq3Nf_lMPnE.pkl
+etzxEpPuc6I.pkl
+f9O3YtZ2VfI.pkl
+f_pcplsH_V0.pkl
+fvVhgmXxadc.pkl
+iiK8YX8oH1E.pkl
+jUzDDGyPkXU.pkl
+k5Y_838nuGo.pkl
+lXPQBPVc5Cw.pkl
+nbWiPyCm4g0.pkl
+nzpVDcQ0ywM.pkl
+ob23OKe5a9Q.pkl
+pLTX3ipuDJI.pkl
+phBUpBr1hSo.pkl
+rnaNMUZpvvg.pkl
+tIrG4oNLFzE.pkl
+tStelxIAHjw.pkl
+tmZoasNr4rU.pkl
+v0zCBqDeKcE.pkl
+vvZ4IcEtiZc.pkl
+vyB00TXsimI.pkl
+wMbj6ajWbic.pkl
+yDtzw_Y-7RU.pkl
+yvsjCA6Y5Fc.pkl
+zhpQhgha_KU.pkl
+MAE of Average Prediction = 1.401523
+(1743, 238, 48) (441, 196, 48)
+dec = True model = lstm lambda = 0.001 share = False #class = 1 drop = 0.5 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+100 / 109
+	Train cost = 1.408003,	MAE = 1.525110
+	Test cost = 1.171926,	MAE = 1.489135
+Epoch = 2
+100 / 109
+	Train cost = 1.026030,	MAE = 1.515283
+	Test cost = 1.119302,	MAE = 1.481774
+Epoch = 3
+100 / 109
+	Train cost = 0.934310,	MAE = 1.496899
+	Test cost = 1.081217,	MAE = 1.503748
+Epoch = 4
+100 / 109
+	Train cost = 0.876762,	MAE = 1.444154
+	Test cost = 1.072691,	MAE = 1.510487
+Epoch = 5
+100 / 109
+	Train cost = 0.886493,	MAE = 1.507525
+	Test cost = 1.056347,	MAE = 1.484756
+Epoch = 6
+100 / 109
+	Train cost = 0.826074,	MAE = 1.381131
+	Test cost = 1.069945,	MAE = 1.523126
+Epoch = 7
+100 / 109
+	Train cost = 0.814996,	MAE = 1.430793
+	Test cost = 1.070375,	MAE = 1.515512
+Epoch = 8
+100 / 109
+	Train cost = 0.770157,	MAE = 1.360126
+	Test cost = 1.067925,	MAE = 1.517980
+Epoch = 9
+100 / 109
+	Train cost = 0.785566,	MAE = 1.409703
+	Test cost = 1.081466,	MAE = 1.504881
+Epoch = 10
+100 / 109
+	Train cost = 0.721121,	MAE = 1.343283
+	Test cost = 1.087021,	MAE = 1.505241
+Epoch = 11
+100 / 109
+	Train cost = 0.705267,	MAE = 1.311003
+	Test cost = 1.068972,	MAE = 1.502896
+Epoch = 12
+100 / 109
+	Train cost = 0.706391,	MAE = 1.309790
+	Test cost = 1.110062,	MAE = 1.534820
+Epoch = 13
+100 / 109
+	Train cost = 0.702256,	MAE = 1.299695
+	Test cost = 1.087991,	MAE = 1.521255
+Epoch = 14
+100 / 109
+	Train cost = 0.687454,	MAE = 1.292327
+	Test cost = 1.130698,	MAE = 1.548296
+Epoch = 15
+100 / 109
+	Train cost = 0.678031,	MAE = 1.283368
+	Test cost = 1.112701,	MAE = 1.543457
+Epoch = 16
+100 / 109
+	Train cost = 0.662128,	MAE = 1.265739
+	Test cost = 1.106237,	MAE = 1.524689
+Epoch = 17
+100 / 109
+	Train cost = 0.647649,	MAE = 1.251021
+	Test cost = 1.126382,	MAE = 1.552160
+Epoch = 18
+100 / 109
+	Train cost = 0.637796,	MAE = 1.250126
+	Test cost = 1.126904,	MAE = 1.536512
+Epoch = 19
+100 / 109
+	Train cost = 0.619736,	MAE = 1.233638
+	Test cost = 1.125712,	MAE = 1.542133
+Epoch = 20
+100 / 109
+	Train cost = 0.615973,	MAE = 1.214076
+	Test cost = 1.094805,	MAE = 1.502276
+Epoch = 21
+100 / 109
+	Train cost = 0.619998,	MAE = 1.199797
+	Test cost = 1.091930,	MAE = 1.523791
+Epoch = 22
+100 / 109
+	Train cost = 0.583690,	MAE = 1.141080
+	Test cost = 1.096626,	MAE = 1.530914
+Epoch = 23
+100 / 109
+	Train cost = 0.601704,	MAE = 1.188834
+	Test cost = 1.109932,	MAE = 1.558018
+Epoch = 24
+100 / 109
+	Train cost = 0.608599,	MAE = 1.193436
+	Test cost = 1.105481,	MAE = 1.504524
+Epoch = 25
+100 / 109
+	Train cost = 0.573613,	MAE = 1.148295
+	Test cost = 1.119624,	MAE = 1.526434
+Epoch = 26
+100 / 109
+	Train cost = 0.583368,	MAE = 1.163240
+	Test cost = 1.093461,	MAE = 1.511926
+Epoch = 27
+100 / 109
+	Train cost = 0.566175,	MAE = 1.147767
+	Test cost = 1.091000,	MAE = 1.500017
+Epoch = 28
+100 / 109
+	Train cost = 0.567413,	MAE = 1.156676
+	Test cost = 1.100530,	MAE = 1.533497
+Epoch = 29
+100 / 109
+	Train cost = 0.531074,	MAE = 1.094340
+	Test cost = 1.079457,	MAE = 1.495254
+Epoch = 30
+100 / 109
+	Train cost = 0.545961,	MAE = 1.101789
+	Test cost = 1.106032,	MAE = 1.501959
+Epoch = 31
+100 / 109
+	Train cost = 0.544233,	MAE = 1.113820
+	Test cost = 1.090221,	MAE = 1.497106
+Epoch = 32
+100 / 109
+	Train cost = 0.603389,	MAE = 1.156234
+	Test cost = 1.106751,	MAE = 1.523557
+Epoch = 33
+100 / 109
+	Train cost = 0.555111,	MAE = 1.132549
+	Test cost = 1.106614,	MAE = 1.508145
+Epoch = 34
+100 / 109
+	Train cost = 0.545495,	MAE = 1.076271
+	Test cost = 1.111740,	MAE = 1.515480
+Epoch = 35
+100 / 109
+	Train cost = 0.540891,	MAE = 1.088355
+	Test cost = 1.105814,	MAE = 1.509332
+Epoch = 36
+100 / 109
+	Train cost = 0.557769,	MAE = 1.105574
+	Test cost = 1.076958,	MAE = 1.524929
+Epoch = 37
+100 / 109
+	Train cost = 0.550248,	MAE = 1.114882
+	Test cost = 1.101356,	MAE = 1.542204
+Epoch = 38
+100 / 109
+	Train cost = 0.529884,	MAE = 1.098377
+	Test cost = 1.089418,	MAE = 1.519436
+Epoch = 39
+100 / 109
+	Train cost = 0.502659,	MAE = 1.062080
+	Test cost = 1.077333,	MAE = 1.499890
+Epoch = 40
+100 / 109
+	Train cost = 0.534832,	MAE = 1.090637
+	Test cost = 1.078319,	MAE = 1.511162
