@@ -153,6 +153,6 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
             best_pred_test = pred_test
             best_epoch = epoch_index
         # Early Stopping
-        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 2 and best_epoch > 2:
+        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 3 and best_epoch > 2:
             return best_actual_test, best_pred_test
     return best_actual_test, best_pred_test

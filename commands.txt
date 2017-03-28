@@ -37,3 +37,20 @@ nohup python -u train.py -feat video -model lstm -share 0 > logs/video_lstm.out 
 
 nohup python -u train.py -feat audio -model gru -share 0 -drop 0.5 > logs/audio_gru_drop.out 2>&1 &
 nohup python -u train.py -feat video -model gru -share 0 -drop 0.5 > logs/video_gru_drop.out 2>&1 &
+
+For MOSI:
+nohup python -u train.py -feat audio -model gru -share 0 -drop 0.5 -lamb 0.0001 > logs/audio_gru.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share 0 -drop 0.5 -lamb 0.0001 > logs/audio_lstm.out 2>&1 &
+nohup python -u train.py -feat audio -model gru -share 1 -drop 0.5 -lamb 0.0001 > logs/audio_gru_share.out 2>&1 &
+nohup python -u train.py -feat audio -model lstm -share 1 -drop 0.5 -lamb 0.0001 > logs/audio_lstm_share.out 2>&1 &
+
+nohup python -u train.py -feat facet -model gru -share 0 -drop 0.5 -lamb 0.001 > logs/facet_gru.out 2>&1 &
+nohup python -u train.py -feat facet -model lstm -share 0 -drop 0.5 -lamb 0.001 > logs/facet_lstm.out 2>&1 &
+nohup python -u train.py -feat facet -model gru -share 1 -drop 0.5 -lamb 0.001 > logs/facet_gru_share.out 2>&1 &
+nohup python -u train.py -feat facet -model lstm -share 1 -drop 0.5 -lamb 0.001 > logs/facet_lstm_share.out 2>&1 &
+
+nohup python -u train.py -feat openface -model gru -share 0 -drop 0.5 -lamb 0.0001 > logs/openface_gru.out 2>&1 &
+nohup python -u train.py -feat openface -model lstm -share 0 -drop 0.5 -lamb 0.0001 > logs/openface_lstm.out 2>&1 &
+nohup python -u train.py -feat openface -model gru -share 1 -drop 0.5 -lamb 0.0001 > logs/openface_gru_share.out 2>&1 &
+nohup python -u train.py -feat openface -model lstm -share 1 -drop 0.5 -lamb 0.0001 > logs/openface_lstm_share.out 2>&1 &
+
