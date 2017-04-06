@@ -13,7 +13,7 @@ from optimize import train
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
-                     model='ours', share=False, best3=False, category=False, normalization=False):
+                     model='ours', share=False, best3=False, category=False, normalization=False, num_epoch=60):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -86,7 +86,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
             = train(X_train, y_train, X_val, y_val, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
                     final_activation=final_activation, dec=dec, update=update, lamb=lamb, model=model, share=share,
-                    category=category)
+                    category=category, num_epoch=num_epoch)
 
         img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
         if category:
@@ -135,11 +135,14 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     normalization = False
+    num_epoch = 60
     if args.model == 'tagm' or args.model == 'dan':
         normalization = True
+    if args.model == 'dan':
+        num_epoch = 200
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                     category=args.cat, best3=args.best3, normalization=normalization)
+                     category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
 
 
 if __name__ == '__main__':
