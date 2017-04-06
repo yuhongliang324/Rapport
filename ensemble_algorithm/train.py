@@ -35,7 +35,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         message += '_best3'
     if category:
         message += '_cat'
-    writer = open('../results/result_' + message + '.txt', 'w')
+    writer = open('results/' + message + '.txt', 'w')
     dn = os.path.dirname(os.path.abspath(__file__))
     img_root = os.path.join(dn, '../figs/' + message)
     if os.path.isdir(img_root):
