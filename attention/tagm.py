@@ -107,7 +107,7 @@ class TAGM(object):
         H_att_back = H_att_back[::-1]  # (num_step, batch_size, hidden_dim)
         H_att = T.concatenate([H_att_for, H_att_back], axis=-1)  # (num_step, batch_size, 2 * hidden_dim)
         att = T.nnet.sigmoid(T.dot(H_att, self.m))  # (num_step, batch_size, 1)
-        att = att[0]  # (num_step, batch_size)
+        # att = att[0]  # (num_step, batch_size)  !!!
         # (num_step, batch_size, hidden_dim)
         H, _ = theano.scan(self.forward, sequences=[X_batch, att],
                            outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
