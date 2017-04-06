@@ -11,6 +11,7 @@ import sys
 sys.path.append('../')
 from SST.lstm import LSTM
 from tagm import TAGM
+from baselines.dan import dan
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -83,6 +84,8 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
                            update=update, lamb=lamb, model='lstm', share=share)
     elif model == 'tagm':
         ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop)
+    elif model == 'dan':
+        ra = dan([input_dim, n_class], lamb=lamb, update=update, activation='tanh', drop=drop)
     else:
         if model.startswith('s'):
             ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, update='adam2', drop=drop, bidirection=False)

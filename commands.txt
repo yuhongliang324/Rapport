@@ -14,6 +14,9 @@ nohup python -u train.py -feat hog -model tagm > ../logs/hog_tagm.out 2>&1 &
 nohup python -u train.py -feat audio -model tagm -cat 1 > ../logs/audio_tagm_cat.out 2>&1 &
 nohup python -u train.py -feat hog -model tagm -cat 1 > ../logs/hog_tagm_cat.out 2>&1 &
 
+nohup python -u train.py -feat audio -model ours -cat 1 > ../logs/audio_ours_cat.out 2>&1 &
+nohup python -u train.py -feat hog -model ours -cat 1 > ../logs/hog_ours_cat.out 2>&1 &
+
 Ours:
 
 nohup python -u train.py -feat audio -model gru -share 1 > ../logs/audio_gru_share.out 2>&1 &
