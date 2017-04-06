@@ -104,7 +104,7 @@ class dan(object):
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'acc': None, 'prob': None, 'att': None, 'loss_krip': None}
+               'acc': None, 'prob': None, 'att': None, 'loss_krip': loss}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC
