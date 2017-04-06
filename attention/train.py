@@ -136,7 +136,7 @@ def test1():
     args.best3 = bool(args.best3)
     normalization = False
     num_epoch = 60
-    if args.model == 'tagm' or args.model == 'dan':
+    if args.model == 'tagm':
         normalization = True
     if args.model == 'dan':
         num_epoch = 200
