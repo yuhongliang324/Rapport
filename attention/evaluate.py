@@ -4,6 +4,7 @@ sys.path.append('..')
 from utils import get_all_ratings, get_coder
 import math
 from ensemble import combine
+from scipy.stats import pearsonr
 
 
 def load_gt():
@@ -89,6 +90,24 @@ def get_krip_alpha_given_coder(slice_ratings, coder):
     return alpha
 
 
+def get_pearson_given_coder(slice_ratings, coder):
+    '''
+    :param slice_ratings: dict. Item example: {'5_1_50': {'coder1': 7.0, 'coder2': 6.0, 'coder3': 5.0, 'coder4': 7.0}}
+    :param coder: dict. Item example: {'5_1_50': 5.32}
+    :return: double
+    '''
+    pred = []
+    refereces = []
+    for slice, rating in coder.items():
+        if slice not in slice_ratings:
+            continue
+        pred.append(rating)
+        ref = float(sum(slice_ratings[slice].values())) / len(slice_ratings[slice].values())
+        refereces.append(ref)
+    r = pearsonr(pred, refereces)
+    return r[0]
+
+
 def get_rmse(slice_ratings, coder):
     rmse = 0.
     rmse_skyline = 0.
@@ -114,6 +133,29 @@ def get_rmse(slice_ratings, coder):
     return rmse, rmse_skyline
 
 
+def get_mae(slice_ratings, coder):
+    mae = 0.
+    mae_skyline = 0.
+    total = 0
+    for slice, rating in coder.items():
+        if slice not in slice_ratings:
+            continue
+        refs = slice_ratings[slice].values()
+        sum_refs = sum(refs)
+        len_refs = len(refs)
+        gt = sum_refs / float(len_refs)
+        mae += abs(rating - gt)
+        for rf in refs:
+            gt = (sum_refs - rf) / (float(len_refs) - 1.)
+            mae_skyline += abs(rf - gt)
+        total += len_refs
+    mae /= len(coder)
+
+    mae_skyline /= total
+
+    return mae, mae_skyline
+
+
 def test1():
     load_gt()
 
@@ -125,15 +167,20 @@ def test2():
 
 def test3():
     slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/result_ad_au_lr_model_gru_share_False_drop_0.0_lamb_0.0_fact_None.txt')
+    coder = get_coder('../results/svr_result_1.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
-    rmse, rmse_skyline = get_rmse(slice_ratings, coder)
-    print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
+    mae, mae_skyline = get_mae(slice_ratings, coder)
+    r = get_pearson_given_coder(slice_ratings, coder)
+    print 'mae = %f, mae_skyline = %f' % (mae, mae_skyline)
+    print 'pearson =', r
+    print 'alpha = %f' % alpha
+    alpha = get_krip_alpha(slice_ratings)
+    print 'alpha_skyline = %f' % alpha
 
 
 def test3_1():
     slice_ratings = get_all_ratings(best3=True)
-    coder = get_coder('../results/svr_result_1.txt')
+    coder = get_coder('../results/svr_result.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     rmse, rmse_skyline = get_rmse(slice_ratings, coder)
     print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
@@ -158,5 +205,5 @@ def test4():
 
 
 if __name__ == '__main__':
-    test3_2()
+    test3()
 

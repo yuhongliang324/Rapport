@@ -9,6 +9,7 @@ from sklearn.metrics import mean_squared_error
 from rnn_attention import RNN_Attention
 import sys
 sys.path.append('../')
+from SST.lstm import LSTM
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -56,7 +57,7 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
 
 # model name can be added "-only" as suffix
 def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activation=None, dec=True, update='adam',
-          hidden_dim=None, batch_size=64, num_epoch=80, lamb=0., model='gru', share=False, category=False):
+          hidden_dim=None, batch_size=64, num_epoch=80, lamb=0., model='ours', share=False, category=False):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -76,8 +77,11 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     else:
         n_class = 1
 
-    ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, drop=drop, final_activation=final_activation,
-                       update=update, lamb=lamb, model=model, share=share)
+    if model == 'ours':
+        ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, drop=drop, final_activation=final_activation,
+                           update=update, lamb=lamb, model=model, share=share)
+    else:
+        ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, update='adam2', drop=drop, bidirection=True)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']

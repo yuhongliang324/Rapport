@@ -13,7 +13,7 @@ from optimize import train
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
-                     model='gru', share=False, best3=False, category=False):
+                     model='ours', share=False, best3=False, category=False):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -30,11 +30,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
     num_dyad = len(dyads)
-    if dec:
-        pref = 'ad'
-    else:
-        pref = 'att_only'
-    message = pref + '_' + feature_name + '_' + side + '_model_' + model + '_share_' + str(share) + '_drop_' + str(drop)\
+    message = model + '_' + feature_name + '_' + side + '_share_' + str(share) + '_drop_' + str(drop)\
               + '_lamb_' + str(lamb) + '_fact_' + str(final_activation)
     if best3:
         message += '_best3'
@@ -114,7 +110,7 @@ def test1():
     parser.add_argument('-dec', type=int, default=1)
     parser.add_argument('-update', type=str, default='adam')
     parser.add_argument('-lamb', type=float, default=0.)
-    parser.add_argument('-model', type=str, default='gru')
+    parser.add_argument('-model', type=str, default='ours')
     parser.add_argument('-share', type=int, default=0)
     parser.add_argument('-cat', type=int, default=0)
     parser.add_argument('-best3', type=int, default=0)
