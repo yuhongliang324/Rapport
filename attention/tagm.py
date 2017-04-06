@@ -86,7 +86,7 @@ class TAGM(object):
 
     # A_t: (batch_size,)
     def forward(self, X_t, A_t, H_tm1):
-        H_tp = T.nnet.relu(T.dot(X_t, self.W) + T.dot(H_tm1, self.U) + self.b)  # (batch_size, hid_size)
+        H_tp = T.tanh(T.dot(X_t, self.W) + T.dot(H_tm1, self.U) + self.b)  # (batch_size, hid_size)
         H_t = ((1. - A_t) * H_tm1.T + A_t * H_tp.T).T
         return H_t
 

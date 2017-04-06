@@ -13,7 +13,7 @@ from optimize import train
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
-                     model='ours', share=False, best3=False, category=False):
+                     model='ours', share=False, best3=False, category=False, normalization=False):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -21,11 +21,11 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     from data_path import sample_10_root
 
     if feature_name == 'audio':
-        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=False,
+        dyad_features, dyad_ratings, dyad_slices = load_audio(side=side, normalization=normalization,
                                                               best3=best3, category=category)
     else:
         dyad_features, dyad_ratings, dyad_slices = load_vision(sample_10_root, feature_name=feature_name,
-                                                               side=side, normalization=False,
+                                                               side=side, normalization=normalization,
                                                                best3=best3, category=category)
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
@@ -134,9 +134,12 @@ def test1():
     args.share = bool(args.share)
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
+    normalization = False
+    if args.model == 'tagm':
+        normalization = True
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                     category=args.cat, best3=args.best3)
+                     category=args.cat, best3=args.best3, normalization=normalization)
 
 
 if __name__ == '__main__':
