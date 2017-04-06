@@ -135,7 +135,7 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     normalization = False
-    if args.model == 'tagm':
+    if args.model == 'tagm' or args.model == 'dan':
         normalization = True
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
