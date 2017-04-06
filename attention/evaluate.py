@@ -167,7 +167,7 @@ def test2():
 
 def test3():
     slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/svr_result_1.txt')
+    coder = get_coder('../results/result_dan_hog_lr_1360-256-1_drop_0.0_act_tanh.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     mae, mae_skyline = get_mae(slice_ratings, coder)
     r = get_pearson_given_coder(slice_ratings, coder)
@@ -176,22 +176,6 @@ def test3():
     print 'alpha = %f' % alpha
     alpha = get_krip_alpha(slice_ratings)
     print 'alpha_skyline = %f' % alpha
-
-
-def test3_1():
-    slice_ratings = get_all_ratings(best3=True)
-    coder = get_coder('../results/svr_result.txt')
-    alpha = get_krip_alpha_given_coder(slice_ratings, coder)
-    rmse, rmse_skyline = get_rmse(slice_ratings, coder)
-    print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
-
-
-def test3_2():
-    slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/result_dan_audio_b_148-64-1_drop_0.0_act_tanh.txt')
-    alpha = get_krip_alpha_given_coder(slice_ratings, coder)
-    rmse, rmse_skyline = get_rmse(slice_ratings, coder)
-    print 'alpha = %f, rmse = %f, rmse_skyline = %f' % (alpha, rmse, rmse_skyline)
 
 
 def test4():
