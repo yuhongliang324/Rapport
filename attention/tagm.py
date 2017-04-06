@@ -15,8 +15,7 @@ class TAGM(object):
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2',
-                 drop=0.2):
+    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2', drop=0.2):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
