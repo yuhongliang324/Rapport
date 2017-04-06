@@ -80,7 +80,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
 
     if model == 'ours':
         ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, drop=drop, final_activation=final_activation,
-                           update=update, lamb=lamb, model=model, share=share)
+                           update=update, lamb=lamb, model='lstm', share=share)
     elif model == 'tagm':
         ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop)
     else:
