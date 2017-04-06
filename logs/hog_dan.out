@@ -1,0 +1,48 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+hog lr
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch1_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch2_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch3_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch4_results_large.csv
+D10S1
+D10S2
+D11S1
+D11S2
+D12S1
+D12S2
+D16S2
+D17S1
+D18S1
+D3S1
+D3S2
+D4S1
+D4S2
+D5S1
+D5S2
+D6S1
+D6S2
+D7S1
+D7S2
+D8S1
+D8S2
+D9S1
+D9S2
+[3, 4, 7, 8, 9, 10, 11, 12, 16, 17, 18]
+Validation Dyad = 17 	Testing Dyad = 3
+RMSE of Average Prediction = 1.113890
+(1957, 76, 1360) (179, 76, 1360) (332, 76, 1360)
+Traceback (most recent call last):
+  File "train.py", line 146, in <module>
+    test1()
+  File "train.py", line 142, in test1
+    category=args.cat, best3=args.best3, normalization=normalization)
+  File "train.py", line 89, in cross_validation
+    category=category)
+  File "/usr0/home/hongliay/code/Rapport/attention/optimize.py", line 97, in train
+    att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
+KeyError: 'att'
