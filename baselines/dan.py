@@ -103,7 +103,8 @@ class dan(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'acc': None, 'prob': None}
+               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
+               'acc': None, 'prob': None, 'att': None}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC
