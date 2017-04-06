@@ -167,7 +167,7 @@ def test2():
 
 def test3():
     slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/result_dan_hog_lr_1360-256-1_drop_0.0_act_tanh.txt')
+    coder = get_coder('../results/result_lstm_hog_lr_share_False_drop_0.0_lamb_0.0_fact_None.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     mae, mae_skyline = get_mae(slice_ratings, coder)
     r = get_pearson_given_coder(slice_ratings, coder)
