@@ -20,5 +20,5 @@ def plot_loss(img_path, dyad, costs_train, costs_val, losses_krip_train=None, lo
     if tdyad is None:
         plt.title('Dyad ' + str(dyad))
     else:
-        plt.title('Validation Dyad ' + str(dyad) + '\t' + 'Test Dyad ' + str(tdyad))
+        plt.title('Validation Dyad ' + str(dyad) + ', ' + 'Test Dyad ' + str(tdyad))
     plt.savefig(img_path)

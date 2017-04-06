@@ -9,39 +9,26 @@ from theano.tensor.shared_randomstreams import RandomStreams
 from theano_utils import Adam, Adam2, AdaGrad, RMSprop, SGD, dropout
 
 
-class LSTM(object):
+class Ensemble(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2',
+    def __init__(self, input_dim, mlp_layers, lamb=0., update='adam2',
                  drop=0.2, bidirection=False):
-        self.input_dim, self.hidden_dim = input_dim, hidden_dim
+        self.input_dim = input_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
         self.bidirection = bidirection
-        if self.bidirection:
-            self.mlp_layers = [2 * hidden_dim] + mlp_layers
-        else:
-            self.mlp_layers = [hidden_dim] + mlp_layers
+        self.mlp_layers = [self.input_dim] + mlp_layers
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
 
-        self.W_i, self.b_i = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_i, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_f, self.b_f = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_f, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_o, self.b_o = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_o, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_c, self.b_c = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_c, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-
-        self.theta = [self.W_i, self.b_i, self.U_i, self.W_f, self.b_f, self.U_f, self.W_o, self.b_o, self.U_o,
-                      self.W_c, self.b_c, self.U_c]
+        self.theta = []
 
         self.Ws, self.bs = [], []
         num_layers = len(self.mlp_layers)
@@ -78,17 +65,8 @@ class LSTM(object):
         l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
-    def forward(self, X_t, C_tm1, H_tm1):
-        i_t = T.nnet.sigmoid(T.dot(X_t, self.W_i) + T.dot(H_tm1, self.U_i) + self.b_i)
-        f_t = T.nnet.sigmoid(T.dot(X_t, self.W_f) + T.dot(H_tm1, self.U_f) + self.b_f)
-        o_t = T.nnet.sigmoid(T.dot(X_t, self.W_o) + T.dot(H_tm1, self.U_o) + self.b_o)
-        C_t = T.tanh(T.dot(X_t, self.W_c) + T.dot(H_tm1, self.U_c) + self.b_c)
-        C_t = i_t * C_t + f_t * C_tm1
-        H_t = o_t * T.tanh(C_t)
-        return C_t, H_t
-
     def build_model(self):
-        X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
+        X_batch = T.matrix()  # (batch_size, input_dim)
         if self.n_class > 1:
             y_batch = T.ivector()  # (batch_size,)
         else:
@@ -96,17 +74,7 @@ class LSTM(object):
 
         batch_size = T.shape(y_batch)[0]
 
-        # both: (n_step, batch_size, hidden_dim)
-        [_, H], _ = theano.scan(self.forward, sequences=X_batch,
-                                outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                              T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        rep = H[-1]  # (batch_size, hidden_dim)
-        if self.bidirection:
-            [_, H_back], _ = theano.scan(self.forward, sequences=X_batch[::-1],
-                                         outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                       T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-            H_back = H_back[::-1]
-            rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)
+        rep = X_batch
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
@@ -114,7 +82,6 @@ class LSTM(object):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
             rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
-        representation = rep
         rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
         rep = dropout(rep, is_train, drop_ratio=self.drop)  # (batch_size, num_class)
 
@@ -137,7 +104,7 @@ class LSTM(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'rep': representation,
+               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
                'att': None, 'acc': None, 'loss_krip': None}
         if self.n_class > 1:
             ret['acc'] = acc
