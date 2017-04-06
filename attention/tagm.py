@@ -16,6 +16,7 @@ class TAGM(object):
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
     def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2', drop=0.2):
+        print 'TAGM'
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
@@ -104,21 +105,13 @@ class TAGM(object):
         H_att_back, _ = theano.scan(self.backward_attention, sequences=X_batch[::-1],
                                     outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
         H_att_back = H_att_back[::-1]  # (num_step, batch_size, hidden_dim)
-        '''
-        rep = H[-1]  # (batch_size, hidden_dim)
-        if self.bidirection:
-            [_, H_back], _ = theano.scan(self.forward, sequences=X_batch[::-1],
-                                         outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                       T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-            H_back = H_back[::-1]
-            rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)'''
         H_att = T.concatenate([H_att_for, H_att_back], axis=-1)  # (num_step, batch_size, 2 * hidden_dim)
         att = T.nnet.sigmoid(T.dot(H_att, self.m))  # (num_step, batch_size, 1)
         att = att[0]  # (num_step, batch_size)
         # (num_step, batch_size, hidden_dim)
         H, _ = theano.scan(self.forward, sequences=[X_batch, att],
                            outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        rep = H[-1]  # (batch_size, hidden_dim)
+        rep = H_att_for[-1]  # (batch_size, hidden_dim) !!!
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
         for i in xrange(numW - 1):
