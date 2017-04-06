@@ -35,11 +35,12 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
     n_test = y_val.shape[0]
     num_iter = (n_test + batch_size - 1) // batch_size
     all_pred = []
+    all_rep = []
     cost_avg, loss_krip_avg = 0., 0.
     for iter_index in xrange(num_iter):
         start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_test)
         cost, tmp, pred, rep = val_model(start, end, 0)
-        print rep.shape
+        all_rep.append(rep)
         cost_avg += cost * (end - start)
         if not category:
             loss_krip = tmp
@@ -55,7 +56,8 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
     else:
         print '\tTest cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
-    return cost_avg, all_pred
+    all_rep = numpy.concatenate(all_rep, axis=0)
+    return cost_avg, all_rep
 
 
 # model name can be added "-only" as suffix
@@ -135,7 +137,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     costs_train, costs_val, costs_test = [], [], []
     losses_krip_train, losses_krip_val, losses_krip_test = [], [], []
     best_cost_val = 10000
-    best_pred_test = None
+    best_rep_test = None
     best_epoch = 0
     for epoch_index in xrange(num_epoch):
         cost_avg, loss_krip_avg, rmse = 0., 0., 0.
@@ -162,14 +164,14 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
         else:
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         cost_avg_val, _ = validate(valid_model, y_val, costs_val, losses_krip_val, category=category)
-        _, pred_test = validate(test_model, y_test, costs_test, losses_krip_test, category=category)
+        _, rep_test = validate(test_model, y_test, costs_test, losses_krip_test, category=category)
         if cost_avg_val < best_cost_val:
             best_cost_val = cost_avg_val
-            best_pred_test = pred_test
+            best_rep_test = rep_test
             best_epoch = epoch_index
         # Early Stopping
         if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
             return costs_train, costs_val, costs_test,\
-                   losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test
+                   losses_krip_train, losses_krip_val, losses_krip_test, best_rep_test
     # Krip losses only make sense for regression (category = False)
-    return costs_train, costs_val, costs_test, losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test
+    return costs_train, costs_val, costs_test, losses_krip_train, losses_krip_val, losses_krip_test, best_rep_test

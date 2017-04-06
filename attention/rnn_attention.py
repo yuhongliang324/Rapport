@@ -336,8 +336,9 @@ class RNN_Attention(object):
                 rep = T.tanh(rep)'''
             rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
+        representation = rep
         rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
-        rep = dropout(rep, is_train, drop_ratio=self.drop)
+        rep = dropout(rep, is_train, drop_ratio=self.drop)  # (batch_size, num_class)
 
         if self.n_class > 1:
             prob = T.nnet.softmax(rep)
@@ -359,7 +360,7 @@ class RNN_Attention(object):
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'att': att, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'acc': None, 'loss_krip': None}
+               'acc': None, 'loss_krip': None, 'rep': representation}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC

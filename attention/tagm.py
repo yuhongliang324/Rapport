@@ -118,6 +118,7 @@ class TAGM(object):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
             rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
+        representation = rep
         rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
         rep = dropout(rep, is_train, drop_ratio=self.drop)  # (batch_size, num_class)
 
@@ -141,7 +142,7 @@ class TAGM(object):
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'att': att, 'acc': None, 'loss_krip': None}
+               'att': att, 'acc': None, 'loss_krip': None, 'rep': representation}
         if self.n_class > 1:
             ret['acc'] = acc
         else:

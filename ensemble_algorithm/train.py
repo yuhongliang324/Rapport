@@ -5,10 +5,9 @@ import numpy
 import sys
 sys.path.append('../')
 import argparse
-import os
-import shutil
 from utils import load_split
 from optimize_single import train
+from collections import defaultdict
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
@@ -35,14 +34,9 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         message += '_best3'
     if category:
         message += '_cat'
-    writer = open('results/' + message + '.txt', 'w')
-    dn = os.path.dirname(os.path.abspath(__file__))
-    img_root = os.path.join(dn, '../figs/' + message)
-    if os.path.isdir(img_root):
-        shutil.rmtree(img_root)
-    os.mkdir(img_root)
     vals, tests = load_split()
     print dyad_features.keys()
+    dyad_rep = {}
     for vdyad, tdyad in zip(vals, tests):
         X_val = dyad_features[vdyad]
         y_val = dyad_ratings[vdyad]
@@ -52,7 +46,6 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         y_test = dyad_ratings[tdyad]
         if category:
             y_test = y_test.astype('int32')
-        slices_test = dyad_slices[tdyad]
         feature_list, rating_list = [], []
         for j in xrange(num_dyad):
             if dyads[j] == vdyad or dyads[j] == tdyad:
@@ -81,21 +74,17 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
 
         print X_train.shape, X_val.shape, X_test.shape
 
-        costs_train, costs_val, costs_test,\
-        losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
+        _, _, _, _, _, _, best_rep_test\
             = train(X_train, y_train, X_val, y_val, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
                     final_activation=final_activation, dec=dec, update=update, lamb=lamb, model=model, share=share,
                     category=category, num_epoch=num_epoch)
-
-        for i in xrange(y_test.shape[0]):
-            writer.write(str(tdyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
-                         ',' + str(best_pred_test[i]) + ',' + str(y_test[i]) + '\n')
-    writer.close()
+        dyad_rep[tdyad] = best_rep_test
+    return dyad_slices, dyad_rep, dyad_ratings
 
 
 def test1():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-feat', type=str, default='audio')
+    parser.add_argument('-feat', type=str, default='audio hog')
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-fact', type=str, default=None)
     parser.add_argument('-dec', type=int, default=1)
@@ -125,10 +114,51 @@ def test1():
         normalization = True
     if args.model == 'dan':
         num_epoch = 200
-    cross_validation(feature_name=args.feat, side=feat_side[args.feat], drop=args.drop, final_activation=args.fact,
-                     dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                     category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
 
+    dyad_slices_all, dyad_rep_all, dyad_ratings_all = {}, {}, {}
+    for feat in args.feat.split():
+        dyad_slices, dyad_rep, dyad_ratings = \
+            cross_validation(feature_name=feat, side=feat_side[feat], drop=args.drop, final_activation=args.fact,
+                             dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
+                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
+        for dyad, slices in dyad_slices.items():
+            if dyad not in dyad_slices_all:
+                dyad_slices_all[dyad] = []
+            dyad_slices_all[dyad].append(slices)
+        for dyad, rep in dyad_rep.items():
+            if dyad not in dyad_rep_all:
+                dyad_rep_all[dyad] = []
+            dyad_slices_all[dyad].append(rep)
+        for dyad, ratings in dyad_ratings.items():
+            if dyad not in dyad_ratings_all:
+                dyad_ratings_all[dyad] = []
+            dyad_slices_all[dyad].append(ratings)
+
+    dyad_slices_ensemble = {}
+    dyad_rep_ensemble = {}
+    dyad_ratings_ensemble = {}
+    num_modal = len(args.feat.split())
+    dyads = dyad_slices_all.keys()
+    for dyad in dyads:
+        slices_all = dyad_slices_all[dyad]
+        rep_all = dyad_rep_all[dyad]
+        ratings_all = dyad_ratings_all[dyad]
+        slice_count = defaultdict(int)
+        slice_rep = {}
+        slice_rating = {}
+        for slices, reps, ratings in zip(slices_all, rep_all, ratings_all):
+            for slice, rep, rating in zip(slices, reps, ratings):
+                if slice not in slice_rep:
+                    slice_rep[slice] = []
+                if slice not in slice_rating:
+                    slice_rating[slice] = []
+                slice_rep[slice].append(rep)
+                slice_rating[slice].append(rating)
+                slice_count[slice] += 1
+        for slice, count in slice_count.items():
+            if count < num_modal:
+                continue
+            print 'ratings', slice_rating[slice]
 
 if __name__ == '__main__':
     test1()
