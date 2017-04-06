@@ -136,7 +136,8 @@ class LSTM(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'att': None}
+               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
+               'att': None, 'acc': None, 'loss_krip': None}
         if self.n_class > 1:
             ret['acc'] = acc
         else:
