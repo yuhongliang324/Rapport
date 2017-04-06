@@ -156,6 +156,29 @@ def get_mae(slice_ratings, coder):
     return mae, mae_skyline
 
 
+def get_acc(fn, num_class=3):
+    reader = open(fn)
+    lines = reader.readlines()
+    reader.close()
+    lines = map(lambda x: x.strip(), lines)
+    right = [0 for _ in xrange(num_class)]
+    total = [0 for _ in xrange(num_class)]
+    for line in lines:
+        sp = line.split(',')
+        pred, actual = int(sp[-2]), int(sp[-1])
+        total[pred] += 1
+        if pred == actual:
+            right[pred] += 1
+    right4 = sum(right)
+    total4 = sum(total)
+    for i in xrange(len(right)):
+        right[i] /= float(total[i])
+    for i in xrange(len(right)):
+        print right[i],
+    print
+    print right4 / float(total4)
+
+
 def test1():
     load_gt()
 
@@ -167,7 +190,7 @@ def test2():
 
 def test3():
     slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/result_lstm_hog_lr_share_False_drop_0.0_lamb_0.0_fact_None.txt')
+    coder = get_coder('../results/result_tagm_audio_b_share_False_drop_0.0_lamb_0.0_fact_None_cat.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     mae, mae_skyline = get_mae(slice_ratings, coder)
     r = get_pearson_given_coder(slice_ratings, coder)
@@ -176,6 +199,10 @@ def test3():
     print 'alpha = %f' % alpha
     alpha = get_krip_alpha(slice_ratings)
     print 'alpha_skyline = %f' % alpha
+
+
+def test3_1():
+    get_acc('../results/result_tagm_audio_b_share_False_drop_0.0_lamb_0.0_fact_None_cat.txt')
 
 
 def test4():
@@ -189,5 +216,5 @@ def test4():
 
 
 if __name__ == '__main__':
-    test3()
+    test3_1()
 
