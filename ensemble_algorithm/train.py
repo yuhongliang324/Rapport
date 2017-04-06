@@ -109,18 +109,13 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     normalization = False
-    num_epoch = 60
-    if args.model == 'tagm':
-        normalization = True
-    if args.model == 'dan':
-        num_epoch = 200
 
     dyad_slices_all, dyad_rep_all, dyad_ratings_all = {}, {}, {}
     for feat in args.feat.split():
         dyad_slices, dyad_rep, dyad_ratings = \
             cross_validation(feature_name=feat, side=feat_side[feat], drop=args.drop, final_activation=args.fact,
                              dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
+                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)
         for dyad, slices in dyad_slices.items():
             if dyad not in dyad_slices_all:
                 dyad_slices_all[dyad] = []
