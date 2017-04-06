@@ -1,3 +1,13 @@
+nohup python -u train.py -feat audio -model lstm > ../logs/audio_lstm.out 2>&1 &
+nohup python -u train.py -feat hog -model lstm > ../logs/hog_lstm.out 2>&1 &
+nohup python -u train.py -feat audio -model slstm > ../logs/audio_slstm.out 2>&1 &
+nohup python -u train.py -feat hog -model slstm > ../logs/hog_slstm.out 2>&1 &
+
+nohup python -u train.py -feat audio -model lstm -cat 1 > ../logs/audio_lstm_cat.out 2>&1 &
+nohup python -u train.py -feat hog -model lstm -cat 1 > ../logs/hog_lstm_cat.out 2>&1 &
+nohup python -u train.py -feat audio -model slstm -cat 1 > ../logs/audio_slstm_cat.out 2>&1 &
+nohup python -u train.py -feat hog -model slstm -cat 1 > ../logs/hog_slstm_cat.out 2>&1 &
+
 Ours:
 
 nohup python -u train.py -feat audio -model gru -share 1 > ../logs/audio_gru_share.out 2>&1 &
