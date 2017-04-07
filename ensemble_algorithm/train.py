@@ -164,9 +164,9 @@ def test1():
             if count < num_modal:
                 continue
             slices_ensemble.append(slice)
+            print slice_rating[slice]
             enRating = slice_rating[slice][0]
             enRep = numpy.concatenate(slice_rep[slice])
-            print enRep.shape
             reps_ensemble.append(enRep)
             ratings_ensemble.append(enRating)
         if len(slices_ensemble) < 10:
