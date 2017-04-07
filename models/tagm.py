@@ -111,7 +111,7 @@ class TAGM(object):
         # (num_step, batch_size, hidden_dim)
         H, _ = theano.scan(self.forward, sequences=[X_batch, att],
                            outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        rep = H_att_for[-1]
+        rep = H[-1]
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
         for i in xrange(numW - 1):
