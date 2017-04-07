@@ -119,7 +119,7 @@ class RNN_Attention(object):
         for b in self.bs:
             self.theta.append(b)
 
-        print 'dec =', self.dec, 'model =', self.model, 'lambda =', self.lamb,\
+        print 'dec =', self.dec, 'model = ours +', self.model, 'lambda =', self.lamb,\
             'share =', self.share, '#class =', self.n_class, 'drop =', self.drop, 'update =', self.update
 
         if self.update == 'adam':

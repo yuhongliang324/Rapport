@@ -108,7 +108,7 @@ def test1():
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-fact', type=str, default=None)
     parser.add_argument('-dec', type=int, default=1)
-    parser.add_argument('-update', type=str, default='adam')
+    parser.add_argument('-update', type=str, default='adam2')
     parser.add_argument('-lamb', type=float, default=0.)
     parser.add_argument('-model', type=str, default='ours')
     parser.add_argument('-share', type=int, default=0)
@@ -135,11 +135,11 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     normalization = False
-    num_epoch = 60
+    num_epoch = 40
     if args.model == 'tagm':
         normalization = True
     if args.model == 'dan':
-        num_epoch = 200
+        num_epoch = 100
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                      category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)

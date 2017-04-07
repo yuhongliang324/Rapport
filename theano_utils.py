@@ -25,7 +25,7 @@ def Adam(cost, params, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
     return updates
 
 
-def Adam2(cost, params, lr=0.001, b1=0.9, b2=0.999, e=1e-8):
+def Adam2(cost, params, lr=0.0004, b1=0.9, b2=0.999, e=1e-8):
     """
     no bias init correction
     """
