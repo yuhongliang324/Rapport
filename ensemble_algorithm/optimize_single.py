@@ -146,7 +146,6 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
         for iter_index in xrange(num_iter):
             start, end = iter_index * batch_size, min((iter_index + 1) * batch_size, n_train)
             cost, tmp, pred, rep = train_model(start, end, 1)
-            print rep.shape
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
