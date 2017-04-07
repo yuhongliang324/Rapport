@@ -133,13 +133,10 @@ class TAGM(object):
             loss_sq = pred - y_batch
             loss_sq = T.mean(loss_sq ** 2)  # 1/batch_size (pred_i - y_i)^2
             # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
-            '''
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
             loss_krip = loss_sq / Z
-            loss = loss_krip''' # !!!
-            loss = loss_sq
-            loss_krip = loss
+            loss = loss_krip
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
