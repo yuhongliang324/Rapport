@@ -81,6 +81,7 @@ class dan(object):
             else:
                 rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
+        representation = rep
         rep = T.dot(rep, self.Ws[-1]) + self.bs[-1]
         rep = dropout(rep, is_train, drop_ratio=self.drop)
 
@@ -104,7 +105,7 @@ class dan(object):
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'acc': None, 'prob': None, 'att': None, 'loss_krip': loss}
+               'acc': None, 'prob': None, 'att': None, 'loss_krip': loss, 'rep': representation}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC
