@@ -107,11 +107,13 @@ def test1():
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
     normalization = False
+    if args.model == 'tagm' or args.model == 'dan':
+        normalization = True
 
     dyad_slices_all, dyad_rep_all, dyad_ratings_all = {}, {}, {}
     for feat in args.feat.split():
         num_epoch = 60
-        if feat == 'dan':
+        if args.model == 'dan':
             num_epoch = 200
         dyad_slices, dyad_rep, dyad_ratings = \
             cross_validation(feature_name=feat, side='ba', drop=args.drop, final_activation=args.fact,

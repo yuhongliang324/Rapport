@@ -20,6 +20,14 @@ nohup python -u train.py -feat hog -model ours -cat 1 > ../logs/hog_ours_cat.out
 nohup python -u train.py -feat audio -model dan > ../logs/audio_dan.out 2>&1 &
 nohup python -u train.py -feat hog -model dan > ../logs/hog_dan.out 2>&1 &
 
+nohup python -u train.py -model ours > ../logs/ours_ensemble.out 2>&1 &
+nohup python -u train.py -model lstm > ../logs/lstm_ensemble.out 2>&1 &
+nohup python -u train.py -model slstm > ../logs/slstm_ensemble.out 2>&1 &
+
+nohup python -u train.py -model tagm > ../logs/tagm_ensemble.out 2>&1 &
+nohup python -u train.py -model dan > ../logs/dan_ensemble.out 2>&1 &
+
+
 Ours:
 
 nohup python -u train.py -feat audio -model gru -share 1 > ../logs/audio_gru_share.out 2>&1 &
