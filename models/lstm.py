@@ -6,7 +6,7 @@ import theano
 import theano.tensor as T
 import numpy
 from theano.tensor.shared_randomstreams import RandomStreams
-from theano_utils import Adam, Adam2, AdaGrad, RMSprop, SGD, dropout
+from theano_utils import Adam, Adam2, RMSprop, SGD, dropout
 
 
 class LSTM(object):
@@ -15,33 +15,57 @@ class LSTM(object):
     # Change lamb to smaller value for hog
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
-    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., update='adam2',
-                 drop=0.2, bidirection=False):
+    def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., model='gru', share=False, update='adam2',
+                 drop=0.2):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
-        self.bidirection = bidirection
-        if self.bidirection:
-            self.mlp_layers = [2 * hidden_dim] + mlp_layers
-        else:
-            self.mlp_layers = [hidden_dim] + mlp_layers
+        self.model = model
+        self.share = share
+        self.mlp_layers = [2 * hidden_dim] + mlp_layers
         self.drop = drop
         self.update = update
         self.rng = numpy.random.RandomState(1234)
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
+        if self.model == 'lstm':
+            self.W_dec_left_i, self.b_dec_left_i, self.U_dec_left_i, \
+            self.W_dec_left_f, self.b_dec_left_f, self.U_dec_left_f, \
+            self.W_dec_left_o, self.b_dec_left_o, self.U_dec_left_o, \
+            self.W_dec_left_c, self.b_dec_left_c, self.U_dec_left_c = self.create_lstm_para()
+            self.theta = [self.W_dec_left_i, self.b_dec_left_i, self.U_dec_left_i,
+                          self.W_dec_left_f, self.b_dec_left_f, self.U_dec_left_f,
+                          self.W_dec_left_o, self.b_dec_left_o, self.U_dec_left_o,
+                          self.W_dec_left_c, self.b_dec_left_c, self.U_dec_left_c]
+            if not share:
+                self.W_dec_right_i, self.b_dec_right_i, self.U_dec_right_i, \
+                self.W_dec_right_f, self.b_dec_right_f, self.U_dec_right_f, \
+                self.W_dec_right_o, self.b_dec_right_o, self.U_dec_right_o, \
+                self.W_dec_right_c, self.b_dec_right_c, self.U_dec_right_c = self.create_lstm_para()
+                self.theta += [self.W_dec_right_i, self.b_dec_right_i, self.U_dec_right_i,
+                               self.W_dec_right_f, self.b_dec_right_f, self.U_dec_right_f,
+                               self.W_dec_right_o, self.b_dec_right_o, self.U_dec_right_o,
+                               self.W_dec_right_c, self.b_dec_right_c, self.U_dec_right_c]
+        else:
+            self.W_dec_left_z, self.b_dec_left_z, self.U_dec_left_z, \
+            self.W_dec_left_r, self.b_dec_left_r, self.U_dec_left_r, \
+            self.W_dec_left_h, self.b_dec_left_h, self.U_dec_left_h = self.create_gru_para()
+            self.theta = [self.W_dec_left_z, self.U_dec_left_z, self.b_dec_left_z,
+                          self.W_dec_left_r, self.U_dec_left_r, self.b_dec_left_r,
+                          self.W_dec_left_h, self.U_dec_left_h, self.b_dec_left_h]
+            if not share:
+                self.W_dec_right_z, self.b_dec_right_z, self.U_dec_right_z, \
+                self.W_dec_right_r, self.b_dec_right_r, self.U_dec_right_r, \
+                self.W_dec_right_h, self.b_dec_right_h, self.U_dec_right_h = self.create_gru_para()
+                self.theta += [self.W_dec_right_z, self.U_dec_right_z, self.b_dec_right_z,
+                               self.W_dec_right_r, self.U_dec_right_r, self.b_dec_right_r,
+                               self.W_dec_right_h, self.U_dec_right_h, self.b_dec_right_h]
 
-        self.W_i, self.b_i = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_i, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_f, self.b_f = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_f, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_o, self.b_o = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_o, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-        self.W_c, self.b_c = self.init_para(self.input_dim, self.hidden_dim)
-        self.U_c, _ = self.init_para(self.hidden_dim, self.hidden_dim)
-
-        self.theta = [self.W_i, self.b_i, self.U_i, self.W_f, self.b_f, self.U_f, self.W_o, self.b_o, self.U_o,
-                      self.W_c, self.b_c, self.U_c]
+        self.w_att = numpy.asarray(self.rng.uniform(
+            low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
+            size=(self.hidden_dim * 2,)), dtype=theano.config.floatX)
+        self.w_att = theano.shared(value=self.w_att, borrow=True)
+        self.theta.append(self.w_att)
 
         self.Ws, self.bs = [], []
         num_layers = len(self.mlp_layers)
@@ -54,16 +78,37 @@ class LSTM(object):
         for b in self.bs:
             self.theta.append(b)
 
+        print 'model =', self.model, 'lambda =', self.lamb,\
+            'share =', self.share, '#class =', self.n_class, 'drop =', self.drop, 'update =', self.update
+
         if self.update == 'adam':
             self.optimize = Adam
         elif self.update == 'adam2':
             self.optimize = Adam2
-        elif self.update == 'adagrad':
-            self.optimize = AdaGrad
         elif self.update == 'rmsprop':
             self.optimize = RMSprop
         else:
             self.optimize = SGD
+
+    def create_gru_para(self):
+        W_z, b_z = self.init_para(self.input_dim, self.hidden_dim)
+        U_z, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        W_r, b_r = self.init_para(self.input_dim, self.hidden_dim)
+        U_r, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        W_h, b_h = self.init_para(self.input_dim, self.hidden_dim)
+        U_h, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        return [W_z, b_z, U_z, W_r, b_r, U_r, W_h, b_h, U_h]
+
+    def create_lstm_para(self):
+        W_i, b_i = self.init_para(self.input_dim, self.hidden_dim)
+        U_i, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        W_f, b_f = self.init_para(self.input_dim, self.hidden_dim)
+        U_f, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        W_o, b_o = self.init_para(self.input_dim, self.hidden_dim)
+        U_o, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        W_c, b_c = self.init_para(self.input_dim, self.hidden_dim)
+        U_c, _ = self.init_para(self.hidden_dim, self.hidden_dim)
+        return [W_i, b_i, U_i, W_f, b_f, U_f, W_o, b_o, U_o, W_c, b_c, U_c]
 
     def init_para(self, d1, d2):
         W_values = numpy.asarray(self.rng.uniform(
@@ -78,11 +123,34 @@ class LSTM(object):
         l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
         return l2
 
-    def forward(self, X_t, C_tm1, H_tm1):
-        i_t = T.nnet.sigmoid(T.dot(X_t, self.W_i) + T.dot(H_tm1, self.U_i) + self.b_i)
-        f_t = T.nnet.sigmoid(T.dot(X_t, self.W_f) + T.dot(H_tm1, self.U_f) + self.b_f)
-        o_t = T.nnet.sigmoid(T.dot(X_t, self.W_o) + T.dot(H_tm1, self.U_o) + self.b_o)
-        C_t = T.tanh(T.dot(X_t, self.W_c) + T.dot(H_tm1, self.U_c) + self.b_c)
+    def forward_dec_GRU(self, X_t, H_tm1):
+        Z_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_left_z) + T.dot(H_tm1, self.U_dec_left_z) + self.b_dec_left_z)
+        R_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_left_r) + T.dot(H_tm1, self.U_dec_left_r) + self.b_dec_left_r)
+        H_t = Z_t * H_tm1 + (1. - Z_t) * T.tanh(T.dot(X_t, self.W_dec_left_h) + T.dot(R_t * H_tm1, self.U_dec_left_h) +
+                                                self.b_dec_left_h)
+        return H_t
+
+    def backward_dec_GRU(self, X_t, H_tm1):
+        Z_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_right_z) + T.dot(H_tm1, self.U_dec_right_z) + self.b_dec_right_z)
+        R_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_right_r) + T.dot(H_tm1, self.U_dec_right_r) + self.b_dec_right_r)
+        H_t = Z_t * H_tm1 + (1. - Z_t) * T.tanh(T.dot(X_t, self.W_dec_right_h) + T.dot(R_t * H_tm1, self.U_dec_right_h) +
+                                                self.b_dec_right_h)
+        return H_t
+
+    def forward_dec_LSTM(self, X_t, C_tm1, H_tm1):
+        i_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_left_i) + T.dot(H_tm1, self.U_dec_left_i) + self.b_dec_left_i)
+        f_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_left_f) + T.dot(H_tm1, self.U_dec_left_f) + self.b_dec_left_f)
+        o_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_left_o) + T.dot(H_tm1, self.U_dec_left_o) + self.b_dec_left_o)
+        C_t = T.tanh(T.dot(X_t, self.W_dec_left_c) + T.dot(H_tm1, self.U_dec_left_c) + self.b_dec_left_c)
+        C_t = i_t * C_t + f_t * C_tm1
+        H_t = o_t * T.tanh(C_t)
+        return C_t, H_t
+
+    def backward_dec_LSTM(self, X_t, C_tm1, H_tm1):
+        i_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_right_i) + T.dot(H_tm1, self.U_dec_right_i) + self.b_dec_right_i)
+        f_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_right_f) + T.dot(H_tm1, self.U_dec_right_f) + self.b_dec_right_f)
+        o_t = T.nnet.sigmoid(T.dot(X_t, self.W_dec_right_o) + T.dot(H_tm1, self.U_dec_right_o) + self.b_dec_right_o)
+        C_t = T.tanh(T.dot(X_t, self.W_dec_right_c) + T.dot(H_tm1, self.U_dec_right_c) + self.b_dec_right_c)
         C_t = i_t * C_t + f_t * C_tm1
         H_t = o_t * T.tanh(C_t)
         return C_t, H_t
@@ -96,17 +164,42 @@ class LSTM(object):
 
         batch_size = T.shape(y_batch)[0]
 
-        # both: (n_step, batch_size, hidden_dim)
-        [_, H], _ = theano.scan(self.forward, sequences=X_batch,
-                                outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                              T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-        rep = H[-1]  # (batch_size, hidden_dim)
-        if self.bidirection:
-            [_, H_back], _ = theano.scan(self.forward, sequences=X_batch[::-1],
-                                         outputs_info=[T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX),
-                                                       T.zeros((batch_size, self.hidden_dim), dtype=theano.config.floatX)])
-            H_back = H_back[::-1]
-            rep = T.concatenate([rep, H_back[0]], axis=1)  # (batch_size, 2 * hidden_dim)
+        if self.model == 'lstm':
+            [_, H_dec_forward], _ = theano.scan(self.forward_dec_LSTM, sequences=X_batch,
+                                                outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                      dtype=theano.config.floatX),
+                                                              T.zeros((batch_size, self.hidden_dim),
+                                                                      dtype=theano.config.floatX)])
+            if self.share:
+                [_, H_dec_backward], _ = theano.scan(self.forward_dec_LSTM, sequences=X_batch[::-1],
+                                                     outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX),
+                                                                   T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX)])
+            else:
+                [_, H_dec_backward], _ = theano.scan(self.backward_dec_LSTM, sequences=X_batch[::-1],
+                                                     outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX),
+                                                                   T.zeros((batch_size, self.hidden_dim),
+                                                                           dtype=theano.config.floatX)])
+        else:
+            H_dec_forward, _ = theano.scan(self.forward_dec_GRU, sequences=X_batch,
+                                           outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                 dtype=theano.config.floatX)])
+            if self.share:
+                H_dec_backward, _ = theano.scan(self.forward_dec_GRU, sequences=X_batch[::-1],
+                                                outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                      dtype=theano.config.floatX)])
+            else:
+                H_dec_backward, _ = theano.scan(self.backward_dec_GRU, sequences=X_batch[::-1],
+                                                outputs_info=[T.zeros((batch_size, self.hidden_dim),
+                                                                      dtype=theano.config.floatX)])
+        H_dec_backward = H_dec_backward[::-1]
+        H_tmp = T.concatenate([H_dec_forward, H_dec_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
+
+        # Using the mean step
+        # Try with another way: using the last step
+        rep = T.mean(H_tmp, axis=0)  # (batch_size, 2 * hidden_dim)
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
@@ -137,10 +230,11 @@ class LSTM(object):
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
-               'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates, 'rep': representation,
-               'att': None, 'acc': None, 'loss_krip': None}
+               'att': None, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
+               'acc': None, 'loss_krip': None, 'rep': representation}
         if self.n_class > 1:
             ret['acc'] = acc
+            ret['prob'] = prob  # For computing AUC
         else:
             ret['loss_krip'] = loss_krip
         return ret

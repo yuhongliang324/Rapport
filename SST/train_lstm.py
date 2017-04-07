@@ -5,7 +5,7 @@ import sys
 import theano
 
 sys.path.append('../')
-from models.lstm import LSTM
+from models.lstm_old import LSTM
 import argparse
 from utils import load_data, train_pkl, valid_pkl, test_pkl, num_class
 

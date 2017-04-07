@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error
 
 sys.path.append('../')
 from models.rnn_attention import RNN_Attention
-from models.lstm import LSTM
+from models.lstm_old import LSTM
 from models.tagm import TAGM
 from models.dan import dan
 
