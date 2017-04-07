@@ -25,6 +25,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         dyad_features, dyad_ratings, dyad_slices = load_vision(sample_10_root, feature_name=feature_name,
                                                                side=side, normalization=normalization,
                                                                best3=best3, category=category)
+    print 'slices', dyad_slices.values()[0]
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
     num_dyad = len(dyads)
