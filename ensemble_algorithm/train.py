@@ -9,6 +9,7 @@ from utils import load_split
 from optimize_single import train
 from collections import defaultdict
 from cross_validation_ensemble import cross_validation as cv2
+import theano
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
@@ -163,7 +164,7 @@ def test1():
             continue
         dyad_slices_ensemble[dyad] = slices_ensemble
         dyad_reps_ensemble[dyad] = numpy.stack(reps_ensemble, axis=0)
-        dyad_ratings_ensemble[dyad] = ratings_ensemble
+        dyad_ratings_ensemble[dyad] = numpy.asarray(ratings_ensemble, dtype=theano.config.floatX)
 
     message = 'ensemble_' + args.model + '_' + args.feat + '_drop_' + str(args.drop) + '_lamb_' + str(args.lamb)
 
