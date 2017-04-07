@@ -130,7 +130,7 @@ def test1():
             dyad_ratings_all[dyad].append(ratings)
 
     dyad_slices_ensemble = {}
-    dyad_rep_ensemble = {}
+    dyad_reps_ensemble = {}
     dyad_ratings_ensemble = {}
     num_modal = len(args.feat.split())
     dyads = dyad_slices_all.keys()
@@ -150,10 +150,24 @@ def test1():
                 slice_rep[slice].append(rep)
                 slice_rating[slice].append(rating)
                 slice_count[slice] += 1
+        slices_ensemble = []
+        reps_ensemble = []
+        ratings_ensemble = []
         for slice, count in slice_count.items():
             if count < num_modal:
                 continue
-            print 'ratings', slice_rating[slice]
+            slices_ensemble.append(slice)
+            enRating = slice_rating[slice][0]
+            enRep = numpy.concatenate(slice_rep[slice])
+            print enRep.shape
+            reps_ensemble.append(enRep)
+            ratings_ensemble.append(enRating)
+        dyad_slices_ensemble[dyad] = slices_ensemble
+        dyad_reps_ensemble[dyad] = numpy.stack(reps_ensemble, axis=0)
+        dyad_ratings_ensemble[dyad] = ratings_ensemble
+    print len(dyad_slices_ensemble)
+    for dyad, rep in dyad_reps_ensemble.items():
+        print dyad, rep.shape
 
 if __name__ == '__main__':
     test1()
