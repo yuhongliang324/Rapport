@@ -123,12 +123,11 @@ def test1():
         for dyad, rep in dyad_rep.items():
             if dyad not in dyad_rep_all:
                 dyad_rep_all[dyad] = []
-            dyad_slices_all[dyad].append(rep)
+            dyad_rep_all[dyad].append(rep)
         for dyad, ratings in dyad_ratings.items():
             if dyad not in dyad_ratings_all:
                 dyad_ratings_all[dyad] = []
-            dyad_slices_all[dyad].append(ratings)
-    print dyad_slices_all
+            dyad_ratings_all[dyad].append(ratings)
 
     dyad_slices_ensemble = {}
     dyad_rep_ensemble = {}
