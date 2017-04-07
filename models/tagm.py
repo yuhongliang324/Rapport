@@ -137,7 +137,7 @@ class TAGM(object):
             Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
             Z /= batch_size * batch_size
             loss_krip = loss_sq / Z
-            loss = loss_krip'''
+            loss = loss_krip''' # !!!
             loss = loss_sq
             loss_krip = loss
         cost = loss + self.l2()
