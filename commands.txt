@@ -1,21 +1,11 @@
 nohup python -u train.py -feat audio -model lstm > ../logs/audio_lstm.out 2>&1 &
 nohup python -u train.py -feat hog -model lstm > ../logs/hog_lstm.out 2>&1 &
-nohup python -u train.py -feat audio -model slstm > ../logs/audio_slstm.out 2>&1 &
-nohup python -u train.py -feat hog -model slstm > ../logs/hog_slstm.out 2>&1 &
-
-nohup python -u train.py -feat audio -model lstm -cat 1 > ../logs/audio_lstm_cat.out 2>&1 &
-nohup python -u train.py -feat hog -model lstm -cat 1 > ../logs/hog_lstm_cat.out 2>&1 &
-nohup python -u train.py -feat audio -model slstm -cat 1 > ../logs/audio_slstm_cat.out 2>&1 &
-nohup python -u train.py -feat hog -model slstm -cat 1 > ../logs/hog_slstm_cat.out 2>&1 &
 
 nohup python -u train.py -feat audio -model tagm > ../logs/audio_tagm.out 2>&1 &
 nohup python -u train.py -feat hog -model tagm > ../logs/hog_tagm.out 2>&1 &
 
-nohup python -u train.py -feat audio -model tagm -cat 1 > ../logs/audio_tagm_cat.out 2>&1 &
-nohup python -u train.py -feat hog -model tagm -cat 1 > ../logs/hog_tagm_cat.out 2>&1 &
-
-nohup python -u train.py -feat audio -model ours -cat 1 > ../logs/audio_ours_cat.out 2>&1 &
-nohup python -u train.py -feat hog -model ours -cat 1 > ../logs/hog_ours_cat.out 2>&1 &
+nohup python -u train.py -feat audio -model ours > ../logs/audio_ours.out 2>&1 &
+nohup python -u train.py -feat hog -model ours > ../logs/hog_ours.out 2>&1 &
 
 nohup python -u train.py -feat audio -model dan > ../logs/audio_dan.out 2>&1 &
 nohup python -u train.py -feat hog -model dan > ../logs/hog_dan.out 2>&1 &
