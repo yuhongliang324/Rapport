@@ -77,16 +77,16 @@ class TAGM(object):
         return l2
 
     def forward_attention(self, X_t, H_tm1):
-        H_t = T.tanh(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
+        H_t = T.nnet.relu(T.dot(X_t, self.W_left) + T.dot(H_tm1, self.U_left) + self.b_left)
         return H_t
 
     def backward_attention(self, X_t, H_tm1):
-        H_t = T.tanh(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
+        H_t = T.nnet.relu(T.dot(X_t, self.W_right) + T.dot(H_tm1, self.U_right) + self.b_right)
         return H_t
 
     # A_t: (batch_size,)
     def forward(self, X_t, A_t, H_tm1):
-        H_tp = T.tanh(T.dot(X_t, self.W) + T.dot(H_tm1, self.U) + self.b)  # (batch_size, hid_size)
+        H_tp = T.nnet.relu(T.dot(X_t, self.W) + T.dot(H_tm1, self.U) + self.b)  # (batch_size, hid_size)
         H_t = ((1. - A_t) * H_tm1.T + A_t * H_tp.T).T
         return H_t
 
