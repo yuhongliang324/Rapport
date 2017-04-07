@@ -158,6 +158,7 @@ def test1():
                 continue
             slices_ensemble.append(slice)
             enRating = slice_rating[slice][0]
+            print [r.shape for r in slice_rep[slice]]
             enRep = numpy.concatenate(slice_rep[slice])
             print enRep.shape
             reps_ensemble.append(enRep)
