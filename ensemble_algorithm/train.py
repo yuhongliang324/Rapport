@@ -12,7 +12,7 @@ from collections import defaultdict
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
                      model='ours', share=False, best3=False, category=False, normalization=False, num_epoch=60):
-
+    print feature_name, side
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
     from data_preprocessing.load_data import load_vision, load_audio
@@ -103,7 +103,6 @@ def test1():
             lamb = 1e-4
         else:
             lamb = 5e-5
-    print args.feat
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
@@ -116,6 +115,7 @@ def test1():
             cross_validation(feature_name=feat, side=feat_side[feat], drop=args.drop, final_activation=args.fact,
                              dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                              category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)
+        print len(dyad_slices), len(dyad_rep), len(dyad_ratings)
         for dyad, slices in dyad_slices.items():
             if dyad not in dyad_slices_all:
                 dyad_slices_all[dyad] = []
@@ -128,6 +128,7 @@ def test1():
             if dyad not in dyad_ratings_all:
                 dyad_ratings_all[dyad] = []
             dyad_slices_all[dyad].append(ratings)
+    print dyad_slices_all
 
     dyad_slices_ensemble = {}
     dyad_rep_ensemble = {}
