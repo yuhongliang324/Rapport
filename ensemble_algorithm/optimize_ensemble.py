@@ -56,10 +56,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, update='ada
           batch_size=64, num_epoch=60, lamb=0., category=False):
 
     n_train = X_train.shape[0]
-    input_dim = X_train.shape[2]
-    X_train = X_train.transpose([1, 0, 2])
-    X_val = X_val.transpose([1, 0, 2])
-    X_test = X_test.transpose([1, 0, 2])
+    input_dim = X_train.shape[1]
 
     X_train_shared = theano.shared(X_train, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
@@ -95,21 +92,21 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, update='ada
     train_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                   outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: X_train_shared[:, start_symbol: end_symbol, :],
+                                      X_batch: X_train_shared[start_symbol: end_symbol],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     valid_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                   outputs=outputs,
                                   givens={
-                                      X_batch: X_val_shared[:, start_symbol: end_symbol, :],
+                                      X_batch: X_val_shared[start_symbol: end_symbol],
                                       y_batch: y_val_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
     test_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                  outputs=outputs,
                                  givens={
-                                     X_batch: X_test_shared[:, start_symbol: end_symbol, :],
+                                     X_batch: X_test_shared[start_symbol: end_symbol],
                                      y_batch: y_test_shared[start_symbol: end_symbol]},
                                  on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 3'
