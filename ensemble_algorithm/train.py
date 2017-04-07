@@ -162,6 +162,8 @@ def test1():
             print enRep.shape
             reps_ensemble.append(enRep)
             ratings_ensemble.append(enRating)
+        if len(slices_ensemble) < 10:
+            continue
         dyad_slices_ensemble[dyad] = slices_ensemble
         dyad_reps_ensemble[dyad] = numpy.stack(reps_ensemble, axis=0)
         dyad_ratings_ensemble[dyad] = ratings_ensemble
