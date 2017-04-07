@@ -125,8 +125,6 @@ def test1():
             if dyad not in dyad_ratings_all:
                 dyad_ratings_all[dyad] = []
             dyad_ratings_all[dyad].append(ratings)
-    for dyad, rep_all in dyad_rep_all.items():
-        print dyad, [r.shape for r in rep_all]
 
     dyad_slices_ensemble = {}
     dyad_reps_ensemble = {}
@@ -157,7 +155,6 @@ def test1():
             if count < num_modal:
                 continue
             slices_ensemble.append(slice)
-            print slice_rating[slice]
             enRating = slice_rating[slice][0]
             enRep = numpy.concatenate(slice_rep[slice])
             reps_ensemble.append(enRep)
