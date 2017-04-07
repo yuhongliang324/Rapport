@@ -115,7 +115,8 @@ def test1():
             cross_validation(feature_name=feat, side=feat_side[feat], drop=args.drop, final_activation=args.fact,
                              dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                              category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)
-        print len(dyad_slices), len(dyad_rep), len(dyad_ratings)
+        for dyad, rep in dyad_rep.items():
+            print dyad, rep.shape
         for dyad, slices in dyad_slices.items():
             if dyad not in dyad_slices_all:
                 dyad_slices_all[dyad] = []
