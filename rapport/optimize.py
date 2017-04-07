@@ -59,9 +59,10 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
     return cost_avg, all_pred
 
 
-# model name can be added "-only" as suffix
+# activation is only for tagm
 def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activation=None, dec=True, update='adam',
-          hidden_dim=None, batch_size=64, num_epoch=60, lamb=0., model='ours', share=False, category=False):
+          hidden_dim=None, batch_size=64, num_epoch=60, lamb=0., model='ours', share=False, category=False,
+          activation='tanh'):
 
     n_train = X_train.shape[0]
     input_dim = X_train.shape[2]
@@ -85,7 +86,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
         ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, drop=drop, final_activation=final_activation,
                            update=update, lamb=lamb, model='lstm', share=share)
     elif model == 'tagm':
-        ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop)
+        ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop, activation=activation)
     elif model == 'dan':
         ra = dan([input_dim, int(0.5 * input_dim), n_class], lamb=lamb, update=update, activation='tanh', drop=drop)
     else:

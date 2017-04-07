@@ -82,11 +82,18 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
 
         print X_train.shape, X_val.shape, X_test.shape
 
+        activation = None
+        if model == 'tagm':
+            if feature_name == 'hog':
+                activation = 'relu'
+            else:
+                activation = 'tanh'
+
         costs_train, costs_val, costs_test,\
         losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
             = train(X_train, y_train, X_val, y_val, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
                     final_activation=final_activation, dec=dec, update=update, lamb=lamb, model=model, share=share,
-                    category=category, num_epoch=num_epoch)
+                    category=category, num_epoch=num_epoch, activation=activation)
 
         img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
         if category:
