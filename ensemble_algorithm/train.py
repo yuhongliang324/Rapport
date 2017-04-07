@@ -112,7 +112,7 @@ def test1():
     dyad_slices_all, dyad_rep_all, dyad_ratings_all = {}, {}, {}
     for feat in args.feat.split():
         dyad_slices, dyad_rep, dyad_ratings = \
-            cross_validation(feature_name=feat, side=feat_side[feat], drop=args.drop, final_activation=args.fact,
+            cross_validation(feature_name=feat, side='ba', drop=args.drop, final_activation=args.fact,
                              dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                              category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)
         for dyad, slices in dyad_slices.items():
@@ -146,8 +146,6 @@ def test1():
             for slice, rep, rating in zip(slices, reps, ratings):
                 if slice not in slice_rep:
                     slice_rep[slice] = []
-                else:
-                    print 'origin', slice_rep[slice][0].shape
                 if slice not in slice_rating:
                     slice_rating[slice] = []
                 slice_rep[slice].append(rep)
@@ -161,7 +159,6 @@ def test1():
                 continue
             slices_ensemble.append(slice)
             enRating = slice_rating[slice][0]
-            # print [r.shape for r in slice_rep[slice]]
             enRep = numpy.concatenate(slice_rep[slice])
             print enRep.shape
             reps_ensemble.append(enRep)
