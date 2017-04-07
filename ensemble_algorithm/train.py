@@ -30,7 +30,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     dyads = dyad_features.keys()
     hidden_dim = feature_hidden[feature_name]
     num_dyad = len(dyads)
-    message = model + '_' + feature_name + '_' + side + '_share_' + str(share) + '_drop_' + str(drop)\
+    message = model + '_' + feature_name.replace(' ', '+') + '_' + side + '_share_' + str(share) + '_drop_' + str(drop)\
               + '_lamb_' + str(lamb) + '_fact_' + str(final_activation)
     if best3:
         message += '_best3'
@@ -110,10 +110,13 @@ def test1():
 
     dyad_slices_all, dyad_rep_all, dyad_ratings_all = {}, {}, {}
     for feat in args.feat.split():
+        num_epoch = 60
+        if feat == 'dan':
+            num_epoch = 200
         dyad_slices, dyad_rep, dyad_ratings = \
             cross_validation(feature_name=feat, side='ba', drop=args.drop, final_activation=args.fact,
                              dec=args.dec, update=args.update, lamb=args.lamb, model=args.model, share=args.share,
-                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)  # !!! epoch
+                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
         for dyad, slices in dyad_slices.items():
             if dyad not in dyad_slices_all:
                 dyad_slices_all[dyad] = []
@@ -169,7 +172,7 @@ def test1():
     message = 'ensemble_' + args.model + '_' + args.feat + '_drop_' + str(args.drop) + '_lamb_' + str(args.lamb)
 
     cv2(dyad_slices_ensemble, dyad_reps_ensemble, dyad_ratings_ensemble,
-        message, update=args.update, lamb=args.lamb, drop=args.drop, category=args.cat, num_epoch=2)  # !!! epoch
+        message, update=args.update, lamb=args.lamb, drop=args.drop, category=args.cat, num_epoch=20)
 
 if __name__ == '__main__':
     test1()
