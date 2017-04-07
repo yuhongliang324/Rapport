@@ -63,7 +63,7 @@ def cross_validation(feature_name='hog', side='b', num_hidlayer=1, drop=0.5,
         slices_test = dyad_slices[tdyad]
         feature_list, rating_list = [], []
         for j in xrange(num_dyad):
-            if j == vdyad or j == tdyad:
+            if dyads[j] == vdyad or dyads[j] == tdyad:
                 continue
             feature_list.append(dyad_features[dyads[j]])
             rating_list.append(dyad_ratings[dyads[j]])
