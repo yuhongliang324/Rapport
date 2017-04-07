@@ -1,17 +1,19 @@
 __author__ = 'yuhongliang324'
 
 from math import sqrt
+import sys
+
 import numpy
 import theano
 import theano.tensor as T
 from sklearn.metrics import mean_squared_error
 
-from rnn_attention import RNN_Attention
-import sys
+from models.rnn_attention import RNN_Attention
+
 sys.path.append('../')
-from SST.lstm import LSTM
-from tagm import TAGM
-from baselines.dan import dan
+from models.lstm import LSTM
+from models.tagm import TAGM
+from models.dan import dan
 
 
 def eval(y_actual, y_predicted, category=False):

@@ -1,14 +1,16 @@
 __author__ = 'yuhongliang324'
 
+import sys
+
 import numpy
 import theano
 import theano.tensor as T
 
-from dan import dan
-import sys
+from models.dan import dan
+
 sys.path.append('../')
 
-from attention.optimize import eval
+from rapport.optimize import eval
 
 
 def validate(val_model, y_val, costs_val, batch_size=32, category=False):

@@ -1,11 +1,13 @@
 __author__ = 'yuhongliang324'
 
 from math import sqrt
+
 import numpy
 import theano
 import theano.tensor as T
 from sklearn.metrics import mean_squared_error
-from ensemble_model import Ensemble
+
+from models.ensemble_model import Ensemble
 
 
 def eval(y_actual, y_predicted, category=False):
