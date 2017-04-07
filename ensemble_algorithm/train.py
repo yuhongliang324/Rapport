@@ -8,6 +8,7 @@ import argparse
 from utils import load_split
 from optimize_single import train
 from collections import defaultdict
+from cross_validation_ensemble import cross_validation as cv2
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
@@ -100,14 +101,6 @@ def test1():
     parser.add_argument('-cat', type=int, default=0)
     parser.add_argument('-best3', type=int, default=0)
     args = parser.parse_args()
-    feat_side = {'audio': 'b', 'gemo': 'b', 'au': 'b', 'hog': 'lr'}
-    if args.lamb >= 0:
-        lamb = args.lamb
-    else:
-        if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            lamb = 1e-4
-        else:
-            lamb = 5e-5
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
@@ -118,8 +111,8 @@ def test1():
     for feat in args.feat.split():
         dyad_slices, dyad_rep, dyad_ratings = \
             cross_validation(feature_name=feat, side='ba', drop=args.drop, final_activation=args.fact,
-                             dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)
+                             dec=args.dec, update=args.update, lamb=args.lamb, model=args.model, share=args.share,
+                             category=args.cat, best3=args.best3, normalization=normalization, num_epoch=2)  # !!! epoch
         for dyad, slices in dyad_slices.items():
             if dyad not in dyad_slices_all:
                 dyad_slices_all[dyad] = []
@@ -174,9 +167,11 @@ def test1():
         dyad_slices_ensemble[dyad] = slices_ensemble
         dyad_reps_ensemble[dyad] = numpy.stack(reps_ensemble, axis=0)
         dyad_ratings_ensemble[dyad] = ratings_ensemble
-    print len(dyad_slices_ensemble)
-    for dyad, rep in dyad_reps_ensemble.items():
-        print dyad, rep.shape
+
+    message = 'ensemble_' + args.model + '_' + args.feat + '_drop_' + str(args.drop) + '_lamb_' + str(args.lamb)
+
+    cv2(dyad_slices_ensemble, dyad_reps_ensemble, dyad_ratings_ensemble,
+        message, update=args.update, lamb=args.lamb, drop=args.drop, category=args.cat, num_epoch=2)  # !!! epoch
 
 if __name__ == '__main__':
     test1()
