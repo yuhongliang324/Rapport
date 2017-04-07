@@ -11,7 +11,7 @@ from sklearn.metrics import mean_squared_error
 from models.rnn_attention import RNN_Attention
 
 sys.path.append('../')
-from models.lstm_old import LSTM
+from models.lstm import LSTM
 from models.tagm import TAGM
 from models.dan import dan
 
@@ -89,10 +89,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     elif model == 'dan':
         ra = dan([input_dim, n_class], lamb=lamb, update=update, activation='tanh', drop=drop)
     else:
-        if model.startswith('s'):
-            ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, update='adam2', drop=drop, bidirection=False)
-        else:
-            ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, update='adam2', drop=drop, bidirection=True)
+        ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, model=model, share=share, update=update, drop=0.2)
     symbols = ra.build_model()
 
     X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
