@@ -143,10 +143,11 @@ def test1():
         slice_rep = {}
         slice_rating = {}
         for slices, reps, ratings in zip(slices_all, rep_all, ratings_all):
-            print reps.shape
             for slice, rep, rating in zip(slices, reps, ratings):
                 if slice not in slice_rep:
                     slice_rep[slice] = []
+                else:
+                    print 'origin', slice_rep[slice][0].shape
                 if slice not in slice_rating:
                     slice_rating[slice] = []
                 slice_rep[slice].append(rep)
