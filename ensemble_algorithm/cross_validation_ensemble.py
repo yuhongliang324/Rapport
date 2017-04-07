@@ -14,7 +14,7 @@ def cross_validation(dyad_slices, dyad_reps, dyad_ratings, message,
     num_dyad = len(dyads)
     vals, tests = load_split()
     print dyad_reps.keys()
-    writer = open('../results/message + '.txt', 'w')
+    writer = open('../results/' + message + '.txt', 'w')
     for vdyad, tdyad in zip(vals, tests):
         X_val = dyad_reps[vdyad]
         y_val = dyad_ratings[vdyad]
