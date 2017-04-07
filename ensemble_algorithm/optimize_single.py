@@ -56,7 +56,7 @@ def validate(val_model, y_val, costs_val, losses_krip_val, batch_size=32, catego
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
     else:
         print '\tTest cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
-    all_rep = numpy.stack(all_rep, axis=0)
+    all_rep = numpy.concatenate(all_rep, axis=0)
     return cost_avg, all_rep
 
 
