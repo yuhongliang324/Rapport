@@ -6,7 +6,7 @@ import numpy
 from collections import OrderedDict
 
 
-def Adam(cost, params, lr=0.0001, b1=0.1, b2=0.1, e=1e-8):
+def Adam(cost, params, lr=0.00005, b1=0.1, b2=0.1, e=1e-8):
     """
     no bias init correction
     """
