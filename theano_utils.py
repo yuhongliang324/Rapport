@@ -44,25 +44,6 @@ def Adam2(cost, params, lr=0.0002, b1=0.9, b2=0.999, e=1e-8):
     return updates
 
 
-def Adam3(cost, params, lr=0.001, b1=0.9, b2=0.999, e=1e-8):
-    """
-    no bias init correction
-    """
-    updates = []
-    grads = T.grad(cost, params)
-    for p, g in zip(params, grads):
-        m = theano.shared(p.get_value() * 0.)
-        v = theano.shared(p.get_value() * 0.)
-        m_t = b1 * m + (1. - b1) * g
-        v_t = b2 * v + (1. - b2) * T.sqr(g)
-        g_t = m_t / (T.sqrt(v_t) + e)
-        p_t = p - lr * g_t
-        updates.append((m, m_t))
-        updates.append((v, v_t))
-        updates.append((p, p_t))
-    return updates
-
-
 def AdaGrad(cost, params, learning_rate=0.05, epsilon=1e-6):
     grads = T.grad(cost=cost, wrt=params)
     updates = OrderedDict()
