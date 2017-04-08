@@ -190,7 +190,7 @@ def test2():
 
 def test3():
     slice_ratings = get_all_ratings(best3=False)
-    coder = get_coder('../results/result_ours_audio_b_share_False_drop_0.0_lamb_0.0_fact_None.txt')
+    coder = get_coder('../results/result_dan_audio_b_share_False_drop_0.0_lamb_0.0_fact_None.txt')
     alpha = get_krip_alpha_given_coder(slice_ratings, coder)
     mae, mae_skyline = get_mae(slice_ratings, coder)
     r = get_pearson_given_coder(slice_ratings, coder)
@@ -207,10 +207,10 @@ def test3_1():
 
 def test4():
     slice_ratings = get_all_ratings(best3=False)
-    model = 'lstm'
+    model = 'dan'
     coder1 = get_coder('../results/result_' + model + '_audio_b_share_False_drop_0.0_lamb_0.0_fact_None.txt')
     coder2 = get_coder('../results/result_' + model + '_hog_lr_share_False_drop_0.0_lamb_0.0_fact_None.txt')
-    ws = [0.5, 0.6, 0.7, 0.8, 0.9, 1.]
+    ws = [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.]
     for w in ws:
         print 'Audio weight =', w
         coder = combine([coder1, coder2], [w, 1. - w])
@@ -222,5 +222,5 @@ def test4():
 
 
 if __name__ == '__main__':
-    test3()
+    test4()
 
