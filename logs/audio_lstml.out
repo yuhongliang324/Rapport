@@ -1,0 +1,1217 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+audio b
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch1_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch2_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch3_results_large.csv
+/usr0/home/hongliay/code/Rapport/data_info/AMT_Batch4_results_large.csv
+D10S1
+D10S2
+D11S1
+D11S2
+D12S1
+D12S2
+D16S2
+D17S1
+D18S1
+D3S1
+D3S2
+D4S1
+D4S2
+D5S1
+D5S2
+D6S1
+D6S2
+D7S1
+D7S2
+D8S1
+D8S2
+D9S1
+D9S2
+[3, 4, 7, 8, 9, 10, 11, 12, 16, 17, 18]
+Validation Dyad = 17 	Testing Dyad = 3
+RMSE of Average Prediction = 1.113759
+(2834, 300, 148) (196, 300, 148) (382, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.000290,	Krip Loss = 1.000290,	RMSE = 3.004421
+	Test cost = 0.996107,	Krip Loss = 0.996107,	RMSE = 2.413386
+	Test cost = 1.004924,	Krip Loss = 1.004924,	RMSE = 2.713876
+Epoch = 2
+	Train cost = 0.994699,	Krip Loss = 0.994699,	RMSE = 2.789373
+	Test cost = 0.989187,	Krip Loss = 0.989187,	RMSE = 2.361456
+	Test cost = 1.000177,	Krip Loss = 1.000177,	RMSE = 2.752487
+Epoch = 3
+	Train cost = 0.981398,	Krip Loss = 0.981398,	RMSE = 2.466381
+	Test cost = 0.979293,	Krip Loss = 0.979293,	RMSE = 1.868408
+	Test cost = 1.000677,	Krip Loss = 1.000677,	RMSE = 2.155485
+Epoch = 4
+	Train cost = 0.963806,	Krip Loss = 0.963806,	RMSE = 1.953794
+	Test cost = 0.968237,	Krip Loss = 0.968237,	RMSE = 1.477480
+	Test cost = 1.004502,	Krip Loss = 1.004502,	RMSE = 1.587491
+Epoch = 5
+	Train cost = 0.946234,	Krip Loss = 0.946234,	RMSE = 1.644781
+	Test cost = 0.976414,	Krip Loss = 0.976414,	RMSE = 1.266192
+	Test cost = 0.991055,	Krip Loss = 0.991055,	RMSE = 1.268276
+Epoch = 6
+	Train cost = 0.916831,	Krip Loss = 0.916831,	RMSE = 1.430486
+	Test cost = 0.983893,	Krip Loss = 0.983893,	RMSE = 1.198556
+	Test cost = 0.991728,	Krip Loss = 0.991728,	RMSE = 1.132548
+Epoch = 7
+	Train cost = 0.888023,	Krip Loss = 0.888023,	RMSE = 1.297259
+	Test cost = 0.966849,	Krip Loss = 0.966849,	RMSE = 1.177530
+	Test cost = 0.993066,	Krip Loss = 0.993066,	RMSE = 1.129463
+Epoch = 8
+	Train cost = 0.861760,	Krip Loss = 0.861760,	RMSE = 1.247052
+	Test cost = 0.964898,	Krip Loss = 0.964898,	RMSE = 1.236234
+	Test cost = 0.979579,	Krip Loss = 0.979579,	RMSE = 1.119590
+Epoch = 9
+	Train cost = 0.841448,	Krip Loss = 0.841448,	RMSE = 1.216150
+	Test cost = 0.974668,	Krip Loss = 0.974668,	RMSE = 1.199282
+	Test cost = 0.972178,	Krip Loss = 0.972178,	RMSE = 1.150796
+Epoch = 10
+	Train cost = 0.820688,	Krip Loss = 0.820688,	RMSE = 1.196730
+	Test cost = 0.965802,	Krip Loss = 0.965802,	RMSE = 1.225293
+	Test cost = 0.947227,	Krip Loss = 0.947227,	RMSE = 1.170515
+Epoch = 11
+	Train cost = 0.801022,	Krip Loss = 0.801022,	RMSE = 1.177796
+	Test cost = 0.981932,	Krip Loss = 0.981932,	RMSE = 1.235345
+	Test cost = 0.982343,	Krip Loss = 0.982343,	RMSE = 1.243616
+Epoch = 12
+	Train cost = 0.783023,	Krip Loss = 0.783023,	RMSE = 1.145544
+	Test cost = 0.984949,	Krip Loss = 0.984949,	RMSE = 1.214039
+	Test cost = 0.951922,	Krip Loss = 0.951922,	RMSE = 1.309711
+Epoch = 13
+	Train cost = 0.764373,	Krip Loss = 0.764373,	RMSE = 1.123781
+	Test cost = 0.974525,	Krip Loss = 0.974525,	RMSE = 1.209917
+	Test cost = 0.927474,	Krip Loss = 0.927474,	RMSE = 1.247163
+Best Epoch = 8, Best Cost in Test = 0.979579
+Validation Dyad = 8 	Testing Dyad = 4
+RMSE of Average Prediction = 1.551682
+(2870, 300, 148) (336, 300, 148) (206, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.000076,	Krip Loss = 1.000076,	RMSE = 3.592140
+	Test cost = 0.999700,	Krip Loss = 0.999700,	RMSE = 2.470065
+	Test cost = 0.997327,	Krip Loss = 0.997327,	RMSE = 2.457709
+Epoch = 2
+	Train cost = 0.996353,	Krip Loss = 0.996353,	RMSE = 3.585781
+	Test cost = 0.997900,	Krip Loss = 0.997900,	RMSE = 2.333089
+	Test cost = 0.997523,	Krip Loss = 0.997523,	RMSE = 2.344347
+Epoch = 3
+	Train cost = 0.993830,	Krip Loss = 0.993830,	RMSE = 3.268185
+	Test cost = 0.996074,	Krip Loss = 0.996074,	RMSE = 2.073638
+	Test cost = 0.994913,	Krip Loss = 0.994913,	RMSE = 2.107355
+Epoch = 4
+	Train cost = 0.990011,	Krip Loss = 0.990011,	RMSE = 2.947016
+	Test cost = 1.005144,	Krip Loss = 1.005144,	RMSE = 1.756626
+	Test cost = 0.989447,	Krip Loss = 0.989447,	RMSE = 1.778725
+Epoch = 5
+	Train cost = 0.981167,	Krip Loss = 0.981167,	RMSE = 2.470987
+	Test cost = 0.979198,	Krip Loss = 0.979198,	RMSE = 1.257991
+	Test cost = 0.964016,	Krip Loss = 0.964016,	RMSE = 1.345499
+Epoch = 6
+	Train cost = 0.962102,	Krip Loss = 0.962102,	RMSE = 1.810225
+	Test cost = 0.998162,	Krip Loss = 0.998162,	RMSE = 1.098825
+	Test cost = 0.973746,	Krip Loss = 0.973746,	RMSE = 1.319526
+Epoch = 7
+	Train cost = 0.922522,	Krip Loss = 0.922522,	RMSE = 1.347833
+	Test cost = 0.992958,	Krip Loss = 0.992958,	RMSE = 1.360735
+	Test cost = 0.970774,	Krip Loss = 0.970774,	RMSE = 1.692781
+Epoch = 8
+	Train cost = 0.892518,	Krip Loss = 0.892518,	RMSE = 1.219665
+	Test cost = 0.986624,	Krip Loss = 0.986624,	RMSE = 1.454843
+	Test cost = 0.963003,	Krip Loss = 0.963003,	RMSE = 1.656547
+Epoch = 9
+	Train cost = 0.881548,	Krip Loss = 0.881548,	RMSE = 1.192324
+	Test cost = 0.984484,	Krip Loss = 0.984484,	RMSE = 1.414225
+	Test cost = 0.962944,	Krip Loss = 0.962944,	RMSE = 1.649708
+Epoch = 10
+	Train cost = 0.854268,	Krip Loss = 0.854268,	RMSE = 1.142831
+	Test cost = 0.996542,	Krip Loss = 0.996542,	RMSE = 1.396886
+	Test cost = 0.957562,	Krip Loss = 0.957562,	RMSE = 1.578401
+Epoch = 11
+	Train cost = 0.835931,	Krip Loss = 0.835931,	RMSE = 1.133178
+	Test cost = 0.984978,	Krip Loss = 0.984978,	RMSE = 1.394029
+	Test cost = 0.952563,	Krip Loss = 0.952563,	RMSE = 1.590117
+Best Epoch = 5, Best Cost in Test = 0.964016
+Validation Dyad = 3 	Testing Dyad = 7
+RMSE of Average Prediction = 1.099699
+(2634, 300, 148) (382, 300, 148) (396, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.996992,	Krip Loss = 0.996992,	RMSE = 3.029880
+	Test cost = 1.000241,	Krip Loss = 1.000241,	RMSE = 2.739339
+	Test cost = 1.000272,	Krip Loss = 1.000272,	RMSE = 3.242696
+Epoch = 2
+	Train cost = 0.989026,	Krip Loss = 0.989026,	RMSE = 2.444936
+	Test cost = 0.998708,	Krip Loss = 0.998708,	RMSE = 1.763338
+	Test cost = 0.999270,	Krip Loss = 0.999270,	RMSE = 2.474583
+Epoch = 3
+	Train cost = 0.974882,	Krip Loss = 0.974882,	RMSE = 2.185342
+	Test cost = 0.999570,	Krip Loss = 0.999570,	RMSE = 1.959279
+	Test cost = 1.003831,	Krip Loss = 1.003831,	RMSE = 2.386885
+Epoch = 4
+	Train cost = 0.960986,	Krip Loss = 0.960986,	RMSE = 2.011917
+	Test cost = 1.009559,	Krip Loss = 1.009559,	RMSE = 1.701635
+	Test cost = 1.000144,	Krip Loss = 1.000144,	RMSE = 2.135800
+Epoch = 5
+	Train cost = 0.944546,	Krip Loss = 0.944546,	RMSE = 1.911218
+	Test cost = 0.992576,	Krip Loss = 0.992576,	RMSE = 1.665648
+	Test cost = 0.997300,	Krip Loss = 0.997300,	RMSE = 2.076904
+Epoch = 6
+	Train cost = 0.925525,	Krip Loss = 0.925525,	RMSE = 1.793985
+	Test cost = 0.992543,	Krip Loss = 0.992543,	RMSE = 1.676816
+	Test cost = 0.993582,	Krip Loss = 0.993582,	RMSE = 2.001207
+Epoch = 7
+	Train cost = 0.900681,	Krip Loss = 0.900681,	RMSE = 1.580510
+	Test cost = 0.985328,	Krip Loss = 0.985328,	RMSE = 1.478982
+	Test cost = 0.988178,	Krip Loss = 0.988178,	RMSE = 1.726664
+Epoch = 8
+	Train cost = 0.884231,	Krip Loss = 0.884231,	RMSE = 1.536866
+	Test cost = 0.985097,	Krip Loss = 0.985097,	RMSE = 1.615113
+	Test cost = 0.989521,	Krip Loss = 0.989521,	RMSE = 1.750841
+Epoch = 9
+	Train cost = 0.860393,	Krip Loss = 0.860393,	RMSE = 1.436509
+	Test cost = 0.980199,	Krip Loss = 0.980199,	RMSE = 1.542731
+	Test cost = 0.987163,	Krip Loss = 0.987163,	RMSE = 1.716209
+Epoch = 10
+	Train cost = 0.845239,	Krip Loss = 0.845239,	RMSE = 1.450401
+	Test cost = 0.980721,	Krip Loss = 0.980721,	RMSE = 1.589148
+	Test cost = 0.986857,	Krip Loss = 0.986857,	RMSE = 1.744918
+Epoch = 11
+	Train cost = 0.827607,	Krip Loss = 0.827607,	RMSE = 1.393308
+	Test cost = 0.979083,	Krip Loss = 0.979083,	RMSE = 1.602685
+	Test cost = 0.984371,	Krip Loss = 0.984371,	RMSE = 1.718741
+Epoch = 12
+	Train cost = 0.809734,	Krip Loss = 0.809734,	RMSE = 1.376384
+	Test cost = 0.977340,	Krip Loss = 0.977340,	RMSE = 1.601810
+	Test cost = 0.985161,	Krip Loss = 0.985161,	RMSE = 1.728981
+Epoch = 13
+	Train cost = 0.796314,	Krip Loss = 0.796314,	RMSE = 1.351115
+	Test cost = 0.975217,	Krip Loss = 0.975217,	RMSE = 1.652063
+	Test cost = 0.984536,	Krip Loss = 0.984536,	RMSE = 1.720066
+Epoch = 14
+	Train cost = 0.782989,	Krip Loss = 0.782989,	RMSE = 1.316670
+	Test cost = 0.971627,	Krip Loss = 0.971627,	RMSE = 1.599959
+	Test cost = 0.980532,	Krip Loss = 0.980532,	RMSE = 1.706716
+Epoch = 15
+	Train cost = 0.772929,	Krip Loss = 0.772929,	RMSE = 1.314036
+	Test cost = 0.968014,	Krip Loss = 0.968014,	RMSE = 1.607900
+	Test cost = 0.977267,	Krip Loss = 0.977267,	RMSE = 1.722240
+Epoch = 16
+	Train cost = 0.759769,	Krip Loss = 0.759769,	RMSE = 1.298218
+	Test cost = 0.963493,	Krip Loss = 0.963493,	RMSE = 1.568031
+	Test cost = 0.973661,	Krip Loss = 0.973661,	RMSE = 1.691963
+Epoch = 17
+	Train cost = 0.749392,	Krip Loss = 0.749392,	RMSE = 1.302150
+	Test cost = 0.964784,	Krip Loss = 0.964784,	RMSE = 1.712876
+	Test cost = 0.976514,	Krip Loss = 0.976514,	RMSE = 1.786203
+Epoch = 18
+	Train cost = 0.740994,	Krip Loss = 0.740994,	RMSE = 1.282592
+	Test cost = 0.959534,	Krip Loss = 0.959534,	RMSE = 1.548276
+	Test cost = 0.969982,	Krip Loss = 0.969982,	RMSE = 1.720502
+Epoch = 19
+	Train cost = 0.734798,	Krip Loss = 0.734798,	RMSE = 1.298619
+	Test cost = 0.959531,	Krip Loss = 0.959531,	RMSE = 1.552009
+	Test cost = 0.970655,	Krip Loss = 0.970655,	RMSE = 1.694416
+Epoch = 20
+	Train cost = 0.722651,	Krip Loss = 0.722651,	RMSE = 1.267636
+	Test cost = 0.957260,	Krip Loss = 0.957260,	RMSE = 1.510186
+	Test cost = 0.968406,	Krip Loss = 0.968406,	RMSE = 1.665070
+Epoch = 21
+	Train cost = 0.712080,	Krip Loss = 0.712080,	RMSE = 1.253586
+	Test cost = 0.957057,	Krip Loss = 0.957057,	RMSE = 1.524591
+	Test cost = 0.965944,	Krip Loss = 0.965944,	RMSE = 1.648052
+Epoch = 22
+	Train cost = 0.699750,	Krip Loss = 0.699750,	RMSE = 1.231743
+	Test cost = 0.954369,	Krip Loss = 0.954369,	RMSE = 1.468864
+	Test cost = 0.960996,	Krip Loss = 0.960996,	RMSE = 1.622734
+Epoch = 23
+	Train cost = 0.694349,	Krip Loss = 0.694349,	RMSE = 1.224214
+	Test cost = 0.953389,	Krip Loss = 0.953389,	RMSE = 1.455366
+	Test cost = 0.962116,	Krip Loss = 0.962116,	RMSE = 1.602791
+Epoch = 24
+	Train cost = 0.687756,	Krip Loss = 0.687756,	RMSE = 1.224145
+	Test cost = 0.965477,	Krip Loss = 0.965477,	RMSE = 1.547998
+	Test cost = 0.966786,	Krip Loss = 0.966786,	RMSE = 1.676546
+Epoch = 25
+	Train cost = 0.679061,	Krip Loss = 0.679061,	RMSE = 1.223771
+	Test cost = 0.958143,	Krip Loss = 0.958143,	RMSE = 1.495695
+	Test cost = 0.958492,	Krip Loss = 0.958492,	RMSE = 1.668089
+Epoch = 26
+	Train cost = 0.662425,	Krip Loss = 0.662425,	RMSE = 1.205253
+	Test cost = 0.964318,	Krip Loss = 0.964318,	RMSE = 1.481178
+	Test cost = 0.960366,	Krip Loss = 0.960366,	RMSE = 1.649396
+Epoch = 27
+	Train cost = 0.660926,	Krip Loss = 0.660926,	RMSE = 1.192288
+	Test cost = 0.957030,	Krip Loss = 0.957030,	RMSE = 1.402172
+	Test cost = 0.952073,	Krip Loss = 0.952073,	RMSE = 1.566585
+Epoch = 28
+	Train cost = 0.651890,	Krip Loss = 0.651890,	RMSE = 1.184704
+	Test cost = 0.954004,	Krip Loss = 0.954004,	RMSE = 1.397779
+	Test cost = 0.951384,	Krip Loss = 0.951384,	RMSE = 1.531636
+Best Epoch = 23, Best Cost in Test = 0.962116
+Validation Dyad = 16 	Testing Dyad = 8
+RMSE of Average Prediction = 1.211513
+(2872, 300, 148) (204, 300, 148) (336, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.998694,	Krip Loss = 0.998694,	RMSE = 3.403122
+	Test cost = 1.018840,	Krip Loss = 1.018840,	RMSE = 2.645706
+	Test cost = 0.989975,	Krip Loss = 0.989975,	RMSE = 2.076746
+Epoch = 2
+	Train cost = 0.994511,	Krip Loss = 0.994511,	RMSE = 3.150173
+	Test cost = 1.026509,	Krip Loss = 1.026509,	RMSE = 2.494808
+	Test cost = 0.994216,	Krip Loss = 0.994216,	RMSE = 2.006655
+Epoch = 3
+	Train cost = 0.989408,	Krip Loss = 0.989408,	RMSE = 2.822816
+	Test cost = 1.028210,	Krip Loss = 1.028210,	RMSE = 2.094246
+	Test cost = 0.973316,	Krip Loss = 0.973316,	RMSE = 1.527950
+Epoch = 4
+	Train cost = 0.981512,	Krip Loss = 0.981512,	RMSE = 2.375973
+	Test cost = 1.031095,	Krip Loss = 1.031095,	RMSE = 1.788252
+	Test cost = 0.985894,	Krip Loss = 0.985894,	RMSE = 1.295903
+Epoch = 5
+	Train cost = 0.962610,	Krip Loss = 0.962610,	RMSE = 1.806675
+	Test cost = 1.039072,	Krip Loss = 1.039072,	RMSE = 1.398941
+	Test cost = 0.948685,	Krip Loss = 0.948685,	RMSE = 1.109152
+Epoch = 6
+	Train cost = 0.943567,	Krip Loss = 0.943567,	RMSE = 1.500001
+	Test cost = 1.060944,	Krip Loss = 1.060944,	RMSE = 1.323669
+	Test cost = 0.956771,	Krip Loss = 0.956771,	RMSE = 1.165086
+Epoch = 7
+	Train cost = 0.915758,	Krip Loss = 0.915758,	RMSE = 1.330974
+	Test cost = 1.065972,	Krip Loss = 1.065972,	RMSE = 1.426102
+	Test cost = 0.965839,	Krip Loss = 0.965839,	RMSE = 1.458768
+Epoch = 8
+	Train cost = 0.889048,	Krip Loss = 0.889048,	RMSE = 1.253337
+	Test cost = 1.061616,	Krip Loss = 1.061616,	RMSE = 1.435219
+	Test cost = 0.968190,	Krip Loss = 0.968190,	RMSE = 1.472625
+Epoch = 9
+	Train cost = 0.865109,	Krip Loss = 0.865109,	RMSE = 1.213357
+	Test cost = 1.046458,	Krip Loss = 1.046458,	RMSE = 1.469500
+	Test cost = 0.959432,	Krip Loss = 0.959432,	RMSE = 1.505734
+Epoch = 10
+	Train cost = 0.841635,	Krip Loss = 0.841635,	RMSE = 1.178281
+	Test cost = 1.050138,	Krip Loss = 1.050138,	RMSE = 1.468015
+	Test cost = 0.958026,	Krip Loss = 0.958026,	RMSE = 1.464123
+Epoch = 11
+	Train cost = 0.825897,	Krip Loss = 0.825897,	RMSE = 1.166179
+	Test cost = 1.051356,	Krip Loss = 1.051356,	RMSE = 1.464784
+	Test cost = 0.956180,	Krip Loss = 0.956180,	RMSE = 1.436322
+Epoch = 12
+	Train cost = 0.807348,	Krip Loss = 0.807348,	RMSE = 1.147605
+	Test cost = 1.052285,	Krip Loss = 1.052285,	RMSE = 1.445044
+	Test cost = 0.955679,	Krip Loss = 0.955679,	RMSE = 1.402934
+Epoch = 13
+	Train cost = 0.793673,	Krip Loss = 0.793673,	RMSE = 1.144045
+	Test cost = 1.034573,	Krip Loss = 1.034573,	RMSE = 1.438623
+	Test cost = 0.956446,	Krip Loss = 0.956446,	RMSE = 1.387867
+Epoch = 14
+	Train cost = 0.777291,	Krip Loss = 0.777291,	RMSE = 1.132784
+	Test cost = 1.030690,	Krip Loss = 1.030690,	RMSE = 1.396488
+	Test cost = 0.952720,	Krip Loss = 0.952720,	RMSE = 1.354395
+Epoch = 15
+	Train cost = 0.765866,	Krip Loss = 0.765866,	RMSE = 1.136636
+	Test cost = 1.024964,	Krip Loss = 1.024964,	RMSE = 1.400649
+	Test cost = 0.954832,	Krip Loss = 0.954832,	RMSE = 1.345283
+Epoch = 16
+	Train cost = 0.752033,	Krip Loss = 0.752033,	RMSE = 1.124696
+	Test cost = 1.021236,	Krip Loss = 1.021236,	RMSE = 1.402937
+	Test cost = 0.957682,	Krip Loss = 0.957682,	RMSE = 1.353448
+Epoch = 17
+	Train cost = 0.741993,	Krip Loss = 0.741993,	RMSE = 1.122820
+	Test cost = 1.019354,	Krip Loss = 1.019354,	RMSE = 1.425075
+	Test cost = 0.964549,	Krip Loss = 0.964549,	RMSE = 1.362561
+Epoch = 18
+	Train cost = 0.730313,	Krip Loss = 0.730313,	RMSE = 1.114146
+	Test cost = 1.015963,	Krip Loss = 1.015963,	RMSE = 1.423969
+	Test cost = 0.968514,	Krip Loss = 0.968514,	RMSE = 1.363427
+Epoch = 19
+	Train cost = 0.720324,	Krip Loss = 0.720324,	RMSE = 1.108409
+	Test cost = 1.013589,	Krip Loss = 1.013589,	RMSE = 1.423233
+	Test cost = 0.975780,	Krip Loss = 0.975780,	RMSE = 1.370821
+Epoch = 20
+	Train cost = 0.709512,	Krip Loss = 0.709512,	RMSE = 1.100491
+	Test cost = 1.005235,	Krip Loss = 1.005235,	RMSE = 1.400952
+	Test cost = 0.981380,	Krip Loss = 0.981380,	RMSE = 1.371062
+Epoch = 21
+	Train cost = 0.699102,	Krip Loss = 0.699102,	RMSE = 1.095160
+	Test cost = 1.001043,	Krip Loss = 1.001043,	RMSE = 1.388575
+	Test cost = 0.986605,	Krip Loss = 0.986605,	RMSE = 1.374226
+Epoch = 22
+	Train cost = 0.689601,	Krip Loss = 0.689601,	RMSE = 1.086193
+	Test cost = 0.990790,	Krip Loss = 0.990790,	RMSE = 1.381969
+	Test cost = 0.995188,	Krip Loss = 0.995188,	RMSE = 1.378270
+Epoch = 23
+	Train cost = 0.679989,	Krip Loss = 0.679989,	RMSE = 1.078180
+	Test cost = 0.995415,	Krip Loss = 0.995415,	RMSE = 1.395762
+	Test cost = 1.002764,	Krip Loss = 1.002764,	RMSE = 1.395067
+Epoch = 24
+	Train cost = 0.670647,	Krip Loss = 0.670647,	RMSE = 1.076986
+	Test cost = 0.989028,	Krip Loss = 0.989028,	RMSE = 1.386566
+	Test cost = 1.007314,	Krip Loss = 1.007314,	RMSE = 1.394768
+Epoch = 25
+	Train cost = 0.660674,	Krip Loss = 0.660674,	RMSE = 1.066672
+	Test cost = 0.987273,	Krip Loss = 0.987273,	RMSE = 1.370119
+	Test cost = 1.011868,	Krip Loss = 1.011868,	RMSE = 1.382641
+Epoch = 26
+	Train cost = 0.652119,	Krip Loss = 0.652119,	RMSE = 1.062039
+	Test cost = 0.980845,	Krip Loss = 0.980845,	RMSE = 1.372341
+	Test cost = 1.017589,	Krip Loss = 1.017589,	RMSE = 1.392851
+Epoch = 27
+	Train cost = 0.643690,	Krip Loss = 0.643690,	RMSE = 1.058849
+	Test cost = 0.976951,	Krip Loss = 0.976951,	RMSE = 1.358651
+	Test cost = 1.015278,	Krip Loss = 1.015278,	RMSE = 1.373661
+Epoch = 28
+	Train cost = 0.635783,	Krip Loss = 0.635783,	RMSE = 1.051833
+	Test cost = 0.970248,	Krip Loss = 0.970248,	RMSE = 1.360587
+	Test cost = 1.025604,	Krip Loss = 1.025604,	RMSE = 1.394433
+Epoch = 29
+	Train cost = 0.628309,	Krip Loss = 0.628309,	RMSE = 1.047696
+	Test cost = 0.973213,	Krip Loss = 0.973213,	RMSE = 1.342065
+	Test cost = 1.023219,	Krip Loss = 1.023219,	RMSE = 1.366401
+Epoch = 30
+	Train cost = 0.618243,	Krip Loss = 0.618243,	RMSE = 1.040240
+	Test cost = 0.960206,	Krip Loss = 0.960206,	RMSE = 1.338218
+	Test cost = 1.028750,	Krip Loss = 1.028750,	RMSE = 1.372422
+Epoch = 31
+	Train cost = 0.609851,	Krip Loss = 0.609851,	RMSE = 1.036082
+	Test cost = 0.960148,	Krip Loss = 0.960148,	RMSE = 1.329596
+	Test cost = 1.024399,	Krip Loss = 1.024399,	RMSE = 1.351375
+Epoch = 32
+	Train cost = 0.600663,	Krip Loss = 0.600663,	RMSE = 1.027524
+	Test cost = 0.946150,	Krip Loss = 0.946150,	RMSE = 1.319899
+	Test cost = 1.030615,	Krip Loss = 1.030615,	RMSE = 1.356616
+Epoch = 33
+	Train cost = 0.592659,	Krip Loss = 0.592659,	RMSE = 1.021927
+	Test cost = 0.945394,	Krip Loss = 0.945394,	RMSE = 1.312873
+	Test cost = 1.026764,	Krip Loss = 1.026764,	RMSE = 1.340242
+Epoch = 34
+	Train cost = 0.583643,	Krip Loss = 0.583643,	RMSE = 1.013723
+	Test cost = 0.934867,	Krip Loss = 0.934867,	RMSE = 1.306169
+	Test cost = 1.030881,	Krip Loss = 1.030881,	RMSE = 1.343811
+Epoch = 35
+	Train cost = 0.575753,	Krip Loss = 0.575753,	RMSE = 1.006707
+	Test cost = 0.934042,	Krip Loss = 0.934042,	RMSE = 1.298987
+	Test cost = 1.028279,	Krip Loss = 1.028279,	RMSE = 1.333148
+Epoch = 36
+	Train cost = 0.568309,	Krip Loss = 0.568309,	RMSE = 1.001165
+	Test cost = 0.925894,	Krip Loss = 0.925894,	RMSE = 1.296105
+	Test cost = 1.029082,	Krip Loss = 1.029082,	RMSE = 1.334358
+Epoch = 37
+	Train cost = 0.560348,	Krip Loss = 0.560348,	RMSE = 0.993130
+	Test cost = 0.924262,	Krip Loss = 0.924262,	RMSE = 1.290088
+	Test cost = 1.027318,	Krip Loss = 1.027318,	RMSE = 1.324302
+Epoch = 38
+	Train cost = 0.552250,	Krip Loss = 0.552250,	RMSE = 0.985574
+	Test cost = 0.916884,	Krip Loss = 0.916884,	RMSE = 1.285785
+	Test cost = 1.026756,	Krip Loss = 1.026756,	RMSE = 1.321854
+Epoch = 39
+	Train cost = 0.544351,	Krip Loss = 0.544351,	RMSE = 0.977597
+	Test cost = 0.913547,	Krip Loss = 0.913547,	RMSE = 1.282613
+	Test cost = 1.025645,	Krip Loss = 1.025645,	RMSE = 1.314170
+Epoch = 40
+	Train cost = 0.536030,	Krip Loss = 0.536030,	RMSE = 0.968642
+	Test cost = 0.909157,	Krip Loss = 0.909157,	RMSE = 1.280721
+	Test cost = 1.025194,	Krip Loss = 1.025194,	RMSE = 1.312838
+Validation Dyad = 12 	Testing Dyad = 9
+RMSE of Average Prediction = 1.186886
+(2634, 300, 148) (396, 300, 148) (382, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.000105,	Krip Loss = 1.000105,	RMSE = 3.256670
+	Test cost = 0.993955,	Krip Loss = 0.993955,	RMSE = 3.602132
+	Test cost = 0.996258,	Krip Loss = 0.996258,	RMSE = 3.253250
+Epoch = 2
+	Train cost = 0.994854,	Krip Loss = 0.994854,	RMSE = 3.198246
+	Test cost = 0.990139,	Krip Loss = 0.990139,	RMSE = 3.296197
+	Test cost = 0.995903,	Krip Loss = 0.995903,	RMSE = 2.935705
+Epoch = 3
+	Train cost = 0.989214,	Krip Loss = 0.989214,	RMSE = 2.883386
+	Test cost = 0.989877,	Krip Loss = 0.989877,	RMSE = 2.925597
+	Test cost = 0.992375,	Krip Loss = 0.992375,	RMSE = 2.631895
+Epoch = 4
+	Train cost = 0.976840,	Krip Loss = 0.976840,	RMSE = 2.396550
+	Test cost = 0.982201,	Krip Loss = 0.982201,	RMSE = 2.283890
+	Test cost = 0.987363,	Krip Loss = 0.987363,	RMSE = 1.938150
+Epoch = 5
+	Train cost = 0.957635,	Krip Loss = 0.957635,	RMSE = 1.967202
+	Test cost = 0.974889,	Krip Loss = 0.974889,	RMSE = 2.026315
+	Test cost = 0.981052,	Krip Loss = 0.981052,	RMSE = 1.728127
+Epoch = 6
+	Train cost = 0.939395,	Krip Loss = 0.939395,	RMSE = 1.767109
+	Test cost = 0.970850,	Krip Loss = 0.970850,	RMSE = 1.751201
+	Test cost = 0.981790,	Krip Loss = 0.981790,	RMSE = 1.520660
+Epoch = 7
+	Train cost = 0.914417,	Krip Loss = 0.914417,	RMSE = 1.590285
+	Test cost = 0.958019,	Krip Loss = 0.958019,	RMSE = 1.528829
+	Test cost = 0.953237,	Krip Loss = 0.953237,	RMSE = 1.300822
+Epoch = 8
+	Train cost = 0.890393,	Krip Loss = 0.890393,	RMSE = 1.541910
+	Test cost = 0.958087,	Krip Loss = 0.958087,	RMSE = 1.449836
+	Test cost = 0.932756,	Krip Loss = 0.932756,	RMSE = 1.250615
+Epoch = 9
+	Train cost = 0.872110,	Krip Loss = 0.872110,	RMSE = 1.451477
+	Test cost = 0.955090,	Krip Loss = 0.955090,	RMSE = 1.402046
+	Test cost = 0.937554,	Krip Loss = 0.937554,	RMSE = 1.234879
+Epoch = 10
+	Train cost = 0.848229,	Krip Loss = 0.848229,	RMSE = 1.362864
+	Test cost = 0.950122,	Krip Loss = 0.950122,	RMSE = 1.323073
+	Test cost = 0.920273,	Krip Loss = 0.920273,	RMSE = 1.140913
+Epoch = 11
+	Train cost = 0.830114,	Krip Loss = 0.830114,	RMSE = 1.335867
+	Test cost = 0.946307,	Krip Loss = 0.946307,	RMSE = 1.319763
+	Test cost = 0.917468,	Krip Loss = 0.917468,	RMSE = 1.143411
+Epoch = 12
+	Train cost = 0.815729,	Krip Loss = 0.815729,	RMSE = 1.281805
+	Test cost = 0.949867,	Krip Loss = 0.949867,	RMSE = 1.309440
+	Test cost = 0.908662,	Krip Loss = 0.908662,	RMSE = 1.106791
+Epoch = 13
+	Train cost = 0.804511,	Krip Loss = 0.804511,	RMSE = 1.272327
+	Test cost = 0.945398,	Krip Loss = 0.945398,	RMSE = 1.289901
+	Test cost = 0.899021,	Krip Loss = 0.899021,	RMSE = 1.080866
+Epoch = 14
+	Train cost = 0.788808,	Krip Loss = 0.788808,	RMSE = 1.245875
+	Test cost = 0.933212,	Krip Loss = 0.933212,	RMSE = 1.267052
+	Test cost = 0.880469,	Krip Loss = 0.880469,	RMSE = 1.050762
+Epoch = 15
+	Train cost = 0.773137,	Krip Loss = 0.773137,	RMSE = 1.215302
+	Test cost = 0.924276,	Krip Loss = 0.924276,	RMSE = 1.254150
+	Test cost = 0.881705,	Krip Loss = 0.881705,	RMSE = 1.034527
+Epoch = 16
+	Train cost = 0.757771,	Krip Loss = 0.757771,	RMSE = 1.194796
+	Test cost = 0.927014,	Krip Loss = 0.927014,	RMSE = 1.258171
+	Test cost = 0.873692,	Krip Loss = 0.873692,	RMSE = 1.002831
+Epoch = 17
+	Train cost = 0.741257,	Krip Loss = 0.741257,	RMSE = 1.168160
+	Test cost = 0.933878,	Krip Loss = 0.933878,	RMSE = 1.258220
+	Test cost = 0.855149,	Krip Loss = 0.855149,	RMSE = 0.973090
+Epoch = 18
+	Train cost = 0.726332,	Krip Loss = 0.726332,	RMSE = 1.139566
+	Test cost = 0.943756,	Krip Loss = 0.943756,	RMSE = 1.271853
+	Test cost = 0.824835,	Krip Loss = 0.824835,	RMSE = 0.944753
+Epoch = 19
+	Train cost = 0.709809,	Krip Loss = 0.709809,	RMSE = 1.129429
+	Test cost = 0.933393,	Krip Loss = 0.933393,	RMSE = 1.241744
+	Test cost = 0.832685,	Krip Loss = 0.832685,	RMSE = 0.950964
+Epoch = 20
+	Train cost = 0.701275,	Krip Loss = 0.701275,	RMSE = 1.108773
+	Test cost = 0.926036,	Krip Loss = 0.926036,	RMSE = 1.248362
+	Test cost = 0.825834,	Krip Loss = 0.825834,	RMSE = 0.959450
+Best Epoch = 15, Best Cost in Test = 0.881705
+Validation Dyad = 11 	Testing Dyad = 10
+RMSE of Average Prediction = 1.377776
+(2700, 300, 148) (358, 300, 148) (354, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.998308,	Krip Loss = 0.998308,	RMSE = 3.087961
+	Test cost = 0.995921,	Krip Loss = 0.995921,	RMSE = 3.523405
+	Test cost = 1.000035,	Krip Loss = 1.000035,	RMSE = 3.752533
+Epoch = 2
+	Train cost = 0.993225,	Krip Loss = 0.993225,	RMSE = 2.883713
+	Test cost = 0.998166,	Krip Loss = 0.998166,	RMSE = 3.216133
+	Test cost = 1.000928,	Krip Loss = 1.000928,	RMSE = 3.469237
+Epoch = 3
+	Train cost = 0.982500,	Krip Loss = 0.982500,	RMSE = 2.472052
+	Test cost = 0.998318,	Krip Loss = 0.998318,	RMSE = 2.596695
+	Test cost = 1.001765,	Krip Loss = 1.001765,	RMSE = 2.932221
+Epoch = 4
+	Train cost = 0.959668,	Krip Loss = 0.959668,	RMSE = 2.019997
+	Test cost = 1.001835,	Krip Loss = 1.001835,	RMSE = 2.053821
+	Test cost = 1.000256,	Krip Loss = 1.000256,	RMSE = 2.418022
+Epoch = 5
+	Train cost = 0.940710,	Krip Loss = 0.940710,	RMSE = 1.732940
+	Test cost = 0.996779,	Krip Loss = 0.996779,	RMSE = 1.747437
+	Test cost = 1.004015,	Krip Loss = 1.004015,	RMSE = 2.121472
+Epoch = 6
+	Train cost = 0.930337,	Krip Loss = 0.930337,	RMSE = 1.763476
+	Test cost = 1.006636,	Krip Loss = 1.006636,	RMSE = 1.718742
+	Test cost = 1.002557,	Krip Loss = 1.002557,	RMSE = 2.122428
+Epoch = 7
+	Train cost = 0.907769,	Krip Loss = 0.907769,	RMSE = 1.579616
+	Test cost = 1.001985,	Krip Loss = 1.001985,	RMSE = 1.541023
+	Test cost = 1.003964,	Krip Loss = 1.003964,	RMSE = 1.934941
+Epoch = 8
+	Train cost = 0.893399,	Krip Loss = 0.893399,	RMSE = 1.545951
+	Test cost = 0.996029,	Krip Loss = 0.996029,	RMSE = 1.448582
+	Test cost = 1.001584,	Krip Loss = 1.001584,	RMSE = 1.860150
+Epoch = 9
+	Train cost = 0.875445,	Krip Loss = 0.875445,	RMSE = 1.443866
+	Test cost = 1.000092,	Krip Loss = 1.000092,	RMSE = 1.385917
+	Test cost = 1.001368,	Krip Loss = 1.001368,	RMSE = 1.758720
+Epoch = 10
+	Train cost = 0.859514,	Krip Loss = 0.859514,	RMSE = 1.362764
+	Test cost = 1.003961,	Krip Loss = 1.003961,	RMSE = 1.342923
+	Test cost = 1.002640,	Krip Loss = 1.002640,	RMSE = 1.716574
+Epoch = 11
+	Train cost = 0.841399,	Krip Loss = 0.841399,	RMSE = 1.368572
+	Test cost = 1.006481,	Krip Loss = 1.006481,	RMSE = 1.288702
+	Test cost = 1.003644,	Krip Loss = 1.003644,	RMSE = 1.587307
+Epoch = 12
+	Train cost = 0.832700,	Krip Loss = 0.832700,	RMSE = 1.303642
+	Test cost = 0.991370,	Krip Loss = 0.991370,	RMSE = 1.258472
+	Test cost = 0.998637,	Krip Loss = 0.998637,	RMSE = 1.543863
+Epoch = 13
+	Train cost = 0.814539,	Krip Loss = 0.814539,	RMSE = 1.261265
+	Test cost = 0.984412,	Krip Loss = 0.984412,	RMSE = 1.251589
+	Test cost = 1.001147,	Krip Loss = 1.001147,	RMSE = 1.486725
+Epoch = 14
+	Train cost = 0.797818,	Krip Loss = 0.797818,	RMSE = 1.223605
+	Test cost = 0.987445,	Krip Loss = 0.987445,	RMSE = 1.220321
+	Test cost = 1.002118,	Krip Loss = 1.002118,	RMSE = 1.397936
+Epoch = 15
+	Train cost = 0.792608,	Krip Loss = 0.792608,	RMSE = 1.197860
+	Test cost = 0.975824,	Krip Loss = 0.975824,	RMSE = 1.199009
+	Test cost = 0.994279,	Krip Loss = 0.994279,	RMSE = 1.340880
+Epoch = 16
+	Train cost = 0.774791,	Krip Loss = 0.774791,	RMSE = 1.171796
+	Test cost = 0.965560,	Krip Loss = 0.965560,	RMSE = 1.187818
+	Test cost = 0.994764,	Krip Loss = 0.994764,	RMSE = 1.326049
+Epoch = 17
+	Train cost = 0.761712,	Krip Loss = 0.761712,	RMSE = 1.165231
+	Test cost = 0.962201,	Krip Loss = 0.962201,	RMSE = 1.188695
+	Test cost = 0.997359,	Krip Loss = 0.997359,	RMSE = 1.303364
+Epoch = 18
+	Train cost = 0.751977,	Krip Loss = 0.751977,	RMSE = 1.156035
+	Test cost = 0.973110,	Krip Loss = 0.973110,	RMSE = 1.219624
+	Test cost = 0.991895,	Krip Loss = 0.991895,	RMSE = 1.344142
+Epoch = 19
+	Train cost = 0.736928,	Krip Loss = 0.736928,	RMSE = 1.147113
+	Test cost = 0.976715,	Krip Loss = 0.976715,	RMSE = 1.235828
+	Test cost = 0.985078,	Krip Loss = 0.985078,	RMSE = 1.334061
+Epoch = 20
+	Train cost = 0.715817,	Krip Loss = 0.715817,	RMSE = 1.124319
+	Test cost = 0.972258,	Krip Loss = 0.972258,	RMSE = 1.253410
+	Test cost = 0.983731,	Krip Loss = 0.983731,	RMSE = 1.339810
+Epoch = 21
+	Train cost = 0.707675,	Krip Loss = 0.707675,	RMSE = 1.126201
+	Test cost = 0.969842,	Krip Loss = 0.969842,	RMSE = 1.241600
+	Test cost = 0.981408,	Krip Loss = 0.981408,	RMSE = 1.294769
+Epoch = 22
+	Train cost = 0.689437,	Krip Loss = 0.689437,	RMSE = 1.107512
+	Test cost = 0.970284,	Krip Loss = 0.970284,	RMSE = 1.253012
+	Test cost = 0.965368,	Krip Loss = 0.965368,	RMSE = 1.287545
+Best Epoch = 17, Best Cost in Test = 0.997359
+Validation Dyad = 10 	Testing Dyad = 11
+RMSE of Average Prediction = 1.437857
+(2700, 300, 148) (354, 300, 148) (358, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.998308,	Krip Loss = 0.998308,	RMSE = 3.087961
+	Test cost = 1.000035,	Krip Loss = 1.000035,	RMSE = 3.752533
+	Test cost = 0.995921,	Krip Loss = 0.995921,	RMSE = 3.523405
+Epoch = 2
+	Train cost = 0.993225,	Krip Loss = 0.993225,	RMSE = 2.883713
+	Test cost = 1.000928,	Krip Loss = 1.000928,	RMSE = 3.469237
+	Test cost = 0.998166,	Krip Loss = 0.998166,	RMSE = 3.216133
+Epoch = 3
+	Train cost = 0.982500,	Krip Loss = 0.982500,	RMSE = 2.472052
+	Test cost = 1.001765,	Krip Loss = 1.001765,	RMSE = 2.932221
+	Test cost = 0.998318,	Krip Loss = 0.998318,	RMSE = 2.596695
+Epoch = 4
+	Train cost = 0.959668,	Krip Loss = 0.959668,	RMSE = 2.019997
+	Test cost = 1.000256,	Krip Loss = 1.000256,	RMSE = 2.418022
+	Test cost = 1.001835,	Krip Loss = 1.001835,	RMSE = 2.053821
+Epoch = 5
+	Train cost = 0.940710,	Krip Loss = 0.940710,	RMSE = 1.732940
+	Test cost = 1.004015,	Krip Loss = 1.004015,	RMSE = 2.121472
+	Test cost = 0.996779,	Krip Loss = 0.996779,	RMSE = 1.747437
+Epoch = 6
+	Train cost = 0.930337,	Krip Loss = 0.930337,	RMSE = 1.763476
+	Test cost = 1.002557,	Krip Loss = 1.002557,	RMSE = 2.122428
+	Test cost = 1.006636,	Krip Loss = 1.006636,	RMSE = 1.718742
+Epoch = 7
+	Train cost = 0.907769,	Krip Loss = 0.907769,	RMSE = 1.579616
+	Test cost = 1.003964,	Krip Loss = 1.003964,	RMSE = 1.934941
+	Test cost = 1.001985,	Krip Loss = 1.001985,	RMSE = 1.541023
+Epoch = 8
+	Train cost = 0.893399,	Krip Loss = 0.893399,	RMSE = 1.545951
+	Test cost = 1.001584,	Krip Loss = 1.001584,	RMSE = 1.860150
+	Test cost = 0.996029,	Krip Loss = 0.996029,	RMSE = 1.448582
+Epoch = 9
+	Train cost = 0.875445,	Krip Loss = 0.875445,	RMSE = 1.443866
+	Test cost = 1.001368,	Krip Loss = 1.001368,	RMSE = 1.758720
+	Test cost = 1.000092,	Krip Loss = 1.000092,	RMSE = 1.385917
+Epoch = 10
+	Train cost = 0.859514,	Krip Loss = 0.859514,	RMSE = 1.362764
+	Test cost = 1.002640,	Krip Loss = 1.002640,	RMSE = 1.716574
+	Test cost = 1.003961,	Krip Loss = 1.003961,	RMSE = 1.342923
+Epoch = 11
+	Train cost = 0.841399,	Krip Loss = 0.841399,	RMSE = 1.368572
+	Test cost = 1.003644,	Krip Loss = 1.003644,	RMSE = 1.587307
+	Test cost = 1.006481,	Krip Loss = 1.006481,	RMSE = 1.288702
+Epoch = 12
+	Train cost = 0.832700,	Krip Loss = 0.832700,	RMSE = 1.303642
+	Test cost = 0.998637,	Krip Loss = 0.998637,	RMSE = 1.543863
+	Test cost = 0.991370,	Krip Loss = 0.991370,	RMSE = 1.258472
+Epoch = 13
+	Train cost = 0.814539,	Krip Loss = 0.814539,	RMSE = 1.261265
+	Test cost = 1.001147,	Krip Loss = 1.001147,	RMSE = 1.486725
+	Test cost = 0.984412,	Krip Loss = 0.984412,	RMSE = 1.251589
+Epoch = 14
+	Train cost = 0.797818,	Krip Loss = 0.797818,	RMSE = 1.223605
+	Test cost = 1.002118,	Krip Loss = 1.002118,	RMSE = 1.397936
+	Test cost = 0.987445,	Krip Loss = 0.987445,	RMSE = 1.220321
+Epoch = 15
+	Train cost = 0.792608,	Krip Loss = 0.792608,	RMSE = 1.197860
+	Test cost = 0.994279,	Krip Loss = 0.994279,	RMSE = 1.340880
+	Test cost = 0.975824,	Krip Loss = 0.975824,	RMSE = 1.199009
+Epoch = 16
+	Train cost = 0.774791,	Krip Loss = 0.774791,	RMSE = 1.171796
+	Test cost = 0.994764,	Krip Loss = 0.994764,	RMSE = 1.326049
+	Test cost = 0.965560,	Krip Loss = 0.965560,	RMSE = 1.187818
+Epoch = 17
+	Train cost = 0.761712,	Krip Loss = 0.761712,	RMSE = 1.165231
+	Test cost = 0.997359,	Krip Loss = 0.997359,	RMSE = 1.303364
+	Test cost = 0.962201,	Krip Loss = 0.962201,	RMSE = 1.188695
+Epoch = 18
+	Train cost = 0.751977,	Krip Loss = 0.751977,	RMSE = 1.156035
+	Test cost = 0.991895,	Krip Loss = 0.991895,	RMSE = 1.344142
+	Test cost = 0.973110,	Krip Loss = 0.973110,	RMSE = 1.219624
+Epoch = 19
+	Train cost = 0.736928,	Krip Loss = 0.736928,	RMSE = 1.147113
+	Test cost = 0.985078,	Krip Loss = 0.985078,	RMSE = 1.334061
+	Test cost = 0.976715,	Krip Loss = 0.976715,	RMSE = 1.235828
+Epoch = 20
+	Train cost = 0.715817,	Krip Loss = 0.715817,	RMSE = 1.124319
+	Test cost = 0.983731,	Krip Loss = 0.983731,	RMSE = 1.339810
+	Test cost = 0.972258,	Krip Loss = 0.972258,	RMSE = 1.253410
+Epoch = 21
+	Train cost = 0.707675,	Krip Loss = 0.707675,	RMSE = 1.126201
+	Test cost = 0.981408,	Krip Loss = 0.981408,	RMSE = 1.294769
+	Test cost = 0.969842,	Krip Loss = 0.969842,	RMSE = 1.241600
+Epoch = 22
+	Train cost = 0.689437,	Krip Loss = 0.689437,	RMSE = 1.107512
+	Test cost = 0.965368,	Krip Loss = 0.965368,	RMSE = 1.287545
+	Test cost = 0.970284,	Krip Loss = 0.970284,	RMSE = 1.253012
+Epoch = 23
+	Train cost = 0.690227,	Krip Loss = 0.690227,	RMSE = 1.097859
+	Test cost = 0.986070,	Krip Loss = 0.986070,	RMSE = 1.272933
+	Test cost = 0.967475,	Krip Loss = 0.967475,	RMSE = 1.228335
+Epoch = 24
+	Train cost = 0.691784,	Krip Loss = 0.691784,	RMSE = 1.097710
+	Test cost = 0.985733,	Krip Loss = 0.985733,	RMSE = 1.194287
+	Test cost = 0.952029,	Krip Loss = 0.952029,	RMSE = 1.185310
+Epoch = 25
+	Train cost = 0.671670,	Krip Loss = 0.671670,	RMSE = 1.070442
+	Test cost = 0.982302,	Krip Loss = 0.982302,	RMSE = 1.227926
+	Test cost = 0.954134,	Krip Loss = 0.954134,	RMSE = 1.237124
+Epoch = 26
+	Train cost = 0.658163,	Krip Loss = 0.658163,	RMSE = 1.058790
+	Test cost = 0.988174,	Krip Loss = 0.988174,	RMSE = 1.247699
+	Test cost = 0.952882,	Krip Loss = 0.952882,	RMSE = 1.274391
+Epoch = 27
+	Train cost = 0.642490,	Krip Loss = 0.642490,	RMSE = 1.050578
+	Test cost = 0.989431,	Krip Loss = 0.989431,	RMSE = 1.221214
+	Test cost = 0.956251,	Krip Loss = 0.956251,	RMSE = 1.247408
+Best Epoch = 22, Best Cost in Test = 0.970284
+Validation Dyad = 4 	Testing Dyad = 12
+RMSE of Average Prediction = 1.741178
+(2810, 300, 148) (206, 300, 148) (396, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 1.000491,	Krip Loss = 1.000491,	RMSE = 3.423234
+	Test cost = 1.003592,	Krip Loss = 1.003592,	RMSE = 2.255033
+	Test cost = 1.002381,	Krip Loss = 1.002381,	RMSE = 3.839821
+Epoch = 2
+	Train cost = 0.997636,	Krip Loss = 0.997636,	RMSE = 3.500390
+	Test cost = 0.998388,	Krip Loss = 0.998388,	RMSE = 2.206974
+	Test cost = 1.000884,	Krip Loss = 1.000884,	RMSE = 3.743698
+Epoch = 3
+	Train cost = 0.993456,	Krip Loss = 0.993456,	RMSE = 3.196271
+	Test cost = 0.990741,	Krip Loss = 0.990741,	RMSE = 1.757938
+	Test cost = 1.000898,	Krip Loss = 1.000898,	RMSE = 3.381590
+Epoch = 4
+	Train cost = 0.987449,	Krip Loss = 0.987449,	RMSE = 2.681632
+	Test cost = 0.985285,	Krip Loss = 0.985285,	RMSE = 1.444479
+	Test cost = 0.995759,	Krip Loss = 0.995759,	RMSE = 2.897632
+Epoch = 5
+	Train cost = 0.972995,	Krip Loss = 0.972995,	RMSE = 2.151494
+	Test cost = 0.977958,	Krip Loss = 0.977958,	RMSE = 1.274895
+	Test cost = 0.995930,	Krip Loss = 0.995930,	RMSE = 2.349070
+Epoch = 6
+	Train cost = 0.953333,	Krip Loss = 0.953333,	RMSE = 1.710252
+	Test cost = 0.978572,	Krip Loss = 0.978572,	RMSE = 1.492595
+	Test cost = 0.992254,	Krip Loss = 0.992254,	RMSE = 1.984553
+Epoch = 7
+	Train cost = 0.933721,	Krip Loss = 0.933721,	RMSE = 1.463349
+	Test cost = 0.963130,	Krip Loss = 0.963130,	RMSE = 1.549726
+	Test cost = 0.996584,	Krip Loss = 0.996584,	RMSE = 1.705768
+Epoch = 8
+	Train cost = 0.900109,	Krip Loss = 0.900109,	RMSE = 1.300272
+	Test cost = 0.960487,	Krip Loss = 0.960487,	RMSE = 1.641187
+	Test cost = 1.000420,	Krip Loss = 1.000420,	RMSE = 1.521694
+Epoch = 9
+	Train cost = 0.879191,	Krip Loss = 0.879191,	RMSE = 1.233792
+	Test cost = 0.936312,	Krip Loss = 0.936312,	RMSE = 1.570278
+	Test cost = 1.007234,	Krip Loss = 1.007234,	RMSE = 1.444880
+Epoch = 10
+	Train cost = 0.857980,	Krip Loss = 0.857980,	RMSE = 1.207275
+	Test cost = 0.930511,	Krip Loss = 0.930511,	RMSE = 1.494280
+	Test cost = 1.000005,	Krip Loss = 1.000005,	RMSE = 1.393185
+Epoch = 11
+	Train cost = 0.840685,	Krip Loss = 0.840685,	RMSE = 1.179864
+	Test cost = 0.921142,	Krip Loss = 0.921142,	RMSE = 1.562778
+	Test cost = 0.982991,	Krip Loss = 0.982991,	RMSE = 1.320060
+Epoch = 12
+	Train cost = 0.820074,	Krip Loss = 0.820074,	RMSE = 1.154770
+	Test cost = 0.899890,	Krip Loss = 0.899890,	RMSE = 1.478871
+	Test cost = 0.987611,	Krip Loss = 0.987611,	RMSE = 1.317323
+Epoch = 13
+	Train cost = 0.802681,	Krip Loss = 0.802681,	RMSE = 1.144134
+	Test cost = 0.853260,	Krip Loss = 0.853260,	RMSE = 1.532992
+	Test cost = 0.988345,	Krip Loss = 0.988345,	RMSE = 1.309182
+Epoch = 14
+	Train cost = 0.789583,	Krip Loss = 0.789583,	RMSE = 1.133176
+	Test cost = 0.853476,	Krip Loss = 0.853476,	RMSE = 1.452462
+	Test cost = 0.986824,	Krip Loss = 0.986824,	RMSE = 1.310524
+Epoch = 15
+	Train cost = 0.768806,	Krip Loss = 0.768806,	RMSE = 1.123381
+	Test cost = 0.881327,	Krip Loss = 0.881327,	RMSE = 1.465439
+	Test cost = 0.978894,	Krip Loss = 0.978894,	RMSE = 1.284634
+Epoch = 16
+	Train cost = 0.774777,	Krip Loss = 0.774777,	RMSE = 1.118990
+	Test cost = 0.873416,	Krip Loss = 0.873416,	RMSE = 1.473100
+	Test cost = 0.980537,	Krip Loss = 0.980537,	RMSE = 1.292853
+Epoch = 17
+	Train cost = 0.760270,	Krip Loss = 0.760270,	RMSE = 1.109624
+	Test cost = 0.877723,	Krip Loss = 0.877723,	RMSE = 1.531159
+	Test cost = 0.977105,	Krip Loss = 0.977105,	RMSE = 1.275327
+Epoch = 18
+	Train cost = 0.750247,	Krip Loss = 0.750247,	RMSE = 1.095617
+	Test cost = 0.883394,	Krip Loss = 0.883394,	RMSE = 1.566090
+	Test cost = 0.984201,	Krip Loss = 0.984201,	RMSE = 1.299349
+Best Epoch = 13, Best Cost in Test = 0.988345
+Validation Dyad = 18 	Testing Dyad = 16
+RMSE of Average Prediction = 1.546499
+(3006, 300, 148) (202, 300, 148) (204, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.996515,	Krip Loss = 0.996515,	RMSE = 3.330418
+	Test cost = 1.023758,	Krip Loss = 1.023758,	RMSE = 2.362689
+	Test cost = 1.014329,	Krip Loss = 1.014329,	RMSE = 2.571035
+Epoch = 2
+	Train cost = 0.986900,	Krip Loss = 0.986900,	RMSE = 2.710822
+	Test cost = 1.066328,	Krip Loss = 1.066328,	RMSE = 1.992548
+	Test cost = 1.031929,	Krip Loss = 1.031929,	RMSE = 2.020253
+Epoch = 3
+	Train cost = 0.975849,	Krip Loss = 0.975849,	RMSE = 2.131929
+	Test cost = 1.081134,	Krip Loss = 1.081134,	RMSE = 1.782485
+	Test cost = 1.072938,	Krip Loss = 1.072938,	RMSE = 1.767328
+Epoch = 4
+	Train cost = 0.957393,	Krip Loss = 0.957393,	RMSE = 1.802548
+	Test cost = 1.100625,	Krip Loss = 1.100625,	RMSE = 1.644007
+	Test cost = 1.095372,	Krip Loss = 1.095372,	RMSE = 1.627690
+Epoch = 5
+	Train cost = 0.940233,	Krip Loss = 0.940233,	RMSE = 1.578072
+	Test cost = 1.127285,	Krip Loss = 1.127285,	RMSE = 1.543152
+	Test cost = 1.100391,	Krip Loss = 1.100391,	RMSE = 1.523232
+Epoch = 6
+	Train cost = 0.914382,	Krip Loss = 0.914382,	RMSE = 1.346032
+	Test cost = 1.125811,	Krip Loss = 1.125811,	RMSE = 1.510276
+	Test cost = 1.104791,	Krip Loss = 1.104791,	RMSE = 1.548311
+Epoch = 7
+	Train cost = 0.882540,	Krip Loss = 0.882540,	RMSE = 1.229739
+	Test cost = 1.102004,	Krip Loss = 1.102004,	RMSE = 1.480079
+	Test cost = 1.095369,	Krip Loss = 1.095369,	RMSE = 1.562722
+Epoch = 8
+	Train cost = 0.857586,	Krip Loss = 0.857586,	RMSE = 1.197179
+	Test cost = 1.079778,	Krip Loss = 1.079778,	RMSE = 1.508224
+	Test cost = 1.089527,	Krip Loss = 1.089527,	RMSE = 1.641558
+Epoch = 9
+	Train cost = 0.838516,	Krip Loss = 0.838516,	RMSE = 1.180645
+	Test cost = 1.059982,	Krip Loss = 1.059982,	RMSE = 1.489225
+	Test cost = 1.062558,	Krip Loss = 1.062558,	RMSE = 1.597166
+Epoch = 10
+	Train cost = 0.813360,	Krip Loss = 0.813360,	RMSE = 1.158512
+	Test cost = 1.044802,	Krip Loss = 1.044802,	RMSE = 1.541676
+	Test cost = 1.049939,	Krip Loss = 1.049939,	RMSE = 1.625559
+Epoch = 11
+	Train cost = 0.800060,	Krip Loss = 0.800060,	RMSE = 1.140056
+	Test cost = 1.030431,	Krip Loss = 1.030431,	RMSE = 1.503547
+	Test cost = 1.045197,	Krip Loss = 1.045197,	RMSE = 1.560487
+Epoch = 12
+	Train cost = 0.780565,	Krip Loss = 0.780565,	RMSE = 1.136451
+	Test cost = 1.019942,	Krip Loss = 1.019942,	RMSE = 1.506679
+	Test cost = 1.034079,	Krip Loss = 1.034079,	RMSE = 1.571822
+Epoch = 13
+	Train cost = 0.771287,	Krip Loss = 0.771287,	RMSE = 1.123035
+	Test cost = 1.012059,	Krip Loss = 1.012059,	RMSE = 1.500299
+	Test cost = 1.029157,	Krip Loss = 1.029157,	RMSE = 1.556400
+Epoch = 14
+	Train cost = 0.752329,	Krip Loss = 0.752329,	RMSE = 1.114192
+	Test cost = 1.007180,	Krip Loss = 1.007180,	RMSE = 1.499305
+	Test cost = 1.028822,	Krip Loss = 1.028822,	RMSE = 1.560179
+Epoch = 15
+	Train cost = 0.742612,	Krip Loss = 0.742612,	RMSE = 1.100503
+	Test cost = 1.000915,	Krip Loss = 1.000915,	RMSE = 1.493004
+	Test cost = 1.032084,	Krip Loss = 1.032084,	RMSE = 1.573457
+Epoch = 16
+	Train cost = 0.729543,	Krip Loss = 0.729543,	RMSE = 1.093077
+	Test cost = 0.996997,	Krip Loss = 0.996997,	RMSE = 1.499008
+	Test cost = 1.028217,	Krip Loss = 1.028217,	RMSE = 1.579875
+Epoch = 17
+	Train cost = 0.720003,	Krip Loss = 0.720003,	RMSE = 1.081735
+	Test cost = 0.995407,	Krip Loss = 0.995407,	RMSE = 1.487592
+	Test cost = 1.025016,	Krip Loss = 1.025016,	RMSE = 1.577915
+Epoch = 18
+	Train cost = 0.709424,	Krip Loss = 0.709424,	RMSE = 1.074465
+	Test cost = 0.994971,	Krip Loss = 0.994971,	RMSE = 1.464174
+	Test cost = 1.010672,	Krip Loss = 1.010672,	RMSE = 1.548842
+Epoch = 19
+	Train cost = 0.701036,	Krip Loss = 0.701036,	RMSE = 1.062213
+	Test cost = 0.994983,	Krip Loss = 0.994983,	RMSE = 1.446243
+	Test cost = 1.018495,	Krip Loss = 1.018495,	RMSE = 1.546576
+Epoch = 20
+	Train cost = 0.688482,	Krip Loss = 0.688482,	RMSE = 1.059334
+	Test cost = 0.992787,	Krip Loss = 0.992787,	RMSE = 1.444584
+	Test cost = 1.014557,	Krip Loss = 1.014557,	RMSE = 1.538657
+Epoch = 21
+	Train cost = 0.680650,	Krip Loss = 0.680650,	RMSE = 1.050602
+	Test cost = 0.989956,	Krip Loss = 0.989956,	RMSE = 1.411109
+	Test cost = 1.008429,	Krip Loss = 1.008429,	RMSE = 1.517548
+Epoch = 22
+	Train cost = 0.668748,	Krip Loss = 0.668748,	RMSE = 1.045366
+	Test cost = 0.986841,	Krip Loss = 0.986841,	RMSE = 1.397610
+	Test cost = 1.015544,	Krip Loss = 1.015544,	RMSE = 1.519806
+Epoch = 23
+	Train cost = 0.661452,	Krip Loss = 0.661452,	RMSE = 1.041031
+	Test cost = 0.989429,	Krip Loss = 0.989429,	RMSE = 1.415961
+	Test cost = 1.006535,	Krip Loss = 1.006535,	RMSE = 1.541890
+Epoch = 24
+	Train cost = 0.654408,	Krip Loss = 0.654408,	RMSE = 1.037430
+	Test cost = 0.988550,	Krip Loss = 0.988550,	RMSE = 1.387416
+	Test cost = 1.000657,	Krip Loss = 1.000657,	RMSE = 1.509936
+Epoch = 25
+	Train cost = 0.645210,	Krip Loss = 0.645210,	RMSE = 1.034548
+	Test cost = 0.989074,	Krip Loss = 0.989074,	RMSE = 1.381580
+	Test cost = 1.001824,	Krip Loss = 1.001824,	RMSE = 1.523370
+Epoch = 26
+	Train cost = 0.636630,	Krip Loss = 0.636630,	RMSE = 1.026673
+	Test cost = 0.985136,	Krip Loss = 0.985136,	RMSE = 1.359526
+	Test cost = 1.011344,	Krip Loss = 1.011344,	RMSE = 1.527760
+Epoch = 27
+	Train cost = 0.628880,	Krip Loss = 0.628880,	RMSE = 1.023885
+	Test cost = 0.989566,	Krip Loss = 0.989566,	RMSE = 1.366269
+	Test cost = 1.010009,	Krip Loss = 1.010009,	RMSE = 1.542119
+Epoch = 28
+	Train cost = 0.622780,	Krip Loss = 0.622780,	RMSE = 1.016430
+	Test cost = 0.996013,	Krip Loss = 0.996013,	RMSE = 1.337648
+	Test cost = 1.020971,	Krip Loss = 1.020971,	RMSE = 1.551364
+Epoch = 29
+	Train cost = 0.617127,	Krip Loss = 0.617127,	RMSE = 1.016984
+	Test cost = 1.005335,	Krip Loss = 1.005335,	RMSE = 1.349599
+	Test cost = 1.017450,	Krip Loss = 1.017450,	RMSE = 1.566734
+Epoch = 30
+	Train cost = 0.613517,	Krip Loss = 0.613517,	RMSE = 1.013017
+	Test cost = 0.995089,	Krip Loss = 0.995089,	RMSE = 1.335701
+	Test cost = 1.018327,	Krip Loss = 1.018327,	RMSE = 1.546095
+Epoch = 31
+	Train cost = 0.607154,	Krip Loss = 0.607154,	RMSE = 1.012628
+	Test cost = 0.985984,	Krip Loss = 0.985984,	RMSE = 1.331548
+	Test cost = 1.017639,	Krip Loss = 1.017639,	RMSE = 1.534994
+Best Epoch = 26, Best Cost in Test = 1.011344
+Validation Dyad = 9 	Testing Dyad = 17
+RMSE of Average Prediction = 0.939190
+(2834, 300, 148) (382, 300, 148) (196, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.999072,	Krip Loss = 0.999072,	RMSE = 3.309445
+	Test cost = 0.998379,	Krip Loss = 0.998379,	RMSE = 3.016204
+	Test cost = 0.991060,	Krip Loss = 0.991060,	RMSE = 2.715832
+Epoch = 2
+	Train cost = 0.991755,	Krip Loss = 0.991755,	RMSE = 3.018932
+	Test cost = 0.997137,	Krip Loss = 0.997137,	RMSE = 2.536208
+	Test cost = 0.990669,	Krip Loss = 0.990669,	RMSE = 2.276336
+Epoch = 3
+	Train cost = 0.983636,	Krip Loss = 0.983636,	RMSE = 2.542863
+	Test cost = 0.999254,	Krip Loss = 0.999254,	RMSE = 2.148943
+	Test cost = 0.983214,	Krip Loss = 0.983214,	RMSE = 1.944631
+Epoch = 4
+	Train cost = 0.966135,	Krip Loss = 0.966135,	RMSE = 2.090150
+	Test cost = 0.986825,	Krip Loss = 0.986825,	RMSE = 1.524656
+	Test cost = 0.965534,	Krip Loss = 0.965534,	RMSE = 1.468624
+Epoch = 5
+	Train cost = 0.944471,	Krip Loss = 0.944471,	RMSE = 1.756537
+	Test cost = 0.974319,	Krip Loss = 0.974319,	RMSE = 1.389844
+	Test cost = 0.949384,	Krip Loss = 0.949384,	RMSE = 1.367812
+Epoch = 6
+	Train cost = 0.924404,	Krip Loss = 0.924404,	RMSE = 1.548502
+	Test cost = 0.950527,	Krip Loss = 0.950527,	RMSE = 1.057598
+	Test cost = 0.933290,	Krip Loss = 0.933290,	RMSE = 1.176068
+Epoch = 7
+	Train cost = 0.898787,	Krip Loss = 0.898787,	RMSE = 1.380570
+	Test cost = 0.901356,	Krip Loss = 0.901356,	RMSE = 0.939961
+	Test cost = 0.922114,	Krip Loss = 0.922114,	RMSE = 1.167639
+Epoch = 8
+	Train cost = 0.869540,	Krip Loss = 0.869540,	RMSE = 1.278314
+	Test cost = 0.892979,	Krip Loss = 0.892979,	RMSE = 0.936301
+	Test cost = 0.922567,	Krip Loss = 0.922567,	RMSE = 1.173457
+Epoch = 9
+	Train cost = 0.849199,	Krip Loss = 0.849199,	RMSE = 1.233571
+	Test cost = 0.897074,	Krip Loss = 0.897074,	RMSE = 0.946545
+	Test cost = 0.919475,	Krip Loss = 0.919475,	RMSE = 1.204586
+Epoch = 10
+	Train cost = 0.836737,	Krip Loss = 0.836737,	RMSE = 1.211394
+	Test cost = 0.881947,	Krip Loss = 0.881947,	RMSE = 0.949134
+	Test cost = 0.926145,	Krip Loss = 0.926145,	RMSE = 1.226846
+Epoch = 11
+	Train cost = 0.815338,	Krip Loss = 0.815338,	RMSE = 1.200479
+	Test cost = 0.889609,	Krip Loss = 0.889609,	RMSE = 0.965423
+	Test cost = 0.935872,	Krip Loss = 0.935872,	RMSE = 1.240520
+Epoch = 12
+	Train cost = 0.802105,	Krip Loss = 0.802105,	RMSE = 1.185614
+	Test cost = 0.883935,	Krip Loss = 0.883935,	RMSE = 0.964519
+	Test cost = 0.937838,	Krip Loss = 0.937838,	RMSE = 1.227657
+Epoch = 13
+	Train cost = 0.784660,	Krip Loss = 0.784660,	RMSE = 1.189751
+	Test cost = 0.882820,	Krip Loss = 0.882820,	RMSE = 0.971225
+	Test cost = 0.944835,	Krip Loss = 0.944835,	RMSE = 1.233081
+Epoch = 14
+	Train cost = 0.767774,	Krip Loss = 0.767774,	RMSE = 1.172071
+	Test cost = 0.881358,	Krip Loss = 0.881358,	RMSE = 0.962804
+	Test cost = 0.943962,	Krip Loss = 0.943962,	RMSE = 1.218225
+Epoch = 15
+	Train cost = 0.750670,	Krip Loss = 0.750670,	RMSE = 1.157008
+	Test cost = 0.882286,	Krip Loss = 0.882286,	RMSE = 0.971231
+	Test cost = 0.949411,	Krip Loss = 0.949411,	RMSE = 1.226540
+Epoch = 16
+	Train cost = 0.746356,	Krip Loss = 0.746356,	RMSE = 1.158687
+	Test cost = 0.866089,	Krip Loss = 0.866089,	RMSE = 0.949846
+	Test cost = 0.949580,	Krip Loss = 0.949580,	RMSE = 1.201355
+Epoch = 17
+	Train cost = 0.734254,	Krip Loss = 0.734254,	RMSE = 1.151335
+	Test cost = 0.880113,	Krip Loss = 0.880113,	RMSE = 0.975324
+	Test cost = 0.939534,	Krip Loss = 0.939534,	RMSE = 1.241859
+Epoch = 18
+	Train cost = 0.720784,	Krip Loss = 0.720784,	RMSE = 1.136137
+	Test cost = 0.875641,	Krip Loss = 0.875641,	RMSE = 0.973024
+	Test cost = 0.939659,	Krip Loss = 0.939659,	RMSE = 1.232021
+Epoch = 19
+	Train cost = 0.710208,	Krip Loss = 0.710208,	RMSE = 1.121443
+	Test cost = 0.872868,	Krip Loss = 0.872868,	RMSE = 0.980550
+	Test cost = 0.944885,	Krip Loss = 0.944885,	RMSE = 1.247487
+Epoch = 20
+	Train cost = 0.697033,	Krip Loss = 0.697033,	RMSE = 1.113273
+	Test cost = 0.874845,	Krip Loss = 0.874845,	RMSE = 0.973675
+	Test cost = 0.952022,	Krip Loss = 0.952022,	RMSE = 1.239925
+Epoch = 21
+	Train cost = 0.688613,	Krip Loss = 0.688613,	RMSE = 1.109132
+	Test cost = 0.871737,	Krip Loss = 0.871737,	RMSE = 0.986933
+	Test cost = 0.942793,	Krip Loss = 0.942793,	RMSE = 1.262496
+Best Epoch = 16, Best Cost in Test = 0.949580
+Validation Dyad = 7 	Testing Dyad = 18
+RMSE of Average Prediction = 1.227084
+(2814, 300, 148) (396, 300, 148) (202, 300, 148)
+model = lstm lambda = 0.0 last = True share = False #class = 1 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Compilation done 3
+Epoch = 1
+	Train cost = 0.996833,	Krip Loss = 0.996833,	RMSE = 3.107743
+	Test cost = 1.004529,	Krip Loss = 1.004529,	RMSE = 3.117541
+	Test cost = 1.031953,	Krip Loss = 1.031953,	RMSE = 2.374875
+Epoch = 2
+	Train cost = 0.989551,	Krip Loss = 0.989551,	RMSE = 2.696065
+	Test cost = 1.003005,	Krip Loss = 1.003005,	RMSE = 2.676908
+	Test cost = 1.044438,	Krip Loss = 1.044438,	RMSE = 2.159861
+Epoch = 3
+	Train cost = 0.978656,	Krip Loss = 0.978656,	RMSE = 2.223033
+	Test cost = 1.007951,	Krip Loss = 1.007951,	RMSE = 2.186771
+	Test cost = 1.060193,	Krip Loss = 1.060193,	RMSE = 1.760079
+Epoch = 4
+	Train cost = 0.961616,	Krip Loss = 0.961616,	RMSE = 1.890271
+	Test cost = 1.018714,	Krip Loss = 1.018714,	RMSE = 1.929719
+	Test cost = 1.088659,	Krip Loss = 1.088659,	RMSE = 1.626159
+Epoch = 5
+	Train cost = 0.941300,	Krip Loss = 0.941300,	RMSE = 1.656171
+	Test cost = 1.013317,	Krip Loss = 1.013317,	RMSE = 1.660398
+	Test cost = 1.093065,	Krip Loss = 1.093065,	RMSE = 1.516413
+Epoch = 6
+	Train cost = 0.918113,	Krip Loss = 0.918113,	RMSE = 1.528003
+	Test cost = 1.023736,	Krip Loss = 1.023736,	RMSE = 1.509087
+	Test cost = 1.101970,	Krip Loss = 1.101970,	RMSE = 1.422341
+Epoch = 7
+	Train cost = 0.910971,	Krip Loss = 0.910971,	RMSE = 1.348125
+	Test cost = 1.052161,	Krip Loss = 1.052161,	RMSE = 1.373639
+	Test cost = 1.115630,	Krip Loss = 1.115630,	RMSE = 1.374738
+Epoch = 8
+	Train cost = 0.887094,	Krip Loss = 0.887094,	RMSE = 1.283214
+	Test cost = 1.035481,	Krip Loss = 1.035481,	RMSE = 1.332422
+	Test cost = 1.089624,	Krip Loss = 1.089624,	RMSE = 1.335885
+Epoch = 9
+	Train cost = 0.860195,	Krip Loss = 0.860195,	RMSE = 1.239160
+	Test cost = 1.047445,	Krip Loss = 1.047445,	RMSE = 1.323259
+	Test cost = 1.066121,	Krip Loss = 1.066121,	RMSE = 1.330905
+Epoch = 10
+	Train cost = 0.840682,	Krip Loss = 0.840682,	RMSE = 1.212891
+	Test cost = 1.027459,	Krip Loss = 1.027459,	RMSE = 1.308487
+	Test cost = 1.056748,	Krip Loss = 1.056748,	RMSE = 1.340064
+Epoch = 11
+	Train cost = 0.818448,	Krip Loss = 0.818448,	RMSE = 1.193045
+	Test cost = 1.023575,	Krip Loss = 1.023575,	RMSE = 1.310635
+	Test cost = 1.028528,	Krip Loss = 1.028528,	RMSE = 1.283452
+Epoch = 12
+	Train cost = 0.796371,	Krip Loss = 0.796371,	RMSE = 1.172574
+	Test cost = 1.030565,	Krip Loss = 1.030565,	RMSE = 1.297388
+	Test cost = 1.012825,	Krip Loss = 1.012825,	RMSE = 1.284728
+Epoch = 13
+	Train cost = 0.769000,	Krip Loss = 0.769000,	RMSE = 1.149502
+	Test cost = 1.021001,	Krip Loss = 1.021001,	RMSE = 1.290376
+	Test cost = 0.986945,	Krip Loss = 0.986945,	RMSE = 1.253196
+Epoch = 14
+	Train cost = 0.751580,	Krip Loss = 0.751580,	RMSE = 1.138849
+	Test cost = 1.019466,	Krip Loss = 1.019466,	RMSE = 1.284541
+	Test cost = 0.976764,	Krip Loss = 0.976764,	RMSE = 1.265338
+Epoch = 15
+	Train cost = 0.733901,	Krip Loss = 0.733901,	RMSE = 1.111107
+	Test cost = 1.016585,	Krip Loss = 1.016585,	RMSE = 1.284864
+	Test cost = 0.966128,	Krip Loss = 0.966128,	RMSE = 1.269261
+Epoch = 16
+	Train cost = 0.726878,	Krip Loss = 0.726878,	RMSE = 1.105780
+	Test cost = 1.024200,	Krip Loss = 1.024200,	RMSE = 1.287312
+	Test cost = 0.961147,	Krip Loss = 0.961147,	RMSE = 1.262799
+Epoch = 17
+	Train cost = 0.711752,	Krip Loss = 0.711752,	RMSE = 1.081883
+	Test cost = 1.029722,	Krip Loss = 1.029722,	RMSE = 1.309587
+	Test cost = 0.954439,	Krip Loss = 0.954439,	RMSE = 1.249477
+Epoch = 18
+	Train cost = 0.703837,	Krip Loss = 0.703837,	RMSE = 1.090933
+	Test cost = 1.032744,	Krip Loss = 1.032744,	RMSE = 1.337317
+	Test cost = 0.959128,	Krip Loss = 0.959128,	RMSE = 1.279205
+Epoch = 19
+	Train cost = 0.688823,	Krip Loss = 0.688823,	RMSE = 1.067517
+	Test cost = 1.019598,	Krip Loss = 1.019598,	RMSE = 1.331216
+	Test cost = 0.944315,	Krip Loss = 0.944315,	RMSE = 1.238997
+Epoch = 20
+	Train cost = 0.670913,	Krip Loss = 0.670913,	RMSE = 1.066065
+	Test cost = 1.021074,	Krip Loss = 1.021074,	RMSE = 1.346131
+	Test cost = 0.940876,	Krip Loss = 0.940876,	RMSE = 1.241185
+Epoch = 21
+	Train cost = 0.657493,	Krip Loss = 0.657493,	RMSE = 1.054475
+	Test cost = 1.020473,	Krip Loss = 1.020473,	RMSE = 1.346689
+	Test cost = 0.934317,	Krip Loss = 0.934317,	RMSE = 1.229659
+Epoch = 22
+	Train cost = 0.639301,	Krip Loss = 0.639301,	RMSE = 1.040515
+	Test cost = 1.011452,	Krip Loss = 1.011452,	RMSE = 1.348120
+	Test cost = 0.918085,	Krip Loss = 0.918085,	RMSE = 1.223142
+Epoch = 23
+	Train cost = 0.642616,	Krip Loss = 0.642616,	RMSE = 1.036632
+	Test cost = 1.013140,	Krip Loss = 1.013140,	RMSE = 1.352153
+	Test cost = 0.913039,	Krip Loss = 0.913039,	RMSE = 1.233697
+Epoch = 24
+	Train cost = 0.624381,	Krip Loss = 0.624381,	RMSE = 1.027872
+	Test cost = 1.000776,	Krip Loss = 1.000776,	RMSE = 1.341183
+	Test cost = 0.896748,	Krip Loss = 0.896748,	RMSE = 1.211900
+Epoch = 25
+	Train cost = 0.610297,	Krip Loss = 0.610297,	RMSE = 1.014276
+	Test cost = 1.013588,	Krip Loss = 1.013588,	RMSE = 1.355180
+	Test cost = 0.891670,	Krip Loss = 0.891670,	RMSE = 1.210649
+Epoch = 26
+	Train cost = 0.600076,	Krip Loss = 0.600076,	RMSE = 1.011567
+	Test cost = 1.009890,	Krip Loss = 1.009890,	RMSE = 1.369909
+	Test cost = 0.885112,	Krip Loss = 0.885112,	RMSE = 1.203358
+Epoch = 27
+	Train cost = 0.585838,	Krip Loss = 0.585838,	RMSE = 1.003915
+	Test cost = 1.007079,	Krip Loss = 1.007079,	RMSE = 1.367322
+	Test cost = 0.885744,	Krip Loss = 0.885744,	RMSE = 1.215628
+Epoch = 28
+	Train cost = 0.577604,	Krip Loss = 0.577604,	RMSE = 0.995889
+	Test cost = 0.999015,	Krip Loss = 0.999015,	RMSE = 1.360818
+	Test cost = 0.882779,	Krip Loss = 0.882779,	RMSE = 1.222815
+Epoch = 29
+	Train cost = 0.578853,	Krip Loss = 0.578853,	RMSE = 0.984893
+	Test cost = 0.996735,	Krip Loss = 0.996735,	RMSE = 1.350921
+	Test cost = 0.876552,	Krip Loss = 0.876552,	RMSE = 1.199451
+Epoch = 30
+	Train cost = 0.566272,	Krip Loss = 0.566272,	RMSE = 0.973485
+	Test cost = 0.996376,	Krip Loss = 0.996376,	RMSE = 1.357802
+	Test cost = 0.875666,	Krip Loss = 0.875666,	RMSE = 1.216947
+Epoch = 31
+	Train cost = 0.555885,	Krip Loss = 0.555885,	RMSE = 0.972686
+	Test cost = 0.995289,	Krip Loss = 0.995289,	RMSE = 1.368979
+	Test cost = 0.871917,	Krip Loss = 0.871917,	RMSE = 1.212355
+Epoch = 32
+	Train cost = 0.546241,	Krip Loss = 0.546241,	RMSE = 0.964879
+	Test cost = 0.994238,	Krip Loss = 0.994238,	RMSE = 1.368522
+	Test cost = 0.864729,	Krip Loss = 0.864729,	RMSE = 1.210222
+Epoch = 33
+	Train cost = 0.537122,	Krip Loss = 0.537122,	RMSE = 0.959347
+	Test cost = 0.991474,	Krip Loss = 0.991474,	RMSE = 1.362048
+	Test cost = 0.859630,	Krip Loss = 0.859630,	RMSE = 1.203232
+Epoch = 34
+	Train cost = 0.528916,	Krip Loss = 0.528916,	RMSE = 0.952360
+	Test cost = 0.989978,	Krip Loss = 0.989978,	RMSE = 1.361127
+	Test cost = 0.853566,	Krip Loss = 0.853566,	RMSE = 1.198266
+Epoch = 35
+	Train cost = 0.519845,	Krip Loss = 0.519845,	RMSE = 0.941408
+	Test cost = 0.989824,	Krip Loss = 0.989824,	RMSE = 1.356144
+	Test cost = 0.849832,	Krip Loss = 0.849832,	RMSE = 1.188458
+Epoch = 36
+	Train cost = 0.514438,	Krip Loss = 0.514438,	RMSE = 0.937383
+	Test cost = 0.989286,	Krip Loss = 0.989286,	RMSE = 1.361336
+	Test cost = 0.846282,	Krip Loss = 0.846282,	RMSE = 1.202797
+Epoch = 37
+	Train cost = 0.507690,	Krip Loss = 0.507690,	RMSE = 0.929238
+	Test cost = 0.985024,	Krip Loss = 0.985024,	RMSE = 1.351236
+	Test cost = 0.841768,	Krip Loss = 0.841768,	RMSE = 1.178326
+Epoch = 38
+	Train cost = 0.502874,	Krip Loss = 0.502874,	RMSE = 0.929875
+	Test cost = 0.990491,	Krip Loss = 0.990491,	RMSE = 1.366078
+	Test cost = 0.842553,	Krip Loss = 0.842553,	RMSE = 1.188250
+Epoch = 39
+	Train cost = 0.495424,	Krip Loss = 0.495424,	RMSE = 0.923717
+	Test cost = 0.989049,	Krip Loss = 0.989049,	RMSE = 1.367492
+	Test cost = 0.837938,	Krip Loss = 0.837938,	RMSE = 1.177275
+Epoch = 40
+	Train cost = 0.489939,	Krip Loss = 0.489939,	RMSE = 0.920362
+	Test cost = 0.989698,	Krip Loss = 0.989698,	RMSE = 1.378889
+	Test cost = 0.842402,	Krip Loss = 0.842402,	RMSE = 1.184511
+Written to ../results/result_lstml_audio_b_share_False_drop_0.0_lamb_0.0_fact_None.txt
