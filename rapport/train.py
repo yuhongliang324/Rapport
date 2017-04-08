@@ -89,6 +89,11 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                 activation = 'relu'
             else:
                 activation = 'tanh'
+        elif model == 'dan':
+            if feature_name == 'hog':
+                activation = 'relu'
+            else:
+                activation = 'tanh'
 
         costs_train, costs_val, costs_test,\
         losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
