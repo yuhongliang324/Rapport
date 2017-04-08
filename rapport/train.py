@@ -13,7 +13,8 @@ from optimize import train
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
-                     model='ours', share=False, best3=False, category=False, normalization=False, num_epoch=60):
+                     model='ours', share=False, best3=False, category=False, normalization=False, activation=None,
+                     num_epoch=60):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -83,18 +84,6 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
 
         print X_train.shape, X_val.shape, X_test.shape
 
-        activation = None
-        if model == 'tagm':
-            if feature_name == 'hog':
-                activation = 'softplus'  # 'relu' !!!
-            else:
-                activation = 'tanh'
-        elif model == 'dan':
-            if feature_name == 'hog':
-                activation = 'relu'
-            else:
-                activation = 'tanh'
-
         costs_train, costs_val, costs_test,\
         losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
             = train(X_train, y_train, X_val, y_val, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
@@ -110,7 +99,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                       costs_test=costs_test, losses_krip_test=losses_krip_test, tdyad=tdyad)
         for i in xrange(y_test.shape[0]):
             writer.write(str(tdyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
-                         ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')  # !!!
+                         ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')
     writer.close()
     print 'Written to ' + result_file
 
@@ -156,9 +145,22 @@ def test1():
     if args.model == 'dan':
         num_epoch = 200
         args.update = 'adam'
+
+    activation = None
+    if args.model == 'tagm':
+        if args.feat == 'hog':
+            activation = 'relu'
+        else:
+            activation = 'softplus'  # tanh !!!
+    elif args.model == 'dan':
+        if args.feat == 'hog':
+            activation = 'relu'
+        else:
+            activation = 'tanh'
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
-                     category=args.cat, best3=args.best3, normalization=normalization, num_epoch=num_epoch)
+                     category=args.cat, best3=args.best3, normalization=normalization, activation=activation,
+                     num_epoch=num_epoch)
 
 
 if __name__ == '__main__':
