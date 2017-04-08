@@ -105,7 +105,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                       costs_test=costs_test, losses_krip_test=losses_krip_test, tdyad=tdyad)
         for i in xrange(y_test.shape[0]):
             writer.write(str(tdyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
-                         ',' + str(best_pred_test[i]) + ',' + str(y_test[i]) + '\n')
+                         ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')  # !!!
     writer.close()
     print 'Written to ' + result_file
 
