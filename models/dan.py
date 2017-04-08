@@ -12,13 +12,14 @@ from theano_utils import Adam, RMSprop, SGD, dropout
 class dan(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
-    def __init__(self, layers, lamb=0., update='adam', activation='relu', drop=0.5):
+    def __init__(self, layers, lamb=0., update='adam', activation='relu', drop=0.5, sq_loss=False):
         self.layers = layers
         self.n_class = layers[-1]
         self.lamb = lamb
         self.drop = drop
         self.update = update
         self.activation = activation
+        self.sq_loss = sq_loss
 
         self.rng = numpy.random.RandomState(1234)
         theano_seed = numpy.random.randint(2 ** 30)
@@ -97,15 +98,19 @@ class dan(object):
             pred = rep[:, 0]
             loss = pred - y_batch
             loss = T.mean(loss ** 2)
-            Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
-            Z /= batch_size * batch_size
-            loss /= Z
+            if self.sq_loss:
+                loss_krip = loss
+            else:
+                Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
+                Z /= batch_size * batch_size
+                loss /= Z
+                loss_krip = loss
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'acc': None, 'prob': None, 'att': None, 'loss_krip': loss, 'rep': representation}
+               'acc': None, 'prob': None, 'att': None, 'loss_krip': loss_krip, 'rep': representation}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC

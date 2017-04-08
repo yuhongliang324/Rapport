@@ -16,7 +16,7 @@ class RNN(object):
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
     def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., model='gru', share=False, update='adam2',
-                 drop=0.2):
+                 drop=0.2, sq_loss=False):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
@@ -30,6 +30,7 @@ class RNN(object):
         self.mlp_layers = [2 * hidden_dim] + mlp_layers
         self.drop = drop
         self.update = update
+        self.sq_loss = sq_loss
         self.rng = numpy.random.RandomState(1234)
         theano_seed = numpy.random.randint(2 ** 30)
         self.theano_rng = RandomStreams(theano_seed)
@@ -221,11 +222,15 @@ class RNN(object):
             pred = rep[:, 0]
             loss_sq = pred - y_batch
             loss_sq = T.mean(loss_sq ** 2)  # 1/batch_size (pred_i - y_i)^2
-            # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
-            Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
-            Z /= batch_size * batch_size
-            loss_krip = loss_sq / Z
-            loss = loss_krip
+            if self.sq_loss:
+                loss = loss_sq
+                loss_krip = loss_sq
+            else:
+                # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
+                Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
+                Z /= batch_size * batch_size
+                loss_krip = loss_sq / Z
+                loss = loss_krip
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 

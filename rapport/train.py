@@ -14,7 +14,7 @@ from optimize import train
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
                      model='ours', share=False, best3=False, category=False, normalization=False, activation=None,
-                     num_epoch=60):
+                     num_epoch=60, need_attention=False, draw=False, sq_loss=False):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -33,17 +33,24 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     num_dyad = len(dyads)
     message = model + '_' + feature_name + '_' + side + '_share_' + str(share) + '_drop_' + str(drop)\
               + '_lamb_' + str(lamb) + '_fact_' + str(final_activation)
+    if sq_loss:
+        message += '_sq'
     if best3:
         message += '_best3'
     if category:
         message += '_cat'
     result_file = '../results/result_' + message + '.txt'
     writer = open(result_file, 'w')
+
+    all_slices = []
+    all_attention = []
+
     dn = os.path.dirname(os.path.abspath(__file__))
     img_root = os.path.join(dn, '../figs/' + message)
-    if os.path.isdir(img_root):
-        shutil.rmtree(img_root)
-    os.mkdir(img_root)
+    if draw:
+        if os.path.isdir(img_root):
+            shutil.rmtree(img_root)
+        os.mkdir(img_root)
     vals, tests = load_split()
     print dyad_features.keys()
     for vdyad, tdyad in zip(vals, tests):
@@ -85,18 +92,27 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         print X_train.shape, X_val.shape, X_test.shape
 
         costs_train, costs_val, costs_test,\
-        losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test\
+        losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test, best_att_test\
             = train(X_train, y_train, X_val, y_val, X_test, y_test, hidden_dim=hidden_dim, drop=drop,
                     final_activation=final_activation, dec=dec, update=update, lamb=lamb, model=model, share=share,
-                    category=category, num_epoch=num_epoch, activation=activation)
+                    category=category, num_epoch=num_epoch, activation=activation, need_attention=need_attention,
+                    sq_loss=sq_loss)
 
-        img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
-        if category:
-            plot_loss(img_path, vdyad, costs_train, costs_val, costs_test=costs_test, tdyad=tdyad)
-        else:
-            plot_loss(img_path, vdyad, costs_train, costs_val,
-                      losses_krip_train=losses_krip_train, losses_krip_val=losses_krip_val,
-                      costs_test=costs_test, losses_krip_test=losses_krip_test, tdyad=tdyad)
+        if need_attention:
+            all_slices.append(dyad_slices[tdyad])
+            all_attention.append(best_att_test)
+            print 'slices:', len(dyad_slices[tdyad])
+            print 'attention:', best_att_test
+
+        if draw:
+            img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
+            if category:
+                plot_loss(img_path, vdyad, costs_train, costs_val, costs_test=costs_test, tdyad=tdyad)
+            else:
+                plot_loss(img_path, vdyad, costs_train, costs_val,
+                          losses_krip_train=losses_krip_train, losses_krip_val=losses_krip_val,
+                          costs_test=costs_test, losses_krip_test=losses_krip_test, tdyad=tdyad)
+
         for i in xrange(y_test.shape[0]):
             writer.write(str(tdyad) + ',' + str(slices_test[i][1]) + ',' + str(slices_test[i][2]) +
                          ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')
@@ -117,6 +133,9 @@ def test1():
     parser.add_argument('-share', type=int, default=0)
     parser.add_argument('-cat', type=int, default=0)
     parser.add_argument('-best3', type=int, default=0)
+    parser.add_argument('-att', type=int, default=0)
+    parser.add_argument('-draw', type=int, default=0)
+    parser.add_argument('-sq', type=int, default=0)
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
@@ -137,6 +156,10 @@ def test1():
     args.share = bool(args.share)
     args.cat = bool(args.cat)
     args.best3 = bool(args.best3)
+    args.att = bool(args.att)
+    args.draw = bool(args.draw)
+    args.sq = bool(args.sq)
+
     normalization = False
     num_epoch = 40
     if args.model == 'tagm' and args.feat == 'audio':
@@ -151,7 +174,7 @@ def test1():
         if args.feat == 'hog':
             activation = 'relu'
         else:
-            activation = 'softplus'  # tanh !!!
+            activation = 'softplus'
     elif args.model == 'dan':
         if args.feat == 'hog':
             activation = 'relu'
@@ -160,7 +183,7 @@ def test1():
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                      category=args.cat, best3=args.best3, normalization=normalization, activation=activation,
-                     num_epoch=num_epoch)
+                     num_epoch=num_epoch, need_attention=args.att, draw=args.draw, sq_loss=args.sq)
 
 
 if __name__ == '__main__':

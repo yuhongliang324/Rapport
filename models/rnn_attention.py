@@ -16,7 +16,7 @@ class RNN_Attention(object):
     # mlp_layers does not contain the input dim (depending on the model representation)
     # dec: whether or not use the decision GRU
     def __init__(self, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, model='gru', share=False, update='adam2',
-                 drop=0.2, final_activation=None):
+                 drop=0.2, final_activation=None, sq_loss=False):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
@@ -29,6 +29,7 @@ class RNN_Attention(object):
             self.mlp_layers = [input_dim] + mlp_layers
         self.drop = drop
         self.update = update
+        self.sq_loss=sq_loss
         self.rng = numpy.random.RandomState(1234)
         self.final_activation = final_activation
         theano_seed = numpy.random.randint(2 ** 30)
@@ -311,10 +312,6 @@ class RNN_Attention(object):
         else:
             H_tmp = T.transpose(X_batch, [1, 2, 0])  # (batch_size, input_dim, n_step)
         rep = T.batched_dot(H_tmp, att)  # (batch_size, 2 * hidden_dim or input_dim)
-        '''
-        [S, a], _ = theano.scan(self.forward_attention, sequences=[X_batch, H_foward, H_backward],
-                                outputs_info=[T.zeros((batch_size, self.hidden_dim)), None])
-        rep = S[-1]  # (batch_size, hidden_dim)'''
 
         if self.final_activation == 'tanh':
             rep = T.tanh(rep)
@@ -325,15 +322,6 @@ class RNN_Attention(object):
         numW = len(self.Ws)
         for i in xrange(numW - 1):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
-            '''
-            if self.activation == 'relu':
-                rep = T.maximum(rep, 0)
-            elif self.activation == 'sigmoid':
-                rep = T.nnet.sigmoid(rep)
-            elif self.activation == 'softplus':
-                rep = T.nnet.softplus(rep)
-            else:
-                rep = T.tanh(rep)'''
             rep = T.tanh(rep)
             rep = dropout(rep, is_train, drop_ratio=self.drop)
         representation = rep
@@ -350,11 +338,15 @@ class RNN_Attention(object):
             pred = rep[:, 0]
             loss_sq = pred - y_batch
             loss_sq = T.mean(loss_sq ** 2)  # 1/batch_size (pred_i - y_i)^2
+            if self.sq_loss:
+                loss = loss_sq
+                loss_krip = loss_sq
             # Z: 1/batch_size^2 * sum_{i,j} (pred_i - y_j)^2
-            Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
-            Z /= batch_size * batch_size
-            loss_krip = loss_sq / Z
-            loss = loss_krip
+            else:
+                Z = batch_size * (T.sum(pred ** 2) + T.sum(y_batch ** 2)) - 2 * T.sum(T.outer(pred, y_batch))
+                Z /= batch_size * batch_size
+                loss_krip = loss_sq / Z
+                loss = loss_krip
         cost = loss + self.l2()
         updates = self.optimize(cost, self.theta)
 
