@@ -147,7 +147,7 @@ def test1():
         normalization = True
         args.update = 'adam'
     if args.model == 'dan':
-        num_epoch = 100
+        num_epoch = 200
         args.update = 'adam'
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
