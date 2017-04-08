@@ -10,6 +10,7 @@ import os
 import shutil
 from utils import load_split
 from optimize import train
+import cPickle
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
@@ -101,8 +102,6 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         if need_attention:
             all_slices.append(dyad_slices[tdyad])
             all_attention.append(best_att_test)
-            print 'slices:', len(dyad_slices[tdyad])
-            print 'attention:', best_att_test.shape
 
         if draw:
             img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
@@ -118,6 +117,14 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                          ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')
     writer.close()
     print 'Written to ' + result_file
+
+    if need_attention:
+        all_attention = numpy.concatenate(all_attention, axis=0)
+        pkl_path = feature_name + '_att.pkl'
+        f = open(pkl_path, 'wb')
+        cPickle.dump([all_slices, all_attention], f, protocol=cPickle.HIGHEST_PROTOCOL)
+        f.close()
+        print 'Dump attention to ' + pkl_path
 
 
 def test1():
