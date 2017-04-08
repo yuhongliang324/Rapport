@@ -135,6 +135,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
     best_cost_val = 10000
     best_pred_test = None
     best_epoch = 0
+    tval = None
     for epoch_index in xrange(num_epoch):
         cost_avg, loss_krip_avg, rmse = 0., 0., 0.
         all_pred = []
@@ -159,14 +160,15 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
         else:
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         cost_avg_val, _ = validate(valid_model, y_val, costs_val, losses_krip_val, category=category)
-        _, pred_test = validate(test_model, y_test, costs_test, losses_krip_test, category=category)
+        cost_avg_test, pred_test = validate(test_model, y_test, costs_test, losses_krip_test, category=category)
         if cost_avg_val < best_cost_val:
             best_cost_val = cost_avg_val
             best_pred_test = pred_test
             best_epoch = epoch_index
+            tval = cost_avg_test
         # Early Stopping
         if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
-            print 'Best Epoch = %d, Best Cost in Validation = %f' % (best_epoch + 1, best_cost_val)
+            print 'Best Epoch = %d, Best Cost in Test = %f' % (best_epoch + 1, tval)
             return costs_train, costs_val, costs_test,\
                    losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test
     # Krip losses only make sense for regression (category = False)
