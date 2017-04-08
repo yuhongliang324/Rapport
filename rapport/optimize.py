@@ -156,6 +156,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
             loss_krip_avg /= n_train
             losses_krip_train.append(loss_krip_avg)
         y_predicted = numpy.asarray(all_pred)
+        print 'sum =', numpy.sum(y_predicted)  # !!!
         rmse_acc = eval(y_train, y_predicted, category=category)
         if category:
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
