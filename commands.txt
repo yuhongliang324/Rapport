@@ -1,8 +1,15 @@
+Ours without attention:
 nohup python -u train.py -feat audio -model lstm > ../logs/audio_lstm.out 2>&1 &
 nohup python -u train.py -feat hog -model lstm > ../logs/hog_lstm.out 2>&1 &
 
-nohup python -u train.py -feat audio -model gru > ../logs/audio_gru.out 2>&1 &
-nohup python -u train.py -feat hog -model gru > ../logs/hog_gru.out 2>&1 &
+LSTM:
+nohup python -u train.py -feat audio -model lstml > ../logs/audio_lstml.out 2>&1 &
+nohup python -u train.py -feat hog -model lstml > ../logs/hog_lstml.out 2>&1 &
+
+GRU:
+nohup python -u train.py -feat audio -model grul > ../logs/audio_grul.out 2>&1 &
+nohup python -u train.py -feat hog -model grul > ../logs/hog_grul.out 2>&1 &
+
 
 nohup python -u train.py -feat audio -model tagm > ../logs/audio_tagm.out 2>&1 &
 nohup python -u train.py -feat hog -model tagm > ../logs/hog_tagm.out 2>&1 &

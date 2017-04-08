@@ -9,7 +9,7 @@ from theano.tensor.shared_randomstreams import RandomStreams
 from theano_utils import Adam, Adam2, RMSprop, SGD, dropout
 
 
-class LSTM(object):
+class RNN(object):
     # n_class = 1: regression problem
     # n_class > 1: classification problem
     # Change lamb to smaller value for hog
@@ -20,7 +20,12 @@ class LSTM(object):
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
-        self.model = model
+        if model.endswith('l'):
+            self.model = model[:-1]
+            self.last = True
+        else:
+            self.model = model
+            self.last = False
         self.share = share
         self.mlp_layers = [2 * hidden_dim] + mlp_layers
         self.drop = drop
@@ -61,12 +66,6 @@ class LSTM(object):
                                self.W_dec_right_r, self.U_dec_right_r, self.b_dec_right_r,
                                self.W_dec_right_h, self.U_dec_right_h, self.b_dec_right_h]
 
-        self.w_att = numpy.asarray(self.rng.uniform(
-            low=-numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)), high=numpy.sqrt(6. / float(self.hidden_dim * 2 + 1)),
-            size=(self.hidden_dim * 2,)), dtype=theano.config.floatX)
-        self.w_att = theano.shared(value=self.w_att, borrow=True)
-        self.theta.append(self.w_att)
-
         self.Ws, self.bs = [], []
         num_layers = len(self.mlp_layers)
         for i in xrange(num_layers - 1):
@@ -78,7 +77,7 @@ class LSTM(object):
         for b in self.bs:
             self.theta.append(b)
 
-        print 'model =', self.model, 'lambda =', self.lamb,\
+        print 'model =', self.model, 'lambda =', self.lamb, 'last =', self.last,\
             'share =', self.share, '#class =', self.n_class, 'drop =', self.drop, 'update =', self.update
 
         if self.update == 'adam':
@@ -197,9 +196,10 @@ class LSTM(object):
         H_dec_backward = H_dec_backward[::-1]
         H_tmp = T.concatenate([H_dec_forward, H_dec_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
 
-        # Using the mean step
-        # Try with another way: using the last step
-        rep = T.mean(H_tmp, axis=0)  # (batch_size, 2 * hidden_dim)
+        if self.last:
+            rep = T.concatenate([H_dec_forward[-1], H_dec_backward[-1]], axis=1)  # (batch_size, 2 * hidden_dim)
+        else:
+            rep = T.mean(H_tmp, axis=0)  # (batch_size, 2 * hidden_dim)
 
         is_train = T.iscalar('is_train')
         numW = len(self.Ws)
