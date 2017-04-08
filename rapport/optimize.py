@@ -166,6 +166,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
             best_epoch = epoch_index
         # Early Stopping
         if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
+            print 'Best Epoch = %d, Best Cost in Validation = %f' % (best_epoch + 1, best_cost_val)
             return costs_train, costs_val, costs_test,\
                    losses_krip_train, losses_krip_val, losses_krip_test, best_pred_test
     # Krip losses only make sense for regression (category = False)
