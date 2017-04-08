@@ -86,7 +86,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         activation = None
         if model == 'tagm':
             if feature_name == 'hog':
-                activation = 'relu'
+                activation = 'softplus'  # 'relu' !!!
             else:
                 activation = 'tanh'
         elif model == 'dan':

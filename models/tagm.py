@@ -29,6 +29,8 @@ class TAGM(object):
 
         if activation == 'relu':
             self.activate = T.nnet.relu
+        elif activation == 'softplus':
+            self.activate = T.nnet.softplus
         else:
             self.activate = T.tanh
 
