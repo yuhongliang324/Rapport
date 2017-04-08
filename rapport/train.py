@@ -47,8 +47,6 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
     vals, tests = load_split()
     print dyad_features.keys()
     for vdyad, tdyad in zip(vals, tests):
-        if tdyad != 9:
-            continue
         X_val = dyad_features[vdyad]
         y_val = dyad_ratings[vdyad]
         if category:
