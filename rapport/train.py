@@ -102,7 +102,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
             all_slices.append(dyad_slices[tdyad])
             all_attention.append(best_att_test)
             print 'slices:', len(dyad_slices[tdyad])
-            print 'attention:', best_att_test
+            print 'attention:', best_att_test.shape
 
         if draw:
             img_path = os.path.join(img_root, 'dyad_' + str(vdyad) + '.png')
