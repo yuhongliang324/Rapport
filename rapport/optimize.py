@@ -89,7 +89,7 @@ def train(X_train, y_train, X_val, y_val, X_test, y_test, drop=0.25, final_activ
         ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop, activation=activation)
     elif model == 'dan':
         # !!! For audio: just use [input_dim, int(0.5 * input_dim), n_class]
-        ra = dan([input_dim, min(256, int(0.5 * input_dim)), min(128, int(0.5 * input_dim)), n_class],
+        ra = dan([input_dim, min(512, int(0.5 * input_dim)), min(256, int(0.5 * input_dim)), n_class],
                  lamb=lamb, update=update, activation=activation, drop=drop)
     else:
         ra = LSTM(input_dim, hidden_dim, [n_class], lamb=lamb, model=model, share=share, update=update, drop=0.2)
