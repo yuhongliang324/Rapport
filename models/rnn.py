@@ -197,7 +197,7 @@ class RNN(object):
         H_tmp = T.concatenate([H_dec_forward, H_dec_backward], axis=2)  # (n_step, batch_size, 2 * hidden_dim)
 
         if self.last:
-            rep = T.concatenate([H_dec_forward[-1], H_dec_backward[-1]], axis=1)  # (batch_size, 2 * hidden_dim)
+            rep = H_tmp[-1]  # (batch_size, 2 * hidden_dim)
         else:
             rep = T.mean(H_tmp, axis=0)  # (batch_size, 2 * hidden_dim)
 
