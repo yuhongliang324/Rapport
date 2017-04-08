@@ -143,7 +143,7 @@ def test1():
     num_epoch = 40
     if args.model == 'tagm' and args.feat == 'audio':
         normalization = True
-        args.update = 'adam'
+        args.update = 'rmsprop'
     if args.model == 'dan':
         num_epoch = 200
         args.update = 'adam'
