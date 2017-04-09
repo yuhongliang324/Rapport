@@ -972,3 +972,13 @@ Epoch = 18
 	Test cost = 0.995304,	Krip Loss = 0.995304,	RMSE = 1.845502
 	Test cost = 0.948377,	Krip Loss = 0.948377,	RMSE = 2.516999
 Epoch = 19
+	Train cost = 0.356907,	Krip Loss = 0.356907,	RMSE = 0.879321
+	Test cost = 0.998984,	Krip Loss = 0.998984,	RMSE = 1.497161
+	Test cost = 0.942852,	Krip Loss = 0.942852,	RMSE = 1.975435
+Epoch = 20
+	Train cost = 0.325349,	Krip Loss = 0.325349,	RMSE = 0.830236
+	Test cost = 1.006129,	Krip Loss = 1.006129,	RMSE = 1.465410
+	Test cost = 0.941225,	Krip Loss = 0.941225,	RMSE = 1.553910
+Best Epoch = 15, Best Cost in Test = 0.895141
+Written to ../results/result_ours_hog_lr_share_False_drop_0.0_lamb_0.0_fact_None.txt
+Dump attention to hog_att.pkl
