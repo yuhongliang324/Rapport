@@ -125,16 +125,14 @@ def train(E,
     else:
         outputs.append(pred)  # trivial append
 
-    outputs = symbols['shape']
-
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
 
     train_model = theano.function(inputs=[xb_symbol],
-                                  outputs=outputs,# updates=updates,  # !!!
+                                  outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: E_shared[xb_symbol]},
-                                      #y_batch: y_train_shared[start_symbol: end_symbol]},  # !!!
+                                      X_batch: E_shared[xb_symbol],
+                                      y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
@@ -158,17 +156,13 @@ def train(E,
             length = len_batches_train[iter_index]
             xb = X_train[start: end, :length].T
             print xb.shape
-            '''
-            cost, tmp, pred, attention = train_model(xb, start, end, 1)'''
-            x = train_model(xb)  # !!!
-            print x  # !!!
-            '''
+            cost, tmp, pred, attention = train_model(xb, start, end, 1)
             print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
                 loss_krip_avg += loss_krip * (end - start)
-            all_pred += pred.tolist()'''
+            all_pred += pred.tolist()
         cost_avg /= n_train
         if not category:
             loss_krip_avg /= n_train
