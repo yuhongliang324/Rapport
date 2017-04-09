@@ -123,7 +123,7 @@ def load_dict(vec_file=dict_pkl):
     reader = open(vec_file, 'rb')
     token_ID, E = cPickle.load(reader)
     reader.close()
-    return token_ID, E
+    return token_ID, E.astype(theano.config.floatX)
 
 
 def vectorize_data(file_name, token_ID, out_file):

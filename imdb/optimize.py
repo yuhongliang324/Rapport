@@ -66,9 +66,7 @@ def validate(val_model, y_val, start_batches_test, end_batches_test, len_batches
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
     else:
         print '\tTest cost = %f,\tKrip Loss = %f,\tMAE = %f' % (cost_avg, loss_krip_avg, mae_acc)
-    if need_attention:
-        all_attention = numpy.concatenate(all_attention, axis=0)
-    else:
+    if not need_attention:
         all_attention = None
     return mae_acc, all_pred, all_attention
 
@@ -156,6 +154,7 @@ def train(E,
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             cost, tmp, pred, attention = train_model(start, end, length, 1)
+            print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
