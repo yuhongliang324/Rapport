@@ -163,6 +163,8 @@ class RNN(object):
             y_batch = T.vector()  # (batch_size,)
 
         batch_size = T.shape(y_batch)[0]
+        return X_batch
+        '''
 
         if self.model == 'lstm':
             [_, H_dec_forward], _ = theano.scan(self.forward_dec_LSTM, sequences=X_batch,
@@ -242,4 +244,4 @@ class RNN(object):
             ret['prob'] = prob  # For computing AUC
         else:
             ret['loss_krip'] = loss_krip
-        return ret
+        return ret'''

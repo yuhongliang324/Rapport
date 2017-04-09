@@ -125,6 +125,8 @@ def train(E,
     else:
         outputs.append(pred)  # trivial append
 
+    outputs = X_batch  # !!!
+
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
 
@@ -156,13 +158,17 @@ def train(E,
             length = len_batches_train[iter_index]
             xb = X_train[start: end, :length].T
             print xb.shape
-            cost, tmp, pred, attention = train_model(xb, start, end, 1)
+            '''
+            cost, tmp, pred, attention = train_model(xb, start, end, 1)'''
+            x = train_model(xb, start, end, 1)  # !!!
+            print x.shape  # !!!
+            '''
             print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
                 loss_krip_avg += loss_krip * (end - start)
-            all_pred += pred.tolist()
+            all_pred += pred.tolist()'''
         cost_avg /= n_train
         if not category:
             loss_krip_avg /= n_train
