@@ -163,7 +163,10 @@ class RNN(object):
             y_batch = T.vector()  # (batch_size,)
 
         batch_size = T.shape(y_batch)[0]
-        return X_batch
+        ret = {'X_batch': X_batch, 'y_batch': X_batch, 'is_train': X_batch,
+               'att': X_batch, 'pred': X_batch, 'loss': X_batch, 'cost': X_batch, 'updates': X_batch,
+               'acc': X_batch, 'loss_krip': X_batch, 'rep': X_batch}
+        return ret
         '''
 
         if self.model == 'lstm':
