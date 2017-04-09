@@ -126,7 +126,7 @@ def train(E,
         outputs.append(pred)  # trivial append
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
-    xb_symbol = T.imatrix
+    xb_symbol = T.imatrix()
 
     train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                   outputs=outputs, updates=updates,
