@@ -128,7 +128,7 @@ def train(E,
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
 
-    train_model = theano.function(inputs=[xb_symbol],
+    train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                   outputs=outputs, updates=updates,
                                   givens={
                                       X_batch: E_shared[xb_symbol],
