@@ -52,7 +52,7 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
-        xb = X_test[start, end: length]
+        xb = X_test[start: end, :length]
         cost, tmp, pred, attention = val_model(xb, start, end, 0)
         if need_attention:
             all_attention.append(attention)
@@ -62,7 +62,7 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
             loss_krip_avg += loss_krip * (end - start)
         all_pred += pred.tolist()
     cost_avg /= n_test
-    mae_acc = eval(y_val, all_pred, category=category)
+    mae_acc = eval(y_test, all_pred, category=category)
     if category:
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
     else:
@@ -154,7 +154,8 @@ def train(E,
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            xb = X_test[start: end, : length]
+            xb = X_train[start: end, :length]
+            print xb.shape
             cost, tmp, pred, attention = train_model(xb, start, end, 1)
             print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
