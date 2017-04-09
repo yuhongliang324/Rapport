@@ -42,9 +42,9 @@ def MAE(y_actual, y_predicted):
     return mae
 
 
-def validate(val_model, y_val, start_batches_test, end_batches_test, len_batches_test,
+def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
              category=False, need_attention=False):
-    n_test = y_val.shape[0]
+    n_test = y_test.shape[0]
     num_iter = len(start_batches_test)
     all_pred = []
     all_attention = []
@@ -52,7 +52,8 @@ def validate(val_model, y_val, start_batches_test, end_batches_test, len_batches
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
-        cost, tmp, pred, attention = val_model(start, end, length, 0)
+        xb = X_test[start, end: length]
+        cost, tmp, pred, attention = val_model(xb, start, end, 0)
         if need_attention:
             all_attention.append(attention)
         cost_avg += cost * (end - start)
@@ -125,19 +126,19 @@ def train(E,
         outputs.append(pred)  # trivial append
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
-    len_symbol = T.iscalar()
+    xb_symbol = T.imatrix
 
-    train_model = theano.function(inputs=[start_symbol, end_symbol, len_symbol, is_train],
+    train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                   outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: E_shared[X_train[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
+                                      X_batch: E_shared[xb_symbol].transpose([1, 0, 2]),
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
-    test_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
+    test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                  outputs=outputs,
                                  givens={
-                                     X_batch: E_shared[X_test[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
+                                     X_batch: E_shared[xb_symbol].transpose([1, 0, 2]),
                                      y_batch: y_test_shared[start_symbol: end_symbol]},
                                  on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
@@ -153,7 +154,8 @@ def train(E,
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            cost, tmp, pred, attention = train_model(start, end, length, 1)
+            xb = X_test[start: end, : length]
+            cost, tmp, pred, attention = train_model(xb, start, end, 1)
             print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
             if not category:
@@ -170,7 +172,7 @@ def train(E,
         else:
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         mae_acc_test, pred_test, att_test\
-            = validate(test_model, y_test, start_batches_test, end_batches_test, len_batches_test,
+            = validate(test_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
                        category=category, need_attention=need_attention)
         if (best_mae_acc is None) or (category and mae_acc_test > best_mae_acc)\
                 or ((not category) and mae_acc_test < best_mae_acc):
