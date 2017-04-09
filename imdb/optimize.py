@@ -86,7 +86,7 @@ def train(E,
     y_train_shared = theano.shared(y_train, borrow=True)
     X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
-    E_shared = theano.shared(E, borrow=True)
+    E_shared = theano.shared(E.astype(theano.config.floatX), borrow=True)
 
     if category:
         n_class = num_class
