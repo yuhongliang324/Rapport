@@ -156,7 +156,7 @@ def train(E,
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            xb = X_train[start: end, :length].T
+            xb = X_train[start: end, :].T
             print xb.shape, start, end
             cost, tmp, pred, attention, s = train_model(xb, start, end, 1)  # !!!
             print cost, tmp, pred.shape, attention.shape, s.shape  # !!!
