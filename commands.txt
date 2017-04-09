@@ -10,22 +10,43 @@ GRU:
 nohup python -u train.py -feat audio -model grul > ../logs/audio_grul.out 2>&1 &
 nohup python -u train.py -feat hog -model grul > ../logs/hog_grul.out 2>&1 &
 
-
+TAGM:
 nohup python -u train.py -feat audio -model tagm > ../logs/audio_tagm.out 2>&1 &
 nohup python -u train.py -feat hog -model tagm > ../logs/hog_tagm.out 2>&1 &
 
+Ours:
 nohup python -u train.py -feat audio -model ours > ../logs/audio_ours.out 2>&1 &
 nohup python -u train.py -feat hog -model ours > ../logs/hog_ours.out 2>&1 &
+Show attention:
+nohup python -u train.py -feat audio -model ours -att 1 > ../logs/audio_ours.out 2>&1 &
+nohup python -u train.py -feat hog -model ours -att 1 > ../logs/hog_ours.out 2>&1 &
 
+DAN:
 nohup python -u train.py -feat audio -model dan > ../logs/audio_dan.out 2>&1 &
 nohup python -u train.py -feat hog -model dan > ../logs/hog_dan.out 2>&1 &
 
-nohup python -u train.py -model ours > ../logs/ours_ensemble.out 2>&1 &
-nohup python -u train.py -model lstm > ../logs/lstm_ensemble.out 2>&1 &
-nohup python -u train.py -model slstm > ../logs/slstm_ensemble.out 2>&1 &
+------------------------------------------------------------------------------------------------------------
 
-nohup python -u train.py -model tagm > ../logs/tagm_ensemble.out 2>&1 &
-nohup python -u train.py -model dan > ../logs/dan_ensemble.out 2>&1 &
+With Square loss
+nohup python -u train.py -feat audio -model lstm -sq 1 > ../logs/audio_lstm_sq.out 2>&1 &
+nohup python -u train.py -feat hog -model lstm -sq 1 > ../logs/hog_lstm_sq.out 2>&1 &
+
+LSTM:
+nohup python -u train.py -feat audio -model lstml -sq 1 > ../logs/audio_lstml_sq.out 2>&1 &
+nohup python -u train.py -feat hog -model lstml -sq 1 > ../logs/hog_lstml_sq.out 2>&1 &
+
+GRU:
+nohup python -u train.py -feat audio -model grul -sq 1 > ../logs/audio_grul_sq.out 2>&1 &
+nohup python -u train.py -feat hog -model grul -sq 1 > ../logs/hog_grul_sq.out 2>&1 &
+
+Ours:
+nohup python -u train.py -feat audio -model ours -sq 1 > ../logs/audio_ours_sq.out 2>&1 &
+nohup python -u train.py -feat hog -model ours -sq 1 > ../logs/hog_ours_sq.out 2>&1 &
+
+DAN:
+nohup python -u train.py -feat audio -model dan -sq 1 > ../logs/audio_dan_sq.out 2>&1 &
+nohup python -u train.py -feat hog -model dan -sq 1 > ../logs/hog_dan_sq.out 2>&1 &
+------------------------------------------------------------------------------------------------------------
 
 
 Ours:

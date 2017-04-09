@@ -157,7 +157,7 @@ def load_data(pkl_file, batch_size=32):
     lengths = [len(x) for x in xs]
 
     n = len(xs)
-    num_batch = n // batch_size
+    num_batch = (n + batch_size - 1) // batch_size
     start_batches, end_batches, len_batches = [], [], []
     xs_short = []
     for i in xrange(num_batch):
@@ -172,7 +172,7 @@ def load_data(pkl_file, batch_size=32):
 
     # Pad xs_short
     maxLen = len_batches[-1]
-    X = numpy.zeros((n, maxLen), dtype='int32') - 1.
+    X = numpy.zeros((n, maxLen), dtype='int32') - 1
     for i in xrange(num_batch):
         start, end = start_batches[i], end_batches[i]
         length = len_batches[i]
@@ -208,6 +208,7 @@ def test3():
     token_ID, _ = load_dict()
     vectorize_data(train_file, token_ID, train_pkl)
     vectorize_data(test_file, token_ID, test_pkl)
+
 
 if __name__ == '__main__':
     test3()

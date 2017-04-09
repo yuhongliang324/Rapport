@@ -100,7 +100,7 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
                     sq_loss=sq_loss)
 
         if need_attention:
-            all_slices.append(dyad_slices[tdyad])
+            all_slices += dyad_slices[tdyad]
             all_attention.append(best_att_test)
 
         if draw:

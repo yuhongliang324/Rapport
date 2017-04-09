@@ -8,7 +8,7 @@ import os
 import shutil
 import sys
 sys.path.append('..')
-from utils import get_ratings, get_coder
+from utils import get_all_ratings, get_coder
 from ensemble import combine
 
 
@@ -69,21 +69,14 @@ def visualize(ground_truth, coder, img_root):
 
 
 def test1():
-    slice_ratings = get_ratings()
-    message = 'result_attention_only_audio_b_drop_0.0_fact_None'
+    slice_ratings = get_all_ratings()
+    message = 'result_ours_audio_b_share_False_drop_0.0_lamb_0.0_fact_None'
     coder = get_coder('../results/' + message + '.txt')
     visualize(slice_ratings, coder, '../predictions/' + message)
 
 
 def test2():
-    slice_ratings = get_ratings()
-    message = 'svr_result_1'
-    coder = get_coder('../results/' + message + '.txt')
-    visualize(slice_ratings, coder, '../predictions/' + message)
-
-
-def test3():
-    slice_ratings = get_ratings()
+    slice_ratings = get_all_ratings()
     coder1 = get_coder('../results/result_audio_b_drop_0.1_w_0.0_fact_None.txt')
     coder2 = get_coder('../results/svr_result.txt')
     coder = combine([coder1, coder2])
