@@ -81,7 +81,7 @@ def train(E,
           activation='tanh', need_attention=False, sq_loss=False):
 
     n_train = X_train.shape[0]
-    input_dim = X_train.shape[2]
+    input_dim = X_train.shape[-1]
 
     X_train_shared = theano.shared(X_train, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
