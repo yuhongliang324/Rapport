@@ -52,7 +52,7 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
-        xb = X_test[start: end, :length]
+        xb = X_test[start: end, :length].T
         cost, tmp, pred, attention = val_model(xb, start, end, 0)
         if need_attention:
             all_attention.append(attention)
@@ -131,14 +131,14 @@ def train(E,
     train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                   outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: E_shared[xb_symbol].transpose([1, 0, 2]),
+                                      X_batch: E_shared[xb_symbol],
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
                                  outputs=outputs,
                                  givens={
-                                     X_batch: E_shared[xb_symbol].transpose([1, 0, 2]),
+                                     X_batch: E_shared[xb_symbol],
                                      y_batch: y_test_shared[start_symbol: end_symbol]},
                                  on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
@@ -154,7 +154,7 @@ def train(E,
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            xb = X_train[start: end, :length]
+            xb = X_train[start: end, :length].T
             print xb.shape
             cost, tmp, pred, attention = train_model(xb, start, end, 1)
             print cost, tmp, pred.shape, attention.shape
