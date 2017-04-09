@@ -130,14 +130,14 @@ def train(E,
     train_model = theano.function(inputs=[start_symbol, end_symbol, len_symbol, is_train],
                                   outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: E_shared[X_train_shared[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
+                                      X_batch: E_shared[X_train[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
                                       y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     test_model = theano.function(inputs=[start_symbol, end_symbol, is_train],
                                  outputs=outputs,
                                  givens={
-                                     X_batch: E_shared[X_test_shared[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
+                                     X_batch: E_shared[X_test[start_symbol: end_symbol, : len_symbol]].transpose([1, 0, 2]),
                                      y_batch: y_test_shared[start_symbol: end_symbol]},
                                  on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
