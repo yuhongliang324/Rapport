@@ -155,9 +155,8 @@ def train(E,
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
             xb = X_train[start: end, :length].T
-            print xb.shape, start, end
             cost, tmp, pred, attention = train_model(xb, start, end, 1)
-            print cost, tmp, pred.shape, attention.shape
+            print 'Acc = %f' % tmp
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
