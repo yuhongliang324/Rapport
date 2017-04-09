@@ -130,7 +130,7 @@ def train(E,
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
 
-    train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
+    train_model = theano.function(inputs=[],
                                   outputs=outputs,# updates=updates,  # !!!
                                   givens={
                                       X_batch: E_shared[xb_symbol]},
@@ -160,7 +160,7 @@ def train(E,
             print xb.shape
             '''
             cost, tmp, pred, attention = train_model(xb, start, end, 1)'''
-            x = train_model(xb, start, end, 1)  # !!!
+            x = train_model()  # !!!
             print x  # !!!
             '''
             print cost, tmp, pred.shape, attention.shape
