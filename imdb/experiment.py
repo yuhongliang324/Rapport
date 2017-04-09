@@ -55,27 +55,11 @@ def test1():
     parser.add_argument('-att', type=int, default=0)
     parser.add_argument('-sq', type=int, default=0)
     args = parser.parse_args()
-    if args.side is not None:
-        side = args.side
-    else:
-        if args.feat == 'audio' or args.feat == 'gemo' or args.feat == 'au' or args.feat == 'AU':
-            side = 'b'
-        else:
-            side = 'lr'
-    if args.lamb >= 0:
-        lamb = args.lamb
-    else:
-        if args.feat == 'audio' or args.feat == 'au' or args.feat == 'AU':
-            lamb = 1e-4
-        else:
-            lamb = 5e-5
-    print args.feat, side
+
     args.dec = bool(args.dec)
     args.share = bool(args.share)
     args.cat = bool(args.cat)
-    args.best3 = bool(args.best3)
     args.att = bool(args.att)
-    args.draw = bool(args.draw)
     args.sq = bool(args.sq)
 
     activation = None
@@ -89,7 +73,7 @@ def test1():
         num_epoch = 50
 
     cross_validation(drop=args.drop, hidden_dim=args.hid,
-                     dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
+                     dec=args.dec, update=args.update, lamb=args.lamb, model=args.model, share=args.share,
                      activation=activation,
                      num_epoch=num_epoch, need_attention=args.att, sq_loss=args.sq)
 
