@@ -22,7 +22,7 @@ def cross_validation(drop=0., hidden_dim=256,
     result_file = 'results/' + message + '.txt'
     writer = open(result_file, 'w')
 
-    print X_train.shape, X_test.shape
+    print E.shape, X_train.shape, X_test.shape
 
     best_pred_test, best_att_test \
         = train(E,

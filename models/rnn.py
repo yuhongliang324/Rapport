@@ -157,6 +157,7 @@ class RNN(object):
 
     def build_model(self):
         X_batch = T.tensor3()  # (n_step, batch_size, input_dim)
+        s = T.shape(X_batch)
         if self.n_class > 1:
             y_batch = T.ivector()  # (batch_size,)
         else:
@@ -236,7 +237,7 @@ class RNN(object):
 
         ret = {'X_batch': X_batch, 'y_batch': y_batch, 'is_train': is_train,
                'att': None, 'pred': pred, 'loss': loss, 'cost': cost, 'updates': updates,
-               'acc': None, 'loss_krip': None, 'rep': representation}
+               'acc': None, 'loss_krip': None, 'rep': representation, 'shape': s}
         if self.n_class > 1:
             ret['acc'] = acc
             ret['prob'] = prob  # For computing AUC
