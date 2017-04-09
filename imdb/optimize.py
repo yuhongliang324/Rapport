@@ -125,16 +125,16 @@ def train(E,
     else:
         outputs.append(pred)  # trivial append
 
-    outputs = X_batch  # !!!
+    outputs = X_batch + 1  # !!!
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
 
     train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
-                                  outputs=outputs,
+                                  outputs=outputs, updates=updates,
                                   givens={
-                                      X_batch: E_shared[xb_symbol]},
-                                      # y_batch: y_train_shared[start_symbol: end_symbol]},
+                                      X_batch: E_shared[xb_symbol],
+                                      y_batch: y_train_shared[start_symbol: end_symbol]},
                                   on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 1'
     test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
