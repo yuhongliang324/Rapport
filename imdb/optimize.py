@@ -125,7 +125,7 @@ def train(E,
     else:
         outputs.append(pred)  # trivial append
 
-    outputs = [X_batch + 1]  # !!!
+    outputs = symbols['shape']
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     xb_symbol = T.imatrix()
@@ -161,7 +161,7 @@ def train(E,
             '''
             cost, tmp, pred, attention = train_model(xb, start, end, 1)'''
             x = train_model(xb, start, end, 1)  # !!!
-            print x.shape  # !!!
+            print x  # !!!
             '''
             print cost, tmp, pred.shape, attention.shape
             cost_avg += cost * (end - start)
