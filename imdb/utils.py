@@ -171,7 +171,13 @@ def load_data(pkl_file, batch_size=100, fine=False):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
     n = len(xs)
-    if not fine:
+    if fine:
+        for i in xrange(n):
+            if ys[i] < 5:
+                ys[i] -= 1
+            else:
+                ys[i] -= 3
+    else:
         for i in xrange(n):
             if ys[i] < 5:
                 ys[i] = NEGATIVE

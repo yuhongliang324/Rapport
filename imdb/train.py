@@ -29,7 +29,7 @@ def cross_validation(drop=0., hidden_dim=256,
 
     num_class = 2
     if fine:
-        num_class = 10
+        num_class = 8
 
     best_pred_test, best_att_test \
         = train(E,
