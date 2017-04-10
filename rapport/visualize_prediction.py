@@ -61,7 +61,8 @@ def visualize(ground_truth, coder, img_root, coder2=None):
         if pred[numpy.isnan(pred)].shape[0] == pred.shape[0]:
             continue
         print 'Dyad', dyad
-        plt.figure(figsize=(20, 6))
+        plt.figure(figsize=(20, 8))
+        matplotlib.rcParams.update({'font.size': 22})
         plt.ylim([0, 7])
         # plt.plot(mins, '--', label='Min Annotation')
         plt.plot(avgs, color='c', label='Ground Truth')
@@ -72,10 +73,10 @@ def visualize(ground_truth, coder, img_root, coder2=None):
         if coder2 is not None:
             pred = dyad_pred2[dyad]
             pred = numpy.asarray(pred)
-            plt.plot(pred, label='Predictions with Square Loss', color='m', linewidth=2.)
-        plt.legend()
-        plt.title('Dyad ' + str(dyad))
-        plt.savefig(os.path.join(img_root, 'dyad_' + str(dyad)))
+            plt.plot(pred, label='Predictions with Square Loss', color='darkviolet', linewidth=2.)
+        plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.2), fancybox=True, shadow=True)
+        # plt.title('Dyad ' + str(dyad))
+        plt.savefig(os.path.join(img_root, 'dyad_' + str(dyad) + '.pdf'), format='pdf', bbox_inches='tight')
 
 
 def test1():

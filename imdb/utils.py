@@ -34,7 +34,7 @@ test_pkl = os.path.join(data_root, 'test.pkl')
 def process_to_single_file(pos_path, neg_path, out_file):
     writer = open(out_file, 'w')
 
-    def write_file(dir_path, label):
+    def write_file(dir_path):
         files = os.listdir(dir_path)
         num_files = len(files)
         files.sort()
@@ -43,6 +43,7 @@ def process_to_single_file(pos_path, neg_path, out_file):
                 continue
             if (i + 1) % 1000 == 0:
                 print i + 1, '/', num_files
+            label = int(fn.split('.')[0].split('_')[1])
             fp = os.path.join(dir_path, fn)
             reader = open(fp)
             lines = reader.readlines()
@@ -53,8 +54,8 @@ def process_to_single_file(pos_path, neg_path, out_file):
             line = ' '.join(tokens)
             writer.write(str(label) + ' ' + line + '\n')
 
-    write_file(pos_path, POSITIVE)
-    write_file(neg_path, NEGATIVE)
+    write_file(pos_path)
+    write_file(neg_path)
     writer.close()
 
 
@@ -166,15 +167,22 @@ def sort_by_length(Xs, ys, indices):
     return Xs, ys, indices
 
 
-def load_data(pkl_file, batch_size=100):
+def load_data(pkl_file, batch_size=100, binary=True):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
+    n = len(xs)
+    if binary:
+        for i in xrange(n):
+            if ys[i] < 5:
+                ys[i] = NEGATIVE
+            else:
+                ys[i] = POSITIVE
     reader.close()
     indices = numpy.arange(len(xs)).tolist()
     xs, ys, indices = sort_by_length(xs, ys, indices)
     lengths = [len(x) for x in xs]
 
-    n = len(xs)
+
     num_batch = (n + batch_size - 1) // batch_size
     start_batches, end_batches, len_batches = [], [], []
     xs_short = []
