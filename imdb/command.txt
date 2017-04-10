@@ -1,17 +1,17 @@
 Ours without attention:
-nohup python -u train.py -model lstm > ../logs/lstm.out 2>&1 &
+nohup python -u train.py -model lstm > logs/lstm.out 2>&1 &
 
 LSTM:
-nohup python -u train.py -model lstml > ../logs/lstml.out 2>&1 &
+nohup python -u train.py -model lstml > logs/lstml.out 2>&1 &
 
 GRU:
-nohup python -u train.py -model grul > ../logs/grul.out 2>&1 &
+nohup python -u train.py -model grul > logs/grul.out 2>&1 &
 
 TAGM:
-nohup python -u train.py -model tagm > ../logs/tagm.out 2>&1 &
+nohup python -u train.py -model tagm > logs/tagm.out 2>&1 &
 
 Ours (show attention):
-nohup python -u train.py -model ours -att 1 > ../logs/ours.out 2>&1 &
+nohup python -u train.py -model ours -att 1 > logs/ours.out 2>&1 &
 
 DAN:
-nohup python -u train.py -model dan > ../logs/dan.out 2>&1 &
+nohup python -u train.py -model dan > logs/dan.out 2>&1 &

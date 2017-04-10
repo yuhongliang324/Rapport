@@ -71,7 +71,7 @@ def test1():
     elif args.model == 'tagm':
         activation = 'relu'
 
-    num_epoch = 20
+    num_epoch = 10
     if args.model == 'dan':
         num_epoch = 50
 

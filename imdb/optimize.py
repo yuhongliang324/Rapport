@@ -54,7 +54,6 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
         length = len_batches_test[iter_index]
         xb = X_test[start: end, :length].T
         cost, tmp, pred, attention = val_model(xb, start, end, 0)
-        print 'Test %d/%d\tAcc = %f' % (iter_index + 1, num_iter, tmp)
         if need_attention:
             all_attention.append(attention)
         cost_avg += cost * (end - start)
@@ -155,7 +154,6 @@ def train(E,
             length = len_batches_train[iter_index]
             xb = X_train[start: end, :length].T
             cost, tmp, pred, attention = train_model(xb, start, end, 1)
-            print 'Train %d/%d\tAcc = %f' % (iter_index + 1, num_iter, tmp)
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
@@ -179,7 +177,7 @@ def train(E,
             best_epoch = epoch_index
             best_att_test = att_test
         # Early Stopping
-        if epoch_index - best_epoch >= 5 and epoch_index >= num_epoch // 4 and best_epoch > 2:
+        if epoch_index - best_epoch >= 3 and epoch_index >= num_epoch // 4 and best_epoch >= 2:
             break
     print 'Best Epoch = %d, Best MAE/ACC in Test = %f' % (best_epoch + 1, best_mae_acc)
     # Krip losses only make sense for regression (category = False)
