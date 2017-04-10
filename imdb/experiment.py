@@ -5,15 +5,16 @@ sys.path.append('../')
 import argparse
 from optimize import train
 from utils import load_data, load_dict, train_pkl, test_pkl
+import cPickle
 
 
 def cross_validation(drop=0., hidden_dim=256,
                      dec=True, update='adam', lamb=0., model='ours', share=False, activation=None,
                      num_epoch=60, need_attention=False, sq_loss=False):
 
-    X_train, y_train, start_batches_train, end_batches_train, len_batches_train\
+    X_train, y_train, start_batches_train, end_batches_train, len_batches_train, _\
         = load_data(train_pkl)
-    X_test, y_test, start_batches_test, end_batches_test, len_batches_test\
+    X_test, y_test, start_batches_test, end_batches_test, len_batches_test, indices_test\
         = load_data(test_pkl)
     _, E = load_dict()
     message = model + '_drop_' + str(drop) + '_lamb_' + str(lamb)
@@ -33,12 +34,16 @@ def cross_validation(drop=0., hidden_dim=256,
                 activation=activation, need_attention=need_attention, sq_loss=sq_loss)
 
     for i in xrange(y_test.shape[0]):
-        writer.write('%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')
+        writer.write(str(indices_test[i]) + ',' + '%.4f' % best_pred_test[i] + ',' + str(y_test[i]) + '\n')
     writer.close()
     print 'Written to ' + result_file
 
     if need_attention:
-        pass
+        pkl_path = 'att.pkl'
+        f = open(pkl_path, 'wb')
+        cPickle.dump([indices_test, best_att_test], f, protocol=cPickle.HIGHEST_PROTOCOL)
+        f.close()
+        print 'Dump attention to ' + pkl_path
 
 
 def test1():

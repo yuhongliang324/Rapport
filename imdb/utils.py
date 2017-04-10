@@ -149,11 +149,29 @@ def vectorize_data(file_name, token_ID, out_file):
     return xs, ys
 
 
+def sort_by_length(Xs, ys, indices):
+    def bylen(a, b):
+        if a[-2] != b[-2]:
+            return a[-2] - b[-2]
+        return a[-1] - b[-1]
+    lens = [len(vec) for vec in Xs]
+    num_sent = len(ys)
+    ind = range(num_sent)
+    random.shuffle(ind)
+    cb = zip(Xs, ys, indices, lens, ind)
+    cb.sort(cmp=bylen)
+    Xs = [item[0] for item in cb]
+    ys = [item[1] for item in cb]
+    indices = [item[2] for item in cb]
+    return Xs, ys, indices
+
+
 def load_data(pkl_file, batch_size=32):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
     reader.close()
-    xs, ys = SU.sort_by_length(xs, ys)
+    indices = numpy.arange(xs.shape[0]).tolist()
+    xs, ys, indices = sort_by_length(xs, ys, indices)
     lengths = [len(x) for x in xs]
 
     n = len(xs)
@@ -190,7 +208,11 @@ def load_data(pkl_file, batch_size=32):
     len_batches = [item[2] for item in z]
     len_batches = numpy.asarray(len_batches, dtype='int32')
 
-    return X, y, start_batches, end_batches, len_batches
+    indices_new = []
+    for st, ed in zip(start_batches, end_batches):
+        indices_new += indices[st: ed]
+
+    return X, y, start_batches, end_batches, len_batches, indices_new
 
 
 def test1():
