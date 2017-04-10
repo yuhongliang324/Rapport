@@ -56,14 +56,12 @@ def test1():
     parser.add_argument('-lamb', type=float, default=0.)
     parser.add_argument('-model', type=str, default='ours')
     parser.add_argument('-share', type=int, default=0)
-    parser.add_argument('-cat', type=int, default=0)
     parser.add_argument('-att', type=int, default=0)
     parser.add_argument('-sq', type=int, default=0)
     args = parser.parse_args()
 
     args.dec = bool(args.dec)
     args.share = bool(args.share)
-    args.cat = bool(args.cat)
     args.att = bool(args.att)
     args.sq = bool(args.sq)
 
