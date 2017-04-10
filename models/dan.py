@@ -15,7 +15,7 @@ class dan(object):
     def __init__(self, layers, lamb=0., update='adam', activation='relu', drop=0.5, sq_loss=False):
         self.layers = layers
         self.n_class = layers[-1]
-        print self.n_class
+        print 'n_class', self.n_class
         self.lamb = lamb
         self.drop = drop
         self.update = update
