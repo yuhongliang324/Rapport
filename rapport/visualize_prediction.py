@@ -12,7 +12,7 @@ from utils import get_all_ratings, get_coder
 from ensemble import combine
 
 
-def visualize(ground_truth, coder, img_root):
+def visualize(ground_truth, coder, img_root, coder2=None):
     sorted_gt = {}
     for slice_str, ratings in ground_truth.items():
         sp = slice_str.split('_')
@@ -21,6 +21,7 @@ def visualize(ground_truth, coder, img_root):
     sorted_gt = sorted(sorted_gt.items(), key=operator.itemgetter(0))
     dyad_min, dyad_max, dyad_avg = {}, {}, {}
     dyad_pred = {}
+    dyad_pred2 = {}
 
     for slice_str, ratings in sorted_gt:
         sp = slice_str.split('_')
@@ -30,16 +31,21 @@ def visualize(ground_truth, coder, img_root):
             dyad_max[dyad] = []
             dyad_avg[dyad] = []
             dyad_pred[dyad] = []
+            dyad_pred2[dyad] = []
         dyad_min[dyad].append(ratings[0])
         dyad_max[dyad].append(ratings[-1])
         s = sum(ratings)
         avg = float(s) / len(ratings)
-        dyad_avg[dyad].append(avg)
         slice_str2 = str(dyad) + '_' + str(session) + '_' + str(slice)
+
         if slice_str2 in coder:
             dyad_pred[dyad].append(coder[slice_str2])
-        else:
-            dyad_pred[dyad].append(numpy.nan)
+            dyad_avg[dyad].append(avg)
+        if coder2 is not None:
+            if slice_str2 in coder2:
+                dyad_pred2[dyad].append(coder2[slice_str2])
+            else:
+                dyad_pred2[dyad].append(numpy.nan)
 
     if os.path.isdir(img_root):
         shutil.rmtree(img_root)
@@ -62,7 +68,11 @@ def visualize(ground_truth, coder, img_root):
         x = numpy.arange(len(mins))
         # plt.errorbar(x, avgs, yerr=[avgs - mins, maxs - avgs], fmt='c-', label='Annotations')
         # plt.plot(avgs, label='Average Annotation')
-        plt.plot(pred, label='Predictions', color='b', linewidth=2.)
+        plt.plot(pred, label='Predictions with GNL', color='b', linewidth=2.)
+        if coder2 is not None:
+            pred = dyad_pred2[dyad]
+            pred = numpy.asarray(pred)
+            plt.plot(pred, label='Predictions with Square Loss', color='m', linewidth=2.)
         plt.legend()
         plt.title('Dyad ' + str(dyad))
         plt.savefig(os.path.join(img_root, 'dyad_' + str(dyad)))
@@ -83,6 +93,13 @@ def test2():
     visualize(slice_ratings, coder, '../predictions/' + 'rnn+svr')
 
 
+def test3():
+    slice_ratings = get_all_ratings()
+    message = 'result_ours_audio_b_share_False_drop_0.0_lamb_0.0_fact_None'
+    coder = get_coder('../results/' + message + '.txt')
+    coder2 = get_coder('../results/' + message + '_sq' + '.txt')
+    visualize(slice_ratings, coder, '../predictions/gnl_sq', coder2=coder2)
+
 if __name__ == '__main__':
-    test1()
+    test3()
 
