@@ -170,7 +170,7 @@ def load_data(pkl_file, batch_size=32):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
     reader.close()
-    indices = numpy.arange(len(xs.shape)).tolist()
+    indices = numpy.arange(len(xs)).tolist()
     xs, ys, indices = sort_by_length(xs, ys, indices)
     lengths = [len(x) for x in xs]
 
