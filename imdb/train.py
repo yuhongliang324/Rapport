@@ -20,6 +20,8 @@ def cross_validation(drop=0., hidden_dim=256,
     message = model + '_drop_' + str(drop) + '_lamb_' + str(lamb)
     if sq_loss:
         message += '_sq'
+    if fine:
+        message += '_fine'
     result_file = 'results/' + message + '.txt'
     writer = open(result_file, 'w')
 
