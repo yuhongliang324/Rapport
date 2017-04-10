@@ -167,11 +167,11 @@ def sort_by_length(Xs, ys, indices):
     return Xs, ys, indices
 
 
-def load_data(pkl_file, batch_size=100, binary=True):
+def load_data(pkl_file, batch_size=100, fine=False):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
     n = len(xs)
-    if binary:
+    if not fine:
         for i in xrange(n):
             if ys[i] < 5:
                 ys[i] = NEGATIVE
@@ -236,4 +236,4 @@ def test3():
 
 
 if __name__ == '__main__':
-    test1()
+    test3()

@@ -14,7 +14,6 @@ sys.path.append('../')
 from models.rnn import RNN
 from models.tagm import TAGM
 from models.dan import dan
-from utils import num_class
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -77,7 +76,7 @@ def train(E,
           X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
           drop=0.25, dec=True, update='adam',
           hidden_dim=None, num_epoch=60, lamb=0., model='ours', share=False, category=False,
-          activation='tanh', need_attention=False, sq_loss=False):
+          activation='tanh', need_attention=False, sq_loss=False, num_class=2):
 
     n_train = X_train.shape[0]
     input_dim = E.shape[-1]
