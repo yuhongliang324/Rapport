@@ -166,7 +166,7 @@ def sort_by_length(Xs, ys, indices):
     return Xs, ys, indices
 
 
-def load_data(pkl_file, batch_size=32):
+def load_data(pkl_file, batch_size=100):
     reader = open(pkl_file)
     [xs, ys] = cPickle.load(reader)
     reader.close()
@@ -208,11 +208,7 @@ def load_data(pkl_file, batch_size=32):
     len_batches = [item[2] for item in z]
     len_batches = numpy.asarray(len_batches, dtype='int32')
 
-    indices_new = []
-    for st, ed in zip(start_batches, end_batches):
-        indices_new += indices[st: ed]
-
-    return X, y, start_batches, end_batches, len_batches, indices_new
+    return X, y, start_batches, end_batches, len_batches, indices
 
 
 def test1():

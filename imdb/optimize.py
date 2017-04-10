@@ -46,9 +46,9 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
              category=False, need_attention=False):
     n_test = y_test.shape[0]
     num_iter = len(start_batches_test)
-    all_pred = []
     all_attention = []
     cost_avg, loss_krip_avg = 0., 0.
+    y_predicted = numpy.zeros_like(y_test)
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
@@ -61,16 +61,16 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
         if not category:
             loss_krip = tmp
             loss_krip_avg += loss_krip * (end - start)
-        all_pred += pred.tolist()
+        y_predicted[start: end] = pred.tolist()
     cost_avg /= n_test
-    mae_acc = eval(y_test, all_pred, category=category)
+    mae_acc = eval(y_test, y_predicted, category=category)
     if category:
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
     else:
         print '\tTest cost = %f,\tKrip Loss = %f,\tMAE = %f' % (cost_avg, loss_krip_avg, mae_acc)
     if not need_attention:
         all_attention = None
-    return mae_acc, all_pred, all_attention
+    return mae_acc, y_predicted, all_attention
 
 
 def train(E,
@@ -148,8 +148,8 @@ def train(E,
     best_att_test = None
     for epoch_index in xrange(num_epoch):
         cost_avg, loss_krip_avg, rmse = 0., 0., 0.
-        all_pred = []
         print 'Epoch = %d' % (epoch_index + 1)
+        y_predicted = numpy.zeros_like(y_train)
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
@@ -160,11 +160,10 @@ def train(E,
             if not category:
                 loss_krip = tmp
                 loss_krip_avg += loss_krip * (end - start)
-            all_pred += pred.tolist()
+            y_predicted[start: end] = pred
         cost_avg /= n_train
         if not category:
             loss_krip_avg /= n_train
-        y_predicted = numpy.asarray(all_pred)
         rmse_acc = eval(y_train, y_predicted, category=category)
         if category:
             print '\tTrain cost = %f,\tAccuracy = %f' % (cost_avg, rmse_acc)
