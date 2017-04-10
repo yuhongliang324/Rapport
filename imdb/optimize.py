@@ -54,6 +54,7 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
         length = len_batches_test[iter_index]
         xb = X_test[start: end, :length].T
         cost, tmp, pred, attention = val_model(xb, start, end, 0)
+        print 'Test %d/%d\tAcc = %f' % (iter_index + 1, num_iter, tmp)
         if need_attention:
             all_attention.append(attention)
         cost_avg += cost * (end - start)
@@ -82,9 +83,7 @@ def train(E,
     n_train = X_train.shape[0]
     input_dim = E.shape[-1]
 
-    X_train_shared = theano.shared(X_train, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
-    X_test_shared = theano.shared(X_test, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
     E_shared = theano.shared(E.astype(theano.config.floatX), borrow=True)
 
@@ -156,7 +155,7 @@ def train(E,
             length = len_batches_train[iter_index]
             xb = X_train[start: end, :length].T
             cost, tmp, pred, attention = train_model(xb, start, end, 1)
-            print '%d/%d\tAcc = %f' % (iter_index + 1, num_iter, tmp)
+            print 'Train %d/%d\tAcc = %f' % (iter_index + 1, num_iter, tmp)
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
