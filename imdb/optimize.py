@@ -177,7 +177,7 @@ def train(E,
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         mae_acc_test, pred_test, att_test\
             = validate(test_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
-                       category=category, need_attention=need_attention, report)
+                       category=category, need_attention=need_attention, report=report)
         if (best_mae_acc is None) or (category and mae_acc_test > best_mae_acc)\
                 or ((not category) and mae_acc_test < best_mae_acc):
             best_mae_acc = mae_acc_test

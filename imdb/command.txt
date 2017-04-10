@@ -15,3 +15,25 @@ nohup python -u train.py -model ours -att 1 > logs/ours.out 2>&1 &
 
 DAN:
 nohup python -u train.py -model dan > logs/dan.out 2>&1 &
+
+--------------------------------------------------------------------------------------------------------------
+
+Fine-grained:
+
+Ours without attention:
+nohup python -u train.py -model lstm -fine 1 > logs/lstm_fine.out 2>&1 &
+
+LSTM:
+nohup python -u train.py -model lstml -fine 1 > logs/lstml_fine.out 2>&1 &
+
+GRU:
+nohup python -u train.py -model grul -fine 1 > logs/grul_fine.out 2>&1 &
+
+TAGM:
+nohup python -u train.py -model tagm -fine 1 > logs/tagm_fine.out 2>&1 &
+
+Ours (show attention):
+nohup python -u train.py -model ours -att 1 -fine 1 > logs/ours_fine.out 2>&1 &
+
+DAN:
+nohup python -u train.py -model dan > logs/dan_fine.out 2>&1 &
