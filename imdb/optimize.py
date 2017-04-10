@@ -42,7 +42,7 @@ def MAE(y_actual, y_predicted):
 
 
 def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
-             category=False, need_attention=False):
+             category=False, need_attention=False, report=False):
     n_test = y_test.shape[0]
     num_iter = len(start_batches_test)
     all_attention = []
@@ -60,6 +60,8 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
             loss_krip = tmp
             loss_krip_avg += loss_krip * (end - start)
         y_predicted[start: end] = pred.tolist()
+        if report and (iter_index + 1) % 10 == 0:
+                print '%d/%d  Test Acc = %f' % (iter_index + 1, num_iter, tmp)
     cost_avg /= n_test
     mae_acc = eval(y_test, y_predicted, category=category)
     if category:
@@ -140,6 +142,11 @@ def train(E,
                                  on_unused_input='ignore', mode='FAST_RUN')
     print 'Compilation done 2'
 
+    if model == 'dan':
+        report = False
+    else:
+        report = True
+
     best_mae_acc = None
     best_pred_test = None
     best_epoch = 0
@@ -158,6 +165,8 @@ def train(E,
                 loss_krip = tmp
                 loss_krip_avg += loss_krip * (end - start)
             y_predicted[start: end] = pred
+            if model != 'dan' and (iter_index + 1) % 10 == 0:
+                print '%d/%d  Train Acc = %f' % (iter_index + 1, num_iter, tmp)
         cost_avg /= n_train
         if not category:
             loss_krip_avg /= n_train
@@ -168,7 +177,7 @@ def train(E,
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         mae_acc_test, pred_test, att_test\
             = validate(test_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
-                       category=category, need_attention=need_attention)
+                       category=category, need_attention=need_attention, report)
         if (best_mae_acc is None) or (category and mae_acc_test > best_mae_acc)\
                 or ((not category) and mae_acc_test < best_mae_acc):
             best_mae_acc = mae_acc_test
