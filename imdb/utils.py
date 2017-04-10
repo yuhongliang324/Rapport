@@ -182,7 +182,6 @@ def load_data(pkl_file, batch_size=100, binary=True):
     xs, ys, indices = sort_by_length(xs, ys, indices)
     lengths = [len(x) for x in xs]
 
-
     num_batch = (n + batch_size - 1) // batch_size
     start_batches, end_batches, len_batches = [], [], []
     xs_short = []
