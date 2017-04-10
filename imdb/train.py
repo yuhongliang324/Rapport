@@ -85,7 +85,7 @@ def test1():
 
     cross_validation(drop=args.drop, hidden_dim=args.hid, dec=args.dec, update=args.update, lamb=args.lamb,
                      model=args.model, share=args.share, activation=activation, num_epoch=num_epoch,
-                     need_attention=args.att, sq_loss=args.sq)
+                     need_attention=args.att, sq_loss=args.sq, fine=args.fine)
 
 
 if __name__ == '__main__':
