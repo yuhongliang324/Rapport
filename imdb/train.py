@@ -17,7 +17,7 @@ def cross_validation(drop=0., hidden_dim=256,
     X_test, y_test, start_batches_test, end_batches_test, len_batches_test, indices_test\
         = load_data(test_pkl, fine=fine)
     _, E = load_dict()
-    message = model + '_drop_' + str(drop) + '_lamb_' + str(lamb)
+    message = model + '_drop_' + str(drop) + '_lamb_' + str(lamb) + '_hid_' + str(hidden_dim)
     if sq_loss:
         message += '_sq'
     if fine:
