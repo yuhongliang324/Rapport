@@ -128,10 +128,10 @@ def train(E,
         outputs = [cost, acc, pred]
     else:
         outputs = [cost, loss_krip, pred]
-    if model == 'ours' or model == 'parnn':
+    if model == 'ours':  # or model == 'parnn': !!!
         outputs.append(att)
     else:
-        outputs.append(pred)  # trivial append
+        outputs.append(loss)  # trivial append
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
     len_symbol = T.lscalar()
@@ -192,6 +192,7 @@ def train(E,
             y_predicted[start: end] = pred
             if model != 'dan' and (iter_index + 1) % 10 == 0:
                 print '%d/%d  Train Acc = %f' % (iter_index + 1, num_iter, tmp)
+                print cost, attention  # !!!
         cost_avg /= n_train
         if not category:
             loss_krip_avg /= n_train

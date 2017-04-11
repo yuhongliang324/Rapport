@@ -118,7 +118,7 @@ class PA_RNN(object):
         for b in self.bs:
             self.theta.append(b)
 
-        print 'dec =', self.dec, 'model = ours +', self.model, 'lambda =', self.lamb,\
+        print 'dec =', self.dec, 'model = parnn +', self.model, 'lambda =', self.lamb,\
             'share =', self.share, '#class =', self.n_class, 'drop =', self.drop, 'update =', self.update
 
         if self.update == 'adam':
@@ -161,6 +161,10 @@ class PA_RNN(object):
 
     def l2(self):
         l2 = self.lamb * T.sum([T.sum(p ** 2) for p in self.theta])
+        return l2
+
+    def l2E(self):
+        l2 = self.lamb * T.sum(self.E ** 2)
         return l2
 
     def forward_att_GRU(self, X_t, H_tm1):
@@ -346,7 +350,7 @@ class PA_RNN(object):
                 Z /= batch_size * batch_size
                 loss_krip = loss_sq / Z
                 loss = loss_krip
-        cost = loss + self.l2()
+        cost = loss + self.l2E()
         updates = self.optimize(cost, self.theta)
 
         ret = {'X_batch': xb, 'y_batch': y_batch, 'is_train': is_train,
