@@ -18,7 +18,7 @@ class PA_RNN(object):
     def __init__(self, E_shared, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, model='gru', share=False, update='adam2',
                  drop=0.2, final_activation=None, sq_loss=False):
         self.E = E_shared
-        self.theta = [E]
+        self.theta = [self.E]
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
         self.lamb = lamb
