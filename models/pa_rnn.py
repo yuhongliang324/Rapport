@@ -236,6 +236,8 @@ class PA_RNN(object):
     def build_model(self):
         xb = T.imatrix()  # (n_step, batch_size)
         X_batch = self.E[xb]  # (n_step, batch_size, hidden_dim)
+        is_train = T.iscalar('is_train')
+        X_batch = dropout(X_batch, is_train, drop_ratio=self.drop)
         if self.n_class > 1:
             y_batch = T.ivector()  # (batch_size,)
         else:
@@ -323,7 +325,6 @@ class PA_RNN(object):
         elif self.final_activation == 'sigmoid':
             rep = T.nnet.sigmoid(rep)
 
-        is_train = T.iscalar('is_train')
         numW = len(self.Ws)
         for i in xrange(numW - 1):
             rep = T.dot(rep, self.Ws[i]) + self.bs[i]
