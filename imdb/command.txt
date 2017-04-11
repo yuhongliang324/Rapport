@@ -24,6 +24,8 @@ nohup python -u train.py -model parnn -hid 128 > logs/parnn_128.out 2>&1 &
 nohup python -u train.py -model parnn -hid 256 > logs/parnn_256.out 2>&1 &
 nohup python -u train.py -model parnn -hid 512 > logs/parnn_512.out 2>&1 &
 
+nohup python -u train.py -model parnn -hid 256 -lamb 5e-5 > logs/parnn_256.out 2>&1 &
+
 
 --------------------------------------------------------------------------------------------------------------
 

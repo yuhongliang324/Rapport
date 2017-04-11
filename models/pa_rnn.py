@@ -18,6 +18,8 @@ class PA_RNN(object):
     def __init__(self, E_shared, input_dim, hidden_dim, mlp_layers, lamb=0., dec=True, model='gru', share=False, update='adam2',
                  drop=0.2, final_activation=None, sq_loss=False):
         self.E = E_shared
+        E_val = E_shared.get_value()
+        self.E_origin = theano.shared(E_val, borrow=True)
         self.theta = [self.E]
         self.input_dim, self.hidden_dim = input_dim, hidden_dim
         self.n_class = mlp_layers[-1]
@@ -164,7 +166,7 @@ class PA_RNN(object):
         return l2
 
     def l2E(self):
-        l2 = self.lamb * T.sum(self.E ** 2)
+        l2 = self.lamb * T.sum((self.E - self.E_origin) ** 2)
         return l2
 
     def forward_att_GRU(self, X_t, H_tm1):
