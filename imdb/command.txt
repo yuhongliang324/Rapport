@@ -11,7 +11,10 @@ TAGM:
 nohup python -u train.py -model tagm > logs/tagm.out 2>&1 &
 
 Ours (show attention):
-nohup python -u train.py -model ours -att 1 > logs/ours.out 2>&1 &
+nohup python -u train.py -model ours -hid 128 > logs/ours_128.out 2>&1 &
+nohup python -u train.py -model ours -hid 512 > logs/ours_512.out 2>&1 &
+nohup python -u train.py -model ours -hid 128 -share 1 > logs/ours_128_share.out 2>&1 &
+nohup python -u train.py -model ours -hid 512 -share 1 > logs/ours_512_share.out 2>&1 &
 
 DAN:
 nohup python -u train.py -model dan > logs/dan.out 2>&1 &

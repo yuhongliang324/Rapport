@@ -14,6 +14,7 @@ sys.path.append('../')
 from models.rnn import RNN
 from models.tagm import TAGM
 from models.dan import dan
+from models.pa_rnn import PA_RNN
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -42,7 +43,7 @@ def MAE(y_actual, y_predicted):
 
 
 def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
-             category=False, need_attention=False, report=False):
+             category=False, need_attention=False, model=None):
     n_test = y_test.shape[0]
     num_iter = len(start_batches_test)
     all_attention = []
@@ -51,8 +52,11 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
     for iter_index in xrange(num_iter):
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
-        xb = X_test[start: end, :length].T
-        cost, tmp, pred, attention = val_model(xb, start, end, 0)
+        if model == 'parnn':
+            cost, tmp, pred, attention = val_model(length, start, end, 0)
+        else:
+            xb = X_test[start: end, :length].T
+            cost, tmp, pred, attention = val_model(xb, start, end, 0)
         if need_attention:
             all_attention.append(attention)
         cost_avg += cost * (end - start)
@@ -60,8 +64,8 @@ def validate(val_model, X_test, y_test, start_batches_test, end_batches_test, le
             loss_krip = tmp
             loss_krip_avg += loss_krip * (end - start)
         y_predicted[start: end] = pred.tolist()
-        if report and (iter_index + 1) % 10 == 0:
-                print '%d/%d  Test Acc = %f' % (iter_index + 1, num_iter, tmp)
+        if model != 'dan' and (iter_index + 1) % 10 == 0:
+            print '%d/%d  Test Acc = %f' % (iter_index + 1, num_iter, tmp)
     cost_avg /= n_test
     mae_acc = eval(y_test, y_predicted, category=category)
     if category:
@@ -83,6 +87,8 @@ def train(E,
     n_train = X_train.shape[0]
     input_dim = E.shape[-1]
 
+    X_train_shared = theano.shared(X_train, borrow=True)
+    X_test_shared = theano.shared(X_test, borrow=True)
     y_train_shared = theano.shared(y_train, borrow=True)
     y_test_shared = theano.shared(y_test, borrow=True)
     E_shared = theano.shared(E.astype(theano.config.floatX), borrow=True)
@@ -101,6 +107,9 @@ def train(E,
     elif model == 'dan':
         ra = dan([input_dim, min(512, int(0.5 * input_dim)), min(256, int(0.5 * input_dim)), n_class],
                  lamb=lamb, update=update, activation=activation, drop=drop, sq_loss=sq_loss)
+    elif model == 'parnn':
+        ra = PA_RNN(E_shared, input_dim, hidden_dim, [n_class], dec=dec, drop=drop,
+                    update=update, lamb=lamb, model='lstm', share=share, sq_loss=sq_loss)
     else:
         ra = RNN(input_dim, hidden_dim, [n_class], lamb=lamb, model=model, share=share, update=update, drop=drop,
                  sq_loss=sq_loss)
@@ -119,33 +128,46 @@ def train(E,
         outputs = [cost, acc, pred]
     else:
         outputs = [cost, loss_krip, pred]
-    if model == 'ours':
+    if model == 'ours' or model == 'parnn':
         outputs.append(att)
     else:
         outputs.append(pred)  # trivial append
 
     start_symbol, end_symbol = T.lscalar(), T.lscalar()
+    len_symbol = T.lscalar()
     xb_symbol = T.imatrix()
 
-    train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
-                                  outputs=outputs, updates=updates,
-                                  givens={
-                                      X_batch: E_shared[xb_symbol],
-                                      y_batch: y_train_shared[start_symbol: end_symbol]},
-                                  on_unused_input='ignore', mode='FAST_RUN')
-    print 'Compilation done 1'
-    test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
-                                 outputs=outputs,
-                                 givens={
-                                     X_batch: E_shared[xb_symbol],
-                                     y_batch: y_test_shared[start_symbol: end_symbol]},
-                                 on_unused_input='ignore', mode='FAST_RUN')
-    print 'Compilation done 2'
-
-    if model == 'dan':
-        report = False
+    if model == 'parnn':
+        train_model = theano.function(inputs=[len_symbol, start_symbol, end_symbol, is_train],
+                                      outputs=outputs, updates=updates,
+                                      givens={
+                                          X_batch: X_train_shared[start_symbol: end_symbol, : len_symbol].T,
+                                          y_batch: y_train_shared[start_symbol: end_symbol]},
+                                      on_unused_input='ignore', mode='FAST_RUN')
+        print 'Compilation done 1'
+        test_model = theano.function(inputs=[len_symbol, start_symbol, end_symbol, is_train],
+                                     outputs=outputs,
+                                     givens={
+                                         X_batch: X_test_shared[start_symbol: end_symbol, : len_symbol].T,
+                                         y_batch: y_test_shared[start_symbol: end_symbol]},
+                                     on_unused_input='ignore', mode='FAST_RUN')
+        print 'Compilation done 2'
     else:
-        report = True
+
+        train_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
+                                      outputs=outputs, updates=updates,
+                                      givens={
+                                          X_batch: E_shared[xb_symbol],
+                                          y_batch: y_train_shared[start_symbol: end_symbol]},
+                                      on_unused_input='ignore', mode='FAST_RUN')
+        print 'Compilation done 1'
+        test_model = theano.function(inputs=[xb_symbol, start_symbol, end_symbol, is_train],
+                                     outputs=outputs,
+                                     givens={
+                                         X_batch: E_shared[xb_symbol],
+                                         y_batch: y_test_shared[start_symbol: end_symbol]},
+                                     on_unused_input='ignore', mode='FAST_RUN')
+        print 'Compilation done 2'
 
     best_mae_acc = None
     best_pred_test = None
@@ -158,8 +180,11 @@ def train(E,
         for iter_index in xrange(num_iter):
             start, end = start_batches_train[iter_index], end_batches_train[iter_index]
             length = len_batches_train[iter_index]
-            xb = X_train[start: end, :length].T
-            cost, tmp, pred, attention = train_model(xb, start, end, 1)
+            if model == 'parnn':
+                cost, tmp, pred, attention = train_model(length, start, end, 1)
+            else:
+                xb = X_train[start: end, :length].T
+                cost, tmp, pred, attention = train_model(xb, start, end, 1)
             cost_avg += cost * (end - start)
             if not category:
                 loss_krip = tmp
@@ -177,7 +202,7 @@ def train(E,
             print '\tTrain cost = %f,\tKrip Loss = %f,\tRMSE = %f' % (cost_avg, loss_krip_avg, rmse_acc)
         mae_acc_test, pred_test, att_test\
             = validate(test_model, X_test, y_test, start_batches_test, end_batches_test, len_batches_test,
-                       category=category, need_attention=need_attention, report=report)
+                       category=category, need_attention=need_attention, model=model)
         if (best_mae_acc is None) or (category and mae_acc_test > best_mae_acc)\
                 or ((not category) and mae_acc_test < best_mae_acc):
             best_mae_acc = mae_acc_test

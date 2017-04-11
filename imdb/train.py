@@ -22,6 +22,8 @@ def cross_validation(drop=0., hidden_dim=256,
         message += '_sq'
     if fine:
         message += '_fine'
+    if share:
+        message += '_share'
     result_file = 'results/' + message + '.txt'
     writer = open(result_file, 'w')
 
@@ -30,7 +32,6 @@ def cross_validation(drop=0., hidden_dim=256,
     num_class = 2
     if fine:
         num_class = 8
-
     best_pred_test, best_att_test \
         = train(E,
                 X_train, y_train, start_batches_train, end_batches_train, len_batches_train,
