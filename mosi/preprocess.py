@@ -3,6 +3,8 @@ import os
 import cPickle as pickle
 from scipy.io import loadmat, savemat
 import numpy
+import sys
+sys.path.append('../')
 from SST import utils as SU
 import theano
 from collections import defaultdict
