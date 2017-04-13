@@ -161,7 +161,7 @@ def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
             break
     reader.close()
     V = len(token_vec)
-    print V
+    print 'Vocabulary size:', V
 
     E = numpy.zeros((V + 1, token_vec['the'].shape[0]))
     token_ID = defaultdict(int)
