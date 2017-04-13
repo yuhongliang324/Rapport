@@ -11,6 +11,7 @@ raw_openface_pkl = os.path.join(raw_data_root, 'OpenFaceFeatures.pkl')
 raw_audio_root = os.path.join(raw_data_root, 'Audio/segment')
 raw_facet_root = os.path.join(raw_data_root, 'FACET_GIOTA')
 raw_hog_root = os.path.join(raw_data_root, 'HOG/PCA_HOG')
+raw_text_root = os.path.join(raw_data_root, 'text_segment_aligned')
 
 data_root = '/multicomp/datasets/mosi/Features'
 data_root_mat = '/multicomp/datasets/mosi/Features_mat'
@@ -108,7 +109,30 @@ def write_features(data_openface, data_audio, data_facet):
         writer.close()
 
 
-def write_features_mat(data_openface, data_audio, data_facet, data_hog):
+# ---for text feature embedding extraction-----------------------
+
+def get_sentences():
+    files = os.listdir(raw_text_root)
+    files.sort()
+    data = {}
+    for fn in files:
+        if not (len(fn) == 13 or len(fn) == 14):
+            continue
+        videoID = fn[: 11]
+        segID = fn[12:]
+        if videoID not in data:
+            data[videoID] = {}
+        reader = open(os.path.join(raw_text_root, fn))
+        lines = reader.readlines()
+        reader.close()
+        lines = map(lambda x: x.strip().split(',')[1].lower(), lines)
+        sent = ' '.join(lines)
+        print sent
+
+# ---------------------------------------------------------------
+
+
+def write_features_mat(data_openface, data_audio, data_facet):
     videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
@@ -155,5 +179,10 @@ def test1():
 def test2():
     split_data()
 
+
+def test3():
+    get_sentences()
+
+
 if __name__ == '__main__':
-    test2()
+    test3()
