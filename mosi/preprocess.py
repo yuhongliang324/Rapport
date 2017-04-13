@@ -98,7 +98,7 @@ def get_facet_features(video_range):
     return data
 
 
-def write_features(data_openface, data_audio, data_facet):
+def write_features(data_openface, data_audio, data_facet, data_text):
     videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
@@ -112,6 +112,7 @@ def write_features(data_openface, data_audio, data_facet):
             new_cont['openface'] = numpy.asarray(feat_openface, dtype=numpy.float32)
             new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
             new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
+            new_cont['text'] = numpy.asarray(data_text[videoID][segID], dtype=numpy.float32)
             data[segID] = new_cont
         pickle.dump(data, writer)
         writer.close()
@@ -254,6 +255,10 @@ def test1():
     data_openface = get_openface_features()
     data_audio = get_audio_features()
     data_facet = get_facet_features(data_openface)
+    reader = open(dict_pkl, 'rb')
+    token_ID, E = cPickle.load(reader)
+    reader.close()
+    data_text = get_sentence_vectors(token_ID, E)
     write_features(data_openface, data_audio, data_facet)
 
 
