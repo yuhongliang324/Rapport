@@ -12,6 +12,8 @@ sys.path.append('../')
 
 from models.rnn_attention import RNN_Attention
 from models.dan import dan
+from models.tagm import TAGM
+from models.rnn import RNN
 
 
 def eval(y_actual, y_predicted, category=False):
@@ -66,7 +68,7 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
     return mae_acc, y_actual, y_predicted
 
 
-def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
+def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam', sq_loss=False, activation=None,
           lamb=0., drop=0., model='gru', share=False, category=False, num_epoch=40, num_class=None):
 
     Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train = inputs_train
@@ -86,23 +88,25 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam',
         n_class = num_class
     else:
         n_class = 1
-    if model == 'dan':
-        ra = dan([input_dim, input_dim, n_class], lamb=lamb, update=update, drop=drop)
-        symbols = ra.build_model()
-        X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
-        pred, loss = symbols['pred'], symbols['loss']
-        cost, updates = symbols['cost'], symbols['updates']
-        acc = symbols['acc']
-        loss_krip = loss
-    else:
-        ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, update=update, lamb=lamb, drop=drop,
-                           model=model, share=share)
-        symbols = ra.build_model()
 
-        X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
-        att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
-        cost, updates = symbols['cost'], symbols['updates']
-        loss_krip, acc = symbols['loss_krip'], symbols['acc']
+    if model == 'ours':
+        ra = RNN_Attention(input_dim, hidden_dim, [n_class], dec=dec, drop=drop,
+                           update=update, lamb=lamb, model='lstm', share=share, sq_loss=sq_loss)
+    elif model == 'tagm':
+        ra = TAGM(input_dim, hidden_dim, [n_class], lamb=lamb, update=update, drop=drop, activation=activation,
+                  sq_loss=sq_loss)
+    elif model == 'dan':
+        ra = dan([input_dim, min(512, int(0.5 * input_dim)), min(256, int(0.5 * input_dim)), n_class],
+                 lamb=lamb, update=update, activation=activation, drop=drop, sq_loss=sq_loss)
+    else:
+        ra = RNN(input_dim, hidden_dim, [n_class], lamb=lamb, model=model, share=share, update=update, drop=drop,
+                 sq_loss=sq_loss)
+    symbols = ra.build_model()
+
+    X_batch, y_batch, is_train = symbols['X_batch'], symbols['y_batch'], symbols['is_train']
+    att, pred, loss = symbols['att'], symbols['pred'], symbols['loss']
+    cost, updates = symbols['cost'], symbols['updates']
+    loss_krip, acc = symbols['loss_krip'], symbols['acc']
 
     print 'Compiling function'
 

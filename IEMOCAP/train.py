@@ -1,10 +1,12 @@
 __author__ = 'yuhongliang324'
 
 import argparse
-from load_data import load_feature, pad
-import numpy
 from math import sqrt
-from optimize import train
+
+import numpy
+
+from load_data import load_feature, pad
+from mosi.optimize import train
 
 
 def cross_validation(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
