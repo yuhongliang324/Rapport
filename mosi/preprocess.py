@@ -125,6 +125,7 @@ def write_features_mat(data_openface, data_audio, data_facet, data_hog):
 
 def split_data():
     files = os.listdir(data_root)
+    print len(files)
     files = map(lambda x: x[:-4], files)
     total = len(files)
     num_test = int(0.2 * total)

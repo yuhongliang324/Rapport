@@ -5,12 +5,12 @@ from load_data import load, load_split
 import sys
 sys.path.append('../')
 import numpy
-from IEMOCAP.optimize import train
+from imdb.optimize import train
 from IEMOCAP.load_data import pad
 
 
 def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0.,
-                     model='gru', share=False, category=True, maxlen=1000, sample_rate=5):
+               model='gru', share=False, category=True, maxlen=1000, sample_rate=5):
 
     feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256}
     session_Xs, session_y = load(feature_name=feature_name, category=category)

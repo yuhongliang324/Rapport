@@ -20,13 +20,13 @@ DAN:
 nohup python -u train.py -model dan > logs/dan.out 2>&1 &
 
 Pretrained Ours:
-nohup python -u train.py -model parnn -hid 128 > logs/parnn_128.out 2>&1 &
+nohup python -u train.py -model parnn -hid 128 > logs/parnn_128.out 2>&1 & (Now best)
 nohup python -u train.py -model parnn -hid 256 > logs/parnn_256.out 2>&1 &
 nohup python -u train.py -model parnn -hid 512 > logs/parnn_512.out 2>&1 &
 
-nohup python -u train.py -model parnn -hid 128 -drop 0.1 > logs/parnn_128_lamb.out 2>&1 &
-nohup python -u train.py -model parnn -hid 128 -drop 0.25 > logs/parnn_256_lamb.out 2>&1 &
-nohup python -u train.py -model parnn -hid 512 -drop 0.5 > logs/parnn_512_lamb.out 2>&1 &
+nohup python -u train.py -model parnn -hid 128 -drop 0.1 > logs/parnn_128_drop_0.1.out 2>&1 &
+nohup python -u train.py -model parnn -hid 128 -drop 0.25 > logs/parnn_128_drop_0.25.out 2>&1 &
+nohup python -u train.py -model parnn -hid 128 -drop 0.5 > logs/parnn_128_drop_0.5.out 2>&1 &
 
 
 --------------------------------------------------------------------------------------------------------------
