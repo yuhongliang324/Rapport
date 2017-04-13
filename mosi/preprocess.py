@@ -258,7 +258,7 @@ def test2():
 
 
 def test3():
-    get_sentences()
+    get_vocabulary()
 
 
 if __name__ == '__main__':
