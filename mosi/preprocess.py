@@ -259,7 +259,7 @@ def test1():
     token_ID, E = cPickle.load(reader)
     reader.close()
     data_text = get_sentence_vectors(token_ID, E)
-    write_features(data_openface, data_audio, data_facet)
+    write_features(data_openface, data_audio, data_facet, data_text)
 
 
 def test2():
@@ -276,4 +276,4 @@ def test3():
 
 
 if __name__ == '__main__':
-    test3()
+    test1()
