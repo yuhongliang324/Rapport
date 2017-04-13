@@ -5,8 +5,11 @@ import cPickle as pickle
 import os
 import numpy
 import sys
+import cPickle
+from preprocess import dict_pkl
 sys.path.append('..')
 from utils import standardize
+import theano
 
 
 def load(feature_name='audio', category=False):
@@ -55,3 +58,10 @@ def load_split():
     tests = lines[0].split()
     trains = lines[1].split()
     return tests, trains
+
+
+def load_dict(vec_file=dict_pkl):
+    reader = open(vec_file, 'rb')
+    token_ID, E = cPickle.load(reader)
+    reader.close()
+    return token_ID, E.astype(theano.config.floatX)

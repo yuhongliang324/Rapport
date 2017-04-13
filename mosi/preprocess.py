@@ -177,6 +177,8 @@ def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
     cPickle.dump([token_ID, E], f, protocol=cPickle.HIGHEST_PROTOCOL)
     f.close()
 
+    print 'Get word embeddings done ... '
+
 
 def get_sentence_vectors(token_ID, E):
     files = os.listdir(raw_text_root)
@@ -205,7 +207,7 @@ def get_sentence_vectors(token_ID, E):
                 tokenIDs.append(token_ID[tok])
         data[videoID][segID] = E[tokenIDs]
         print len(tokens), E[tokenIDs].shape
-        print unknown
+    print unknown
     return data
 
 # ---------------------------------------------------------------
@@ -260,7 +262,12 @@ def test2():
 
 
 def test3():
-    get_vocabulary()
+    tokens = get_vocabulary()
+    get_vectors(tokens)
+    reader = open(dict_pkl, 'rb')
+    token_ID, E = reader.readlines()
+    reader.close()
+    get_sentence_vectors(token_ID, E)
 
 
 if __name__ == '__main__':
