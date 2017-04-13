@@ -207,8 +207,6 @@ def get_sentence_vectors(token_ID, E):
             else:
                 tokenIDs.append(token_ID[tok])
         data[videoID][segID] = E[tokenIDs]
-        print len(tokens), E[tokenIDs].shape
-    print unknown
     return data
 
 # ---------------------------------------------------------------
