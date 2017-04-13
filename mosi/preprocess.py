@@ -265,7 +265,7 @@ def test3():
     tokens = get_vocabulary()
     get_vectors(tokens)
     reader = open(dict_pkl, 'rb')
-    token_ID, E = reader.readlines()
+    token_ID, E = cPickle.load(reader)
     reader.close()
     get_sentence_vectors(token_ID, E)
 
