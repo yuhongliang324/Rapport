@@ -125,16 +125,21 @@ def write_features_mat(data_openface, data_audio, data_facet, data_hog):
 
 def split_data():
     files = os.listdir(data_root)
-    print len(files)
+    files.sort()
     files = map(lambda x: x[:-4], files)
     total = len(files)
-    num_test = int(0.2 * total)
-    test_set = random.sample(files, num_test)
+    num_test = total // 3
+    num_train = total - num_test
+    test_set = []
     train_set = []
-    for fn in files:
-        if fn in test_set:
-            continue
-        train_set.append(fn)
+
+    for i in xrange(total):
+        if i < num_train:
+            train_set.append(files[i])
+        else:
+            test_set.append(files[i])
+    print len(train_set), len(test_set)
+
     writer = open(split_file, 'w')
     writer.write(' '.join(test_set) + '\n')
     writer.write(' '.join(train_set) + '\n')
