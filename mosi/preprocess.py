@@ -3,7 +3,10 @@ import os
 import cPickle as pickle
 from scipy.io import loadmat, savemat
 import numpy
-import random
+from SST import utils as SU
+import theano
+from collections import defaultdict
+import cPickle
 
 
 raw_data_root = '/multicomp/datasets/mosi'
@@ -16,6 +19,9 @@ raw_text_root = os.path.join(raw_data_root, 'text_segment_aligned')
 data_root = '/multicomp/datasets/mosi/Features'
 data_root_mat = '/multicomp/datasets/mosi/Features_mat'
 split_file = os.path.join(raw_data_root, 'split.txt')
+
+preprocessed_root = 'preprocessed'
+dict_pkl = os.path.join(preprocessed_root, 'dict.pkl')
 
 
 def get_openface_features():
@@ -111,10 +117,70 @@ def write_features(data_openface, data_audio, data_facet):
 
 # ---for text feature embedding extraction-----------------------
 
-def get_sentences():
+def get_vocabulary():
+    files = os.listdir(raw_text_root)
+    files.sort()
+    tokens = set()
+    for fn in files:
+        if not (len(fn) == 13 or len(fn) == 14):
+            continue
+        reader = open(os.path.join(raw_text_root, fn))
+        lines = reader.readlines()
+        reader.close()
+        lines = map(lambda x: x.strip().split(',')[1].lower(), lines)
+        sent = ' '.join(lines)
+        words = sent.split()
+        for word in words:
+            tokens.add(word)
+    print len(tokens)
+    return tokens
+
+
+def get_vectors(tokens, vec_file=SU.wordvec_file, out_file=dict_pkl):
+    token_vec = {}
+    reader = open(vec_file)
+    count = 0
+    while True:
+        line = reader.readline()
+        if line:
+            count += 1
+            if count % 100000 == 0:
+                print count
+            line = line.strip()
+            sp = line.split()
+            sp[0].replace('\'', '').replace('-', '')
+            if sp[0] not in tokens:
+                continue
+            tok = sp[0]
+            vec = [float(x) for x in sp[1:]]
+            vec = numpy.asarray(vec, dtype=theano.config.floatX)
+            token_vec[tok] = vec
+        else:
+            break
+    reader.close()
+    V = len(token_vec)
+    print V
+
+    E = numpy.zeros((V + 1, token_vec['the'].shape[0]))
+    token_ID = defaultdict(int)
+    curID = 1
+
+    for token, vec in token_vec.items():
+        token_ID[token] = curID
+        E[curID, :] = vec
+        curID += 1
+    E[0, :] = numpy.mean(E[1:], axis=0)
+
+    f = open(out_file, 'wb')
+    cPickle.dump([token_ID, E], f, protocol=cPickle.HIGHEST_PROTOCOL)
+    f.close()
+
+
+def get_sentence_vectors(token_ID, E):
     files = os.listdir(raw_text_root)
     files.sort()
     data = {}
+    unknown = set()
     for fn in files:
         if not (len(fn) == 13 or len(fn) == 14):
             continue
@@ -127,7 +193,18 @@ def get_sentences():
         reader.close()
         lines = map(lambda x: x.strip().split(',')[1].lower(), lines)
         sent = ' '.join(lines)
-        print sent
+        tokens = sent.split()
+        tokenIDs = []
+        for tok in tokens:
+            if tok not in token_ID:
+                tokenIDs.append(0)
+                unknown.add(tok)
+            else:
+                tokenIDs.append(token_ID[tok])
+        data[videoID][segID] = E[tokenIDs]
+        print len(tokens), E[tokenIDs].shape
+        print unknown
+    return data
 
 # ---------------------------------------------------------------
 
