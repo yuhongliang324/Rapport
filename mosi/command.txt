@@ -12,6 +12,9 @@ nohup python -u train.py -model tagm -feat text > logs/tagm_text.out 2>&1 &
 
 Ours (show attention):
 nohup python -u train.py -model ours -feat text > logs/ours_text.out 2>&1 &
+nohup python -u train.py -model ours -feat audio > logs/ours_audio.out 2>&1 &
+nohup python -u train.py -model ours -feat facet > logs/ours_facet.out 2>&1 &
+nohup python -u train.py -model ours -feat facet -fs 1 -um 1 > logs/ours_facet_fs.out 2>&1 &
 
 DAN:
 nohup python -u train.py -model dan -feat text > logs/dan_text.out 2>&1 &
