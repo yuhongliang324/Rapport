@@ -18,20 +18,21 @@ def select(X_list, ys, ratio=None, use_mean=False):
         s = numpy.argsort(scores)
         s = s[::-1]
         ret = s[: dim]
-        # ret.sort()
+        ret.sort()
         return ret
 
-    xs = []
-    for x in X_list:
-        xs.append(numpy.mean(x, axis=0))
-    xs = numpy.stack(xs)
-    print 'mean', select1(xs, ys, ratio=ratio)
-
-    xs = numpy.concatenate(X_list, axis=0)
-    yy = []
-    for x, y in zip(X_list, ys):
-        yy += [y] * x.shape[0]
-    print 'all', select1(xs, yy, ratio)
+    if use_mean:
+        xs = []
+        for x in X_list:
+            xs.append(numpy.mean(x, axis=0))
+        xs = numpy.stack(xs)
+        return select1(xs, ys, ratio=ratio)
+    else:
+        xs = numpy.concatenate(X_list, axis=0)
+        yy = []
+        for x, y in zip(X_list, ys):
+            yy += [y] * x.shape[0]
+        return select1(xs, yy, ratio)
 
 
 def test1():
