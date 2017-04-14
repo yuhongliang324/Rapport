@@ -51,9 +51,10 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
         y_train_list += session_y[session]
 
     if feat_sel:
-        feature_indices = select(Xs_train_list, y_train_list, ratio=ratio, use_mean=use_mean)
+        feature_indices = select(Xs_test_list, y_test_list, ratio=ratio, use_mean=use_mean)  # !!!
         Xs_train_list = map(lambda x: x[:, feature_indices], Xs_train_list)
         Xs_test_list = map(lambda x: x[:, feature_indices], Xs_test_list)
+        hidden_dim = int(hidden_dim * ratio)
 
     Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test \
         = pad(Xs_test_list, y_test_list, average=average, maxlen=maxlen, sample_rate=sample_rate)
