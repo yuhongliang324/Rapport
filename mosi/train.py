@@ -122,7 +122,7 @@ def test1():
     args.um = bool(args.um)
 
     if args.feat == 'audio':
-        args.rate = 5
+        args.rate = 3
     elif args.feat == 'text':
         args.rate = 1
 
