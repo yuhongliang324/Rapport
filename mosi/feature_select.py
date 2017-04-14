@@ -1,6 +1,7 @@
 __author__ = 'yuhongliang324'
 
 import numpy
+from load_data import load, load_split
 from sklearn.feature_selection import SelectPercentile, f_classif
 
 
@@ -24,11 +25,29 @@ def select(X_list, ys, ratio, use_mean=False):
     for x in X_list:
         xs.append(numpy.mean(x, axis=0))
     xs = numpy.stack(xs)
-    print select1(xs, ys, ratio)
+    print 'mean', select1(xs, ys, ratio)
 
     xs = numpy.concatenate(X_list, axis=0)
     yy = []
     for x, y in zip(X_list, ys):
         yy += [y] * x.shape[0]
-    print select1(xs, ys, ratio)
+    print 'all', select1(xs, ys, ratio)
 
+
+def test1():
+    feature_name = 'audio'
+    category = True
+    session_Xs, session_y = load(feature_name=feature_name, category=category)
+    tests, trains = load_split()
+
+    Xs_train_list, y_train_list = [], []
+    for session in trains:
+        if session not in session_Xs:
+            continue
+        Xs_train_list += session_Xs[session]
+        y_train_list += session_y[session]
+    select(Xs_train_list, y_train_list)
+
+
+if __name__ == '__main__':
+    test1()
