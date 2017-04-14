@@ -1,0 +1,17 @@
+Ours without attention:
+nohup python -u train.py -model lstm -feat text > logs/lstm_text.out 2>&1 &
+
+LSTM:
+nohup python -u train.py -model lstml -feat text > logs/lstml_text.out 2>&1 &
+
+GRU:
+nohup python -u train.py -model grul -feat text > logs/grul_text.out 2>&1 &
+
+TAGM:
+nohup python -u train.py -model tagm -feat text > logs/tagm_text.out 2>&1 &
+
+Ours (show attention):
+nohup python -u train.py -model ours -feat text > logs/ours_text.out 2>&1 &
+
+DAN:
+nohup python -u train.py -model dan -feat text > logs/dan_text.out 2>&1 &
