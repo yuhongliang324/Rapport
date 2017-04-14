@@ -18,7 +18,7 @@ def select(X_list, ys, ratio=None, use_mean=False):
         s = numpy.argsort(scores)
         s = s[::-1]
         ret = s[: dim]
-        ret.sort()
+        # ret.sort()
         return ret
 
     xs = []
@@ -31,7 +31,7 @@ def select(X_list, ys, ratio=None, use_mean=False):
     yy = []
     for x, y in zip(X_list, ys):
         yy += [y] * x.shape[0]
-    print 'all', select1(xs, ys, ratio)
+    print 'all', select1(xs, yy, ratio)
 
 
 def test1():
