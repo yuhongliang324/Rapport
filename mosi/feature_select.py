@@ -5,7 +5,7 @@ from load_data import load, load_split
 from sklearn.feature_selection import SelectPercentile, f_classif
 
 
-def select(X_list, ys, ratio, use_mean=False):
+def select(X_list, ys, ratio=None, use_mean=False):
     def select1(X, ys, ratio=None):
         dim_origin = X.shape[-1]
         if ratio is None:
@@ -25,7 +25,7 @@ def select(X_list, ys, ratio, use_mean=False):
     for x in X_list:
         xs.append(numpy.mean(x, axis=0))
     xs = numpy.stack(xs)
-    print 'mean', select1(xs, ys, ratio)
+    print 'mean', select1(xs, ys, ratio=ratio)
 
     xs = numpy.concatenate(X_list, axis=0)
     yy = []
