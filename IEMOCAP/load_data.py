@@ -116,8 +116,6 @@ def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5
     for i in xrange(num_batch):
         start, end = i * batch_size, min((i + 1) * batch_size, size)
         length = X_list[start].shape[0]
-        if length == 0:
-            continue
         for j in xrange(start, end):
             dif = (X_list[j].shape[0] - length) // 2
             Xs_short.append(X_list[j][dif: dif + length])
