@@ -70,13 +70,14 @@ def load_feature_session(session_path, feature_name):
 def subsample(X, average=False, maxlen=None, sample_rate=None):
     if maxlen is not None:
         sample_rate = (X.shape[0] + maxlen - 1) // maxlen
+    num_frame = X.shape[0] // sample_rate
+    if num_frame == 0:
+        return X
     if average:
-        num_frame = X.shape[0] // sample_rate
         X = X[:sample_rate * num_frame]
         X = numpy.reshape(X, (num_frame, sample_rate, X.shape[1]))
         X = numpy.mean(X, axis=1)
     else:
-        num_frame = X.shape[0] // sample_rate
         ind = numpy.arange(num_frame) * sample_rate
         X = X[ind]
     return X
@@ -98,7 +99,7 @@ def sort_by_length(Xs, ys):
     return Xs, ys
 
 
-def pad(X_list, y_list, batch_size=32, average=False, maxlen=1000, sample_rate=5):
+def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5):
     size = len(X_list)
 
     # Subsampling
