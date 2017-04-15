@@ -340,12 +340,9 @@ def load_split(split_file=data_split_file):
 
 
 # Input: a list of X arrays
-def standardize(X_list, normalization=True):
+def standardize(X_list):
     Xs = numpy.concatenate(X_list, axis=0)
     Xs_std = StandardScaler().fit_transform(Xs)
-    if normalization:
-        Xs_std = normalize(Xs_std, norm='l1', axis=0)
-        Xs_std = normalize(Xs_std)
 
     X_list_std = []
     start = 0
