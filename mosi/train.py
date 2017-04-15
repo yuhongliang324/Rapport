@@ -87,9 +87,14 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
     inputs_train = (Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train)
     inputs_test = (Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test)
 
+    if model == 'dan':
+        num_epoch = 100
+    else:
+        num_epoch = 40
+
     best_actual_test, best_pred_test \
         = train(inputs_train, inputs_test, hidden_dim=hidden_dim, dec=dec, update=update,
-                activation=activation, sq_loss=sq_loss, num_epoch=20,
+                activation=activation, sq_loss=sq_loss, num_epoch=num_epoch,
                 lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2)
 
     for i in xrange(best_pred_test.shape[0]):
