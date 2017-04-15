@@ -71,8 +71,6 @@ def subsample(X, average=False, maxlen=None, sample_rate=None):
     if maxlen is not None:
         sample_rate = (X.shape[0] + maxlen - 1) // maxlen
     num_frame = X.shape[0] // sample_rate
-    if num_frame == 0:
-        return X
     if average:
         X = X[:sample_rate * num_frame]
         X = numpy.reshape(X, (num_frame, sample_rate, X.shape[1]))
@@ -118,6 +116,8 @@ def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5
     for i in xrange(num_batch):
         start, end = i * batch_size, min((i + 1) * batch_size, size)
         length = X_list[start].shape[0]
+        if length == 0:
+            continue
         for j in xrange(start, end):
             dif = (X_list[j].shape[0] - length) // 2
             Xs_short.append(X_list[j][dif: dif + length])
