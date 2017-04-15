@@ -179,8 +179,9 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam', s
             best_actual_test = actual_test
             best_pred_test = pred_test
             best_epoch = epoch_index
+        '''
         # Early Stopping
         if epoch_index - best_epoch >= 4 and epoch_index >= num_epoch // 4:
-            break
+            break'''
     print 'Best Epoch = %d, Best ACC/MAE in Test = %f' % (best_epoch + 1, best_mae_acc)
     return best_actual_test, best_pred_test
