@@ -19,14 +19,15 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
     feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256, 'text': 128}
     session_Xs, session_y = load(feature_name=feature_name, category=category)
     hidden_dim = feature_hidden[feature_name]
-    if dec:
-        pref = 'ad'
-    else:
-        pref = 'att_only'
-    message = pref + '_' + feature_name + '_model_' + model + '_share_' + str(share) + '_lamb_' + str(lamb)\
-              + '_drop_' + str(drop)
+    message = model + '_' + feature_name + '_share_' + str(share) + '_drop_' + str(drop)\
+              + '_lamb_' + str(lamb)
+    if sq_loss:
+        message += '_sq'
     if category:
         message += '_cat'
+    if feat_sel:
+        message += '_fs'
+
     writer = open('results/result_' + message + '.txt', 'w')
 
     if feature_name == 'audio':
