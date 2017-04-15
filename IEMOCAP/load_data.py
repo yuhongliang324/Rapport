@@ -98,7 +98,7 @@ def sort_by_length(Xs, ys):
     return Xs, ys
 
 
-def pad(X_list, y_list, batch_size=16, average=False, maxlen=1000, sample_rate=5):
+def pad(X_list, y_list, batch_size=32, average=False, maxlen=1000, sample_rate=5):
     size = len(X_list)
 
     # Subsampling

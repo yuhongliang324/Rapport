@@ -10,7 +10,6 @@ import numpy
 from mosi.optimize import train
 from IEMOCAP.load_data import pad
 from feature_select import select
-from sklearn.preprocessing import normalize
 
 
 def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., activation=None, sq_loss=False,

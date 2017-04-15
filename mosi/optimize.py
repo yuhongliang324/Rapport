@@ -51,9 +51,6 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
         start, end = start_batches_test[iter_index], end_batches_test[iter_index]
         length = len_batches_test[iter_index]
         cost, tmp, pred = test_model(start, end, length, 0)
-        print start, end, length
-        print cost, tmp
-        print '_________________'
         cost_avg += cost * (end - start)
         all_actual += y_test[start: end].tolist()
         all_pred += pred.tolist()
