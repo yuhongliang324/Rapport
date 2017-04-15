@@ -66,6 +66,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
         = pad(Xs_train_list, y_train_list, average=average, maxlen=maxlen, sample_rate=sample_rate)
     if category:
         y_train = y_train.astype('int32')
+    numpy.random.shuffle(y_train)  # !!!
 
     if category:
         cnt = [0, 0]
