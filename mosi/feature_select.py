@@ -7,6 +7,9 @@ from sklearn.feature_selection import SelectPercentile, f_classif
 
 def select(X_list, ys, ratio=None, use_mean=False):
     def select1(X, ys, ratio=None):
+        X[numpy.isnan(X)] = 0.
+        X[numpy.isneginf(X)] = 0.
+        X[numpy.isinf(X)] = 0.
         dim_origin = X.shape[-1]
         if ratio is None:
             dim = dim_origin // 2
