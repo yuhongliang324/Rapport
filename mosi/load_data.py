@@ -36,7 +36,7 @@ def load(feature_name='audio', category=False):
             if len(X.shape) == 1:
                 continue
             X[numpy.isnan(X)] = 0.
-            X[numpy.isneginf(X)] = -1.
+            X[numpy.isneginf(X)] = 0.
             X[numpy.isinf(X)] = 0.
             session_Xs[videoID].append(X)
             if not category:
