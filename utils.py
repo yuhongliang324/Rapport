@@ -8,7 +8,7 @@ from data_preprocessing.krippendorff_alpha import krippendorff_alpha as ka
 from data_path import info_root, ratings_best3_file, data_split_file, rating_class_file, rating_class_best3_file
 from scipy.interpolate import interp1d
 import random
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, normalize
 
 
 def rename(root):
@@ -340,18 +340,12 @@ def load_split(split_file=data_split_file):
 
 
 # Input: a list of X arrays
-def standardize(X_list):
-    '''
-    dim = X_list[0].shape[1]
-    same = True
-    for X in X_list:
-        if X.shape[1] != dim:
-            same = False
-            break
-    if not same:
-        print [X.shape[1] for X in X_list]'''
+def standardize(X_list, normalization=True):
     Xs = numpy.concatenate(X_list, axis=0)
     Xs_std = StandardScaler().fit_transform(Xs)
+    if normalization:
+        Xs_std = normalize(Xs_std, norm='l1', axis=0)
+        Xs_std = normalize(Xs_std)
 
     X_list_std = []
     start = 0

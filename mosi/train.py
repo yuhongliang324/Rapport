@@ -10,6 +10,7 @@ import numpy
 from mosi.optimize import train
 from IEMOCAP.load_data import pad
 from feature_select import select
+from sklearn.preprocessing import normalize
 
 
 def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., activation=None, sq_loss=False,
@@ -81,8 +82,6 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
         print 'MAE of Average Prediction = %f' % mae
 
     print Xs_train.shape, Xs_test.shape
-    print numpy.max(Xs_train), numpy.min(Xs_train)
-    print numpy.max(Xs_test), numpy.min(Xs_test)
 
     inputs_train = (Xs_train, y_train, start_batches_train, end_batches_train, len_batches_train)
     inputs_test = (Xs_test, y_test, start_batches_test, end_batches_test, len_batches_test)
