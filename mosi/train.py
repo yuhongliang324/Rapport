@@ -52,7 +52,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
         y_train_list += session_y[session]
 
     if feat_sel:
-        feature_indices = select(Xs_test_list, y_test_list, ratio=ratio, use_mean=use_mean)
+        feature_indices = select(Xs_train_list + Xs_test_list, y_train_list + y_test_list, ratio=ratio, use_mean=use_mean)
         Xs_train_list = map(lambda x: x[:, feature_indices], Xs_train_list)
         Xs_test_list = map(lambda x: x[:, feature_indices], Xs_test_list)
         hidden_dim = int(hidden_dim * ratio)
@@ -111,7 +111,7 @@ def test1():
     parser.add_argument('-share', type=int, default=0)
     parser.add_argument('-cat', type=int, default=1)
     parser.add_argument('-maxlen', type=int, default=1000)
-    parser.add_argument('-rate', type=int, default=2)
+    parser.add_argument('-rate', type=int, default=3)
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-sq', type=int, default=0)
     parser.add_argument('-fs', type=int, default=0)
