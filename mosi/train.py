@@ -91,9 +91,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
                 activation=activation, sq_loss=sq_loss, num_epoch=20,
                 lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2)
 
-    print best_pred_test.shape, best_actual_test.shape
-
-    for i in xrange(y_test.shape[0]):
+    for i in xrange(best_pred_test.shape[0]):
         writer.write(str(best_pred_test[i]) + ',' + str(best_actual_test[i]) + '\n')
     writer.close()
 
