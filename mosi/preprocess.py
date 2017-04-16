@@ -20,6 +20,7 @@ raw_text_root = os.path.join(raw_data_root, 'text_segment_aligned')
 
 data_root = '/multicomp/datasets/mosi/Features'
 data_root_mat = '/multicomp/datasets/mosi/Features_mat'
+data_root_hog = '/multicomp/datasets/mosi/Features_hog'
 split_file = os.path.join(raw_data_root, 'split.txt')
 
 preprocessed_root = 'preprocessed'
@@ -113,6 +114,23 @@ def write_features(data_openface, data_audio, data_facet, data_text):
             new_cont['facet'] = numpy.asarray(data_facet[videoID][segID], dtype=numpy.float32)
             new_cont['audio'] = numpy.asarray(data_audio[videoID][segID], dtype=numpy.float32)
             new_cont['text'] = numpy.asarray(data_text[videoID][segID], dtype=numpy.float32)
+            data[segID] = new_cont
+        pickle.dump(data, writer)
+        writer.close()
+
+
+def write_features_hog(data_hog):
+    videoIDs = data_hog.keys()
+    for videoID in videoIDs:
+        print videoID
+        video_path = os.path.join(data_root, videoID + '.pkl')
+        writer = open(video_path, 'w')
+        segID_cont = data_hog[videoID]
+        data = {}
+        for segID, cont in segID_cont.items():
+            new_cont = {'start_time': cont['start_time'], 'end_time': cont['end_time'], 'label': cont['sentiment']}
+            hog = numpy.asarray(data_hog[videoID][segID], dtype=numpy.float32)
+            new_cont['hog'] = hog
             data[segID] = new_cont
         pickle.dump(data, writer)
         writer.close()
@@ -272,6 +290,10 @@ def test3():
     reader.close()
     get_sentence_vectors(token_ID, E)
 
+
+def test4():
+    data_hog = get_hog_features()
+    write_features_hog(data_hog)
 
 if __name__ == '__main__':
     test1()
