@@ -18,9 +18,9 @@ Ours (show attention):
 nohup python -u train.py -model ours -feat text > logs/ours_text.out 2>&1 &
 nohup python -u train.py -model ours -feat facet > logs/ours_facet.out 2>&1 &
 nohup python -u train.py -model ours -feat audio -fs 1 -drop 0.5 > logs/ours_audio_fs_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat facet > logs/ours_facet.out 2>&1 &
-nohup python -u train.py -model ours -feat facet -drop 0.5 > logs/ours_facet_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat facet -fs 1 -fs_rate 0.25 > logs/ours_facet_fs.out 2>&1 &
+nohup python -u train.py -model ours -feat hog > logs/ours_hog.out 2>&1 &
+nohup python -u train.py -model ours -feat hog -drop 0.5 > logs/ours_hog_drop.out 2>&1 &
+nohup python -u train.py -model ours -feat hog -fs 1 -fs_rate 0.25 > logs/ours_hog_fs.out 2>&1 &
 
 
 DAN:

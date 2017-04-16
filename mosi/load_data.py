@@ -14,9 +14,10 @@ import theano
 
 def load(feature_name='audio', category=False):
     if feature_name == 'hog':
-        files = os.listdir(data_root_hog)
+        dr = data_root_hog
     else:
-        files = os.listdir(data_root)
+        dr = data_root
+    files = os.listdir(dr)
     files.sort()
     session_Xs = {}
     session_y = {}
@@ -29,7 +30,7 @@ def load(feature_name='audio', category=False):
         videoID = fn[:-4]
         session_Xs[videoID] = []
         session_y[videoID] = []
-        pkl_path = os.path.join(data_root, fn)
+        pkl_path = os.path.join(dr, fn)
         reader = open(pkl_path)
         segID_cont = pickle.load(reader)
         reader.close()
