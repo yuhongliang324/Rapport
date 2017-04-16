@@ -13,4 +13,5 @@ def evaluate(fn):
     return r
 
 
-evaluate(sys.argv[1])
+r = evaluate(sys.argv[1])
+print 'Pearson = %f' % r
