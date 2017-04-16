@@ -14,23 +14,9 @@ Ours (show attention):
 nohup python -u train.py -model ours -feat text > logs/ours_text.out 2>&1 &
 nohup python -u train.py -model ours -feat audio > logs/ours_audio.out 2>&1 &
 nohup python -u train.py -model ours -feat facet > logs/ours_facet.out 2>&1 &
-nohup python -u train.py -model ours -feat facet -fs 1 -um 1 > logs/ours_facet_fs.out 2>&1 &
+nohup python -u train.py -model ours -feat audio -fs 1 drop 0.5 > logs/ours_audio_fs_drop.out 2>&1 &
+
 
 DAN:
 nohup python -u train.py -model dan -feat text > logs/dan_text.out 2>&1 &
-
-Parameter tuning:
-Drop, feature selection, share
-
-nohup python -u train.py -model ours -feat audio > logs/ours_audio.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.25 > logs/ours_audio_fs_0.25.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.5 > logs/ours_audio_fs_0.5.out 2>&1 &
-
-nohup python -u train.py -model ours -feat audio -drop 0.25 > logs/ours_audio_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.25 -drop 0.25 > logs/ours_audio_fs_0.25_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.5 -drop 0.25 > logs/ours_audio_fs_0.5_drop.out 2>&1 &
-
-nohup python -u train.py -model ours -feat audio -share 1 > logs/ours_audio_share.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.25 -share 1 > logs/ours_audio_fs_0.25_share.out 2>&1 &
-nohup python -u train.py -model ours -feat audio -fs 1 -fs_rate 0.5 -share 1 > logs/ours_audio_fs_0.5_share.out 2>&1 &
 

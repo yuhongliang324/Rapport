@@ -14,7 +14,7 @@ from feature_select import select
 
 def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., activation=None, sq_loss=False,
                model='ours', share=False, category=True, maxlen=1000, sample_rate=5,
-               feat_sel=False, ratio=None, use_mean=False):
+               feat_sel=False, ratio=None, use_mean=False, early_stop=False):
 
     feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256, 'text': 128}
     session_Xs, session_y = load(feature_name=feature_name, category=category)
@@ -94,7 +94,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
     best_actual_test, best_pred_test \
         = train(inputs_train, inputs_test, hidden_dim=hidden_dim, dec=dec, update=update,
                 activation=activation, sq_loss=sq_loss, num_epoch=num_epoch,
-                lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2)
+                lamb=lamb, model=model, share=share, category=category, drop=drop, num_class=2, early_stop=early_stop)
 
     for i in xrange(best_pred_test.shape[0]):
         writer.write(str(best_pred_test[i]) + ',' + str(best_actual_test[i]) + '\n')
@@ -143,6 +143,11 @@ def test1():
             activation = 'relu'
         else:
             activation = 'tanh'
+
+    if args.feat == 'text':
+        es = True
+    else:
+        es = False
 
     experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                activation=activation, sq_loss=args.sq, model=args.model, share=args.share, category=args.cat,
