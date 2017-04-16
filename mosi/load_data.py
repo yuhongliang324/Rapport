@@ -1,6 +1,6 @@
 __author__ = 'yuhongliang324'
 
-from preprocess import data_root, split_file
+from preprocess import data_root, data_root_hog, split_file
 import cPickle as pickle
 import os
 import numpy
@@ -13,7 +13,10 @@ import theano
 
 
 def load(feature_name='audio', category=False):
-    files = os.listdir(data_root)
+    if feature_name == 'hog':
+        files = os.listdir(data_root_hog)
+    else:
+        files = os.listdir(data_root)
     files.sort()
     session_Xs = {}
     session_y = {}
