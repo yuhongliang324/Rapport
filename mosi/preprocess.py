@@ -119,13 +119,13 @@ def write_features(data_openface, data_audio, data_facet, data_text):
         writer.close()
 
 
-def write_features_hog(data_hog):
-    videoIDs = data_hog.keys()
+def write_features_hog(data_openface, data_hog):
+    videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
         video_path = os.path.join(data_root, videoID + '.pkl')
         writer = open(video_path, 'w')
-        segID_cont = data_hog[videoID]
+        segID_cont = data_openface[videoID]
         data = {}
         for segID, cont in segID_cont.items():
             new_cont = {'start_time': cont['start_time'], 'end_time': cont['end_time'], 'label': cont['sentiment']}
@@ -292,8 +292,9 @@ def test3():
 
 
 def test4():
+    data_openface = get_openface_features()
     data_hog = get_hog_features()
-    write_features_hog(data_hog)
+    write_features_hog(data_openface, data_hog)
 
 if __name__ == '__main__':
     test4()
