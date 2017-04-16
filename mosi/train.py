@@ -16,7 +16,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
                model='ours', share=False, category=True, maxlen=1000, sample_rate=5,
                feat_sel=False, ratio=None, use_mean=False, early_stop=False):
 
-    feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256, 'text': 128}
+    feature_hidden = {'facet': 48, 'audio': 64, 'openface': 256, 'text': 128, 'hog': 400}
     session_Xs, session_y = load(feature_name=feature_name, category=category)
     hidden_dim = feature_hidden[feature_name]
     message = model + '_' + feature_name + '_share_' + str(share) + '_drop_' + str(drop)\
