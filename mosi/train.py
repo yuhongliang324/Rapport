@@ -151,7 +151,8 @@ def test1():
 
     experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                activation=activation, sq_loss=args.sq, model=args.model, share=args.share, category=args.cat,
-               maxlen=args.maxlen, sample_rate=args.rate, feat_sel=args.fs, ratio=args.fs_rate, use_mean=args.um)
+               maxlen=args.maxlen, sample_rate=args.rate, feat_sel=args.fs, ratio=args.fs_rate, use_mean=args.um,
+               early_stop=es)
 
 
 if __name__ == '__main__':
