@@ -123,7 +123,7 @@ def write_features_hog(data_openface, data_hog):
     videoIDs = data_openface.keys()
     for videoID in videoIDs:
         print videoID
-        video_path = os.path.join(data_root, videoID + '.pkl')
+        video_path = os.path.join(data_root_hog, videoID + '.pkl')
         writer = open(video_path, 'w')
         segID_cont = data_openface[videoID]
         data = {}
@@ -297,4 +297,5 @@ def test4():
     write_features_hog(data_openface, data_hog)
 
 if __name__ == '__main__':
+    test1()
     test4()
