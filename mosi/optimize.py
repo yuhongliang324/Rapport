@@ -7,6 +7,7 @@ import numpy
 import theano
 import theano.tensor as T
 from sklearn.metrics import mean_squared_error
+from scipy.stats import pearsonr
 
 sys.path.append('../')
 
@@ -41,6 +42,11 @@ def MAE(y_actual, y_predicted):
     return mae
 
 
+def pearson(y_actual, y_predicted):
+    r = pearsonr(y_predicted, y_actual)
+    return r[0]
+
+
 def test(test_model, start_batches_test, end_batches_test, len_batches_test,
          y_test, costs_test, category=False):
     n_test = y_test.shape[0]
@@ -68,7 +74,8 @@ def test(test_model, start_batches_test, end_batches_test, len_batches_test,
     if category:
         print '\tTest cost = %f,\tAccuracy = %f' % (cost_avg, mae_acc)
     else:
-        print '\tTest cost = %f,\tMAE = %f' % (cost_avg, mae_acc)
+        r = pearson(y_actual, y_predicted)
+        print '\tTest cost = %f,\tMAE = %f\tPearson=%f' % (cost_avg, mae_acc, r)
     return mae_acc, y_actual, y_predicted
 
 
@@ -182,5 +189,6 @@ def train(inputs_train, inputs_test, hidden_dim=None, dec=True, update='adam', s
         # Early Stopping
         if early_stop and epoch_index - best_epoch >= 4 and epoch_index >= num_epoch // 4:
             break
-    print 'Best Epoch = %d, Best ACC/MAE in Test = %f' % (best_epoch + 1, best_mae_acc)
+    r = pearson(best_actual_test, best_pred_test)
+    print 'Best Epoch = %d, Best ACC/MAE in Test = %f, Pearson = %f' % (best_epoch + 1, best_mae_acc, r)
     return best_actual_test, best_pred_test

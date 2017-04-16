@@ -1,29 +1,65 @@
 Ours without attention:
 nohup python -u train.py -model lstm -feat text > logs/lstm_text.out 2>&1 &
 nohup python -u train.py -model lstm -feat audio -fs 1 -drop 0.5 > logs/lstm_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model lstm -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 > logs/lstm_hog_fs_drop.out 2>&1 &
 
 LSTM:
 nohup python -u train.py -model lstml -feat text > logs/lstml_text.out 2>&1 &
 nohup python -u train.py -model lstml -feat audio -fs 1 -drop 0.5 > logs/lstml_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model lstml -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 > logs/lstml_hog_fs_drop.out 2>&1 &
 
 GRU:
 nohup python -u train.py -model grul -feat text > logs/grul_text.out 2>&1 &
 nohup python -u train.py -model grul -feat audio -fs 1 -drop 0.5 > logs/grul_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model grul -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 > logs/grul_hog_fs_drop.out 2>&1 &
 
 TAGM:
 nohup python -u train.py -model tagm -feat text > logs/tagm_text.out 2>&1 &
 nohup python -u train.py -model tagm -feat audio -fs 1 -drop 0.5 > logs/tagm_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model tagm -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 > logs/tagm_hog_fs_drop.out 2>&1 &
 
-Ours (show attention):
+Ours:
 nohup python -u train.py -model ours -feat text > logs/ours_text.out 2>&1 &
-nohup python -u train.py -model ours -feat facet > logs/ours_facet.out 2>&1 &
 nohup python -u train.py -model ours -feat audio -fs 1 -drop 0.5 > logs/ours_audio_fs_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat hog > logs/ours_hog.out 2>&1 &
-nohup python -u train.py -model ours -feat hog -drop 0.5 > logs/ours_hog_drop.out 2>&1 &
-nohup python -u train.py -model ours -feat hog -fs 1 -fs_rate 0.25 > logs/ours_hog_fs.out 2>&1 &
+nohup python -u train.py -model ours -feat hog -fs 1 -fs_rate 0.25 -drop 0.25 > logs/ours_hog_fs_drop.out 2>&1 &
 
 
 DAN:
 nohup python -u train.py -model dan -feat text > logs/dan_text.out 2>&1 &
 nohup python -u train.py -model dan -feat audio -fs 1 -drop 0.5 > logs/dan_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model dan -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 > logs/dan_hog_fs_drop.out 2>&1 &
 
+
+----------------------
+Regression
+
+Ours without attention:
+nohup python -u train.py -model lstm -feat text -cat 0 -sq 1 > logs/lstm_text.out 2>&1 &
+nohup python -u train.py -model lstm -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/lstm_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model lstm -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 -cat 0 -sq 1 > logs/lstm_hog_fs_drop.out 2>&1 &
+
+LSTM:
+nohup python -u train.py -model lstml -feat text -cat 0 -sq 1 > logs/lstml_text.out 2>&1 &
+nohup python -u train.py -model lstml -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/lstml_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model lstml -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 -cat 0 -sq 1 > logs/lstml_hog_fs_drop.out 2>&1 &
+
+GRU:
+nohup python -u train.py -model grul -feat text -cat 0 -sq 1 > logs/grul_text.out 2>&1 &
+nohup python -u train.py -model grul -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/grul_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model grul -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 -cat 0 -sq 1 > logs/grul_hog_fs_drop.out 2>&1 &
+
+TAGM:
+nohup python -u train.py -model tagm -feat text -cat 0 -sq 1 > logs/tagm_text.out 2>&1 &
+nohup python -u train.py -model tagm -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/tagm_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model tagm -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 -cat 0 -sq 1 > logs/tagm_hog_fs_drop.out 2>&1 &
+
+Ours:
+nohup python -u train.py -model ours -feat text -cat 0 -sq 1 > logs/ours_text.out 2>&1 &
+nohup python -u train.py -model ours -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/ours_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model ours -feat hog -fs 1 -fs_rate 0.25 -drop 0.25 -cat 0 -sq 1 > logs/ours_hog_fs_drop.out 2>&1 &
+
+
+DAN:
+nohup python -u train.py -model dan -feat text -cat 0 -sq 1 > logs/dan_text.out 2>&1 &
+nohup python -u train.py -model dan -feat audio -fs 1 -drop 0.5 -cat 0 -sq 1 > logs/dan_audio_fs_drop.out 2>&1 &
+nohup python -u train.py -model dan -feat hog -fs 1 -fs_rate 0.25 -drop 0.5 -cat 0 -sq 1 > logs/dan_hog_fs_drop.out 2>&1 &
