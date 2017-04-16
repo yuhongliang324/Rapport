@@ -297,5 +297,4 @@ def test4():
     write_features_hog(data_openface, data_hog)
 
 if __name__ == '__main__':
-    test1()
     test4()
