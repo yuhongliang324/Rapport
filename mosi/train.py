@@ -26,7 +26,7 @@ def experiment(feature_name='audio', dec=True, update='adam', lamb=0., drop=0., 
     if category:
         message += '_cat'
     if feat_sel:
-        message += '_fs'
+        message += '_fs_' + str(ratio)
 
     writer = open('results/result_' + message + '.txt', 'w')
 
@@ -115,7 +115,7 @@ def test1():
     parser.add_argument('-drop', type=float, default=0.)
     parser.add_argument('-sq', type=int, default=0)
     parser.add_argument('-fs', type=int, default=0)
-    parser.add_argument('-fs_ratio', type=float, default=0.5)
+    parser.add_argument('-fs_rate', type=float, default=0.5)
     parser.add_argument('-um', type=int, default=0)
     args = parser.parse_args()
 
@@ -146,7 +146,7 @@ def test1():
 
     experiment(feature_name=args.feat, dec=args.dec, update=args.update, lamb=args.lamb, drop=args.drop,
                activation=activation, sq_loss=args.sq, model=args.model, share=args.share, category=args.cat,
-               maxlen=args.maxlen, sample_rate=args.rate, feat_sel=args.fs, ratio=args.fs_ratio, use_mean=args.um)
+               maxlen=args.maxlen, sample_rate=args.rate, feat_sel=args.fs, ratio=args.fs_rate, use_mean=args.um)
 
 
 if __name__ == '__main__':
