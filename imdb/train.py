@@ -46,7 +46,7 @@ def cross_validation(drop=0., hidden_dim=256,
     print 'Written to ' + result_file
 
     if need_attention:
-        ID_token = {}
+        ID_token = {0: '*UNKNOWN*'}
         for token, ID in token_ID.items():
             ID_token[ID] = token
 
@@ -102,7 +102,7 @@ def test1():
     elif args.model == 'tagm':
         activation = 'relu'
 
-    num_epoch = 10
+    num_epoch = 1
     if args.model == 'dan':
         num_epoch = 50
 
