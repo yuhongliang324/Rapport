@@ -16,7 +16,7 @@ def cross_validation(drop=0., hidden_dim=256,
         = load_data(train_pkl, fine=fine)
     X_test, y_test, start_batches_test, end_batches_test, len_batches_test, indices_test\
         = load_data(test_pkl, fine=fine)
-    _, E = load_dict()
+    token_ID, E = load_dict()
     message = model + '_drop_' + str(drop) + '_lamb_' + str(lamb) + '_hid_' + str(hidden_dim)
     if sq_loss:
         message += '_sq'
@@ -46,9 +46,31 @@ def cross_validation(drop=0., hidden_dim=256,
     print 'Written to ' + result_file
 
     if need_attention:
+        ID_token = {}
+        for token, ID in token_ID.items():
+            ID_token[ID] = token
+
+        num_iter = len(start_batches_test)
+        word_indices = []
+        for iter_index in xrange(num_iter):
+            start, end = start_batches_train[iter_index], end_batches_train[iter_index]
+            length = len_batches_train[iter_index]
+            xb = X_train[start: end, :length]
+            word_indices.append(xb)
+
+        sentences, attentions = [], []
+        for xb, atts in zip(word_indices, best_att_test):
+            size = xb.shape[0]
+            for i in xrange(size):
+                x, att = xb[i], atts[i]
+                sent = [ID_token[id] for id in x]
+                sent = ' '.join(sent)
+                sentences.append(sent)
+                attentions.append(att)
+
         pkl_path = 'att.pkl'
         f = open(pkl_path, 'wb')
-        cPickle.dump([indices_test, best_att_test], f, protocol=cPickle.HIGHEST_PROTOCOL)
+        cPickle.dump([sentences, attentions], f, protocol=cPickle.HIGHEST_PROTOCOL)
         f.close()
         print 'Dump attention to ' + pkl_path
 
