@@ -53,9 +53,9 @@ def cross_validation(drop=0., hidden_dim=256,
         num_iter = len(start_batches_test)
         word_indices = []
         for iter_index in xrange(num_iter):
-            start, end = start_batches_train[iter_index], end_batches_train[iter_index]
-            length = len_batches_train[iter_index]
-            xb = X_train[start: end, :length]
+            start, end = start_batches_test[iter_index], end_batches_test[iter_index]
+            length = len_batches_test[iter_index]
+            xb = X_test[start: end, :length]
             word_indices.append(xb)
 
         sentences, attentions = [], []
@@ -102,7 +102,7 @@ def test1():
     elif args.model == 'tagm':
         activation = 'relu'
 
-    num_epoch = 10
+    num_epoch = 1
     if args.model == 'dan':
         num_epoch = 50
 
