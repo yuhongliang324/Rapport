@@ -1,0 +1,67 @@
+nohup: ignoring input
+Couldn't import dot_parser, loading of dot files will not be possible.
+WARNING (theano.sandbox.cuda): The cuda backend is deprecated and will be removed in the next release.  Please switch to the gpuarray backend. You can get more information about how to switch at this URL:
+ https://github.com/Theano/Theano/wiki/Converting-to-the-new-gpu-back-end%28gpuarray%29
+
+Using gpu device 0: GeForce GTX TITAN X (CNMeM is disabled, cuDNN 5103)
+(93430, 300) (25000, 1100) (25000, 1085)
+dec = True model = ours + lstm lambda = 0.0 share = False #class = 2 drop = 0.0 update = adam2
+Compiling function
+Compilation done 1
+Compilation done 2
+Epoch = 1
+10/250  Train Acc = 0.570000
+20/250  Train Acc = 0.780000
+30/250  Train Acc = 0.800000
+40/250  Train Acc = 0.810000
+50/250  Train Acc = 0.860000
+60/250  Train Acc = 0.820000
+70/250  Train Acc = 0.800000
+80/250  Train Acc = 0.910000
+90/250  Train Acc = 0.920000
+100/250  Train Acc = 0.910000
+110/250  Train Acc = 0.900000
+120/250  Train Acc = 0.910000
+130/250  Train Acc = 0.870000
+140/250  Train Acc = 0.850000
+150/250  Train Acc = 0.910000
+160/250  Train Acc = 0.850000
+170/250  Train Acc = 0.900000
+180/250  Train Acc = 0.890000
+190/250  Train Acc = 0.850000
+200/250  Train Acc = 0.810000
+210/250  Train Acc = 0.870000
+220/250  Train Acc = 0.860000
+230/250  Train Acc = 0.890000
+240/250  Train Acc = 0.890000
+250/250  Train Acc = 0.860000
+	Train cost = 0.348956,	Accuracy = 0.844080
+10/250  Test Acc = 0.870000
+20/250  Test Acc = 0.880000
+30/250  Test Acc = 0.900000
+40/250  Test Acc = 0.900000
+50/250  Test Acc = 0.890000
+60/250  Test Acc = 0.880000
+70/250  Test Acc = 0.930000
+80/250  Test Acc = 0.880000
+90/250  Test Acc = 0.930000
+100/250  Test Acc = 0.890000
+110/250  Test Acc = 0.890000
+120/250  Test Acc = 0.870000
+130/250  Test Acc = 0.910000
+140/250  Test Acc = 0.940000
+150/250  Test Acc = 0.880000
+160/250  Test Acc = 0.880000
+170/250  Test Acc = 0.830000
+180/250  Test Acc = 0.870000
+190/250  Test Acc = 0.870000
+200/250  Test Acc = 0.910000
+210/250  Test Acc = 0.760000
+220/250  Test Acc = 0.840000
+230/250  Test Acc = 0.930000
+240/250  Test Acc = 0.920000
+250/250  Test Acc = 0.820000
+	Test cost = 0.282429,	Accuracy = 0.882720
+Best Epoch = 1, Best MAE/ACC in Test = 0.882720
+Written to results/ours_drop_0.0_lamb_0.0_hid_128.txt
+Dump attention to att.pkl
