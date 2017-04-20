@@ -5,7 +5,7 @@ from collections import defaultdict
 
 
 def extract_top_words():
-    reader = open('att_tmp.pkl')
+    reader = open('att.pkl')
     sentences, attentions = cPickle.load(reader)
     reader.close()
     word_weight = defaultdict(float)

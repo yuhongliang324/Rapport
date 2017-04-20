@@ -79,9 +79,9 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
             y_train = y_train.astype('int32')
 
         if shuffle:
-            print 'Shuffling'
+            print 'Shuffling ...'
             n_train = X_train.shape[0]
-            ind = numpy.asarray(n_train)
+            ind = numpy.arange(n_train)
             random.shuffle(ind)
             X_train = X_train[ind]
             y_train = y_train[ind]

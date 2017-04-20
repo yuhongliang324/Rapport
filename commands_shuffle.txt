@@ -1,0 +1,24 @@
+Ours:
+nohup python -u train.py -feat audio -model ours -shuffle 1 > ../logs/audio_ours_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model ours -shuffle 1 > ../logs/hog_ours_shuffle.out 2>&1 &
+
+DAN:
+nohup python -u train.py -feat audio -model dan -shuffle 1 > ../logs/audio_dan_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model dan -shuffle 1 > ../logs/hog_dan_shuffle.out 2>&1 &
+
+Ours without attention:
+nohup python -u train.py -feat audio -model lstm -shuffle 1 > ../logs/audio_lstm_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model lstm -shuffle 1 > ../logs/hog_lstm_shuffle.out 2>&1 &
+
+TAGM:
+nohup python -u train.py -feat audio -model tagm -shuffle 1 > ../logs/audio_tagm_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model tagm -shuffle 1 > ../logs/hog_tagm_shuffle.out 2>&1 &
+
+LSTM:
+nohup python -u train.py -feat audio -model lstml -shuffle 1 > ../logs/audio_lstml_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model lstml -shuffle 1 > ../logs/hog_lstml_shuffle.out 2>&1 &
+
+GRU:
+nohup python -u train.py -feat audio -model grul -shuffle 1 > ../logs/audio_grul_shuffle.out 2>&1 &
+nohup python -u train.py -feat hog -model grul -shuffle 1 > ../logs/hog_grul_shuffle.out 2>&1 &
+
