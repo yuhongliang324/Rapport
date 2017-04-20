@@ -18,13 +18,14 @@ def extract_top_words():
             word_weight[word] += aw
             word_count[word] += 1.
     for word, weight in word_weight.items():
-        if word_count[word] < 1000:
+        if word_count[word] < 20:
             word_weight[word] = 0.
-        word_weight[word] = weight / word_count[word]
+        else:
+            word_weight[word] = weight / word_count[word]
     word_weight_list = sorted(word_weight.iteritems(), key=lambda d: d[1], reverse=True)
-    for i in xrange(100):
+    for i in xrange(50):
         word, weight = word_weight_list[i][0], word_weight_list[i][1]
-        # print word, weight
+        print word.replace('.', '') + '\t' + str(weight)
 
 
 def test1():

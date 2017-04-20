@@ -11,11 +11,12 @@ import shutil
 from utils import load_split
 from optimize import train
 import cPickle
+import random
 
 
 def cross_validation(feature_name='hog', side='b', drop=0., final_activation=None, dec=True, update='adam', lamb=0.,
                      model='ours', share=False, best3=False, category=False, normalization=False, activation=None,
-                     num_epoch=60, need_attention=False, draw=False, sq_loss=False):
+                     num_epoch=60, need_attention=False, draw=False, sq_loss=False, shuffle=False):
 
     feature_hidden = {'hog': 256, 'gemo': 128, 'au': 48, 'AU': 48, 'audio': 64}
 
@@ -40,6 +41,8 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         message += '_best3'
     if category:
         message += '_cat'
+    if shuffle:
+        message += '_shuffle'
     result_file = '../results/result_' + message + '.txt'
     writer = open(result_file, 'w')
 
@@ -74,6 +77,14 @@ def cross_validation(feature_name='hog', side='b', drop=0., final_activation=Non
         y_train = numpy.concatenate(rating_list)
         if category:
             y_train = y_train.astype('int32')
+
+        if shuffle:
+            print 'Shuffling'
+            n_train = X_train.shape[0]
+            ind = numpy.asarray(n_train)
+            random.shuffle(ind)
+            X_train = X_train[ind]
+            y_train = y_train[ind]
 
         print 'Validation Dyad =', vdyad, '\tTesting Dyad =', tdyad
         if category:
@@ -143,6 +154,7 @@ def test1():
     parser.add_argument('-att', type=int, default=0)
     parser.add_argument('-draw', type=int, default=0)
     parser.add_argument('-sq', type=int, default=0)
+    parser.add_argument('-shuffle', type=int, default=0)
     args = parser.parse_args()
     if args.side is not None:
         side = args.side
@@ -166,6 +178,7 @@ def test1():
     args.att = bool(args.att)
     args.draw = bool(args.draw)
     args.sq = bool(args.sq)
+    args.shuffle = bool(args.shuffle)
 
     normalization = False
     num_epoch = 40
@@ -190,7 +203,7 @@ def test1():
     cross_validation(feature_name=args.feat, side=side, drop=args.drop, final_activation=args.fact,
                      dec=args.dec, update=args.update, lamb=lamb, model=args.model, share=args.share,
                      category=args.cat, best3=args.best3, normalization=normalization, activation=activation,
-                     num_epoch=num_epoch, need_attention=args.att, draw=args.draw, sq_loss=args.sq)
+                     num_epoch=num_epoch, need_attention=args.att, draw=args.draw, sq_loss=args.sq, shuffle=args.shuffle)
 
 
 if __name__ == '__main__':
